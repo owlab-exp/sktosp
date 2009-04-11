@@ -1,9 +1,10 @@
-package com.owlab.sample.ibatis;
+package com.owlab.sample.ibatis.app;
 
 import java.util.Date;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.owlab.sample.ibatis.domain.Person;
+import com.owlab.sample.ibatis.util.IbatisUtil;
 
 /**
  * Very simple tutorial to test domain object & iBATIS
@@ -51,7 +52,7 @@ public class PersonManager {
 	 * @param person
 	 */
 	public void createPerson(Person person) {
-		SqlMapClient sqlMap = SqlMapConfig.getSqlMapInstance();
+		SqlMapClient sqlMap = IbatisUtil.getSqlMapInstance();
 		try {
 			sqlMap.insert("insertPerson", person);
 		} catch(Exception e) {
@@ -65,7 +66,7 @@ public class PersonManager {
 	 * @return
 	 */
 	public Person getPerson(Integer id) {
-		SqlMapClient sqlMap = SqlMapConfig.getSqlMapInstance();
+		SqlMapClient sqlMap = IbatisUtil.getSqlMapInstance();
 		Person person = null;
 		try {
 			person = (Person) sqlMap.queryForObject("getPerson", id);
@@ -81,7 +82,7 @@ public class PersonManager {
 	 * @return
 	 */
 	public int updatePerson(Person person) {
-		SqlMapClient sqlMap = SqlMapConfig.getSqlMapInstance();
+		SqlMapClient sqlMap = IbatisUtil.getSqlMapInstance();
 		int r = -1;
 		try {
 			r = sqlMap.update("updatePerson", person);
@@ -97,7 +98,7 @@ public class PersonManager {
 	 * @return
 	 */
 	public int deletePerson(Person person) {
-		SqlMapClient sqlMap = SqlMapConfig.getSqlMapInstance();
+		SqlMapClient sqlMap = IbatisUtil.getSqlMapInstance();
 		int r = -1;
 		try {
 			r = sqlMap.delete("deletePerson", person);

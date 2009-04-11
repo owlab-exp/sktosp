@@ -1,4 +1,4 @@
-package com.owlab.sample.ibatis;
+package com.owlab.sample.ibatis.util;
 
 import java.io.Reader;
 
@@ -11,7 +11,7 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
  * @author Ernest Lee
  *
  */
-public class SqlMapConfig {
+public class IbatisUtil {
 	private static final SqlMapClient sqlMap;
 	static {
 		try {
