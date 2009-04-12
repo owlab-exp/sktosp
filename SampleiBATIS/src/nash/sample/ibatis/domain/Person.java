@@ -1,4 +1,4 @@
-package nash.ibatis.domain;
+package nash.sample.ibatis.domain;
 
 import java.util.Date;
 

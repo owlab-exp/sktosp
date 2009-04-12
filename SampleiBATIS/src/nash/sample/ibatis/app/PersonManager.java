@@ -2,8 +2,8 @@ package nash.sample.ibatis.app;
 
 import java.util.Date;
 
-import nash.ibatis.domain.Person;
-import nash.ibatis.util.IbatisUtil;
+import nash.sample.ibatis.domain.Person;
+import nash.sample.ibatis.util.IbatisUtil;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 

@@ -1,4 +1,4 @@
-package nash.ibatis.util;
+package nash.sample.ibatis.util;
 
 import java.io.Reader;
 
