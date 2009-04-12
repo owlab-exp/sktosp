@@ -1,9 +1,9 @@
-package nash.hibernate.app;
+package nash.sample.hibernate.app;
 
 import java.util.Date;
 
-import nash.hibernate.domain.Person;
-import nash.hibernate.util.HibernateUtil;
+import nash.sample.hibernate.domain.Person;
+import nash.sample.hibernate.util.HibernateUtil;
 
 import org.hibernate.Session;
 

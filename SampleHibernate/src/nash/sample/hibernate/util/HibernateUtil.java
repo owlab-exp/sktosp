@@ -1,4 +1,4 @@
-package nash.hibernate.util;
+package nash.sample.hibernate.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

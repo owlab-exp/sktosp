@@ -1,4 +1,4 @@
-package nash.hibernate.domain;
+package nash.sample.hibernate.domain;
 
 import java.util.Date;
 
