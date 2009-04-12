@@ -1,4 +1,4 @@
-package com.owlab.sample.hibernate.domain;
+package nash.hibernate.domain;
 
 import java.util.Date;
 

@@ -1,11 +1,12 @@
-package com.owlab.sample.hibernate.app;
+package nash.hibernate.app;
 
 import java.util.Date;
 
+import nash.hibernate.domain.Person;
+import nash.hibernate.util.HibernateUtil;
+
 import org.hibernate.Session;
 
-import com.owlab.sample.hibernate.domain.Person;
-import com.owlab.sample.hibernate.util.HibernateUtil;
 
 /**
  * Very simple tutorial to test domain object & iBATIS
