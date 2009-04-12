@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.owlab.sample.hibernate.domain.Person" table="PERSON">
+	<class name="nash.sample.hibernate.domain.Person" table="PERSON">
 		<id name="id" column="PER_ID">
 			<!-- generator class="native" /-->
 		</id>
