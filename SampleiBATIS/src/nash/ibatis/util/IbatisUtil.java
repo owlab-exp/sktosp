@@ -1,4 +1,4 @@
-package com.owlab.sample.ibatis.util;
+package nash.ibatis.util;
 
 import java.io.Reader;
 

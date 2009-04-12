@@ -1,10 +1,11 @@
-package com.owlab.sample.ibatis.app;
+package nash.sample.ibatis.app;
 
 import java.util.Date;
 
+import nash.ibatis.domain.Person;
+import nash.ibatis.util.IbatisUtil;
+
 import com.ibatis.sqlmap.client.SqlMapClient;
-import com.owlab.sample.ibatis.domain.Person;
-import com.owlab.sample.ibatis.util.IbatisUtil;
 
 /**
  * Very simple tutorial to test domain object & iBATIS

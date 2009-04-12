@@ -1,4 +1,4 @@
-package com.owlab.sample.ibatis.domain;
+package nash.ibatis.domain;
 
 import java.util.Date;
 
