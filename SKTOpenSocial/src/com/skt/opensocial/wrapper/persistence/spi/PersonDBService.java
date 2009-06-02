@@ -22,6 +22,7 @@ public class PersonDBService {
 		// create Person object to insert
 		PersonImpl person = new PersonImpl();
 		person.setId("comisme"); // You may change this id if duplication occurs.
+		person.setName("Duri Kim");
 		person.setBirthday(new Date());
 		person.setAboutMe("MSIT-SE student");
 		

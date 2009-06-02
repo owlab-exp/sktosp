@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class PersonImpl {
   private String aboutMe;
-  
+  private String name;
   private List<String> activities;
   
   private Integer age;
@@ -105,6 +105,14 @@ public class PersonImpl {
     this.id = id;
     this.displayName = displayName;
     
+  }
+  
+  public String getName() {
+	  return name;
+  }
+  
+  public void setName(String name) {
+	  this.name = name;
   }
 
   public String getAboutMe() {

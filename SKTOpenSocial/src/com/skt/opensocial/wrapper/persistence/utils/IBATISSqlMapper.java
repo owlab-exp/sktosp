@@ -15,7 +15,7 @@ public class IBATISSqlMapper {
 	private static final SqlMapClient sqlMap;
 	static {
 		try {
-			String resource = "SqlMapConfig.xml";
+			String resource = "com/skt/opensocial/wrapper/persistence/config/SqlMapConfig.xml";
 			Reader reader = Resources.getResourceAsReader (resource);
 			sqlMap = SqlMapClientBuilder.buildSqlMapClient(reader);
 		} catch (Exception e) {

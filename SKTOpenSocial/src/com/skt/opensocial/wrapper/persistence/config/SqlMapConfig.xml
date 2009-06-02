@@ -9,7 +9,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
 		placeholders in this config file (e.g. “${driver}”. The file is
 		usually relative to the classpath and is optional.
 	-->
-	<properties resource="SqlMapConfig.properties" />
+	<properties resource="com/skt/opensocial/wrapper/persistence/config/SqlMapConfig.properties" />
 	<!--
 		These settings control SqlMap configuration details, primarily to do
 		with transaction management. They are all optional (see the Developer
