@@ -15,7 +15,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
  */
 public class PersonDBService {
 	
-	public static void main() {
+	public static void main(String[] args) {
 		
 		PersonDBService manager = new PersonDBService();
 		
