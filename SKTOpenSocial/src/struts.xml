@@ -13,5 +13,24 @@
 		</action>
 	-->
 	</package>
-	<include file="sample/hello.xml"></include>
+<!--	<include file="com.skt.opensocial.gadget/hello.xml"></include>-->
+
+
+	<package name="admin" namespace="/admin" extends="struts-default">
+	<!--
+		<action name="Name">
+			<result name="SUCCESS">/sample/NameCollector.jsp</result>
+		</action>
+		--><!--
+		<action name="HelloWorld" class="com.skt.opensocial.gadget.HelloWorld">
+			<result name="SUCCESS">/sample/HelloWorld.jsp</result>
+		</action>
+		
+		--><action name="GadgetList" class="com.skt.opensocial.gadget.GadgetList">
+			<result name="SUCCESS">/admin/GadgetList.jsp</result>
+		</action>		
+	</package>
+	
+	
+	
 </struts>
