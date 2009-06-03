@@ -3,7 +3,7 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="sample" namespace="/sample" extends="struts-default">
+	<package name="sample" namespace="/sample" extends="default">
 	<!--
 		<action name="Name">
 			<result name="SUCCESS">/sample/NameCollector.jsp</result>
