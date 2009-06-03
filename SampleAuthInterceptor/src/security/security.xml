@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="security" namespace="/security" extends="default">
+
+		<action name="UserLogin" class="security.UserLogin">
+			<interceptor-ref name="defaultStack"/>
+			<result name="input">/security/Login.jsp</result>
+			<result name="success">/user/UserLoginSuccess.jsp</result>
+		</action>
+		<action name="UserLogout" class="security.LogoutAction">
+			<result name="success">/security/Login.jsp</result>
+		</action>
+	</package>
+</struts>
