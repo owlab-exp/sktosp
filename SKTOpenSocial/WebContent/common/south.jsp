@@ -4,7 +4,7 @@
       <table width="100%" height="100%" border="1px">
         <tr>
           <td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong>
-          </td>
+          </td>          
         </tr>
       </table>
       </div>

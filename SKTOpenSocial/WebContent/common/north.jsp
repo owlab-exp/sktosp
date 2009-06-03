@@ -8,10 +8,10 @@
           
           <td width="20%" onclick="javacript:location.href='/index.jsp'" style="cursor:hand">SKT OpenSocial 홈</td>
           <td width="5%" style="background-color:#FFFFFF"></td>
-          <td width="20%">사용자 메뉴</td>
+          <td width="10%">사용자 메뉴</td>
           <td width="5%" style="background-color:#FFFFFF"></td>
-          <td width="20%">개발자 메뉴</td>
-          <td></td>
+          <td width="10%">개발자 메뉴</td>
+          <td style="background-color:#FFFFFF"></td>
           <td width="10%">관리자</td>
         </tr>
       </table>
