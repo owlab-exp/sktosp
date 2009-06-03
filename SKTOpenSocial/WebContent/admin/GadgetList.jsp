@@ -21,6 +21,7 @@
     <td width="25%" align="center" valign="top">
 
 <%@ include file="/common/west.jsp"%>
+<%@ include file="/common/menu.jsp"%>
 
     </td>
     <!-- east -->
@@ -46,7 +47,8 @@
 	<s:form action="GadgetList" theme="simple">
 	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'name':'이름','owner':'등록자'}"/> 
 	    <s:textfield name="query"/> 
-	    <s:submit/>
+	    <s:submit value="검색"/>
+	    
 	</s:form>
 
 		      </td>
