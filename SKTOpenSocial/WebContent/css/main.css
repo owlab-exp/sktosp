@@ -12,7 +12,7 @@ strong { font-style:normal; font-weight:bold; }
 
 #header table {background-color:#F5F5F5; padding: 10px;}
 #header td {font-size:13px; font-weight:bold;}
-.menu td{font:normal 16px Dotum,µ¸¿ò; float:left;padding: 1px 12px 0 12px; ;align:left;}
+#header .menu td{font:normal 16px Dotum,µ¸¿ò; float:left;padding: 1px 12px 0 12px; ;align:left;}
 
 
 
