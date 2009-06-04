@@ -1,56 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-
-<title>User Gadget Page - SKT OpenSocial Pilot</title>
-
-<link rel="stylesheet" type="text/css" href="main.css">
-<script type="text/javascript" src="main.js"></script>
-
-</head>
+<%@ include file="/common/header.jsp"%>
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
 <table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
-  <tr>
+
+    <tr>
   <!-- north -->
-    <td colspan=3 height="10%" align="center" valign="middle">
-      <div id="header">
-      <table width="100%" height="100%" border="1">
-        <tr align="center">
-          <td width="25%" onclick="javascript:location.href=''">»®</td>
-          <td width="20%">ªÁøÎ¿⁄ ∏ﬁ¥∫</td>
-          <td width="20%">∞≥πﬂ¿⁄ ∏ﬁ¥∫</td>
-          <td></td>
-          <td width="10%">∞¸∏Æ¿⁄</td>
-        </tr>
-      </table>
-    </div>
+    <td colspan="3" height="10%" align="center" valign="middle">
+
+<%@ include file="/common/north.jsp"%>
+
     </td>
   </tr>
-  <tr>
+  
+    <tr>
   <!-- west -->
     <td width="25%" align="center" valign="top">
-    <div id="west">
-      <div class="login">
-      <table>
-        <tr>
-          <td>
-              <form id="login" name="login" action="login.jsp" target="_self" method="post" autocomplete="off" onsubmit="return form_chk();"> 
-              ¿Ã∏ﬁ¿œ: <input type="text" id="loginEmail" name="email" class="bg" title="¿Ã∏ﬁ¿œ ¡÷º“ ¿‘∑¬" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" datatype="an" mask="-_@." /> 
-              <br>∫Òπ–π¯»£: <input type="password" id="loginPasswd" name="passwd" class="bg" title="∫Òπ–π¯»£ ¿‘∑¬" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" enc="on" /> 
-              <br><br><input type="submit" class="btn" title="∑Œ±◊¿Œπˆ∆∞" value="∑Œ±◊¿Œ"/> 
-              <input type="hidden" id="loginEChk" name="echk" value="" /> 
-              </form>
-          </td>
-        </tr>
-      </table>
-      </div>
-    </div>
+
+<%@ include file="/common/west.jsp"%>
+<%@ include file="/common/menu.jsp"%>
+
     </td>
+    
     <!-- east -->
     <td width="75%" align="left" valign="top">
     
@@ -62,9 +37,9 @@
           <td>            
             <div class="subject subject_char"> 
             <ul class="subject_sub">
-            <li>»®</li>
-            <li>ªÁøÎ¿⁄ ∏ﬁ¥∫</li>
-            <li><strong>∞°¡¨¡§∫∏∆‰¿Ã¡ˆ</strong></li> 
+            <li>Ìôà</li>
+            <li>ÏÇ¨Ïö©Ïûê Î©îÎâ¥</li>
+            <li><strong>Í∞ÄÏ†ØÏ†ïÎ≥¥ÌéòÏù¥ÏßÄ</strong></li> 
             </ul>
             </div>
           </td>
@@ -78,7 +53,7 @@
   				<tr>
   					<td nowrap>
   						<b><font color="#333333">
-  						∞°¡¨ ¡§∫∏
+  						Í∞ÄÏ†Ø Ï†ïÎ≥¥
   							</font></b>
   					</td>
   					<td width="100%"><hr></td>
@@ -88,7 +63,7 @@
   				<tr>
   					<td width="20%" nowrap="nowrap" valign="top">
   						<font size="-1">
-  						∞°¡¨¿Ã∏ß:
+  						Í∞ÄÏ†ØÏù¥Î¶Ñ:
   						</font>
   					</td>
   					<td>
@@ -98,7 +73,7 @@
   				<tr>
   					<td width="20%" nowrap="nowrap" valign="top">
   						<font size="-1">
-  						∞°¡¨∞≥πﬂ¿⁄:
+  						Í∞ÄÏ†ØÍ∞úÎ∞úÏûê:
  						 </font>
   					</td>
   					<td>
@@ -108,7 +83,7 @@
   				<tr>
   					<td width="20%" nowrap="nowrap" valign="top">
   						<font size="-1">
-  							∞°¡¨∞≥πﬂ≥Ø¬•:
+  							Í∞ÄÏ†ØÍ∞úÎ∞úÎÇ†Ïßú:
   						</font>
   					</td>
 	  				<td>
@@ -125,19 +100,15 @@
       
     </td>
   </tr>
+
   <!-- south -->
   <tr>
     <td colspan=3 height="10%" align="center" valign="middle">
-      <div id="footer">
-      <table width="100%" height="100%" border="1px">
-        <tr>
-          <td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong>
-          </td>
-        </tr>
-      </table>
-      </div>
-      </td>
-	</tr> 
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
+
+
 </table>
 
 
