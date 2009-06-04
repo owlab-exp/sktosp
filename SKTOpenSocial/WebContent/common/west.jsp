@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <div id="west">
       <div class="login">
       <table>
         <tr>
           <td>
               <form id="login" name="login" action="login.jsp" target="_self" method="post" autocomplete="off" onsubmit="return form_chk();"> 
-              ¿Ã∏ﬁ¿œ: <input type="text" id="loginEmail" name="email" class="bg" title="¿Ã∏ﬁ¿œ ¡÷º“ ¿‘∑¬" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" datatype="an" mask="-_@." /> 
-              <br>∫Òπ–π¯»£: <input type="password" id="loginPasswd" name="passwd" class="bg" title="∫Òπ–π¯»£ ¿‘∑¬" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" enc="on" /> 
-              <br><br><input type="submit" class="btn" title="∑Œ±◊¿Œπˆ∆∞" value="∑Œ±◊¿Œ"/> 
+              Ïù¥Î©îÏùº: <input type="text" id="loginEmail" name="email" class="bg" title="Ïù¥Î©îÏùº Ï£ºÏÜå ÏûÖÎ†•" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" datatype="an" mask="-_@." /> 
+              <br>ÎπÑÎ∞ÄÎ≤àÌò∏: <input type="password" id="loginPasswd" name="passwd" class="bg" title="ÎπÑÎ∞ÄÎ≤àÌò∏ ÏûÖÎ†•" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" enc="on" /> 
+              <br><br><input type="submit" class="btn" title="Î°úÍ∑∏Ïù∏Î≤ÑÌäº" value="Î°úÍ∑∏Ïù∏"/> 
               <input type="hidden" id="loginEChk" name="echk" value="" /> 
               </form>
           </td>

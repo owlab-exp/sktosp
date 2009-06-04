@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,9 +45,9 @@
 
 
 	<s:form action="GadgetList" theme="simple">
-	    <s:select label="∞Àªˆ¡∂∞«" name="searchfield" headerKey="1" headerValue="-- º±≈√«œººø‰ --" list="#{'name':'¿Ã∏ß','owner':'µÓ∑œ¿⁄'}"/> 
+	    <s:select label="Í≤ÄÏÉâÏ°∞Í±¥" name="searchfield" headerKey="1" headerValue="-- ÏÑ†ÌÉùÌïòÏÑ∏Ïöî --" list="#{'name':'Ïù¥Î¶Ñ','owner':'Îì±Î°ùÏûê'}"/> 
 	    <s:textfield name="query"/> 
-	    <s:submit value="∞Àªˆ"/>
+	    <s:submit value="Í≤ÄÏÉâ"/>
 	    
 	</s:form>
 
@@ -59,7 +59,7 @@
           <td>
           
             <!-- bbs -->
-            <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="∞‘Ω√∆«"> 
+            <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="Í≤åÏãúÌåê"> 
 			<colgroup> 
                 <col width="10%" /> 
                 <col width="45%" /> 
@@ -72,12 +72,12 @@
 <!--  <s:property value="gadgetlistStr"/>	-->
 
     			  <tr style="background-color:#F5F5F5;">
-          			<td>¿Ã∏ß</td> 
-                	<td>º≥∏Ì</td> 
-      			    <td align="center">∞≥πﬂ¿⁄</td> 
-      			    <td align="center">µÓ∑œ¿œ¿⁄</td> 
-      			    <td align="center">ªÛ≈¬</td> 
-      			    <td align="center">ªË¡¶±‚¥…</td> 
+          			<td>Ïù¥Î¶Ñ</td> 
+                	<td>ÏÑ§Î™Ö</td> 
+      			    <td align="center">Í∞úÎ∞úÏûê</td> 
+      			    <td align="center">Îì±Î°ùÏùºÏûê</td> 
+      			    <td align="center">ÏÉÅÌÉú</td> 
+      			    <td align="center">ÏÇ≠Ï†úÍ∏∞Îä•</td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 
@@ -88,7 +88,7 @@
       			    <td align="center"><s:property value="owner"/></td> 
       			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
       			    <td align="center"><span class="num"><input type=button value="<s:property value="status"/>"></span></td> 
-      			    <td align="center"><input type=button value="ªË¡¶"></td> 
+      			    <td align="center"><input type=button value="ÏÇ≠Ï†ú"></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
       			</s:iterator>
@@ -100,11 +100,11 @@
             <!-- paging --> 
             
 			<div class="paging"> 
-				<em class="p"><a href="">¿Ã¿¸</a></em> 
+				<em class="p"><a href="">Ïù¥Ï†Ñ</a></em> 
 				<span class="on">1</span>
 				<a href="">2</a>
 				<a href="">3</a>
-				<em class="n"><a href="">¥Ÿ¿Ω</a></em> 
+				<em class="n"><a href="">Îã§Ïùå</a></em> 
 			</div>
             </td>
       	</tr>

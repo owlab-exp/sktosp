@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 	<br>
 	<table width="90%" height="100" border="1" cellspacing="0" cellpadding="0" class="menu">
 		<tr height=30>
-			<td align=left><h3>¢¹ °ü¸®ÀÚ ¸Þ´º</h3>
+			<td align=left><h3>â–· ê´€ë¦¬ìž ë©”ë‰´</h3>
 			</td>
 		</tr>
 		<tr>
-			<td>°¡Á¬ °ü¸®
+			<td>ê°€ì ¯ ê´€ë¦¬
 			</td>
 		</tr>		
 		<tr>
-			<td>°³¹ßÀÚ °ü¸®
+			<td>ê°œë°œìž ê´€ë¦¬
 			</td>
 		</tr>		
 	</table>

@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
       <div id="header">
       <table width="100%" height="100%" border="1">
         <tr align="center">
           <td width="25%" style="background-color:#FFFFFF"><img src="../images/logo.jpg"></td>
           
-          <td width="20%" onclick="javacript:location.href='/index.jsp'" style="cursor:hand">SKT OpenSocial È¨</td>
+          <td width="20%" onclick="javacript:location.href='/index.jsp'" style="cursor:hand">SKT OpenSocial Pilot í™ˆ</td>
           <td width="5%" style="background-color:#FFFFFF"></td>
-          <td width="10%">»ç¿ëÀÚ ¸Þ´º</td>
+          <td width="10%">ì‚¬ìš©ìž ë©”ë‰´</td>
           <td width="5%" style="background-color:#FFFFFF"></td>
-          <td width="10%">°³¹ßÀÚ ¸Þ´º</td>
+          <td width="10%">ê°œë°œìž ë©”ë‰´</td>
           <td style="background-color:#FFFFFF"></td>
-          <td width="10%">°ü¸®ÀÚ</td>
+          <td width="10%">ê´€ë¦¬ìž</td>
         </tr>
       </table>
     </div>

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
             <div class="subject subject_char"> 
             <ul class="subject_sub">
-            <li>È¨</li>
-            <li>°ü¸®ÀÚ ¸Þ´º</li>
-            <li><strong>°¡Á¬°ü¸®</strong></li> 
+            <li>í™ˆ</li>
+            <li>ê´€ë¦¬ìž ë©”ë‰´</li>
+            <li><strong>ê°€ì ¯ê´€ë¦¬</strong></li> 
             </ul>
             </div>
