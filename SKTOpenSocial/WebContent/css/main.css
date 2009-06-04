@@ -17,6 +17,7 @@ strong { font-style:normal; font-weight:bold; }
 
 
 #west .login {position:relative; width:176px; height:130px; padding:9px 9px 0 9px; border:3px solid #D9D9D9; }
+#west .menubox {position:relative; width:176px; height:130px; padding:9px 9px 0 9px; border:3px solid #D9D9D9; }
 
 #east .subtit_board { width:100%; }
 #east .subtit_board th { padding:4px 0; background-color:#FFFDEB; font-weight:normal; }

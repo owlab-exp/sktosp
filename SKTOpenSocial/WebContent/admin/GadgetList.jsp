@@ -21,7 +21,6 @@
     <td width="25%" align="center" valign="top">
 
 <%@ include file="/common/west.jsp"%>
-<%@ include file="/common/menu.jsp"%>
 
     </td>
     <!-- east -->
@@ -33,7 +32,7 @@
         <tr>
           <td>
                       
-<%@ include file="/common/nav.jsp"%>
+<%@ include file="gadgetnav.jsp"%>
 
           </td>
         </tr>
@@ -63,8 +62,8 @@
 			<colgroup> 
                 <col width="10%" /> 
                 <col width="45%" /> 
-                <col width="10%" /> 
-                <col width="15% /> 
+                <col width="10%" />
+                <col width="15%" />
                 <col width="15%" /> 
                 <col width="5%" /> 
               </colgroup>
@@ -83,12 +82,12 @@
 
     			<s:iterator value="gadgetlist">
     			  <tr> 
-          			<td><span class="num"><s:property value="name"/></span></td> 
+          			<td><span class="num"><s:url var="url" namespace="/admin" action="GadgetDetail"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
                 	<td><s:property value="desc"/></td> 
       			    <td align="center"><s:property value="owner"/></td> 
       			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
-      			    <td align="center"><span class="num"><input type=button value="<s:property value="status"/>"></span></td> 
-      			    <td align="center"><input type=button value="삭제"></td> 
+      			    <td align="center"><span class="num"><input type="button" value="<s:property value="status"/>"></span></td> 
+      			    <td align="center"><input type="button" value="삭제"></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
       			</s:iterator>
@@ -116,8 +115,9 @@
   </tr>
   <!-- south -->
   <tr>
-    <td colspan=3 height="10%" align="center" valign="middle">
+    <td colspan="3" height="10%" align="center" valign="middle">
 <%@ include file="/common/south.jsp"%>
+	</td>
 	</tr> 
 </table>
 
