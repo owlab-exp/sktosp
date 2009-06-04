@@ -1,57 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-
-<title>User Main - SKT OpenSocial Pilot</title>
-
-<link rel="stylesheet" type="text/css" href="main.css">
-<script type="text/javascript" src="main.js"></script>
-
-</head>
+<%@ include file="/common/header.jsp"%>
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
 <table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
-  <tr>
+
+    <tr>
   <!-- north -->
-    <td colspan=3 height="10%" align="center" valign="middle">
-      <div id="header">
-      <table width="100%" height="100%" border="1">
-        <tr align="center">
-          <td width="25%" onclick="javascript:location.href=''">È¨</td>
-          <td width="20%">»ç¿ëÀÚ ¸Þ´º</td>
-          <td width="20%">°³¹ßÀÚ ¸Þ´º</td>
-          <td></td>
-          <td width="10%">°ü¸®ÀÚ</td>
-        </tr>
-      </table>
-    </div>
+    <td colspan="3" height="10%" align="center" valign="middle">
+
+<%@ include file="/common/north.jsp"%>
+
     </td>
   </tr>
+  
   <tr>
   <!-- west -->
     <td width="25%" align="center" valign="top">
-    <div id="west">
-      <div class="login">
-      <table>
-        <tr>
-          <td>
-              <form id="login" name="login" action="login.jsp" target="_self" method="post" autocomplete="off" onsubmit="return form_chk();"> 
-              ÀÌ¸ÞÀÏ: <input type="text" id="loginEmail" name="email" class="bg" title="ÀÌ¸ÞÀÏ ÁÖ¼Ò ÀÔ·Â" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" datatype="an" mask="-_@." /> 
-              <br>ºñ¹Ð¹øÈ£: <input type="password" id="loginPasswd" name="passwd" class="bg" title="ºñ¹Ð¹øÈ£ ÀÔ·Â" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" enc="on" /> 
-              <br><br><input type="submit" class="btn" title="·Î±×ÀÎ¹öÆ°" value="·Î±×ÀÎ"/>
-              <input type="submit" class="btn" title="È¸¿ø°¡ÀÔ" value="È¸¿ø°¡ÀÔ"/>  
-              <input type="hidden" id="loginEChk" name="echk" value="" /> 
-              </form>
-          </td>
-        </tr>
-      </table>
-      </div>
-    </div>
+
+<%@ include file="/common/west.jsp"%>
+<%@ include file="/common/menu.jsp"%>
+
     </td>
+    
     <!-- east -->
     <td width="75%" align="left" valign="top">
     
@@ -63,7 +37,7 @@
           <td>            
             <div class="subject subject_char"> 
             <ul class="subject_sub">
-            <li><strong>È¨</strong></li>
+            <li><strong>í™ˆ</strong></li>
             </ul>
             </div>
           </td>
@@ -77,11 +51,11 @@
 		      <dd align="center">
           	<form name="search" action="search.jsp">
 		        <select name="w" id="w" onChange="onClick_Select(this);">
-		          <option name="user" value="name" >»ç¿ëÀÚ ÀÌ¸§</option>
-		          <option name="gadget" value="desc" >°¡Á¬ ÀÌ¸§</option>
+		          <option name="user" value="name" >ì‚¬ìš©ìž ì´ë¦„</option>
+		          <option name="gadget" value="desc" >ê°€ì ¯ ì´ë¦„</option>
 		        </select>
 		        <input type="text" name="query" id="query" onfocus="this.value='';"/>&nbsp;
-		        <img type="submit" src="images/btn_search.gif" align=absmiddle alt="°Ë»ö" >
+		        <img type="submit" src="images/btn_search.gif" align=absmiddle alt="ê²€ìƒ‰" >
   		      </form>
 		       </dd>
 		      </dl>
@@ -93,7 +67,7 @@
           <td>
           
             <!-- bbs -->
-            <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="°Ô½ÃÆÇ"> 
+            <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="ê²Œì‹œíŒ"> 
               <colgroup> 
                 <col width="10%" /> 
                 <col width="20%" /> 
@@ -103,8 +77,8 @@
               </colgroup>
               <tr> 
           			<td><span class="num">183</span></td> 
-                <td>¹Úº¸¿µ</td> 
-      			    <td align="center">ÆÒÅ¬·´</td> 
+                <td>ë°•ë³´ì˜</td> 
+      			    <td align="center">íŒ¬í´ëŸ½</td> 
       			    <td align="center"><span class="num">2009.02.20</span></td> 
       			    <td align="center"><span class="num">12</span></td> 
       			  </tr>
@@ -112,8 +86,8 @@
       			  
               <tr> 
           			<td><span class="num">184</span></td> 
-                <td>¹Úº¸¿µ</td> 
-      			    <td align="center">[½ºÅ©·¦] ¹Úº¸¿µ - Å°À§´åÄÄ ÀÎÅÍºä1</td> 
+                <td>ë°•ë³´ì˜</td> 
+      			    <td align="center">[ìŠ¤í¬ëž©] ë°•ë³´ì˜ - í‚¤ìœ„ë‹·ì»´ ì¸í„°ë·°1</td> 
       			    <td align="center"><span class="num">2009.02.21</span></td> 
       			    <td align="center"><span class="num">12</span></td> 
       			  </tr> 
@@ -121,8 +95,8 @@
       
               <tr> 
           			<td><span class="num">184</span></td> 
-                <td>¹Úº¸¿µ</td> 
-      			    <td align="center">[½ºÅ©·¦] ¹Úº¸¿µ - Å°À§´åÄÄ ÀÎÅÍºä2</td> 
+                <td>ë°•ë³´ì˜</td> 
+      			    <td align="center">[ìŠ¤í¬ëž©] ë°•ë³´ì˜ - í‚¤ìœ„ë‹·ì»´ ì¸í„°ë·°2</td> 
       			    <td align="center"><span class="num">2009.02.22</span></td> 
       			    <td align="center"><span class="num">12</span></td> 
       			  </tr> 
@@ -130,8 +104,8 @@
       
               <tr> 
           			<td><span class="num">184</span></td> 
-                <td>¹Úº¸¿µ</td> 
-      			    <td align="center">[½ºÅ©·¦] ¹Úº¸¿µ - Å°À§´åÄÄ ÀÎÅÍºä3</td> 
+                <td>ë°•ë³´ì˜</td> 
+      			    <td align="center">[ìŠ¤í¬ëž©] ë°•ë³´ì˜ - í‚¤ìœ„ë‹·ì»´ ì¸í„°ë·°3</td> 
       			    <td align="center"><span class="num">2009.02.23</span></td> 
       			    <td align="center"><span class="num">12</span></td> 
       			  </tr> 
@@ -139,8 +113,8 @@
       
               <tr> 
           			<td><span class="num">184</span></td> 
-                <td>¹Úº¸¿µ</td> 
-      			    <td align="center">[½ºÅ©·¦] ¹Úº¸¿µ - Å°À§´åÄÄ ÀÎÅÍºä4</td> 
+                <td>ë°•ë³´ì˜</td> 
+      			    <td align="center">[ìŠ¤í¬ëž©] ë°•ë³´ì˜ - í‚¤ìœ„ë‹·ì»´ ì¸í„°ë·°4</td> 
       			    <td align="center"><span class="num">2009.02.24</span></td> 
       			    <td align="center"><span class="num">12</span></td> 
       			  </tr> 
@@ -205,19 +179,17 @@
       
     </td>
   </tr>
+  
+  
   <!-- south -->
   <tr>
     <td colspan=3 height="10%" align="center" valign="middle">
-      <div id="footer">
-      <table width="100%" height="100%" border="1px">
-        <tr>
-          <td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong>
-          </td>
-        </tr>
-      </table>
-      </div>
-      </td>
-	</tr> 
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
+
+
+
 </table>
 
 
