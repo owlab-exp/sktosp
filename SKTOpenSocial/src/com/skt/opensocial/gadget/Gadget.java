@@ -10,6 +10,19 @@ public class Gadget {
 	private String desc;
 	private String createdDate;
 	private String status;
+	private String imagepath;
+
+	public String getImagepath() {
+		return imagepath;
+	}
+
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+
+	public Gadget() {
+		
+	}
 	
 	public Gadget(String name, String ownerId) {
 		this.name	= name;
