@@ -1,3 +1,11 @@
+function confirmbox(msg, url) {
+	var answer = confirm(msg);
+	if (answer){
+		location.href = url;
+	}
+	return true;
+}
+
 function form_chk()
 {
 	var myemail;

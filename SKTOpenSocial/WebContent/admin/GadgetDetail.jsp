@@ -21,7 +21,6 @@
     <td width="25%" align="center" valign="top">
 
 <%@ include file="/common/west.jsp"%>
-<%@ include file="/common/menu.jsp"%>
 
     </td>
     <!-- east -->
@@ -33,7 +32,7 @@
         <tr>
           <td>
                       
-<%@ include file="/common/nav.jsp"%>
+<%@ include file="gadgetnav.jsp"%>
 
           </td>
         </tr>
@@ -42,29 +41,61 @@
           <td>
           
             <!-- detail -->
+
             <table cellpadding="0" cellspacing="0" width="100%" border="1"> 
 			<colgroup> 
                 <col width="20%" /> 
-                <col width="80%" /> 
-			</colgroup>            
+                <col width="20%" /> 
+                <col width="60%" /> 
+			</colgroup>
+			
+				<tr>
+          			<td rowspan="8"><img src='<s:url value="../images/logo.jpg"/>'></td> 
+      			</tr>
+			           
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="center">이름</td> 
-                	<td><s:property value="gadget"/></td> 
+          			<td align="center">가젯명</td> 
+                	<td><s:text name="%{gadget.name}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#FFFFFF;" height="25">
-          			<td align="center">이름</td> 
-                	<td><s:property value="name"/></td> 
+          			<td align="center">개발자</td> 
+                	<td><s:text name="%{gadget.owner}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="center">이름</td> 
-                	<td><s:property value="name"/></td> 
+          			<td align="center">등록유저수</td> 
+                	<td><s:text name="%{gadget.numRegUsers}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">소개</td> 
+                	<td><s:text name="%{gadget.desc}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
      		 </table>
  	     </td>
+ 	    </tr>
+ 	    <tr>
+ 	    	<td align="center">
+ 	    	<table width="80%">
+ 	    		<tr>
+ 	    			<td style="font-size=13px">
+ 	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
+ 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="삭제"></s:a>
+ 	    			</td>
+ 	    			<td style="font-size=13px">
+ 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
+ 	    			<s:param name="name" value="%{gadget.name}" />
+ 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="비활성화"></s:a>
+ 	    			</td>
+ 	    		</tr>
+ 	    	</table>
+ 	    	</td>
  	    </tr>
  	    </table>
       </div> <!-- east div -->
