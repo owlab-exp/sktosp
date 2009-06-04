@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
       <div id="header">
-      <table width="100%" height="100%" border="1">
+      <table width="100%" height="100%" border="0">
         <tr align="center">
           <td width="25%" style="background-color:#FFFFFF"><img src="../images/logo.jpg"></td>
           
