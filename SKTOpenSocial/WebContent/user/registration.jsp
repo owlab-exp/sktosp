@@ -1,16 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-
-<title>User Registration - SKT OpenSocial Pilot</title>
-
-<link rel="stylesheet" type="text/css" href="main.css">
-<script type="text/javascript" src="main.js"></script>
-<script type="text/javascript" src="registration.js"></script>
-</head>
+<%@ include file="/common/header.jsp"%>
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
@@ -18,50 +10,23 @@
 
 
 <table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
-  <tr>
+
+    <tr>
   <!-- north -->
+    <td colspan="3" height="10%" align="center" valign="middle">
 
-    <td colspan=3 height="10%" align="center" valign="middle">
-      <div id="header">
-      <table width="100%" height="100%" border="1">
-        <tr align="center">
-          <td width="25%" onclick="javascript:location.href=''">È¨</td>
-          <td width="20%">»ç¿ëÀÚ ¸Þ´º</td>
-          <td width="20%">°³¹ßÀÚ ¸Þ´º</td>
-          <td></td>
-          <td width="10%">°ü¸®ÀÚ</td>
-        </tr>
-      </table>
-    </div>
+<%@ include file="/common/north.jsp"%>
+
     </td>
-
   </tr>
-  <tr>
+  
+    <tr>
   <!-- west -->
-
     <td width="25%" align="center" valign="top">
-    <div id="west">
-      <div class="login">
-      <table>
-        <tr>
-          <td>
-          <form> 
-          	
-          </form>
-          <!--  
-              <form id="login" name="login" action="login.jsp" target="_self" method="post" autocomplete="off" onsubmit="return form_chk();"> 
-              ÀÌ¸ÞÀÏ: <input type="text" id="loginEmail" name="email" class="bg" title="ÀÌ¸ÞÀÏ ÁÖ¼Ò ÀÔ·Â" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" datatype="an" mask="-_@." /> 
-              <br>ºñ¹Ð¹øÈ£: <input type="password" id="loginPasswd" name="passwd" class="bg" title="ºñ¹Ð¹øÈ£ ÀÔ·Â" onfocus="ChgInput(this);" onkeydown="ChgInput(this);" onmouseover="this.focus();" enc="on" /> 
-              <br><br><input type="submit" class="btn" title="·Î±×ÀÎ¹öÆ°" value="·Î±×ÀÎ"/>
-              <input type="submit" class="btn" title="È¸¿ø°¡ÀÔ" value="È¸¿ø°¡ÀÔ"/>  
-              <input type="hidden" id="loginEChk" name="echk" value="" /> 
-              </form>
-              -->
-          </td>
-        </tr>
-      </table>
-      </div>
-    </div>
+
+<%@ include file="/common/west.jsp"%>
+<%@ include file="/common/menu.jsp"%>
+
     </td>
 
     <!-- east -->
@@ -75,8 +40,8 @@
           <td>            
             <div class="subject subject_char"> 
             <ul class="subject_sub">
-            <li>È¨</li>
-            <li><strong>È¸¿ø°¡ÀÔ</strong></li> 
+            <li>í™ˆ</li>
+            <li><strong>íšŒì›ê°€ìž…</strong></li> 
             </ul>
             </div>
           </td>
@@ -91,10 +56,10 @@
       </table>
       <table border='0' width='550' align='center' cellspacing='1' cellpadding='5' bgcolor='#686868' style='line-height: 150%'>
         <tr>
-          <td width='100%' bgcolor='#FFFFFF'><font color='#f26e15'>* È¸¿ø ID´Â
-            4 ÀÚ ~ 20ÀÚ ÀÌ³»ÀÇ ¿µ¹®°ú ¼ýÀÚ·Î ÇÏ½Ã¸é µË´Ï´Ù.<br>
-            * ºñ¹Ð¹øÈ£´Â 4 ~ 15ÀÚÀÇ ¿µ¹®°ú ¼ýÀÚ·Î ÇÏ½Ã¸é
-            µË´Ï´Ù.</font><br>* <font color='#F4554D'><b>¡î</b></font><font color='#f26e15'> Ç¥½Ã´Â È¸¿øµî·Ï½Ã ¹Ýµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.</font></td>
+          <td width='100%' bgcolor='#FFFFFF'><font color='#f26e15'>* íšŒì› IDëŠ”
+            4 ìž ~ 20ìž ì´ë‚´ì˜ ì˜ë¬¸ê³¼ ìˆ«ìžë¡œ í•˜ì‹œë©´ ë©ë‹ˆë‹¤.<br>
+            * ë¹„ë°€ë²ˆí˜¸ëŠ” 4 ~ 15ìžì˜ ì˜ë¬¸ê³¼ ìˆ«ìžë¡œ í•˜ì‹œë©´
+            ë©ë‹ˆë‹¤.</font><br>* <font color='#F4554D'><b>âˆš</b></font><font color='#f26e15'> í‘œì‹œëŠ” íšŒì›ë“±ë¡ì‹œ ë°˜ë“œì‹œ ìž…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.</font></td>
         </tr>
       </table>
       <table border='0' width='550' align='center' cellspacing='0' cellpadding='0'>
@@ -114,49 +79,49 @@
     
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ¿øÇÏ´Â ¾ÆÀÌµð <font color='red'><b>¡î</b></font></td>
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì›í•˜ëŠ” ì•„ì´ë”” <font color='red'><b>âˆš</b></font></td>
           <td width='1%'></td>
           <td width='74%'><input type='text' name='id' size='20' maxlength='20'> <a href='#' Onclick='search_id(document.member_form)'><img align='absMiddle' border='0' src='images/bt_double.gif' width='62' height='19' align='absmiddle'></a></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ¾ÏÈ£ <font color='red'><b>¡î</b></font></td>
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì•”í˜¸ <font color='red'><b>âˆš</b></font></td>
           <td width='1%'></td>
           <td width='74%'><input type='password' name='passwd' size='20'></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ¾ÏÈ£ È®ÀÎ <font color='red'><b>¡î</b></font></td>
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì•”í˜¸ í™•ì¸ <font color='red'><b>âˆš</b></font></td>
           <td width='1%'></td>
           <td width='74%'><input type='password' name='re_passwd' size='20'></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> È¸¿ø¸í <font color='red'><b>¡î</b></font></td>
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> íšŒì›ëª… <font color='red'><b>âˆš</b></font></td>
           <td width='1%'></td>
           <td width='74%'><input type='text' name='name' size='20'></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr> 
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÀÌ¸ÞÀÏ <font color='red'><b>¡î</b></font></td> 
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì´ë©”ì¼ <font color='red'><b>âˆš</b></font></td> 
           <td width='1%'></td>
           <td width='74%'><input type='text' name='email' size='39'></td> 
         </tr> 
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr> 
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> È¨ÆäÀÌÁö <font color='red'><b>¡î</b></font></td> 
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> í™ˆíŽ˜ì´ì§€ <font color='red'><b>âˆš</b></font></td> 
           <td width='1%'></td>
           <td width='74%'><input type='text' name='homepage' size='46'></td> 
         </tr> 
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr> 
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÇÚµåÆù <font color='red'><b>¡î</b></font></td> 
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> í•¸ë“œí° <font color='red'><b>âˆš</b></font></td> 
           <td width='1%'></td>
           <td width='74%'><input type='text' name='c_phone1' size='5'>  -&nbsp; <input type='text' name='c_phone2' size='5'>   
             -&nbsp; <input type='text' name='c_phone3' size='5'></td>  
@@ -164,7 +129,7 @@
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÀüÈ­¹øÈ£ <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì „í™”ë²ˆí˜¸ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><input type='text' name='h_phone1' size='5'> -&nbsp; <input type='text' name='h_phone2' size='5'>   
             -&nbsp; <input type='text' name='h_phone3' size='5'></td>  
@@ -172,14 +137,14 @@
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÁÖ¹Îµî·Ï¹øÈ£ <font color='red'><b>¡î</b></font></td>
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ <font color='red'><b>âˆš</b></font></td>
           <td width='1%'></td>
           <td width='74%'><input type='text' name='jumin1' size='10'> -&nbsp; <input type='text' name='jumin2' size='10'></td> 
         </tr> 
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> »ýÀÏ <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ìƒì¼ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><input type='text' name='birth1' size='5'> -&nbsp; <input type='text' name='birth2' size='5'>&nbsp;   
             - <input type='text' name='birth3' size='5'></td>  
@@ -187,111 +152,111 @@
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> À½(¾ç)·Â <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ìŒ(ì–‘)ë ¥ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
-          <td width='74%'>À½·Â <input type='radio' value='À½·Â' checked name='birth_type'>&nbsp;&nbsp;&nbsp;   
-            ¾ç·Â <input type='radio' value='¾ç·Â' name='birth_type'></td>  
+          <td width='74%'>ìŒë ¥ <input type='radio' value='ìŒë ¥' checked name='birth_type'>&nbsp;&nbsp;&nbsp;   
+            ì–‘ë ¥ <input type='radio' value='ì–‘ë ¥' name='birth_type'></td>  
         </tr>  
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> zip code <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> zip code <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><input type='text' name='h_zip1' size='5'> -&nbsp; <input type='text' name='h_zip2' size='5'>&nbsp; <a href='javascript:void(post_searching());'><img align='absMiddle' border='0' src='http://www.keodo.co.kr/bbseboard/images/bt_search.gif'></a></td>  
         </tr>  
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÁýÁÖ¼Ò <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì§‘ì£¼ì†Œ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><input type='text' name='h_addr' size='55'>&nbsp; </td>  
         </tr>  
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ¼ºº° <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì„±ë³„ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
-          <td width='74%'>³²ÀÚ <input type='radio' value='³²' checked name='sex'>&nbsp;&nbsp;   
-            ¿©ÀÚ <input type='radio' value='¿©' name='sex'></td>  
+          <td width='74%'>ë‚¨ìž <input type='radio' value='ë‚¨' checked name='sex'>&nbsp;&nbsp;   
+            ì—¬ìž <input type='radio' value='ì—¬' name='sex'></td>  
         </tr>  
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> Á÷¾÷ <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì§ì—… <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><select size='1' name='job'>  
-              <option value=''>- ¼±ÅÃ -</option><option  value='¹«Á÷'>¹«Á÷</option><option  value='ÇÐ»ý'>ÇÐ»ý</option><option  value='ÄÄÇ»ÅÍ/ÀÎÅÍ³Ý'>ÄÄÇ»ÅÍ/ÀÎÅÍ³Ý</option><option  value='¾ð·Ð'>¾ð·Ð</option><option  value='°ø¹«¿ø'>°ø¹«¿ø</option><option  value='±ºÀÎ'>±ºÀÎ</option><option  value='¼­ºñ½º¾÷'>¼­ºñ½º¾÷</option><option  value='±³À°'>±³À°</option><option  value='±ÝÀ¶/Áõ±Ç/º¸Çè¾÷'>±ÝÀ¶/Áõ±Ç/º¸Çè¾÷</option><option  value='À¯Åë¾÷'>À¯Åë¾÷</option><option  value='¿¹¼ú'>¿¹¼ú</option><option  value='ÀÇ·á'>ÀÇ·á</option><option  value='º±·ü'>¹ý·ü</option><option  value='°Ç¼³¾÷'>°Ç¼³¾÷</option><option  value='Á¦Á¶¾÷'>Á¦Á¶¾÷</option><option  value='ºÎµ¿»ê¾÷'>ºÎµ¿»ê¾÷</option><option  value='¿î¼Û¾÷'>¿î¼Û¾÷</option><option  value='³ó/¼ö/ÀÓ/±¤»ê¾÷'>³ó/¼ö/ÀÓ/±¤»ê¾÷</option><option  value='°¡»ç'>°¡»ç</option><option  value='±âÅ¸'>±âÅ¸</option>
+              <option value=''>- ì„ íƒ -</option><option  value='ë¬´ì§'>ë¬´ì§</option><option  value='í•™ìƒ'>í•™ìƒ</option><option  value='ì»´í“¨í„°/ì¸í„°ë„·'>ì»´í“¨í„°/ì¸í„°ë„·</option><option  value='ì–¸ë¡ '>ì–¸ë¡ </option><option  value='ê³µë¬´ì›'>ê³µë¬´ì›</option><option  value='êµ°ì¸'>êµ°ì¸</option><option  value='ì„œë¹„ìŠ¤ì—…'>ì„œë¹„ìŠ¤ì—…</option><option  value='êµìœ¡'>êµìœ¡</option><option  value='ê¸ˆìœµ/ì¦ê¶Œ/ë³´í—˜ì—…'>ê¸ˆìœµ/ì¦ê¶Œ/ë³´í—˜ì—…</option><option  value='ìœ í†µì—…'>ìœ í†µì—…</option><option  value='ì˜ˆìˆ '>ì˜ˆìˆ </option><option  value='ì˜ë£Œ'>ì˜ë£Œ</option><option  value='ë³ë¥ '>ë²•ë¥ </option><option  value='ê±´ì„¤ì—…'>ê±´ì„¤ì—…</option><option  value='ì œì¡°ì—…'>ì œì¡°ì—…</option><option  value='ë¶€ë™ì‚°ì—…'>ë¶€ë™ì‚°ì—…</option><option  value='ìš´ì†¡ì—…'>ìš´ì†¡ì—…</option><option  value='ë†/ìˆ˜/ìž„/ê´‘ì‚°ì—…'>ë†/ìˆ˜/ìž„/ê´‘ì‚°ì—…</option><option  value='ê°€ì‚¬'>ê°€ì‚¬</option><option  value='ê¸°íƒ€'>ê¸°íƒ€</option>
             </select></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ¸ÞÀÏ¸µ ¼ö½Å <font color='red'><b>¡î</b></font></td> 
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ë©”ì¼ë§ ìˆ˜ì‹  <font color='red'><b>âˆš</b></font></td> 
           <td width='1%'> </td>
-          <td width='74%'>¼ö½Å <input type='radio' value='yes' checked name='mailling'>&nbsp;&nbsp;   
-            ¼ö½Å°ÅºÎ <input type='radio' value='no' name='mailling'></td>  
+          <td width='74%'>ìˆ˜ì‹  <input type='radio' value='yes' checked name='mailling'>&nbsp;&nbsp;   
+            ìˆ˜ì‹ ê±°ë¶€ <input type='radio' value='no' name='mailling'></td>  
         </tr>  
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> °³ÀÎÁ¤º¸°ø°³ <font color='red'><b>¡î</b></font></td> 
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ê°œì¸ì •ë³´ê³µê°œ <font color='red'><b>âˆš</b></font></td> 
           <td width='1%'> </td>
-          <td width='74%'>°ø°³ <input type='radio' value='yes' checked name='info_open'>&nbsp;&nbsp;   
-            ºñ°ø°³ <input type='radio' value='no' name='info_open'></td>  
+          <td width='74%'>ê³µê°œ <input type='radio' value='yes' checked name='info_open'>&nbsp;&nbsp;   
+            ë¹„ê³µê°œ <input type='radio' value='no' name='info_open'></td>  
         </tr>  
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÃßÃµ¾ÆÀÌµð</td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì¶”ì²œì•„ì´ë””</td>  
           <td width='1%'></td>
           <td width='74%'><input type='text' name='recom_id' size='20'></td>  
         </tr>  
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÀÚ±â ¼Ò°³ <font color='red'><b>¡î</b></font></td>
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ìžê¸° ì†Œê°œ <font color='red'><b>âˆš</b></font></td>
           <td width='1%'>   </td>       
           <td width='74%'><textarea rows='5' name='intro' style='width:100%'></textarea></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ÁÁ¾ÆÇÏ´Â ¿¬¾ÖÀÎ <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì¢‹ì•„í•˜ëŠ” ì—°ì• ì¸ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><select size='1' name='add_01'>
-<option value=''>-- ¼±ÅÃ --</option>
-<option value='À¯È£¼º'>À¯È£¼º</option>
-<option value='Àåµ¿°Ç'>Àåµ¿°Ç</option>
-<option value='Á¤¿ì¼º'>Á¤¿ì¼º</option>
-<option value='Â÷ÅÂÇö'>Â÷ÅÂÇö</option>
-<option value='¾øÀ½'>¾Æ¹«µµ ¾øÀ½</option>
+<option value=''>-- ì„ íƒ --</option>
+<option value='ìœ í˜¸ì„±'>ìœ í˜¸ì„±</option>
+<option value='ìž¥ë™ê±´'>ìž¥ë™ê±´</option>
+<option value='ì •ìš°ì„±'>ì •ìš°ì„±</option>
+<option value='ì°¨íƒœí˜„'>ì°¨íƒœí˜„</option>
+<option value='ì—†ìŒ'>ì•„ë¬´ë„ ì—†ìŒ</option>
 </select></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> Á÷Àå¸í <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì§ìž¥ëª… <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><input type='text' name='add_02'></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> °æÈ¥ À¯¹« <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ê²½í˜¼ ìœ ë¬´ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
-          <td width='74%'>¹ÌÈ¥ <input type='radio' value='¹ÌÈ¥' checked name='add_03'> &nbsp;&nbsp;±âÈ¥ <input type='radio' value='±âÈ¥' name='add_03'></td>
+          <td width='74%'>ë¯¸í˜¼ <input type='radio' value='ë¯¸í˜¼' checked name='add_03'> &nbsp;&nbsp;ê¸°í˜¼ <input type='radio' value='ê¸°í˜¼' name='add_03'></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ´º½º ·¹ÅÍ ¹Þ±â <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ë‰´ìŠ¤ ë ˆí„° ë°›ê¸° <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
-          <td width='74%'>¹ÞÀ½ <input type='checkbox' name='add_04' checked value='¹ÞÀ½'></td>
+          <td width='74%'>ë°›ìŒ <input type='checkbox' name='add_04' checked value='ë°›ìŒ'></td>
         </tr>
       </table>
       <table border='0' cellpadding='0' cellspacing='0' width='100%'>
         <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> »çÀÌÆ® °ÇÀÇ»çÇ× <font color='red'><b>¡î</b></font></td>  
+          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> ì‚¬ì´íŠ¸ ê±´ì˜ì‚¬í•­ <font color='red'><b>âˆš</b></font></td>  
           <td width='1%'></td>
           <td width='74%'><textarea rows='5' name='add_05' style='width:100%'></textarea></td>
         </tr>
@@ -313,19 +278,15 @@
       
     </td>
   </tr>
+  
   <!-- south -->
   <tr>
     <td colspan=3 height="10%" align="center" valign="middle">
-      <div id="footer">
-      <table width="100%" height="100%" border="1px">
-        <tr>
-          <td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong>
-          </td>
-        </tr>
-      </table>
-      </div>
-      </td>
-	</tr> 
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
+
+
 </table>
 
 
