@@ -11,9 +11,7 @@
   <tr>
   <!-- north -->
     <td colspan="3" height="50px" align="center" valign="middle" style="background-color:#F5F5F5;" >
-
 <%@ include file="/common/north.jsp"%>
-
     </td>
   </tr>
   <tr>
