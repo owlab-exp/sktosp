@@ -10,7 +10,7 @@
 <table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
   <tr>
   <!-- north -->
-    <td colspan="3" height="10%" align="center" valign="middle">
+    <td colspan="3" height="50px" align="center" valign="middle" style="background-color:#F5F5F5;" >
 
 <%@ include file="/common/north.jsp"%>
 
@@ -115,10 +115,10 @@
   </tr>
   <!-- south -->
   <tr>
-    <td colspan="3" height="10%" align="center" valign="middle">
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="50px" >
 <%@ include file="/common/south.jsp"%>
 	</td>
-	</tr> 
+  </tr> 
 </table>
 
 </body>
