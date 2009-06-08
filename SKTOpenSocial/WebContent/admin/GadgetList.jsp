@@ -8,9 +8,9 @@
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
 <table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
-  <tr>
   <!-- north -->
-    <td colspan="3" height="50px" align="center" valign="middle" style="background-color:#F5F5F5;" >
+  <tr height="50" >
+    <td colspan="3" height="50" align="center" valign="middle">
 <%@ include file="/common/north.jsp"%>
     </td>
   </tr>
@@ -74,7 +74,7 @@
       			    <td align="center">개발자</td> 
       			    <td align="center">등록일자</td> 
       			    <td align="center">상태</td> 
-      			    <td align="center">삭제기능</td> 
+      			    <td align="center">삭제</td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 
@@ -113,7 +113,7 @@
   </tr>
   <!-- south -->
   <tr>
-    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="50px" >
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
 <%@ include file="/common/south.jsp"%>
 	</td>
   </tr> 
