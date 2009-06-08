@@ -12,7 +12,7 @@
   <!-- north -->
     <td colspan="3" height="10%" align="center" valign="middle">
 
-<%@ include file="/common/north.jsp"%>
+<%@ include file="/common/north_no_login.jsp"%>
 
     </td>
   </tr>
