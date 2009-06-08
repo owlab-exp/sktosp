@@ -6,16 +6,38 @@
 	<constant name="struts.devMode" value="true"/>
 	<constant name="struts.ui.theme" value="xhtml"/>
 	<constant name="struts.ui.templateDir" value="template"/>
+	
 	<package name="default" namespace="/" extends="struts-default">
-	<!--
-		<action name="Menu">
-			<result>/sample/Menu.jsp</result>
+		<!-- Section for Authentication Check -->
+		<interceptors>
+			<interceptor name="authenticationInterceptor" class="com.skt.opensocial.security.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="secureStack" />
+		<default-action-ref name="UserLogin"/>
+
+		<!-- Section for definition of a redirection to force user to login-->
+
+		<global-results>
+			<result name="login" type="redirect">
+				/security/UserLogin.action
+			</result>
+			<result name="error">
+				/Error.jsp
+       		</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception" />
+		</global-exception-mappings>
+		<action name="*">
+			<interceptor-ref name="defaultStack"/>
+			<result>/main.jsp</result>
 		</action>
-	-->
 	</package>
-<!--	<include file="com.skt.opensocial.gadget/hello.xml"></include>-->
-
-
 	<package name="admin" namespace="/admin" extends="struts-default">
 	<!--
 		<action name="Name">
@@ -26,11 +48,16 @@
 			<result name="SUCCESS">/sample/HelloWorld.jsp</result>
 		</action>
 		
-		--><action name="GadgetList" class="com.skt.opensocial.gadget.GadgetList">
+		-->
+		<action name="GadgetList" class="com.skt.opensocial.gadget.GadgetList">
 			<result name="SUCCESS">/admin/GadgetList.jsp</result>
 		</action>		
 	</package>
 	
 	
-	<include file="sample/hello.xml" />
+	<include file="sample/hello.xml" /><!--  this is a sample -->
+	<include file="security.xml"/>
+	<include file="user.xml"/>
+	<include file="developer.xml"/>
+	
 </struts>
