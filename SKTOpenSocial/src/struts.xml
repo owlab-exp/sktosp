@@ -52,6 +52,12 @@
 		<action name="GadgetList" class="com.skt.opensocial.gadget.GadgetList">
 			<result name="SUCCESS">/admin/GadgetList.jsp</result>
 		</action>		
+		<action name="GadgetDetail" class="com.skt.opensocial.gadget.GadgetDetail">
+			<result name="SUCCESS">/admin/GadgetDetail.jsp</result>
+		</action>		
+		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.gadget.GadgetController">
+			<result name="SUCCESS" type="redirectAction">GadgetList</result>			
+		</action>		
 	</package>
 	
 	
