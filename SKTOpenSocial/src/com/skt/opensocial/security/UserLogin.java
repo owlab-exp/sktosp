@@ -40,10 +40,10 @@ public class UserLogin extends ActionSupport implements SessionAware {
 	
 	
 	public void validate(){
-		if(getPassword().length() == 0){
+		if(getPassword() == null || getPassword().length() == 0){
 			addFieldError("password", "Password required");
 		}
-		if(getUserId().length() == 0) {
+		if(getUserId() == null || getUserId().length() == 0) {
 			addFieldError("userId", "User ID required");
 		}
 	}

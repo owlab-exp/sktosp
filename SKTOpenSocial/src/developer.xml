@@ -4,11 +4,20 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="developer" namespace="/developer" extends="default">
-		<action name="ListGadgets">
-			<result>/developer/DeveloperListGadgets.jsp</result>
+		<action name="ListGadgets" class="com.skt.opensocial.developer.ListGadgetsAction">
+			<result name="success">/developer/DeveloperListGadgets.jsp</result>
 		</action>
 		<action name="RegisterGadget">
 			<result>/developer/DeveloperRegisterGadget_Source.jsp</result>
+		</action>
+		<action name="PreviewGadget">
+			<result>/developer/DeveloperPreviewGadget.jsp</result>
+		</action>
+		<action name="ModifyGadget">
+			<result>/developer/DeveloperModifyGadget_Source.jsp</result>
+		</action>
+		<action name="ViewGadgetReview">
+			<result>/developer/DeveloperViewGadgetReview.jsp</result>
 		</action>
 	</package>
 </struts>
