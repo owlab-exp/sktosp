@@ -20,77 +20,13 @@
 		<tr valign="top" height="15%">
 			<!-- north -->
 			<td colspan="3" align="center" height="10%" valign="top">
-			<div id="header">
-			<table border="1" height="100%" width="100%">
-				<tbody>
-					<tr align="center">
-						<td style="background-color: rgb(255, 255, 255);" width="25%"><img
-							src="../images/logo.jpg"></td>
-						<td onclick="javacript:location.href='/index.jsp'" style=""
-							width="20%">SKT OpenSocial 홈</td>
-						<td style="background-color: rgb(255, 255, 255);" width="5%"></td>
-						<td width="10%">사 용자 메뉴</td>
-						<td style="background-color: rgb(255, 255, 255);" width="5%"></td>
-						<td width="10%">개 발자 메뉴</td>
-						<td style="background-color: rgb(255, 255, 255);"></td>
-						<td width="10%">관 리자</td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
+			<%@ include file="/common/north.jsp"%>
 			</td>
 		</tr>
 		<tr valign="top" height="80%">
 			<!-- west -->
 			<td align="center" valign="top" width="25%">
-			<div id="west"><!-- 
-			<div class="login">
-			<table>
-				<tbody>
-					<tr>
-						<td>
-						<form id="login" name="login" action="login.jsp" target="_self"
-							method="post" autocomplete="off" onsubmit="return form_chk();">
-						이메일: <input id="loginEmail" name="email" class="bg"
-							title="이메일 주소 입력" onfocus="ChgInput(this);"
-							onkeydown="ChgInput(this);" onmouseover="this.focus();"
-							datatype="an" mask="-_@." type="text"> <br>
-						비밀번호: <input id="loginPasswd" name="passwd" class="bg"
-							title="비밀번호 입력" onfocus="ChgInput(this);"
-							onkeydown="ChgInput(this);" onmouseover="this.focus();" enc="on"
-							type="password"> <br>
-						<br>
-						<input class="btn" title="로그인버튼" value="로그인" type="submit">
-						<input id="loginEChk" name="echk" value="" type="hidden">
-						</form>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-			 --></div>
-			<br>
-			<table class="menu" border="1" cellpadding="0" cellspacing="0" width="90%">
-				<tbody>
-					<tr height="30">
-						<td align="left">
-						<h3>▷ 개발자 메뉴</h3>
-						</td>
-					</tr>
-					<tr>
-						<td><a href="DeveloperListGadgets.jsp">내 가젯 관리</a></td>
-					</tr>
-					<tr>
-						<td><a href="DeveloperRegisterGadget.jsp">신규 가젯 등록</a></td>
-					</tr>
-					<!--<tr>
-						<td>가젯 미리보기</td>
-					</tr>
-					<tr>
-						<td>가젯 리뷰 보기</td>
-					</tr>
-				--></tbody>
-			</table>
+			<%@ include file="/common/west_dev.jsp"%>
 			</td>
 			<!-- east -->
 			<td align="left" valign="top" width="75%">

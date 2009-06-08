@@ -40,7 +40,7 @@
 						<ul class="subject_sub">
 							<li>홈</li>
 							<li>개발자 메뉴</li>
-							<li><strong>가젯 수정 (소스 등록)</strong></li>
+							<li><strong>가젯 리뷰 보기</strong></li>
 						</ul>
 						</div>
 						</td>
@@ -51,70 +51,43 @@
 							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
 								<col width="10%">
-								<col width="90%">
+								<col width="10%">
+								<col width="60%">
+								<col width="20%">
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td>가젯 아이디:</td>
-									<td>emartgame</td>
+									<td colspan="2">가젯 이름:</td>
+									<td colspan="2" align="left">iLikeGadget</td>
+								</tr>
+								<tr style="background-color: rgb(245, 245, 245);">
+									<td colspan="2">가젯 ID:</td>
+									<td colspan="2" align="left">ilike</td>
+								</tr>
+								<tr style="background-color: rgb(245, 245, 245);">
+									<td colspan="2">등록사용자 수: </td>
+									<td colspan="2" align="left">1</td>
 								</tr>
 								<tr>
-									<td>*가젯 이름:</td>
-									<td>
-									<form action=""><input type="text" value="기상천외">
-									</form>
-									</td>
+									<td class="line" colspan="4"></td>
 								</tr>
 								<tr>
-									<td>*가젯 유형:</td>
-									<td>
-									<form action=""><select id="appCategory"
-										name="appCategory"
-										onchange="_showValidationError(this,_validateRequired(this));">
-										<option value="">유형을 선택하세요</option>
-										<!-- option value="badges">Badges</option> -->
-										<option value="communication">커뮤니케이션</option>
-										<option value="dating">데이트</option>
-										<option value="events">이벤트</option>
-										<option value="finance" selected="selected">경제</option>
-										<option value="food_and_drinks">음식</option>
-										<option value="games_and_fun">게임&재미</option>
-										<option value="lifestyle">생활</option>
-										<option value="movies_and_tv">영화& TV</option>
-										<option value="music">음악</option>
-										<option value="news">뉴스</option>
-										<option value="politics">정치</option>
-										<option value="sports">스포츠</option>
-										<option value="tools">도구</option>
-										<option value="travel">여행</option>
-										<option value="video">비디오</option>
-									</select></form>
-									</td>
+									<td valign="middle">사용자ID</td>
+									<td valign="middle">사용자 이름</td>
+									<td valign="middle" align="center">리뷰</td>
+									<td valign="middle">점수</td>
 								</tr>
 								<tr>
-									<td valign="top">*가젯 소개:</td>
-									<td>
-										<form action="">
-											<textarea rows="2" cols="20" >경제를 살리자</textarea>
-										</form>
-									</td>
+									<td class="line" colspan="4"></td>
 								</tr>
 								<tr>
-									<td>아이콘:</td>
-									<td>
-										<form action="">
-											<input type="text"><input type="button" value="찾아보기"> 권장사이즈: 23px X 23px
-										</form>
-									</td>
+									<td valign="middle">emart</td>
+									<td valign="middle">이마트맨</td>
+									<td valign="middle" align="center">아주 좋음</td>
+									<td valign="middle">9</td>
 								</tr>
 								<tr>
-									<td valign="top">가젯 소스:</td>
-									<td>
-										<textarea cols="70" rows="10" name="gadgetSource" >Source Text</textarea>
-									</td>
-								</tr>
-								<tr>
-									<td class="line" colspan="2"></td>
+									<td class="line" colspan="4"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -122,7 +95,8 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="p"><a href="javascript:void">수정확인</a></em><em class="n"></div>
+						<div class="paging"><em class="p"><a href="ViewGadgetReview.action">이 전</a></em><a href="ViewGadgetReview.action">1</a> <a href="ViewGadgetReview.action">2</a> <a href="ViewGadgetReview.action">3</a> <em
+							class="n"><a href="ViewGadgetReview.action">다음</a></em></div>
 						</td>
 					</tr>
 				</tbody>
@@ -137,8 +111,7 @@
 			<table border="1" height="100%" width="100%">
 				<tbody>
 					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights
-						reserved.</strong></td>
+						<td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong></td>
 					</tr>
 				</tbody>
 			</table>

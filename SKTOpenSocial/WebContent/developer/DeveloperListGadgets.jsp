@@ -21,25 +21,6 @@
 		<tr valign="top" height="15%"> <!--  position: valign="top" height="15%" -->
 			<!-- north -->
 			<td colspan="3" align="center" valign="top"><!-- position: valign="top" -->
-			<!--<div id="header">
-			<table border="1" width="100%">
-				<tbody>
-					<tr align="center">
-						<td style="background-color: rgb(255, 255, 255);" width="25%"><img
-							src="../images/logo.jpg"></td>
-						<td onclick="javacript:location.href='/index.jsp'" style=""
-							width="20%">SKT OpenSocial 홈</td>
-						<td style="background-color: rgb(255, 255, 255);" width="5%"></td>
-						<td width="10%">사 용자 메뉴</td>
-						<td style="background-color: rgb(255, 255, 255);" width="5%"></td>
-						<td width="10%">개 발자 메뉴</td>
-						<td style="background-color: rgb(255, 255, 255);"></td>
-						<td width="10%">관 리자</td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-			-->
 			<%@ include file="/common/north.jsp"%>
 			</td>
 		</tr>
@@ -65,38 +46,22 @@
 						</div>
 						</td>
 					</tr>
-					<!-- search -->
-					<!-- 
-					<tr>
-						<td>
-						<form id="GadgetList" name="GadgetList"
-							action="/SKTOpenSocial/admin/GadgetList.action;jsessionid=590A534436310361FD836650D1E8FF9C"
-							method="post"><select name="searchfield"
-							id="GadgetList_searchfield">
-							<option value="1">-- 선택하세요 --</option>
-							<option value="name">이 름</option>
-							<option value="owner">등 록자</option>
-						</select> <input name="query" value="" id="GadgetList_query" type="text">
-						<input id="GadgetList_0" value="검색" type="submit"></form>
-						</td>
-					</tr>
-					-->
 					<tr>
 						<td><!-- list of gadgets -->
 						<table class="subtit_board" summary="List of Gadgets"
 							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
 								<col width="10%">
-								<col width="20%">
 								<col width="10%">
 								<col width="10%">
 								<col width="10%">
+								<col width="10%">
 								<col width="20%">
-								<col width="20%">
+								<col width="30%">
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td>ID</td>
+									<td>가젯ID</td>
 									<td>가젯이름</td>
 									<td align="center">등록일자</td>
 									<td align="center">발행일자</td>
@@ -104,37 +69,31 @@
 									<td align="center">가젯상태</td>
 									<td align="center">작 업</td>
 								</tr>
+								<s:iterator value="gadgets" id="gadget">
 								<tr style="background-color: rgb(300, 300, 300);">
-									<td>Entertain</td>
-									<td>카트놀이터</td>
-									<td align="center">2009/05/09</td>
-									<td align="center">2009/05/10</td>
-									<td align="center">5000</td>
-									<td align="center">발행</td>
-									<!-- 등록/발행요청/발행 -->
-									<td align="center">리뷰보기</td>
-									<!-- 수정/삭제/발행요청/리뷰보기 -->
+									<td><s:a href="PreviewGadget.action"><s:property value="gadgetId"/></s:a></td>
+									<td><s:a href="PreviewGadget.action"><s:property value="gadgetName"/></s:a></td>
+									<td align="center"><s:property value="registerDate"/></td>
+									<td align="center"><s:property value="publishDate"/></td>
+									<td align="center"><s:property value="numberOfUsers"/></td>
+									<td align="center"><s:property value="gadgetStatus"/></td>
+									<s:if test="gadgetStatus.equals('registered')">
+									<td align="center">
+										발행요청/<s:a href="ModifyGadget.action">수정</s:a>/삭제
+									</td>
+									</s:if>
+									<s:elseif test="gadgetStatus.equals('published')">
+									<td align="center">
+										<a href="ViewGadgetReview.action">사용자 리뷰</a>
+									</td> 
+									</s:elseif >
+									<s:else>
+									<td align="center">
+									</td> 
+									</s:else>
+									
 								</tr>
-								<tr style="background-color: rgb(300, 300, 300);">
-									<td>himart</td>
-									<td>하이마트</td>
-									<td align="center">2009/05/09</td>
-									<td align="center"></td>
-									<td align="center"></td>
-									<td align="center">등록</td>
-									<!-- 등록/발행요청/발행 -->
-									<td align="center">수정/삭제/발행요청</td>
-								</tr>
-								<tr style="background-color: rgb(300, 300, 300);">
-									<td>emart</td>
-									<td>이마트</td>
-									<td align="center">2009/05/09</td>
-									<td align="center"></td>
-									<td align="center"></td>
-									<td align="center">발행요청</td>
-									<!-- 등록/발행요청/발행 -->
-									<td align="center">N/A</td>
-								</tr>
+								</s:iterator>
 								<tr>
 									<td class="line" colspan="7"></td>
 								</tr>
@@ -144,9 +103,8 @@
 					</tr>
 					<tr>
 						<td><!-- paging -->
-						<div class="paging"><em class="p"><a href="">이 전</a></em> <span
-							class="on">1</span> <a href="">2</a> <a href="">3</a> <em
-							class="n"><a href="">다음</a></em></div>
+						<div class="paging"><em class="p"><a href="ListGadgets.action">이 전</a></em><a href="ListGadgets.action">1</a> <a href="ListGadgets.action">2</a> <a href="ListGadgets.action">3</a> <em
+							class="n"><a href="ListGadgets.action">다음</a></em></div>
 						</td>
 					</tr>
 				</tbody>
