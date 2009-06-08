@@ -59,8 +59,7 @@
 			<result name="SUCCESS" type="redirectAction">GadgetList</result>			
 		</action>		
 	</package>
-	
-	
+		
 	<include file="sample/hello.xml" /><!--  this is a sample -->
 	<include file="security.xml"/>
 	<include file="user.xml"/>
