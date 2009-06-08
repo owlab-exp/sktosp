@@ -8,6 +8,24 @@ public class Developer {
 	private String phone;
 	private String regDate;
 	private String status;
+	private String address;
+	private String imagepath;
+
+	public String getImagepath() {
+		return imagepath;
+	}
+
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public Developer() {
 		

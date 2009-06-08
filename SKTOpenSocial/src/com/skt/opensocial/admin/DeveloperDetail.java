@@ -5,9 +5,15 @@ public class DeveloperDetail {
 	private Developer gadget;
 		
 	public String execute() {
-		gadget	= new Developer("가젯3", "오세준");
+		Developer developer	= new Developer("오세준", "sjoh");
+		developer.setEmail("sejoono@andrew.cmu.edu");
+		developer.setPhone("010-555-9999");
+		developer.setRegDate("2009-05-06");
+		developer.setStatus("비활성");
+		developer.setAddress("대전시 문지동 카이스트 ICC");
+		developer.setImagepath("../images/logo.jpg");
 		
-		setGadget(gadget);
+		setGadget(developer);
 				
 		return "SUCCESS";
 	}
