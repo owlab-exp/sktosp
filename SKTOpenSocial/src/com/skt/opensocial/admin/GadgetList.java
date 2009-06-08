@@ -1,4 +1,4 @@
-package com.skt.opensocial.gadget;
+package com.skt.opensocial.admin;
 
 import java.util.*;
 

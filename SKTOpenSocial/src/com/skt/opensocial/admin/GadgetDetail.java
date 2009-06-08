@@ -1,4 +1,4 @@
-package com.skt.opensocial.gadget;
+package com.skt.opensocial.admin;
 
 public class GadgetDetail {
 	

@@ -49,28 +49,27 @@
 		</action>
 		
 		-->
-		<action name="GadgetList" class="com.skt.opensocial.gadget.GadgetList">
+		<action name="GadgetList" class="com.skt.opensocial.admin.GadgetList">
 			<result name="SUCCESS">/admin/GadgetList.jsp</result>
-		</action>		
-		<action name="GadgetDetail" class="com.skt.opensocial.gadget.GadgetDetail">
+		</action>
+		<action name="GadgetDetail" class="com.skt.opensocial.admin.GadgetDetail">
 			<result name="SUCCESS">/admin/GadgetDetail.jsp</result>
-		</action>		
-		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.gadget.GadgetController">
+		</action>
+		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.admin.GadgetController">
 			<result name="SUCCESS" type="redirectAction">GadgetList</result>			
-		</action>		
-
-		<action name="DevelperList" class="com.skt.opensocial.gadget.DeveloperList">
+		</action>
+		
+		<action name="DeveloperList" class="com.skt.opensocial.admin.DeveloperList">
 			<result name="SUCCESS">/admin/DeveloperList.jsp</result>
-		</action>		
-		<action name="GadgetDetail" class="com.skt.opensocial.gadget.DeveloperDetail">
+		</action>
+		<action name="DeveloperDetail" class="com.skt.opensocial.admin.DeveloperDetail">
 			<result name="SUCCESS">/admin/DeveloperDetail.jsp</result>
 		</action>		
-		<action name="DeveloperController_*" method="{1}" class="com.skt.opensocial.gadget.DeveloperController">
+		<action name="DeveloperController_*" method="{1}" class="com.skt.opensocial.admin.DeveloperController">
 			<result name="SUCCESS" type="redirectAction">DeveloperList</result>			
-		</action>		
-
-
+		</action>
 	</package>
+		
 		
 	<include file="sample/hello.xml" /><!--  this is a sample -->
 	<include file="security.xml"/>
