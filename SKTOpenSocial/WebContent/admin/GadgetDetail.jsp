@@ -5,16 +5,19 @@
 <html>
 <%@ include file="/common/header.jsp"%>
 
-<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
-
-<table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
-  <tr>
+<body leftmargin="0" topmargin="0"
+	style="background-color: rgb(255, 255, 255);" marginheight="0"
+	marginwidth="0">
+	
+<table border="1" cellpadding="0" cellspacing="0" height="567"
+	width="1000">
   <!-- north -->
-    <td colspan="3" height="50px" align="center" valign="middle" style="background-color:#F5F5F5;" >
+  <tr valign="top" height="15%">
+    <td colspan="3" align="center" valign="top">
 <%@ include file="/common/north.jsp"%>
     </td>
   </tr>
-  <tr>
+  <tr valign="top" height="80%">
   <!-- west -->
     <td width="25%" align="center" valign="top">
 
