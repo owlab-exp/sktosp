@@ -12,14 +12,9 @@
 			</td>
 		</tr>		
 		<tr>
-			<td align="left">개발자 관리
+			<td align="left"><s:url var="url" namespace="/admin" action="DeveloperList"/><s:a href="%{url}">개발자 관리</s:a>
 			</td>
 		</tr>
 	</table>
 
 	</div>
-
-
-
-    
- 
