@@ -58,6 +58,18 @@
 		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.gadget.GadgetController">
 			<result name="SUCCESS" type="redirectAction">GadgetList</result>			
 		</action>		
+
+		<action name="DevelperList" class="com.skt.opensocial.gadget.DeveloperList">
+			<result name="SUCCESS">/admin/DeveloperList.jsp</result>
+		</action>		
+		<action name="GadgetDetail" class="com.skt.opensocial.gadget.DeveloperDetail">
+			<result name="SUCCESS">/admin/DeveloperDetail.jsp</result>
+		</action>		
+		<action name="DeveloperController_*" method="{1}" class="com.skt.opensocial.gadget.DeveloperController">
+			<result name="SUCCESS" type="redirectAction">DeveloperList</result>			
+		</action>		
+
+
 	</package>
 		
 	<include file="sample/hello.xml" /><!--  this is a sample -->
