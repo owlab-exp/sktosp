@@ -33,7 +33,7 @@
         <tr>
           <td>
                       
-<%@ include file="gadgetnav.jsp"%>
+<%@ include file="developernav.jsp"%>
 
           </td>
         </tr>
@@ -61,12 +61,12 @@
             <!-- bbs -->
             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
 			<colgroup> 
-                <col width="10%" /> 
-                <col width="45%" /> 
-                <col width="10%" />
-                <col width="15%" />
-                <col width="15%" /> 
-                <col width="5%" /> 
+                <col width="20%" /> 
+                <col width="20%" /> 
+                <col width="20%" />
+                <col width="20%" />
+                <col width="20%" /> 
+                <col width="20%" /> 
               </colgroup>
               
 <!--  <s:property value="gadgetlistStr"/>	-->
@@ -81,7 +81,7 @@
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 
-    			<s:iterator value="gadgetlist">
+    			<s:iterator value="developerlist">
     			  <tr> 
           			<td><span class="num"><s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
                 	<td><s:property value="id"/></td> 

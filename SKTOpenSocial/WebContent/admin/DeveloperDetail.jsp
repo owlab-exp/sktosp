@@ -33,7 +33,7 @@
         <tr>
           <td>
                       
-<%@ include file="gadgetnav.jsp"%>
+<%@ include file="developernav.jsp"%>
 
           </td>
         </tr>
@@ -51,27 +51,42 @@
 			</colgroup>
 			
 				<tr>
-          			<td rowspan="8"><img src='<s:url value="../images/logo.jpg"/>'></td> 
+          			<td rowspan="14"><img src='<s:url value="../images/logo.jpg"/>'></td> 
       			</tr>
 			           
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="center">가젯명</td> 
+          			<td align="center">이름</td> 
                 	<td><s:text name="%{gadget.name}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">아이디</td> 
+                	<td><s:text name="%{gadget.id}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#FFFFFF;" height="25">
-          			<td align="center">개발자</td> 
-                	<td><s:text name="%{gadget.owner}"/></td> 
+          			<td align="center">전화번호</td> 
+                	<td><s:text name="%{gadget.phone}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="center">등록유저수</td> 
-                	<td><s:text name="%{gadget.numRegUsers}"/></td> 
+          			<td align="center">주소</td> 
+                	<td><s:text name="%{gadget.address}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="center">소개</td> 
-                	<td><s:text name="%{gadget.desc}"/></td> 
+          			<td align="center">등록일</td> 
+                	<td><s:text name="%{gadget.regDate}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">마지막 가젯 등록일</td> 
+                	<td>2009-06-05</td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">등록 가젯 수</td> 
+                	<td>22</td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
      		 </table>
@@ -82,15 +97,9 @@
  	    	<table width="80%">
  	    		<tr>
  	    			<td style="font-size=13px">
- 	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
- 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
- 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
- 	    			<input type="button" value="삭제"></s:a>
- 	    			</td>
- 	    			<td style="font-size=13px">
- 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
- 	    			<s:param name="name" value="%{gadget.name}" />
- 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
+ 	    			<s:url var="url" action="DeveloperController_changeStatus" namespace="/admin">
+ 	    			<s:param name="name" value="%{developer.name}" />
+ 	    			<s:param name="status" value="%{developer.status}" /></s:url>
  	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
  	    			<input type="button" value="비활성화"></s:a>
  	    			</td>

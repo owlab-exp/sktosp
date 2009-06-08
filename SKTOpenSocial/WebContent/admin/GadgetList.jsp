@@ -85,7 +85,9 @@
     			  <tr> 
           			<td><span class="num"><s:url var="url" namespace="/admin" action="GadgetDetail"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
                 	<td><s:property value="desc"/></td> 
-      			    <td align="center"><s:property value="owner"/></td> 
+      			    <td align="center">
+      			    <s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="owner"/></s:a>
+      			    </td> 
       			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
       			    <td align="center">					
  	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
