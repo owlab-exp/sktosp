@@ -87,8 +87,19 @@
                 	<td><s:property value="desc"/></td> 
       			    <td align="center"><s:property value="owner"/></td> 
       			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
-      			    <td align="center"><span class="num"><input type="button" value="<s:property value="status"/>"></span></td> 
-      			    <td align="center"><input type="button" value="삭제"></td> 
+      			    <td align="center">					
+ 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
+ 	    			<s:param name="name" value="%{gadget.name}" />
+ 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="<s:property value="status"/>"></s:a> 	    			
+					</td>					 
+      			    <td align="center">
+ 	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
+ 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="삭제"></s:a>			    
+      			    </td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
       			</s:iterator>
