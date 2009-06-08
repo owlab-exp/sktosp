@@ -3,5 +3,5 @@
     <div id="west">
     <br>
 <%@ include file="/common/loggedIn.jsp"%>
-<%@ include file="/common/menu.jsp"%>
+<%@ include file="/common/menu_dev.jsp"%>
     </div>
