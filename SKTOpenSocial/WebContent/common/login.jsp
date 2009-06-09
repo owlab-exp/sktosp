@@ -5,7 +5,7 @@
 <br>
 <div class="login">
 <s:form action="UserLogin" namespace="/security">
-		<s:textfield name="userId" label="사용자 ID" labelposition="top" required="true" requiredposition="left" size="10"/>
+		<s:textfield name="userId" label="사용자 ID" labelposition="top" required="true" requiredposition="left" size="10" />
 		<s:password name="password" label ="패스워드" labelposition="top" required="true" requiredposition="left" size="12"/>
 		<s:submit value="로그인" />
 </s:form>
