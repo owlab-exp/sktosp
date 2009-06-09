@@ -1,12 +1,13 @@
 package com.skt.opensocial.developer;
 
 public class GadgetInfoData {
-	private int gadgetId;
-	private String gadgetName;
-	private String registerDate;
-	private String publishDate;
-	private int numberOfUsers;
+	private int gadgetId; // ID
+	private String gadgetName; // Name
+	private String registerDate; // Registered Date
+	private String publishDate; // Published Date
+	private int numberOfUsers; // Number of users who includes this gadget in his/her favorite gadget list
 	private String gadgetStatus; //GadgetStatusConstants strings
+	
 	public int getGadgetId() {
 		return gadgetId;
 	}

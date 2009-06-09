@@ -32,7 +32,7 @@ public class ListGadgetsAction extends ActionSupport {
 			GadgetInfoData gadget = new GadgetInfoData();
 			gadget.setGadgetId(i+1000);
 			gadget.setGadgetName("Gadget" + i);
-			gadget.setGadgetStatus(GadgetStatusConstants.GADGET_STATUS_PUBLISHED);
+			gadget.setGadgetStatus(GadgetStatusConstants.PUBLISHED);
 			gadget.setNumberOfUsers(i+500);
 			gadget.setRegisterDate("2009/05/31");
 			gadget.setPublishDate("2009/06/01");
@@ -42,8 +42,8 @@ public class ListGadgetsAction extends ActionSupport {
 			GadgetInfoData gadget = new GadgetInfoData();
 			gadget.setGadgetId(i+1000);
 			gadget.setGadgetName("Gadget" + i);
-			gadget.setGadgetStatus(GadgetStatusConstants.GADGET_STATUS_REGISTERED);
-			gadget.setNumberOfUsers(i+500+5);
+			gadget.setGadgetStatus(GadgetStatusConstants.REGISTERED);
+			//gadget.setNumberOfUsers(i+500+5);
 			gadget.setRegisterDate("2009/05/31");
 			gadget.setPublishDate("");
 			gadgets.add(gadget);
@@ -52,8 +52,18 @@ public class ListGadgetsAction extends ActionSupport {
 			GadgetInfoData gadget = new GadgetInfoData();
 			gadget.setGadgetId(i+1000+9);
 			gadget.setGadgetName("Gadget" + i);
-			gadget.setGadgetStatus(GadgetStatusConstants.GADGET_STATUS_PUBLISH_REQUESTED);
-			gadget.setNumberOfUsers(i+500+5);
+			gadget.setGadgetStatus(GadgetStatusConstants.PUBLISH_REQUESTED);
+			//gadget.setNumberOfUsers(i+500+5);
+			gadget.setRegisterDate("2009/05/31");
+			gadget.setPublishDate("");
+			gadgets.add(gadget);
+		}
+		for(int i = 0; i < 2; i++) {
+			GadgetInfoData gadget = new GadgetInfoData();
+			gadget.setGadgetId(i+1000+20);
+			gadget.setGadgetName("Gadget" + i);
+			gadget.setGadgetStatus(GadgetStatusConstants.PUBLISH_DENIED);
+			//gadget.setNumberOfUsers();
 			gadget.setRegisterDate("2009/05/31");
 			gadget.setPublishDate("");
 			gadgets.add(gadget);
