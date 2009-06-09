@@ -7,11 +7,13 @@
 		<action name="ListGadgets" class="com.skt.opensocial.developer.ListGadgetsAction">
 			<result name="success">/developer/DeveloperListGadgets.jsp</result>
 		</action>
-		<action name="RegisterGadget">
-			<result>/developer/DeveloperRegisterGadget_Source.jsp</result>
+		<action name="RegisterGadget" class="com.skt.opensocial.developer.RegisterGadgetAction">
+			<result name="REGISTER_SOURCE">/developer/DeveloperRegisterGadget_Source.jsp</result>
+			<result name="REGISTER_URL">/developer/DeveloperRegisterGadget_URL.jsp</result>
+			<result name="REGISTER_MULTIPLE_URL">/developer/DeveloperRegisterGadget_URL_Multi.jsp</result>
 		</action>
-		<action name="PreviewGadget">
-			<result>/developer/DeveloperPreviewGadget.jsp</result>
+		<action name="PreviewGadget" class="com.skt.opensocial.developer.PreviewGadgetAction">
+			<result name="success">/developer/DeveloperPreviewGadget.jsp</result>
 		</action>
 		<action name="ModifyGadget">
 			<result>/developer/DeveloperModifyGadget_Source.jsp</result>
