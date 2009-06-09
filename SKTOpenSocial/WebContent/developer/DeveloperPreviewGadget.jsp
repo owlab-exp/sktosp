@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<%@ page import="com.skt.opensocial.common.*" %>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/developer.js"></script>
 
 
 <title>개발자 신규가젯등록</title>
@@ -40,7 +41,7 @@
 						<ul class="subject_sub">
 							<li>홈</li>
 							<li>개발자 메뉴</li>
-							<li><strong>가젯 Preview</strong></li>
+							<li><strong>가젯 미리보기</strong></li>
 						</ul>
 						</div>
 						</td>
@@ -68,7 +69,20 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="n">발행요청</em> <em class="n">수정</em> <em class="n">삭제</em></div>
+						<div class="paging">
+						<s:if test="%{gadgetStatus.equals('nr')}"> <%-- Not registered--%>
+							<em class="p"><a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">등록완료</a> <a href="javascript: history.go(-1)">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+						</s:if>
+						<s:elseif test="%{gadgetStatus.equals('rg')}"><%-- Registered--%>
+							<em class="p"><a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a> <a href="<%= request.getContextPath() %>/developer/ModifyGadget.action">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+						</s:elseif>
+						<s:elseif test="%{gadgetStatus.equals('pd')}"><%-- Publish Denied--%>
+							<em class="p"><a href="<%= request.getContextPath() %>/developer/ModifyGadget.action">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+						</s:elseif>
+						<s:else>	<%-- Published or Publish requested--%>
+							<em class="p"><a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">목록으로 돌아가기</a></em>
+						</s:else>
+						</div>
 						</td>
 					</tr>
 				</tbody>

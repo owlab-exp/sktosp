@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<%@ page import="com.skt.opensocial.common.*" %>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 
@@ -15,7 +15,7 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" height="567" width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -78,9 +78,9 @@
 										<option value="events">이벤트</option>
 										<option value="finance" selected="selected">경제</option>
 										<option value="food_and_drinks">음식</option>
-										<option value="games_and_fun">게임&재미</option>
+										<option value="games_and_fun">게임&amp;재미</option>
 										<option value="lifestyle">생활</option>
-										<option value="movies_and_tv">영화& TV</option>
+										<option value="movies_and_tv">영화&amp;TV</option>
 										<option value="music">음악</option>
 										<option value="news">뉴스</option>
 										<option value="politics">정치</option>
@@ -122,8 +122,12 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="p"><a href="javascript:void">수정확인</a></em><em class="n"></div>
-						</td>
+						<div class="paging">
+						<s:url id="previewUrl" action="PreviewGadget">
+							<s:param name="gadgetStatus"><%= GadgetStatusConstants.NOT_REGISTERED %></s:param>
+						</s:url>
+						<em class="n"><s:a href="%{previewUrl}">수정확인</s:a></em>
+						</div></td>
 					</tr>
 				</tbody>
 			</table>

@@ -15,19 +15,18 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" position: height="567"
+	width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
-			<td colspan="3" align="center" height="10%" valign="top">
-			<%@ include file="/common/north.jsp"%>
-			</td>
+			<td colspan="3" align="center" height="10%" valign="top"><%@ include
+				file="/common/north.jsp"%></td>
 		</tr>
 		<tr valign="top" height="80%">
 			<!-- west -->
-			<td align="center" valign="top" width="25%">
-			<%@ include file="/common/west_dev.jsp"%>
-			</td>
+			<td align="center" valign="top" width="25%"><%@ include
+				file="/common/west_dev.jsp"%></td>
 			<!-- east -->
 			<td align="left" valign="top" width="75%">
 			<div id="east">
@@ -64,14 +63,21 @@
 									<td colspan="2">가젯 ID:</td>
 									<td colspan="2" align="left">ilike</td>
 								</tr>
+								<tr>
+									<td class="line" colspan="4"></td>
+								</tr>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td colspan="2">등록사용자 수: </td>
-									<td colspan="2" align="left">1</td>
+									<td colspan="2">등록사용자 수: 1</td>
+									<td colspan="2">평균 점수: 9</td>
+
 								</tr>
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
 								<tr>
+									<td colspan="4">&nbsp;</td>
+								</tr>
+								<tr style="background-color: rgb(245, 245, 245);">
 									<td valign="middle">사용자ID</td>
 									<td valign="middle">사용자 이름</td>
 									<td valign="middle" align="center">리뷰</td>
@@ -95,8 +101,12 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="p"><a href="ViewGadgetReview.action">이 전</a></em><a href="ViewGadgetReview.action">1</a> <a href="ViewGadgetReview.action">2</a> <a href="ViewGadgetReview.action">3</a> <em
-							class="n"><a href="ViewGadgetReview.action">다음</a></em></div>
+						<div class="paging"><em class="p"><a
+							href="ViewGadgetReview.action">이 전</a></em><a
+							href="ViewGadgetReview.action">1</a> <a
+							href="ViewGadgetReview.action">2</a> <a
+							href="ViewGadgetReview.action">3</a> <em class="n"><a
+							href="ViewGadgetReview.action">다음</a></em></div>
 						</td>
 					</tr>
 				</tbody>
@@ -111,7 +121,8 @@
 			<table border="1" height="100%" width="100%">
 				<tbody>
 					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong></td>
+						<td><strong>Copyright &copy; SK Telecom. All rights
+						reserved.</strong></td>
 					</tr>
 				</tbody>
 			</table>

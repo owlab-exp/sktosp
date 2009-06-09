@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<%@page import="com.skt.opensocial.common.*" %>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/developer.js"></script>
 
-
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <title>개발자 가젯 목록</title>
 </head>
 
@@ -71,22 +72,45 @@
 								</tr>
 								<s:iterator value="gadgets" id="gadget">
 								<tr style="background-color: rgb(300, 300, 300);">
-									<td><s:a href="PreviewGadget.action"><s:property value="gadgetId"/></s:a></td>
-									<td><s:a href="PreviewGadget.action"><s:property value="gadgetName"/></s:a></td>
+									<s:url id="gadgetPreviewUrl" action="PreviewGadget">
+										<s:param name="gadgetStatus"><s:property value="gadgetStatus"/></s:param>
+									</s:url>
+									<td><s:a href="%{gadgetPreviewUrl}"><s:property value="gadgetId"/></s:a></td>
+									<td><s:a href="%{gadgetPreviewUrl}"><s:property value="gadgetName"/></s:a></td>
 									<td align="center"><s:property value="registerDate"/></td>
 									<td align="center"><s:property value="publishDate"/></td>
 									<td align="center"><s:property value="numberOfUsers"/></td>
-									<td align="center"><s:property value="gadgetStatus"/></td>
-									<s:if test="gadgetStatus.equals('registered')">
+									
 									<td align="center">
-										발행요청/<s:a href="ModifyGadget.action">수정</s:a>/삭제
+									<s:if test="%{gadgetStatus.equals('rg')}">
+										등록완료
+									</s:if>
+									<s:elseif test="%{gadgetStatus.equals('pr')}">
+										발행요청중
+									</s:elseif>
+									<s:elseif test="%{gadgetStatus.equals('pg')}">
+										발행완료
+									</s:elseif>
+									<s:elseif test="%{gadgetStatus.equals('pd')}">
+										발행거절
+									</s:elseif>
+									</td>
+									
+									<s:if test="gadgetStatus.equals('rg')">
+									<td align="center">
+										<a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a>/<s:a href="ModifyGadget.action">수정</s:a>/<a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a>
 									</td>
 									</s:if>
-									<s:elseif test="gadgetStatus.equals('published')">
+									<s:elseif test="gadgetStatus.equals('pg')">
 									<td align="center">
-										<a href="ViewGadgetReview.action">사용자 리뷰</a>
+										<a href="ViewGadgetReview.action">사용자 리뷰 보기</a>
 									</td> 
-									</s:elseif >
+									</s:elseif>
+									<s:elseif test="gadgetStatus.equals('pd')">
+										<td align="center">
+										<a href="#" onclick="javascript:popup('popup_publish_deny.jsp','PublishDeny')">거절사유</a>/<s:a href="ModifyGadget.action">수정</s:a>/<a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a>
+										</td>
+									</s:elseif>
 									<s:else>
 									<td align="center">
 									</td> 

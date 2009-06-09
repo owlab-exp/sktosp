@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="com.skt.opensocial.common.GadgetStatusConstants"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +10,7 @@
 
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/developer.js"></script>
 
 
 <title>개발자 신규가젯등록</title>
@@ -15,7 +19,7 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" height="567" width="100%">
 	<tbody valign="top">
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -58,9 +62,9 @@
 									<td>등록 유형:</td>
 									<td>
 										<form action="" method="""><input type="radio"
-											name="registerType" value="source" >소스 등록 <input
-											type="radio" name="registerType" value="url" checked="checked">URL 등록
-											<input type="radio" name="registerType" value="url">다중 URL 등록
+										name="registerType" value="source" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=source'">소스 등록 <input
+										type="radio" name="registerType" value="url" checked="checked" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=url'">URL 등록
+										<input type="radio" name="registerType" value="url" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=multiple_url'">다중 URL 등록
 										</form>
 									</td>
 								</tr>
@@ -68,7 +72,7 @@
 									<td>*가젯 아이디:</td>
 									<td>
 									<form action=""><input type="text" value="emartgame">
-									<input type="button" value="중복검사"></form>
+									<input type="button" value="중복검사" onClick="javascript:return popup('popup_gadget_id_check.jsp','IDCheck')"></form>
 									</td>
 								</tr>
 								<tr>
@@ -137,7 +141,10 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="p"><a href="javascript:void">등록확인</a></div>
+						<div class="paging"><s:url id="previewUrl" action="PreviewGadget">
+							<s:param name="gadgetStatus"><%= GadgetStatusConstants.NOT_REGISTERED %></s:param>
+						</s:url>
+						<em class="n"><s:a href="%{previewUrl}">미리보기</s:a></em></div>
 						</td>
 					</tr>
 				</tbody>

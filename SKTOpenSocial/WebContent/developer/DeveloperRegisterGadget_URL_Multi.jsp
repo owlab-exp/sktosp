@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<%@ page import="com.skt.opensocial.common.*" %>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 
@@ -61,10 +61,10 @@
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td>등록 유형:</td>
 									<td colspan="4">
-										<form action="" method=""">
-											<input type="radio" name="registerType" value="source" >소스 등록 
-											<input type="radio" name="registerType" value="url">URL 등록
-											<input type="radio" name="registerType" value="url" checked="checked">다중 URL 등록
+										<form action="" method="""><input type="radio"
+										name="registerType" value="source" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=source'">소스 등록 <input
+										type="radio" name="registerType" value="url" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=url'">URL 등록
+										<input type="radio" name="registerType" value="url" checked="checked" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=multiple_url'">다중 URL 등록
 										</form>
 									</td>
 								</tr>
@@ -227,7 +227,9 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="p"><a href="javascript:void">다중 아이디 중목 체크</a></em><em class="n"><a href="DeveloperRegisterGadget_Source2.jsp">가젯등록</a></em></div>
+						<div class="paging"><s:url id="gadgetListUrl" action="ListGadgets">
+						</s:url>
+						<em class="n"><s:a href="%{gadgetListUrl}">등록 완료</s:a></em></div>
 						</td>
 					</tr>
 				</tbody>
