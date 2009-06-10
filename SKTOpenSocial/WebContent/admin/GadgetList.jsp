@@ -29,7 +29,7 @@
   <!-- west -->
     <td width="25%" align="center" valign="top">
 
-<%@ include file="/common/west.jsp"%>
+<%@ include file="/common/west_admin.jsp"%>
 
     </td>
     <!-- east -->
