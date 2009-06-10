@@ -51,6 +51,7 @@
         </tr>
  
  		<tr>
+ 			<td>
  			<form id="createaccount" action="UpdateUserInfo" method="post">
   			<input type="hidden" name="timeStmp" id="timeStmp" value='1244032680'/>
 			<input type="hidden" name="secTok" id="secTok" value='8fcbe0f2eec327eba0c743c1c5270b74'/>
@@ -97,7 +98,7 @@
   				</tr>
   			</table>
 			</form>
-
+			</td>
       	</tr>
       </table>
       
@@ -108,7 +109,7 @@
 
   <!-- south -->
   <tr>
-    <td colspan=3 height="10%" align="center" valign="middle">
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
 <%@ include file="/common/south.jsp"%>
 	</td>
   </tr> 

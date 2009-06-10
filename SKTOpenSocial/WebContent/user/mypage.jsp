@@ -30,7 +30,6 @@
 <%@ include file="/user/west_user.jsp"%>
 
     </td>
-
     <!-- east -->
     <td width="75%" align="left" valign="top">
     
@@ -51,6 +50,7 @@
         </tr>
  
  	    <tr>
+ 	    	<td>
             <!-- detail -->
 
             <table cellpadding="0" cellspacing="0" width="100%" border="1"> 
@@ -90,84 +90,22 @@
       			  </tr>
       			<tr><td class="line" colspan="6"></td></tr>
       			
-      			<s:form action="Modification" namespace="/user" >
 
 		  			<tr>
-		   				<td width='100%' bgcolor='#FFFFFF'>
-		      				<table border='0' cellpadding='0' cellspacing='0' width='100%'>
-		    					<colgroup> 
+		   				<td width='100%' bgcolor='#FFFFFF' align="center">
+      			<s:form action="Modification" namespace="/user" >
 
-                					<col width="40%" /> 
-                					<col width="60%" />
-								</colgroup>
-		        				<tr>
-		          		          	<s:submit align="left" value= "개인정보수정" name= "modification" 
-	               />
-				</tr>
-		     				</table>
+		          		          	<s:submit align="left" value= "개인정보수정" name= "modification" />
+
+		     	</s:form>    			
 		     			</td>
 		     		</tr>
-		     	</s:form>    			
       			
       			
       		  </table>
- 
-             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
-			 <colgroup> 
-                <col width="10%" /> 
-                <col width="45%" /> 
-                <col width="10%" />
-                <col width="15%" />
-                <col width="15%" /> 
-                <col width="5%" /> 
-              </colgroup>
-              
-    		  <tr style="background-color:#F5F5F5;">
-        		<td>이름</td> 
-              	<td>설명</td> 
-      		    <td align="center">개발자</td> 
-      		    <td align="center">등록일자</td> 
-      		    <td align="center">상태</td> 
-      		    <td align="center">삭제</td> 
-      		  </tr>
-      			  
-      		<tr><td class="line" colspan="6"></td></tr>
-			<tr>
-    			<s:iterator value="gadgetlist">
-    			  <tr> 
-          			<td><span class="num"><s:url var="url" namespace="/user" action="GadgetList"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
-                	<td><s:property value="desc"/></td> 
-      			    <td align="center">
-      			    <s:url var="url" namespace="/user" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="owner"/></s:a>
-      			    </td> 
-      			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
-					 
-      			    <td align="center">
- 	    			<s:url var="url" action="GadgetController_delete" namespace="/user">
- 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
- 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
- 	    			<input type="button" value="삭제"></s:a>			    
-      			    </td> 
-      			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>
-      			</s:iterator>
-      		 </tr>
-		   </table>
+ 			</td>
 		  </tr>
 		  
-          <tr>
-           	<td>
-            <!-- paging --> 
-            
-			<div class="paging"> 
-				<em class="p"><a href="">이전</a></em> 
-				<span class="on">1</span>
-				<a href="">2</a>
-				<a href="">3</a>
-				<em class="n"><a href="">다음</a></em> 
-			</div>
-            </td>
-      	  </tr>
 
       </table>
       
@@ -178,7 +116,7 @@
 
   <!-- south -->
   <tr>
-    <td colspan=3 height="10%" align="center" valign="middle">
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
 <%@ include file="/common/south.jsp"%>
 	</td>
   </tr> 
