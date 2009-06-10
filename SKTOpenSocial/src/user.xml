@@ -7,5 +7,53 @@
 		<action name="MyProfilePage">
 			<result>/user/mypage.jsp</result>
 		</action>
+		<action name="Registration">
+			<interceptor-ref name="defaultStack"/>
+			<result>/user/registration.jsp</result>
+		</action>
+		<action name="RegistrationSubmit">
+			<interceptor-ref name="defaultStack"/>
+			<result name="success">/main.jsp</result>
+			<result name="fail">/user/registration.jsp</result>
+		</action>
+		<action name="ResetRegistration">
+			<interceptor-ref name="defaultStack"/>
+			<result >/user/registration.jsp</result>
+		</action>
+		
+		<action name="CancelRegistration">
+			<interceptor-ref name="defaultStack"/>
+			<result >/main.jsp</result>
+		</action>
+		
+		<action name="MoveDeveloper">
+			<result >/developer/DeveloperListGadgets.jsp</result>
+		</action>
+		
+		<action name="Modification">
+			<result>/user/modification.jsp</result>
+		</action>
+		<action name="ModificationSubmit">
+			<result name="success">/user/mypage.jsp</result>
+			<result name="fail">/user/modification.jsp</result>
+		</action>
+		<action name="ResetModification">
+			<result >/user/mypage.jsp</result>
+		</action>
+		
+		<action name="CancelRegistration">
+			<result >/user/mypage.jsp</result>
+		</action>
+		
+		
+		
+		<action name="ListMyGadgets">
+			<result>/user/gadget.jsp</result>
+		</action>
+		
+		<action name="Search" class="com.skt.opensocial.user.GadgetList">
+			<interceptor-ref name="defaultStack"/>
+			<result name="SUCCESS">/user/gadget.jsp</result>
+		</action>
 	</package>
 </struts>
