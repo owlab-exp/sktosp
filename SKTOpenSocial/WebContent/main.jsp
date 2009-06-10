@@ -6,7 +6,7 @@
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
-<table height="567"	width="100%" border="1" cellspacing="0" cellpadding="0">
+<table height="567"	width="1000" border="1" cellspacing="0" cellpadding="0">
 
     <tr valign="top" height="15%">
   <!-- north -->
@@ -117,7 +117,7 @@
            <tr>
            	<td>
             <!-- paging --> 
-            
+		<s:if test="%{gadgetlist}">
 			<div class="paging"> 
 				<em class="p"><a href="">이전</a></em> 
 				<span class="on">1</span>
@@ -125,6 +125,7 @@
 				<a href="">3</a>
 				<em class="n"><a href="">다음</a></em> 
 			</div>
+		</s:if>
             </td>
       	</tr>
       </table>
@@ -136,7 +137,7 @@
   
   <!-- south -->
   <tr>
-    <td colspan=3 height="10%" align="center" valign="middle">
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
 <%@ include file="/common/south.jsp"%>
 	</td>
   </tr> 
