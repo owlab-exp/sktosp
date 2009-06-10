@@ -11,9 +11,7 @@
     <tr>
   <!-- north -->
     <td colspan="3" height="10%" align="center" valign="middle">
-
 <%@ include file="/common/north_no_login.jsp"%>
-
     </td>
   </tr>
   
@@ -47,18 +45,14 @@
         <!-- search -->
         <tr>
           <td>
-          <dl class="snbsearch">
-		      <dd align="center">
-          	<form name="search" action="search.jsp">
-		        <select name="w" id="w" onChange="onClick_Select(this);">
-		          <option name="user" value="name" >사용자 이름</option>
-		          <option name="gadget" value="desc" >가젯 이름</option>
-		        </select>
-		        <input type="text" name="query" id="query" onfocus="this.value='';"/>&nbsp;
-		        <img type="submit" src="images/btn_search.gif" align=absmiddle alt="검색" >
-  		      </form>
-		       </dd>
-		      </dl>
+
+	<s:form action="Search" theme="simple">
+	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'username':'사용자이름','gadget':'가젯이름'}"/> 
+	    <s:textfield name="query"/> 
+	    <s:submit value="검색"/>
+	    
+	</s:form>
+
 		      </td>
 	      </tr>
 
@@ -68,118 +62,77 @@
           
             <!-- bbs -->
             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
-              <colgroup> 
+			<colgroup> 
                 <col width="10%" /> 
-                <col width="20%" /> 
-                <col width="50%" /> 
-                <col width="10%" /> 
-                <col width="10%" /> 
+                <col width="45%" /> 
+                <col width="10%" />
+                <col width="15%" />
+                <col width="15%" /> 
+                <col width="5%" /> 
               </colgroup>
-              <tr> 
-          			<td><span class="num">183</span></td> 
-                <td>박보영</td> 
-      			    <td align="center">팬클럽</td> 
-      			    <td align="center"><span class="num">2009.02.20</span></td> 
-      			    <td align="center"><span class="num">12</span></td> 
+              
+<!--  <s:property value="gadgetlistStr"/>	-->
+					
+					<!--   
+    			  <tr style="background-color:#F5F5F5;">
+          			<td>이름</td> 
+                	<td>설명</td> 
+      			    <td align="center">개발자</td> 
+      			    <td align="center">등록일자</td> 
+      			    <td align="center">상태</td> 
+      			    <td align="center">삭제</td> 
       			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>			  
       			  
-              <tr> 
-          			<td><span class="num">184</span></td> 
-                <td>박보영</td> 
-      			    <td align="center">[스크랩] 박보영 - 키위닷컴 인터뷰1</td> 
-      			    <td align="center"><span class="num">2009.02.21</span></td> 
-      			    <td align="center"><span class="num">12</span></td> 
-      			  </tr> 
+      			  -->
+      			  
       			  <tr><td class="line" colspan="6"></td></tr>
-      
-              <tr> 
-          			<td><span class="num">184</span></td> 
-                <td>박보영</td> 
-      			    <td align="center">[스크랩] 박보영 - 키위닷컴 인터뷰2</td> 
-      			    <td align="center"><span class="num">2009.02.22</span></td> 
-      			    <td align="center"><span class="num">12</span></td> 
-      			  </tr> 
+
+    			<s:iterator value="gadgetlist">
+    			  <tr> 
+          			<td><span class="num"><s:url var="url" namespace="/admin" action="GadgetDetail"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
+                	<td><s:property value="desc"/></td> 
+      			    <td align="center">
+      			    <s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="owner"/></s:a>
+      			    </td> 
+      			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
+      			    <td align="center">					
+ 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
+ 	    			<s:param name="name" value="%{gadget.name}" />
+ 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="<s:property value="status"/>"></s:a> 	    			
+					</td>					 
+      			    <td align="center">
+ 	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
+ 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="삭제"></s:a>			    
+      			    </td> 
+      			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-      
-              <tr> 
-          			<td><span class="num">184</span></td> 
-                <td>박보영</td> 
-      			    <td align="center">[스크랩] 박보영 - 키위닷컴 인터뷰3</td> 
-      			    <td align="center"><span class="num">2009.02.23</span></td> 
-      			    <td align="center"><span class="num">12</span></td> 
-      			  </tr> 
-      			  <tr><td class="line" colspan="6"></td></tr>
-      
-              <tr> 
-          			<td><span class="num">184</span></td> 
-                <td>박보영</td> 
-      			    <td align="center">[스크랩] 박보영 - 키위닷컴 인터뷰4</td> 
-      			    <td align="center"><span class="num">2009.02.24</span></td> 
-      			    <td align="center"><span class="num">12</span></td> 
-      			  </tr> 
-      			  <tr><td class="line" colspan="6"></td></tr>
-      			  	
-            </table>
-            
+      			</s:iterator>
+				</table>
+            </td>
+           </tr>
+           <tr>
+           	<td>
             <!-- paging --> 
-            <div class="right_basic" style="clear:both;"> 
-      			<table width="100%" border="0" cellspacing="0" cellpadding="0" > 
-      		    <tr> 
-      			    <td align="center" height="28" valign="bottom" > 
-      					  <table cellspacing="0" cellpadding="0" border="0"> 
-      						  <tr>
-      						      <td align=center onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' style='padding:0 6 1 6; cursor:hand;' nowrap><b><font color='#FF6600'>1</font></b></td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-			                      
-			                      <td align=center style='padding:0 6 1 6; cursor:hand;' onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' onClick=location.href='genbrd_list.asp?club_id=51937716&board_no=87&search_type=&search_keyword=&cpage=2&board_type=1&club_auth=x&club_did=&list_type=2&show_type=1&headtag_seq=' class='bbsla' nowrap>2</td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-			      
-			                      <td align=center style='padding:0 6 1 6; cursor:hand;' onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' onClick=location.href='genbrd_list.asp?club_id=51937716&board_no=87&search_type=&search_keyword=&cpage=2&board_type=1&club_auth=x&club_did=&list_type=2&show_type=1&headtag_seq=' class='bbsla' nowrap>2</td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-			      
-			                      <td align=center style='padding:0 6 1 6; cursor:hand;' onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' onClick=location.href='genbrd_list.asp?club_id=51937716&board_no=87&search_type=&search_keyword=&cpage=2&board_type=1&club_auth=x&club_did=&list_type=2&show_type=1&headtag_seq=' class='bbsla' nowrap>2</td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-      
-                    			</tr>
-      						</table>
-      					</td>
-      				</tr>
-      			</table>
-      			</div>
-      		</td>
+            
+			<div class="paging"> 
+				<em class="p"><a href="">이전</a></em> 
+				<span class="on">1</span>
+				<a href="">2</a>
+				<a href="">3</a>
+				<em class="n"><a href="">다음</a></em> 
+			</div>
+            </td>
       	</tr>
       </table>
-      
+ 	     
       </div> <!-- east div -->
       
     </td>
   </tr>
-  
   
   <!-- south -->
   <tr>
