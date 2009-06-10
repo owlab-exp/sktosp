@@ -5,12 +5,12 @@
 <%@ page import="com.skt.opensocial.common.UserData" %>
 <%@ page session="true" %>
 <br>
-<div class="login">
-<%-- 
-<jsp:useBean id="USER" type="com.skt.opensocial.common.UserData" beanName="userData" scope="session">
-<jsp:getProperty property="userName" name="userData"/>
-</jsp:useBean>
---%>
+<!-- div class="login" -->
+<div class="loggedin">
 <% UserData userData = (UserData) session.getAttribute("USER"); %>
-<%= userData.getUserName() %>
+안녕하세요
+<br>
+<b><%= userData.getUserName() %></b> 님
+<br><br>
+<s:a href="%{request.getContextPath()}/security/UserLogout.action">로그아웃</s:a>
 </div>

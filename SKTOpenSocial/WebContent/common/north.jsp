@@ -12,8 +12,8 @@
           <td width="8%" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'" style="cursor:hand">개발자 메뉴</td>
           <td width="5%">|</td>
           <td width="8%" onclick="javacript:location.href='<%= request.getContextPath() %>/admin/GadgetList.action'" style="cursor:hand">관리자 메뉴</td>
-          <td width="5%">|</td>
-          <td width="8%"><a href="<%= request.getContextPath() %>/security/UserLogout.action">로그아웃</a></td>
+          <td width="13%"></td>
+	<!--  <td width="8%"><a href="<%= request.getContextPath() %>/security/UserLogout.action">로그아웃</a></td>-->
         </tr>
       </table>
     </div>
