@@ -15,6 +15,7 @@ public class GadgetList {
 		gadget.setDesc("이훈재의 가젯입니다.");
 		gadget.setNumRegUsers("10");
 		gadget.setStatus("발행요청중");
+		gadget.setNextstate("발행");
 		list.add(gadget);
 
 		gadget	= new Gadget("가젯2", "임성용");
@@ -22,6 +23,7 @@ public class GadgetList {
 		gadget.setDesc("임성용의 가젯입니다.");
 		gadget.setNumRegUsers("13");
 		gadget.setStatus("활성");
+		gadget.setNextstate("비활성");
 		list.add(gadget);
 		
 		gadget	= new Gadget("가젯3", "오세준");
@@ -29,6 +31,7 @@ public class GadgetList {
 		gadget.setDesc("오세준 가젯입니다.");
 		gadget.setNumRegUsers("19");
 		gadget.setStatus("비활성");
+		gadget.setNextstate("활성");
 		list.add(gadget);
 
 
@@ -37,6 +40,7 @@ public class GadgetList {
 		gadget.setDesc("김두리의 가젯입니다.");
 		gadget.setNumRegUsers("29");
 		gadget.setStatus("발행요청중");
+		gadget.setNextstate("발행");
 		list.add(gadget);
 
 		setGadgetlist(list);

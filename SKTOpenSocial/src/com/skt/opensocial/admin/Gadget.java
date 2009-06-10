@@ -11,6 +11,15 @@ public class Gadget {
 	private String createdDate;
 	private String status;
 	private String imagepath;
+	private String nextstate;
+
+	public String getNextstate() {
+		return nextstate;
+	}
+
+	public void setNextstate(String nextstate) {
+		this.nextstate = nextstate;
+	}
 
 	public String getImagepath() {
 		return imagepath;
