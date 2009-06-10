@@ -5,11 +5,11 @@ public class GadgetDetail {
 	private Gadget gadget;
 		
 	public String execute() {
-		gadget	= new Gadget("°¡Á¬3", "¿À¼¼ÁØ");
+		gadget	= new Gadget("ê°€ì ¯3", "ì˜¤ì„¸ì¤€");
 		gadget.setCreatedDate("2009-03-01");
-		gadget.setDesc("¿À¼¼ÁØÀÇ °¡Á¬ÀÔ´Ï´Ù");
+		gadget.setDesc("ì˜¤ì„¸ì¤€ ê°€ì ¯3ì…ë‹ˆë‹¤.");
 		gadget.setNumRegUsers("19");
-		gadget.setStatus("È°¼º");
+		gadget.setStatus("ë°œí–‰");
 		gadget.setImagepath("../images/logo.jpg");
 
 		setGadget(gadget);

@@ -10,33 +10,33 @@ public class GadgetList {
 	public String execute() {
 		List<Gadget> list	= new ArrayList<Gadget>();
 		
-		Gadget gadget	= new Gadget("°¡Á¬1", "ÀÌÈÆÀç");
+		Gadget gadget	= new Gadget("ê°€ì ¯1", "ì´í›ˆì¬");
 		gadget.setCreatedDate("2009-06-03");
-		gadget.setDesc("ÀÌÈÆÀçÀÇ °¡Á¬ÀÔ´Ï´Ù");
+		gadget.setDesc("ì´í›„ëƒŠì˜ ê°€ì ¯ì…ë‹ˆë‹¤.");
 		gadget.setNumRegUsers("10");
-		gadget.setStatus("¹ßÇà¿äÃ»Áß");
+		gadget.setStatus("ë°œí–‰ìš”ì²­ì¤‘");
 		list.add(gadget);
 
-		gadget	= new Gadget("°¡Á¬2", "ÀÓ¼º¿ë");
+		gadget	= new Gadget("ê°€ì ¯2", "ì„ì„±ìš©");
 		gadget.setCreatedDate("2009-05-01");
-		gadget.setDesc("ÀÓ¼º¿ëÀÇ °¡Á¬ÀÔ´Ï´Ù");
+		gadget.setDesc("ì„ì„±ìš©ì˜ ê°€ì ¯ì…ë‹ˆë‹¤.");
 		gadget.setNumRegUsers("13");
-		gadget.setStatus("ºñÈ°¼º");
+		gadget.setStatus("í™œì„±");
 		list.add(gadget);
 		
-		gadget	= new Gadget("°¡Á¬3", "¿À¼¼ÁØ");
+		gadget	= new Gadget("ê°€ì ¯3", "ì˜¤ì„¸ì¤€");
 		gadget.setCreatedDate("2009-03-01");
-		gadget.setDesc("¿À¼¼ÁØÀÇ °¡Á¬ÀÔ´Ï´Ù");
+		gadget.setDesc("ì˜¤ì„¸ì¤€ ê°€ì ¯ì…ë‹ˆë‹¤.");
 		gadget.setNumRegUsers("19");
-		gadget.setStatus("È°¼º");
+		gadget.setStatus("ë¹„í™œì„±");
 		list.add(gadget);
 
 
-		gadget	= new Gadget("°¡Á¬4", "±èµÎ¸®");
+		gadget	= new Gadget("ê°€ì ¯4", "ê¹€ë‘ë¦¬");
 		gadget.setCreatedDate("2009-01-01");
-		gadget.setDesc("±èµÎ¸®ÀÇ °¡Á¬ÀÔ´Ï´Ù");
+		gadget.setDesc("ê¹€ë‘ë¦¬ì˜ ê°€ì ¯ì…ë‹ˆë‹¤.");
 		gadget.setNumRegUsers("29");
-		gadget.setStatus("¹ßÇà¿äÃ»Áß");
+		gadget.setStatus("ë°œí–‰ìš”ì²­ì¤‘");
 		list.add(gadget);
 
 		setGadgetlist(list);

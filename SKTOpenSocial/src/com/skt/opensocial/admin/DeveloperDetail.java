@@ -5,12 +5,12 @@ public class DeveloperDetail {
 	private Developer gadget;
 		
 	public String execute() {
-		Developer developer	= new Developer("¿À¼¼ÁØ", "sjoh");
+		Developer developer	= new Developer("ì˜¤ì„¸ì¤€", "sjoh");
 		developer.setEmail("sejoono@andrew.cmu.edu");
 		developer.setPhone("010-555-9999");
 		developer.setRegDate("2009-05-06");
-		developer.setStatus("ºñÈ°¼º");
-		developer.setAddress("´ëÀü½Ã ¹®Áöµ¿ Ä«ÀÌ½ºÆ® ICC");
+		developer.setStatus("í™œì„±");
+		developer.setAddress("ì¹´ì´ìŠ¤íŠ¸ ICC");
 		developer.setImagepath("../images/logo.jpg");
 		
 		setGadget(developer);
