@@ -15,7 +15,7 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" height="567" width="1000">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
