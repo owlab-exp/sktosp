@@ -96,8 +96,7 @@
                 					<col width="60%" />
 								</colgroup>
 		        				<tr>
-		          		          	<s:submit align="left" action= "Modofication" value= "개인정보수정" name= "modification" 
-	              onclick= "form.onsubmit= null " />
+		          		          	<s:submit align="left" value= "개인정보수정" name= "modification"/>
 		        				</tr>
 		     				</table>
 		     			</td>
