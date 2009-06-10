@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript" src="../js/developer.js"></script>
 <title>관리자 가젯 리스트 보기</title>
 </head>
 
@@ -99,12 +100,20 @@
       			    </td> 
       			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
       			    <td align="center"><s:property value="status"/></td>					 
-      			    <td align="center">					
+      			    <td align="center">
+      			    
+				<s:if test="%{nextstate.equals('발행')}">
+      			    <a href="#" onclick="javascript:popup('popup_gadget_publish_response.jsp','GadgetRegister')"><input type="button" value="<s:property value="nextstate"/>"></a>
+				</s:if>
+
+				<s:if test="%{!nextstate.equals('발행')}">
  	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
  	    			<s:param name="name" value="%{gadget.name}" />
  	    			<s:param name="status" value="%{gadget.status}" /></s:url>
  	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
- 	    			<input type="button" value="<s:property value="nextstate"/>"></s:a> 	    			
+ 	    			<input type="button" value="<s:property value="%{nextstate}"/>"></s:a> 	    			
+				</s:if>
+
 					</td>
 					<td align="center">
  	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
