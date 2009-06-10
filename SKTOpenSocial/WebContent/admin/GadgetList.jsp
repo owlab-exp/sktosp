@@ -69,9 +69,10 @@
             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
 			<colgroup> 
                 <col width="10%" /> 
-                <col width="45%" /> 
+                <col width="30%" /> 
                 <col width="10%" />
                 <col width="15%" />
+                <col width="15%" /> 
                 <col width="15%" /> 
                 <col width="5%" /> 
               </colgroup>
@@ -84,6 +85,7 @@
       			    <td align="center">개발자</td> 
       			    <td align="center">등록일자</td> 
       			    <td align="center">상태</td> 
+      			    <td align="center">작업</td> 
       			    <td align="center">삭제</td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
@@ -96,14 +98,15 @@
       			    <s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="owner"/></s:a>
       			    </td> 
       			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
+      			    <td align="center"><s:property value="status"/></td>					 
       			    <td align="center">					
  	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
  	    			<s:param name="name" value="%{gadget.name}" />
  	    			<s:param name="status" value="%{gadget.status}" /></s:url>
  	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
- 	    			<input type="button" value="<s:property value="status"/>"></s:a> 	    			
-					</td>					 
-      			    <td align="center">
+ 	    			<input type="button" value="<s:property value="nextstate"/>"></s:a> 	    			
+					</td>
+					<td align="center">
  	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
  	    			<s:param name="name" value="%{gadget.name}" /></s:url>
  	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
