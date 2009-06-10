@@ -132,22 +132,11 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-		<!-- south -->
-		<tr valign="top" height="5%">
+  <!-- south -->
+  <tr>
     <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
-			<div id="footer">
-			<table border="1" height="100%" width="100%">
-				<tbody>
-					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights
-						reserved.</strong></td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</body>
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
+</table></body>
 </html>
