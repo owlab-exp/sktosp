@@ -12,5 +12,5 @@
 <br>
 <b><%= userData.getUserName() %></b> 님
 <br><br>
-<s:a href="%{request.getContextPath()}/security/UserLogout.action">로그아웃</s:a>
+<a href="<%=request.getContextPath()%>/security/UserLogout.action">로그아웃</a>
 </div>
