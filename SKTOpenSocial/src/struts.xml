@@ -68,6 +68,10 @@
 		<action name="DeveloperController_*" method="{1}" class="com.skt.opensocial.admin.DeveloperController">
 			<result name="SUCCESS" type="redirectAction">DeveloperList</result>			
 		</action>
+		<action name="GadgetRegister">
+			<result>/admin/popup_gadget_publish_response.jsp</result>
+		</action>		
+		
 	</package>
 		
 		
