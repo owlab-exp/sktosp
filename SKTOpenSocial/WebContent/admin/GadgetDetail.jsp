@@ -3,7 +3,14 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@ include file="/common/header.jsp"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<title>관리자 가젯 리스트 보기</title>
+</head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
