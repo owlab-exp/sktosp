@@ -12,7 +12,7 @@
 <script type="text/javascript" src="../js/developer.js"></script>
 
 
-<title>개발자 신규가젯등록</title>
+<title>새 가젯등록</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
@@ -43,7 +43,7 @@
 						<ul class="subject_sub">
 							<li>홈</li>
 							<li>개발자 메뉴</li>
-							<li><strong>신규 가젯 등록</strong></li>
+							<li><strong>새 가젯 등록</strong></li>
 						</ul>
 						</div>
 						</td>

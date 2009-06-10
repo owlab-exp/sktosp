@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../js/developer.js"></script>
 
 
-<title>개발자 신규가젯등록</title>
+<title>가젯 미리보기</title>
 </head>
 
 <body leftmargin="0" topmargin="0"

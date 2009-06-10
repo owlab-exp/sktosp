@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../js/developer.js"></script>
 
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<title>개발자 가젯 목록</title>
+<title>내 가젯 관리</title>
 </head>
 
 <body leftmargin="0" topmargin="0"

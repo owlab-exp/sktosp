@@ -9,7 +9,7 @@
 <script type="text/javascript" src="../js/main.js"></script>
 
 
-<title>개발자 신규가젯등록</title>
+<title>가젯 리뷰 보기</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
