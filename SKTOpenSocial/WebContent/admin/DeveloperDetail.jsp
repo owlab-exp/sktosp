@@ -123,6 +123,7 @@
     <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
 <%@ include file="/common/south.jsp"%>
 	</td>
+  </tr> 
 </table>
 
 </body>
