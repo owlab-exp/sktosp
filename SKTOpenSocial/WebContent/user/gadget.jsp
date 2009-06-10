@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@ include file="/common/header.jsp"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<title>SKT OpenSocial Pilot - Gadget Information</title>
+</head>
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 

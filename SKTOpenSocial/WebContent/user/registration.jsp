@@ -4,7 +4,13 @@
 <!-- for use of struts tags -->
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
-<%@ include file="/common/header.jsp"%>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<title>SKT OpenSocial Pilot - New Registration</title>
+</head>
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
