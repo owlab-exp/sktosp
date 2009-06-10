@@ -12,7 +12,7 @@ public class GadgetList {
 		
 		Gadget gadget	= new Gadget("가젯1", "이훈재");
 		gadget.setCreatedDate("2009-06-03");
-		gadget.setDesc("이후냊의 가젯입니다.");
+		gadget.setDesc("이훈재의 가젯입니다.");
 		gadget.setNumRegUsers("10");
 		gadget.setStatus("발행요청중");
 		list.add(gadget);
