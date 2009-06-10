@@ -6,18 +6,18 @@
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
-<table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
+<table height="567"	width="100%" border="1" cellspacing="0" cellpadding="0">
 
-    <tr>
+    <tr valign="top" height="15%">
   <!-- north -->
-    <td colspan="3" height="10%" align="center" valign="middle">
+    <td colspan="3" align="center" valign="top" >
 <%@ include file="/common/north_no_login.jsp"%>
     </td>
   </tr>
   
   <tr>
   <!-- west -->
-    <td width="25%" align="center" valign="top">
+    <td width="25%" align="center" valign="top" height="80%">
 
 <%@ include file="/common/login.jsp"%>
 

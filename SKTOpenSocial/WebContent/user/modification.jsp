@@ -67,7 +67,7 @@
 		        <tr>
 		          	<s:textfield label= "사용자아이디" name= "userid" required="true" value="nash2" /> 
 		          	<s:submit align="left" action= "Multiplication_Check" value= "중복검사" name= "multi-check" 
-	              onclick= "form.onsubmit= null " />
+	              />
 		        </tr>
 		      </table>
 		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
@@ -1053,15 +1053,15 @@
 		        <tr>
 		          <td>
 		          	<s:submit align="center" action= "ModificationSubmit" value= "개인정보수정" name= "modificationsubmit" 
-	              		onclick= "form.onsubmit= null " />
+	              		/>
 	              </td>
 	         	  <td>
 	              	<s:reset align="center" action= "ResetModification" value= "다시입력" name= "reset" 
-	              		onclick= "form.onsubmit= null " />
+	              		 />
 	              </td>	  
 	              <td>
 	              	<s:submit align="center" action= "CancelModification" value= "취소" name= "cancel" 
-	              		onclick= "form.onsubmit= null " />
+	              		 />
                   </td>      
 		        </tr>
 		      </table>

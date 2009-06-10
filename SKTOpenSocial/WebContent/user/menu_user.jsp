@@ -11,11 +11,8 @@
 			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/Modification.action'" style="cursor:hand">내 정보 관리</td>
 		</tr>	
 		<tr>
-			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ManageGadget.action'" style="cursor:hand">내 가젯 관리</td>
+			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ManageGadget.action'" style="cursor:hand">가젯 모음</td>
 		</tr>
-		<tr>
-			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/MoveDeveloper.action'" style="cursor:hand">개발자환경</td>
-		</tr>	
 	</table>
 
 	</div>
