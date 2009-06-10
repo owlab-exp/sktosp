@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- for use of struts tags -->
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <%@ include file="/common/header.jsp"%>
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
-
-
-
 
 <table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
 
@@ -15,7 +14,7 @@
   <!-- north -->
     <td colspan="3" height="10%" align="center" valign="middle">
 
-<%@ include file="/common/north.jsp"%>
+<%@ include file="/common/north_no_login.jsp"%>
 
     </td>
   </tr>
@@ -24,8 +23,6 @@
   <!-- west -->
     <td width="25%" align="center" valign="top">
 
-<%@ include file="/common/west.jsp"%>
-<%@ include file="/common/menu.jsp"%>
 
     </td>
 
@@ -54,224 +51,1025 @@
           <td width='100%' align='center' height='30'></td>
         </tr>
       </table>
-      <table border='0' width='550' align='center' cellspacing='1' cellpadding='5' bgcolor='#686868' style='line-height: 150%'>
-        <tr>
-          <td width='100%' bgcolor='#FFFFFF'><font color='#f26e15'>* 회원 ID는
-            4 자 ~ 20자 이내의 영문과 숫자로 하시면 됩니다.<br>
-            * 비밀번호는 4 ~ 15자의 영문과 숫자로 하시면
-            됩니다.</font><br>* <font color='#F4554D'><b>√</b></font><font color='#f26e15'> 표시는 회원등록시 반드시 입력하셔야 합니다.</font></td>
-        </tr>
-      </table>
-      <table border='0' width='550' align='center' cellspacing='0' cellpadding='0'>
-        <tr>
-          <td width='100%' align='center' height='20'></td>
-        </tr>
-      </table>
       
       <table border='0' width='550' align='center' bgcolor='#686868' cellspacing='1' cellpadding='0'>
-<form name='member_form' method='POST' Onsubmit='return chk_member_form();' action='member.php3'>
-<input type='hidden' name='link' value='input'>
-<input type='hidden' name='mode' value='new'>
-</form>
-  <tr>
-    <td width='100%' bgcolor='#FFFFFF'>
+		<s:form action="Registration" namespace="/user" >
 
-    
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 원하는 아이디 <font color='red'><b>√</b></font></td>
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='id' size='20' maxlength='20'> <a href='#' Onclick='search_id(document.member_form)'><img align='absMiddle' border='0' src='images/bt_double.gif' width='62' height='19' align='absmiddle'></a></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 암호 <font color='red'><b>√</b></font></td>
-          <td width='1%'></td>
-          <td width='74%'><input type='password' name='passwd' size='20'></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 암호 확인 <font color='red'><b>√</b></font></td>
-          <td width='1%'></td>
-          <td width='74%'><input type='password' name='re_passwd' size='20'></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 회원명 <font color='red'><b>√</b></font></td>
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='name' size='20'></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr> 
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 이메일 <font color='red'><b>√</b></font></td> 
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='email' size='39'></td> 
-        </tr> 
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr> 
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 홈페이지 <font color='red'><b>√</b></font></td> 
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='homepage' size='46'></td> 
-        </tr> 
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr> 
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 핸드폰 <font color='red'><b>√</b></font></td> 
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='c_phone1' size='5'>  -&nbsp; <input type='text' name='c_phone2' size='5'>   
-            -&nbsp; <input type='text' name='c_phone3' size='5'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 전화번호 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='h_phone1' size='5'> -&nbsp; <input type='text' name='h_phone2' size='5'>   
-            -&nbsp; <input type='text' name='h_phone3' size='5'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 주민등록번호 <font color='red'><b>√</b></font></td>
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='jumin1' size='10'> -&nbsp; <input type='text' name='jumin2' size='10'></td> 
-        </tr> 
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 생일 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='birth1' size='5'> -&nbsp; <input type='text' name='birth2' size='5'>&nbsp;   
-            - <input type='text' name='birth3' size='5'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 음(양)력 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'>음력 <input type='radio' value='음력' checked name='birth_type'>&nbsp;&nbsp;&nbsp;   
-            양력 <input type='radio' value='양력' name='birth_type'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> zip code <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='h_zip1' size='5'> -&nbsp; <input type='text' name='h_zip2' size='5'>&nbsp; <a href='javascript:void(post_searching());'><img align='absMiddle' border='0' src='http://www.keodo.co.kr/bbseboard/images/bt_search.gif'></a></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 집주소 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='h_addr' size='55'>&nbsp; </td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 성별 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'>남자 <input type='radio' value='남' checked name='sex'>&nbsp;&nbsp;   
-            여자 <input type='radio' value='여' name='sex'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 직업 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><select size='1' name='job'>  
-              <option value=''>- 선택 -</option><option  value='무직'>무직</option><option  value='학생'>학생</option><option  value='컴퓨터/인터넷'>컴퓨터/인터넷</option><option  value='언론'>언론</option><option  value='공무원'>공무원</option><option  value='군인'>군인</option><option  value='서비스업'>서비스업</option><option  value='교육'>교육</option><option  value='금융/증권/보험업'>금융/증권/보험업</option><option  value='유통업'>유통업</option><option  value='예술'>예술</option><option  value='의료'>의료</option><option  value='볍률'>법률</option><option  value='건설업'>건설업</option><option  value='제조업'>제조업</option><option  value='부동산업'>부동산업</option><option  value='운송업'>운송업</option><option  value='농/수/임/광산업'>농/수/임/광산업</option><option  value='가사'>가사</option><option  value='기타'>기타</option>
-            </select></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 메일링 수신 <font color='red'><b>√</b></font></td> 
-          <td width='1%'> </td>
-          <td width='74%'>수신 <input type='radio' value='yes' checked name='mailling'>&nbsp;&nbsp;   
-            수신거부 <input type='radio' value='no' name='mailling'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 개인정보공개 <font color='red'><b>√</b></font></td> 
-          <td width='1%'> </td>
-          <td width='74%'>공개 <input type='radio' value='yes' checked name='info_open'>&nbsp;&nbsp;   
-            비공개 <input type='radio' value='no' name='info_open'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 추천아이디</td>  
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='recom_id' size='20'></td>  
-        </tr>  
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 자기 소개 <font color='red'><b>√</b></font></td>
-          <td width='1%'>   </td>       
-          <td width='74%'><textarea rows='5' name='intro' style='width:100%'></textarea></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>  
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 좋아하는 연애인 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><select size='1' name='add_01'>
-<option value=''>-- 선택 --</option>
-<option value='유호성'>유호성</option>
-<option value='장동건'>장동건</option>
-<option value='정우성'>정우성</option>
-<option value='차태현'>차태현</option>
-<option value='없음'>아무도 없음</option>
-</select></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 직장명 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><input type='text' name='add_02'></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 경혼 유무 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'>미혼 <input type='radio' value='미혼' checked name='add_03'> &nbsp;&nbsp;기혼 <input type='radio' value='기혼' name='add_03'></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 뉴스 레터 받기 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'>받음 <input type='checkbox' name='add_04' checked value='받음'></td>
-        </tr>
-      </table>
-      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
-        <tr>
-          <td bgcolor='#f4f4f4' width='25%' height='30'>&nbsp;<img src='http://www.keodo.co.kr/bbseboard/images/dot_20.gif'> 사이트 건의사항 <font color='red'><b>√</b></font></td>  
-          <td width='1%'></td>
-          <td width='74%'><textarea rows='5' name='add_05' style='width:100%'></textarea></td>
-        </tr>
-      </table>
+		  <tr>
+		    <td width='100%' bgcolor='#FFFFFF'>
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		    	<colgroup> 
 
-    </td>
-  </tr>
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "사용자아이디" name= "userid" required="true" value="nash2" /> 
+		          	<s:submit align="left" action= "Multiplication_Check" value= "중복검사" name= "multi-check" 
+	              onclick= "form.onsubmit= null " />
+		        </tr>
+		      </table>
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:password label= "암호" name= "password" required="true" value="nash2"/> 
+		        </tr>
+		      </table>
+		      		  
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:password label= "암호확인" name= "password_confirm" required="true" value="nash2"/> 
+		        </tr>
+		      </table>   
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "사용자이름" name= "username" required="true" value="nashbabo"/> 
+		        </tr>
+		      </table>  
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "나이" name= "age" required="false" value="30"/> 
+		        </tr>
+		      </table>  
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		       		<s:select label="성별" name="gender" headerKey="1" headerValue="-- 선택하세요 --" list="#{'male':'남성','female':'여성'}"/> 
+	   	        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "생일" name= "dataOfBirth" required="false" value="1979.08.24."/> 
+		        </tr>
+		      </table>  
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "이메일" name= "email" required="true" value="skt@nate.com"/> 
+		        </tr>
+		      </table>  
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "추가이메일" name= "email2" required="false" /> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "주소" name= "address" required="false" value="서울"/> 
+		        </tr>
+		      </table>  
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "추가주소" name= "address_optional" required="false" /> 
+		        </tr>
+		      </table>  
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "학교" name= "school" required="false" value="KAIST"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "추가학교" name= "school" required="false" /> 
+		        </tr>
+		      </table> 
+		      
+		      		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "직업" name= "job" required="false" value="student"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "추가직업" name= "job2" required="false" /> 
+		        </tr>
+		      </table> 
+		
+			  <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "체격" name= "bodytype.build" required="false" value="호리호리"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "눈동자색상" name= "bodytype.eyecolor" required="false" value="black"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "머리색상" name= "bodytype.haircolor" required="false" value="black"/> 
+		        </tr>
+		        
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "키" name= "bodytype.height" required="false" value="180"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "몸무게" name= "bodytype.weight" required="false" value="80"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "좋아하는 책" name= "book" required="false" value="Architecture"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "좋아하는 책 추가" name= "book2" required="false" /> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "좋아하는 자동차" name= "car" required="false" value="아반떼"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "좋아하는 자동차추가" name= "car2" required="false" /> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "자녀" name= "child" required="false" value="destinychild"/> 
+		        </tr>
+		      </table> 
+		      
+		      		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "추가자녀" name= "child2" required="false" /> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label= "현재위치" name= "currentLocation" required="false" value="대전"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		       		<s:select label="음주" name="gender" headerKey="1" headerValue="-- 선택하세요 --" 
+		       		list="#{'HEAVILY':'HEAVILY'
+		       				,'NO':'NO'
+		       				,'OCCASIONALLY':'OCCASIONALLY'
+		       				,'QUIT':'QUIT'
+		       				,'QUITTING':'QUITTING'
+		       				,'REGULARLY':'REGULARLY'
+		       				,'SOCIALLY':'SOCIALLY'
+		       				,'YES':'YES'
+		       				}"/> 
+	   	        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="민족" name="ethnicity" required="false" value="한국인"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="패션" name="fashion" required="false" value="밀리터리룩"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는음식" name="food" required="false" value="김치찌개"/> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는음식추가" name="food2" required="false" /> 
+		        </tr>
+		      </table> 
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="행복한때" name="happiesWhen" required="false" value="프로젝트끝날때"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는영웅" name="heroes" required="false" value="superman"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는영웅추가" name="heroes" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="유머에대한생각" name="humor" required="false" value="글쎄"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="취미,특기" name="interest" required="false" value="공부"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="취미,특기추가" name="interests" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="관심직업" name="jobinterest" required="false" value="대통령"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="관심직업추가" name="jobinterests" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="사용언어" name="languageSpoken" required="false" value="한국어"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="사용언어추가" name="languageSpoken2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="주거형태" name="livingArrangement" required="false" value="아파트"/> 
+		        </tr>
+		      </table>
+		      
+			  <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		       		<s:select label="관심분야" name="lookingfor" headerKey="1" headerValue="-- 선택하세요 --" 
+		       		list="#{'ACTIVITY_PARTNERS':'ACTIVITY_PARTNERS'
+		       				,'DATING':'DATING'
+		       				,'FRIENDS':'FRIENDS'
+		       				,'NETWORKING':'NETWORKING'
+		       				,'RANDOM':'RANDOM'
+		       				,'RELATIONSHIP':'RELATIONSHIP'
+		       				}"/> 
+	   	        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는영화" name="movie" required="false" value="동해물과"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="영화추가" name="movie2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는음악" name="music" required="false" value="백두산이"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="음악추가" name="music2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="추가이름" name="additional_name" required="false" value="없어"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="성" name="family_name" required="false" value="na"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="이름" name="given_name" required="false" value="sh2"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="호" name="honorific_prefix" required="false" value="Dr."/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="접미" name="honorific_suffix" required="false" value="great"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="비구조이름" name="unstructured" required="false" value="nash2"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		       		<s:select label="관심분야" name="lookingfor" headerKey="1" headerValue="-- 선택하세요 --" 
+		       		list="#{'AWAY':'AWAY'
+		       				,'CHAT':'CHAT'
+		       				,'DND':'DND'
+		       				,'OFFLINE':'OFFLINE'
+		       				,'ONLINE':'ONLINE'
+		       				,'XA':'XA'
+		       				}"/> 
+	   	        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="별명" name="nickname" required="false" value="Dr. nash"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="애완동물" name="pet" required="false" value="백구"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="애완동물추가" name="pet2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="전화번호" name="phone.number" required="false" value="042-869-6114"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="전화번호종류" name="phone.type" required="false" value="유선전화"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="추가전화번호" name="pet2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="추가전화번호종류" name="pet2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="정치적관점" name="politicalviews" required="false" value="보수"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일송위치" name="profilesong_url_address" required="false" value="http://nate.com"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일송내용" name="profilesong_url_linktext" required="false" value="애국가"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일송위치종류" name="profilesong_url_type" required="false" value="website"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일위치" name="profile_url_address" required="false" value="http://nate.com"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일내용" name="profile_url_linktext" required="false" value="애국가"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일위치종류" name="profilevideo_url_type" required="false" value="website"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일비디오위치" name="profilevideo_url_address" required="false" value="http://nate.com"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일비디오내용" name="profilevideo_url_linktext" required="false" value="애국가"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="프로파일비디오위치종류" name="profilevideo_url_type" required="false" value="website"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는인용문" name="quote" required="false" value="산은산이오"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="인용문추가" name="quote2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="관계상태" name="relationshipstatus" required="false" value="좋음"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="종교" name="religion" required="false" value="무교"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="로맨스에대한" name="romance" required="false" value="내가하면로맨스"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="무서운것" name="scaredOf" required="false" value="벌레"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="성적방향" name="sexualOrientation" required="false" value="이성"/> 
+		        </tr>
+		      </table>
+
+			  <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" />
+				</colgroup>
+		        <tr>
+		       		<s:select label="흡연" name="smoker" headerKey="1" headerValue="-- 선택하세요 --" 
+		       		list="#{'HEAVILY':'HEAVILY'
+		       				,'NO':'NO'
+		       				,'OCCASIONALLY':'OCCASIONALLY'
+		       				,'QUIT':'QUIT'
+		       				,'QUITTING':'QUITTING'
+		       				,'REGULARLY':'REGULARLY'
+		       				,'SOCIALLY':'SOCIALLY'
+		       				,'YES':'YES'
+		       				}"/> 
+	   	        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="좋아하는스포츠" name="sport" required="false" value="숨쉬기"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="스포츠추가" name="sport2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="상태" name="status" required="false" value="건들지마세요"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="태그" name="tag" required="false" value="숨쉬기"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="태그추가" name="tag2" required="false" /> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="이미지위치" name="thumbnail_url_address" required="false" value="http://nate.com"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="이미지내용" name="thumbnail_url_linktext" required="false" value="애국가"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="이미지위치종류" name="thumbnail_url_type" required="false" value="website"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="시간대" name="timzone" required="false" value="+9"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="turnOff" name="turnOff" required="false" value=""/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="turnOff추가" name="turnOff2" required="false" /> 
+		        </tr>
+		      </table>	
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="turnOn" name="turnOn" required="false" value=""/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="turnOn추가" name="turnOn2" required="false" /> 
+		        </tr>
+		      </table>	
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="tvShow" name="tvShow" required="false" value="무한도전"/> 
+		        </tr>
+		      </table>
+		      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		      		<colgroup> 
+                	<col width="40%" /> 
+                	<col width="60%" /> 
+				</colgroup>
+		        <tr>
+		          	<s:textfield label="tvShow추가" name="tvShow2" required="false" /> 
+		        </tr>
+		      </table>	
+	      
+		      <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		    	<colgroup> 
+                	<col width="30%" /> 
+                	<col width="30%" />
+                	<col width="40%" />
+                </colgroup>
+		        <tr>
+		          <td>
+		          	<s:submit align="center" action= "RegistrationSubmit" value= "회원가입" name= "registration_submit" 
+	              		onclick= "form.onsubmit= null " />
+	              </td>
+	         	  <td>
+	              	<s:reset align="center" action= "ResetRegistration" value= "다시입력" name= "resetregistration" 
+	              		onclick= "form.onsubmit= null " />
+	              </td>	  
+	              <td>
+	              	<s:submit align="center" action= "CancelRegistration" value= "취소" name= "cancelregistration" 
+	              		onclick= "form.onsubmit= null " />
+                  </td>      
+		        </tr>
+		      </table>
+		
+		    </td>
+		  </tr>
+		</s:form>
 
 </table>
      
-<table border='0' width='550' align='center' cellspacing='0' cellpadding='0'>
-  <tr>
-    <td width='100%' align='center' height='30'><input type='image' src='http://www.keodo.co.kr/bbseboard/images/bt_memberjoin.gif' border='0' align='absmiddle' style='border:0'>&nbsp;&nbsp;&nbsp;<a href='javascript:document.member_form.reset()'><img src='http://www.keodo.co.kr/bbseboard/images/bt_cancel.gif' border='0' align='absmiddle'></a></td>
-  </tr>
-</table>
       
       
       </div> <!-- east div -->
