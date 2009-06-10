@@ -10,32 +10,32 @@ public class DeveloperList {
 	public String execute() {
 		List<Developer> list	= new ArrayList<Developer>();
 		
-		Developer developer	= new Developer("ÀÌÈÆÀç", "hjlee");
+		Developer developer	= new Developer("ì´í›ˆì¬", "hjlee");
 		developer.setEmail("hjlee@andrew.cmu.edu");
 		developer.setPhone("011-222-3333");
 		developer.setRegDate("2009-05-06");
-		developer.setStatus("È°¼º");
+		developer.setStatus("í™œì„±");
 		list.add(developer);
 		
-		developer	= new Developer("¿À¼¼ÁØ", "sjoh");
+		developer	= new Developer("ì˜¤ì„¸ì¤€", "sjoh");
 		developer.setEmail("sejoono@andrew.cmu.edu");
 		developer.setPhone("010-555-9999");
 		developer.setRegDate("2009-05-06");
-		developer.setStatus("ºñÈ°¼º");
+		developer.setStatus("ë¹„í™œì„±");
 		list.add(developer);
 
-		developer	= new Developer("ÀÓ¼º¿ë", "sylim");
+		developer	= new Developer("ì„ì„±ìš©", "sylim");
 		developer.setEmail("seyongl@andrew.cmu.edu");
 		developer.setPhone("010-222-1111");
 		developer.setRegDate("2009-05-23");
-		developer.setStatus("È°¼º");
+		developer.setStatus("í™œì„±");
 		list.add(developer);
 
-		developer	= new Developer("±èµÎ¸®", "drkim");
+		developer	= new Developer("ê¹€ë‘ë¦¬", "drkim");
 		developer.setEmail("durik@andrew.cmu.edu");
 		developer.setPhone("010-666-7777");
 		developer.setRegDate("2009-02-23");
-		developer.setStatus("È°¼º");
+		developer.setStatus("ë¹„í™œì„±");
 		list.add(developer);
 
 		setDeveloperlist(list);
