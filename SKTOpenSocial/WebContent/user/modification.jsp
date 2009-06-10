@@ -12,24 +12,23 @@
 <title>SKT OpenSocial Pilot - My Profile Modification</title>
 </head>
 
-<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
-
-<table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
-
-    <tr>
+<body leftmargin="0" topmargin="0"
+	style="background-color: rgb(255, 255, 255);" marginheight="0"
+	marginwidth="0">
+	
+<table border="1" cellpadding="0" cellspacing="0" height="567"
+	width="1000">
   <!-- north -->
-    <td colspan="3" height="10%" align="center" valign="middle">
-
+  <tr valign="top" height="15%">
+    <td colspan="3" align="center" valign="top">
 <%@ include file="/common/north.jsp"%>
-
     </td>
   </tr>
-  
-    <tr>
+  <tr valign="top" height="80%">
   <!-- west -->
     <td width="25%" align="center" valign="top">
 
-		<%@ include file="/user/west_user.jsp"%>
+<%@ include file="/user/west_user.jsp"%>
 
     </td>
 
