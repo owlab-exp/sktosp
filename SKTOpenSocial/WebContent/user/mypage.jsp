@@ -2,15 +2,22 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@ include file="/common/header.jsp"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<title>SKT OpenSocial Pilot - My Page</title>
+</head>
 
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
 
-<table width="1023" height="767" border="1" cellspacing="0" cellpadding="0">
+<table height="567"	width="100%" border="1" cellspacing="0" cellpadding="0">
 
-  <tr>
+  <tr valign="top" height="15%">
   <!-- north -->
-    <td colspan="3" height="10%" align="center" valign="middle">
+    <td colspan="3" height="10%" align="center" valign="top">
 
 <%@ include file="/common/north.jsp"%>
 
@@ -19,7 +26,7 @@
   
     <tr>
   <!-- west -->
-    <td width="25%" align="center" valign="top">
+    <td width="25%" align="center" valign="top" height="80%">
 
 <%@ include file="/user/west_user.jsp"%>
 
@@ -96,8 +103,9 @@
                 					<col width="60%" />
 								</colgroup>
 		        				<tr>
-		          		          	<s:submit align="left" value= "개인정보수정" name= "modification"/>
-		        				</tr>
+		          		          	<s:submit align="left" value= "개인정보수정" name= "modification" 
+	               />
+				</tr>
 		     				</table>
 		     			</td>
 		     		</tr>
