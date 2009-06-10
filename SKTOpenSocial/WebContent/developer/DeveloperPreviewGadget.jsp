@@ -92,7 +92,7 @@
 		</tr>
 		<!-- south -->
 		<tr valign="top" height="5%">
-			<td colspan="3" align="center" height="10%" valign="middle">
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
 			<div id="footer">
 			<table border="1" height="100%" width="100%">
 				<tbody>
