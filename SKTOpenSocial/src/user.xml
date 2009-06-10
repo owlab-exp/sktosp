@@ -45,6 +45,10 @@
 			<result >/user/mypage.jsp</result>
 		</action>
 		
+		<action name="ManageGadget">
+			<result >/user/gadget.jsp</result>
+		</action>
+		
 		
 		
 		<action name="ListMyGadgets">
