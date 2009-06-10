@@ -21,8 +21,8 @@
   <!-- west -->
     <td width="25%" align="center" valign="top">
 
-<%@ include file="/common/west.jsp"%>
-<%@ include file="/common/menu.jsp"%>
+<%@ include file="/user/west_user.jsp"%>
+
 
     </td>
     
@@ -45,167 +45,128 @@
           </td>
         </tr>
  
- 		<tr>
- 			<form id="createaccount" action="UpdateUserInfo" method="post">
-  			<input type="hidden" name="timeStmp" id="timeStmp" value='1244032680'/>
-			<input type="hidden" name="secTok" id="secTok" value='8fcbe0f2eec327eba0c743c1c5270b74'/>
-  			<table width="100%" cellpadding="3">
-  				<tr>
-  					<td nowrap>
-  						<b><font color="#333333">
-  						개인정보
-  							</font></b>
-  					</td>
-  					<td width="100%"><hr></td>
-  				</tr>
-  			</table>
-  			<table width="100%" border="0" cellspacing="2" cellpadding="2">
-  				<tr>
-  					<td width="20%" nowrap="nowrap" valign="top">
-  						<font size="-1">
-  						성:
-  						</font>
-  					</td>
-  					<td>
-  					<input  type="text" name="LastName"  id="LastName" size="30" value="Lim" />
-  					</td>
-  				</tr>
-  				<tr>
-  					<td width="20%" nowrap="nowrap" valign="top">
-  						<font size="-1">
-  						이름:
- 						 </font>
-  					</td>
-  					<td>
-  						<input  type="text" name="FirstName"  id="FirstName" size="30" value="Seong Yong" />
-  					</td>
-  				</tr>
-  				<tr>
-  					<td width="20%" nowrap="nowrap" valign="top">
-  						<font size="-1">
-  							별명:
-  						</font>
-  					</td>
-	  				<td>
-	  				<input  type="text" name="NickName"  id="NickName" size="30" value="nyongs" />
-	  				</td>			
-  				</tr>
-  			</table>
-			</form>
+ 	    <tr>
+            <!-- detail -->
 
-			
-			
-          
-            <!-- bbs -->
-            <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
-              <colgroup> 
-                <col width="10%" /> 
+            <table cellpadding="0" cellspacing="0" width="100%" border="1"> 
+			<colgroup> 
                 <col width="20%" /> 
-                <col width="50%" /> 
-                <col width="10%" /> 
-                <col width="10%" /> 
-              </colgroup>
-              <tr> 
-          			<td><span class="num">1</span></td> 
-                <td>가젯1</td> 
-      			    <td align="center">동안 가젯</td> 
-      			    <td align="center"><span class="num">2009.02.21</span></td> 
-      			    <td align="center"><span class="num">user1</span></td> 
+                <col width="20%" /> 
+                <col width="60%" /> 
+			</colgroup>
+			
+				<tr>
+          			<td rowspan="14"><img src='<s:url value="../images/logo.jpg"/>'></td> 
+      			</tr>
+			           
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">이름</td> 
+                	<td><s:text name="%{user.name}"/></td> 
       			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>			  
-      			  
-              <tr> 
-          			<td><span class="num">2</span></td> 
-                <td>가젯2</td> 
-      			    <td align="center">바보 가젯</td> 
-      			    <td align="center"><span class="num">2009.02.22</span></td> 
-      			    <td align="center"><span class="num">user2</span></td> 
-      			  </tr> 
       			  <tr><td class="line" colspan="6"></td></tr>
-      
-              <tr> 
-          			<td><span class="num">3</span></td> 
-                <td>가젯3</td> 
-      			    <td align="center">날씨 가젯</td> 
-      			    <td align="center"><span class="num">2009.02.23</span></td> 
-      			    <td align="center"><span class="num">user3</span></td> 
-      			  </tr> 
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">아이디</td> 
+                	<td><s:text name="%{user.id}"/></td> 
+      			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-      
-              <tr> 
-          			<td><span class="num">4</span></td> 
-                <td>가젯4</td> 
-      			    <td align="center">게임 가젯</td> 
-      			    <td align="center"><span class="num">2009.02.24</span></td> 
-      			    <td align="center"><span class="num">user4</span></td> 
-      			  </tr> 
+				<tr style="background-color:#FFFFFF;" height="25">
+          			<td align="center">전화번호</td> 
+                	<td><s:text name="%{user.phone}"/></td> 
+      			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-      
-              <tr> 
-          			<td><span class="num">5</span></td> 
-                <td>가젯5</td> 
-      			    <td align="center">짝짓기 가젯</td> 
-      			    <td align="center"><span class="num">2009.02.25</span></td> 
-      			    <td align="center"><span class="num">user5</span></td> 
-      			  </tr> 
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">주소</td> 
+                	<td><s:text name="%{user.address}"/></td> 
+      			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-      			  	
-            </table>
-            
-            <!-- paging --> 
-            <div class="right_basic" style="clear:both;"> 
-      			<table width="100%" border="0" cellspacing="0" cellpadding="0" > 
-      		    <tr> 
-      			    <td align="center" height="28" valign="bottom" > 
-      					  <table cellspacing="0" cellpadding="0" border="0"> 
-      						  <tr>
-      						      <td align=center onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' style='padding:0 6 1 6; cursor:hand;' nowrap><b><font color='#FF6600'>1</font></b></td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-			                      
-			                      <td align=center style='padding:0 6 1 6; cursor:hand;' onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' onClick=location.href='genbrd_list.asp?club_id=51937716&board_no=87&search_type=&search_keyword=&cpage=2&board_type=1&club_auth=x&club_did=&list_type=2&show_type=1&headtag_seq=' class='bbsla' nowrap>2</td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-			      
-			                      <td align=center style='padding:0 6 1 6; cursor:hand;' onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' onClick=location.href='genbrd_list.asp?club_id=51937716&board_no=87&search_type=&search_keyword=&cpage=2&board_type=1&club_auth=x&club_did=&list_type=2&show_type=1&headtag_seq=' class='bbsla' nowrap>2</td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-			      
-			                      <td align=center style='padding:0 6 1 6; cursor:hand;' onMouseOut=this.style.color='#333333' onMouseOver=this.style.color='#FF6600' onClick=location.href='genbrd_list.asp?club_id=51937716&board_no=87&search_type=&search_keyword=&cpage=2&board_type=1&club_auth=x&club_did=&list_type=2&show_type=1&headtag_seq=' class='bbsla' nowrap>2</td> 
-			                      <td style='padding-top:1px;'>
-			                        <table width='1' height='12' border='0' cellspacing='0' cellpadding='0'> 
-			                          <tr> 
-			                            <td bgcolor=#aaaaaa><img height=1 width=1 src='http://c1img.cyworld.co.kr/img/no.gif'></td> 
-			                          </tr> 
-			                        </table>
-			                      </td>
-      
-                    			</tr>
-      						</table>
-      					</td>
-      				</tr>
-      			</table>
-      			</div>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">가입일</td> 
+                	<td><s:text name="%{user.regDate}"/></td> 
+      			  </tr>
+      			<tr><td class="line" colspan="6"></td></tr>
+      			
+      			<s:form action="Modification" namespace="/user" >
 
-      	</tr>
+		  			<tr>
+		   				<td width='100%' bgcolor='#FFFFFF'>
+		      				<table border='0' cellpadding='0' cellspacing='0' width='100%'>
+		    					<colgroup> 
+
+                					<col width="40%" /> 
+                					<col width="60%" />
+								</colgroup>
+		        				<tr>
+		          		          	<s:submit align="left" action= "Modofication" value= "개인정보수정" name= "modification" 
+	              onclick= "form.onsubmit= null " />
+		        				</tr>
+		     				</table>
+		     			</td>
+		     		</tr>
+		     	</s:form>    			
+      			
+      			
+      		  </table>
+ 
+             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
+			 <colgroup> 
+                <col width="10%" /> 
+                <col width="45%" /> 
+                <col width="10%" />
+                <col width="15%" />
+                <col width="15%" /> 
+                <col width="5%" /> 
+              </colgroup>
+              
+    		  <tr style="background-color:#F5F5F5;">
+        		<td>이름</td> 
+              	<td>설명</td> 
+      		    <td align="center">개발자</td> 
+      		    <td align="center">등록일자</td> 
+      		    <td align="center">상태</td> 
+      		    <td align="center">삭제</td> 
+      		  </tr>
+      			  
+      		<tr><td class="line" colspan="6"></td></tr>
+			<tr>
+    			<s:iterator value="gadgetlist">
+    			  <tr> 
+          			<td><span class="num"><s:url var="url" namespace="/user" action="GadgetList"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
+                	<td><s:property value="desc"/></td> 
+      			    <td align="center">
+      			    <s:url var="url" namespace="/user" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="owner"/></s:a>
+      			    </td> 
+      			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
+					 
+      			    <td align="center">
+ 	    			<s:url var="url" action="GadgetController_delete" namespace="/user">
+ 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="삭제"></s:a>			    
+      			    </td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+      			</s:iterator>
+      		 </tr>
+		   </table>
+		  </tr>
+		  
+          <tr>
+           	<td>
+            <!-- paging --> 
+            
+			<div class="paging"> 
+				<em class="p"><a href="">이전</a></em> 
+				<span class="on">1</span>
+				<a href="">2</a>
+				<a href="">3</a>
+				<em class="n"><a href="">다음</a></em> 
+			</div>
+            </td>
+      	  </tr>
+
       </table>
       
-      </div> <!-- east div -->
+     </div> <!-- east div -->
       
     </td>
   </tr>
