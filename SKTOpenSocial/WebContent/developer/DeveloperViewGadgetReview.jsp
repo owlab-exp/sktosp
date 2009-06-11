@@ -106,7 +106,7 @@
 							href="ViewGadgetReview.action">1</a> <a
 							href="ViewGadgetReview.action">2</a> <a
 							href="ViewGadgetReview.action">3</a> <em class="n"><a
-							href="ViewGadgetReview.action">다음</a></em></div>
+							href="ViewGadgetReview.action">다음</a></em> <a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">목록으로 돌아가기</a></div>
 						</td>
 					</tr>
 				</tbody>
