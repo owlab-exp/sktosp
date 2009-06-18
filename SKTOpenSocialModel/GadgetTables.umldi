@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_dTM4MFvbEd6mL_elNvAZZA" activeDiagram="_dTM4MVvbEd6mL_elNvAZZA">
   <model href="GadgetTables.uml#_w8IxIM37EdqwVrslYOdUDA"/>
-  <diagrams xmi:id="_dTM4MVvbEd6mL_elNvAZZA" position="0,0" size="100,100" name="GadgetDatabase" viewport="35,40">
+  <diagrams xmi:id="_dTM4MVvbEd6mL_elNvAZZA" position="0,0" size="100,100" name="GadgetDatabase" viewport="113,0">
     <property xmi:id="_dtlHEFvbEd6mL_elNvAZZA" key="pageFormatName" value="A4"/>
     <property xmi:id="_dtlHEVvbEd6mL_elNvAZZA" key="diagramWidth" value="840"/>
     <property xmi:id="_dtlHElvbEd6mL_elNvAZZA" key="diagramHeight" value="1188"/>
@@ -64,11 +64,6 @@
             <element href="GadgetTables.uml#_EP3hIlvcEd6mL_elNvAZZA"/>
           </semanticModel>
         </contained>
-        <contained xsi:type="di:GraphNode" xmi:id="_GuHsQFvcEd6mL_elNvAZZA" position="0,0" size="-1,-1">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_GuHsQVvcEd6mL_elNvAZZA" presentation="default">
-            <element href="GadgetTables.uml#_GuQ2MFvcEd6mL_elNvAZZA"/>
-          </semanticModel>
-        </contained>
         <contained xsi:type="di:GraphNode" xmi:id="_L0md4FvcEd6mL_elNvAZZA" position="0,0" size="-1,-1">
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_L0md4VvcEd6mL_elNvAZZA" presentation="default">
             <element href="GadgetTables.uml#_L0wO4FvcEd6mL_elNvAZZA"/>
@@ -77,6 +72,11 @@
         <contained xsi:type="di:GraphNode" xmi:id="_kDi4sFvdEd6mL_elNvAZZA" position="0,0" size="-1,-1">
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_kDi4sVvdEd6mL_elNvAZZA" presentation="default">
             <element href="GadgetTables.uml#_kDi4slvdEd6mL_elNvAZZA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" xmi:id="_YfGI0FwDEd6mL_elNvAZZA" position="0,0" size="-1,-1">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_YfGI0VwDEd6mL_elNvAZZA" presentation="default">
+            <element href="GadgetTables.uml#_Yf2WwFwDEd6mL_elNvAZZA"/>
           </semanticModel>
         </contained>
       </contained>
@@ -199,7 +199,7 @@
       <contained xsi:type="di:EdgeObjectOffset" xmi:id="_yC_ZqVveEd6mL_elNvAZZA" visible="false" id="middleNameEdgeObject" offset="69,80"/>
       <contained xsi:type="di:EdgeObjectOffset" xmi:id="_yC_ZqlveEd6mL_elNvAZZA" id="stereotypeEdgeObject" offset="0,-10"/>
     </contained>
-    <contained xsi:type="di:GraphNode" xmi:id="_lAYFoFvjEd6mL_elNvAZZA" position="161,0" size="142,-1">
+    <contained xsi:type="di:GraphNode" xmi:id="_lAYFoFvjEd6mL_elNvAZZA" position="115,4" size="142,-1">
       <anchorage xmi:id="_y_C_8FvjEd6mL_elNvAZZA" graphEdge="_y_Mw8FvjEd6mL_elNvAZZA"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_lAYFoVvjEd6mL_elNvAZZA" presentation="default">
         <element href="GadgetTables.uml#_lAYFqFvjEd6mL_elNvAZZA"/>

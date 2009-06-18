@@ -9,10 +9,10 @@
       <ownedAttribute xmi:id="_74UnYlvbEd6mL_elNvAZZA" name="status"/>
       <ownedAttribute xmi:id="_9cdTolvbEd6mL_elNvAZZA" name="register_type"/>
       <ownedAttribute xmi:id="_-7FNwlvbEd6mL_elNvAZZA" name="introduction"/>
-      <ownedAttribute xmi:id="_EP3hIlvcEd6mL_elNvAZZA" name="register_src"/>
-      <ownedAttribute xmi:id="_GuQ2MFvcEd6mL_elNvAZZA" name="register_url"/>
+      <ownedAttribute xmi:id="_EP3hIlvcEd6mL_elNvAZZA" name="source"/>
       <ownedAttribute xmi:id="_L0wO4FvcEd6mL_elNvAZZA" name="icon_url"/>
       <ownedAttribute xmi:id="_kDi4slvdEd6mL_elNvAZZA" name="developer_id"/>
+      <ownedAttribute xmi:id="_Yf2WwFwDEd6mL_elNvAZZA" name="category"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_Y8IU2FvcEd6mL_elNvAZZA" name="SNS_GADGET_REVIEW">
       <ownedAttribute xmi:id="_ddEJYlvcEd6mL_elNvAZZA" name="id"/>
