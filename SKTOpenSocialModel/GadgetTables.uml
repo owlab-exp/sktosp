@@ -48,5 +48,21 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yC_ZsVveEd6mL_elNvAZZA"/>
       </ownedEnd>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lAYFqFvjEd6mL_elNvAZZA" name="SNS_USER">
+      <ownedAttribute xmi:id="_niD_QlvjEd6mL_elNvAZZA" name="id"/>
+      <ownedAttribute xmi:id="_o6kqUlvjEd6mL_elNvAZZA" name="name"/>
+      <ownedAttribute xmi:id="_uKlycFvjEd6mL_elNvAZZA" name="is_developer"/>
+      <ownedAttribute xmi:id="_xC6qclvjEd6mL_elNvAZZA" name="is_administrator"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_y_Mw-lvjEd6mL_elNvAZZA" name="A_&lt;sNS_USER>_&lt;sNS_GADGET_REVIEW>" memberEnd="_y_Mw-1vjEd6mL_elNvAZZA _y_Mw_lvjEd6mL_elNvAZZA" navigableOwnedEnd="_y_Mw_lvjEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_y_Mw-1vjEd6mL_elNvAZZA" name="sNS_USER" type="_lAYFqFvjEd6mL_elNvAZZA" association="_y_Mw-lvjEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y_Mw_FvjEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y_Mw_VvjEd6mL_elNvAZZA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_y_Mw_lvjEd6mL_elNvAZZA" name="sNS_GADGET_REVIEW" type="_Y8IU2FvcEd6mL_elNvAZZA" association="_y_Mw-lvjEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y_Mw_1vjEd6mL_elNvAZZA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y_MxAFvjEd6mL_elNvAZZA"/>
+      </ownedEnd>
+    </packagedElement>
   </packagedElement>
 </uml:Model>
