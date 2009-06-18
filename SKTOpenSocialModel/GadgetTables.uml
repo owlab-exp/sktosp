@@ -19,9 +19,9 @@
       <ownedAttribute xmi:id="_i-0hwlvcEd6mL_elNvAZZA" name="gadget_id"/>
       <ownedAttribute xmi:id="_opqkslvcEd6mL_elNvAZZA" name="review_text"/>
       <ownedAttribute xmi:id="_rWORklvcEd6mL_elNvAZZA" name="review_grade"/>
+      <ownedAttribute xmi:id="_FCtrolviEd6mL_elNvAZZA" name="user_id"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_uyKM-FvcEd6mL_elNvAZZA" name="SNS_GADGET_PUBLISH">
-      <ownedAttribute xmi:id="_4vVnwlvcEd6mL_elNvAZZA" name="id"/>
       <ownedAttribute xmi:id="_7vHLklvcEd6mL_elNvAZZA" name="gadget_id"/>
       <ownedAttribute xmi:id="_B9bH8lvdEd6mL_elNvAZZA" name="requested_date"/>
       <ownedAttribute xmi:id="_Sv8C4lvdEd6mL_elNvAZZA" name="reject_reason"/>

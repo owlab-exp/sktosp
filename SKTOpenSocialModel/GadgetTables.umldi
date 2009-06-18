@@ -117,6 +117,11 @@
             <element href="GadgetTables.uml#_rWORklvcEd6mL_elNvAZZA"/>
           </semanticModel>
         </contained>
+        <contained xsi:type="di:GraphNode" xmi:id="_FCtroFviEd6mL_elNvAZZA" position="0,0" size="-1,-1">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_FCtroVviEd6mL_elNvAZZA" presentation="default">
+            <element href="GadgetTables.uml#_FCtrolviEd6mL_elNvAZZA"/>
+          </semanticModel>
+        </contained>
       </contained>
       <contained xsi:type="di:GraphNode" xmi:id="_Y8IU1VvcEd6mL_elNvAZZA">
         <property xmi:id="_Y8IU1lvcEd6mL_elNvAZZA" key="eStructuralFeatureID" value="47"/>
@@ -135,11 +140,6 @@
         <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_uyKM9FvcEd6mL_elNvAZZA" presentation="default">
           <element href="GadgetTables.uml#_uyKM-FvcEd6mL_elNvAZZA"/>
         </semanticModel>
-        <contained xsi:type="di:GraphNode" xmi:id="_4vVnwFvcEd6mL_elNvAZZA" position="0,0" size="-1,-1">
-          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_4vVnwVvcEd6mL_elNvAZZA" presentation="default">
-            <element href="GadgetTables.uml#_4vVnwlvcEd6mL_elNvAZZA"/>
-          </semanticModel>
-        </contained>
         <contained xsi:type="di:GraphNode" xmi:id="_7vHLkFvcEd6mL_elNvAZZA" position="0,0" size="-1,-1">
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_7vHLkVvcEd6mL_elNvAZZA" presentation="default">
             <element href="GadgetTables.uml#_7vHLklvcEd6mL_elNvAZZA"/>
