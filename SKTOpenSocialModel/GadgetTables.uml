@@ -6,7 +6,7 @@
       <ownedAttribute xmi:id="_1Y33slvbEd6mL_elNvAZZA" name="name"/>
       <ownedAttribute xmi:id="_2ybrolvbEd6mL_elNvAZZA" name="register_date"/>
       <ownedAttribute xmi:id="_4OhPIlvbEd6mL_elNvAZZA" name="publish_date"/>
-      <ownedAttribute xmi:id="_74UnYlvbEd6mL_elNvAZZA" name="state"/>
+      <ownedAttribute xmi:id="_74UnYlvbEd6mL_elNvAZZA" name="status"/>
       <ownedAttribute xmi:id="_9cdTolvbEd6mL_elNvAZZA" name="register_type"/>
       <ownedAttribute xmi:id="_-7FNwlvbEd6mL_elNvAZZA" name="introduction"/>
       <ownedAttribute xmi:id="_EP3hIlvcEd6mL_elNvAZZA" name="register_src"/>
@@ -20,6 +20,7 @@
       <ownedAttribute xmi:id="_opqkslvcEd6mL_elNvAZZA" name="review_text"/>
       <ownedAttribute xmi:id="_rWORklvcEd6mL_elNvAZZA" name="review_grade"/>
       <ownedAttribute xmi:id="_FCtrolviEd6mL_elNvAZZA" name="user_id"/>
+      <ownedAttribute xmi:id="_ag5rglviEd6mL_elNvAZZA" name="review_date"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_uyKM-FvcEd6mL_elNvAZZA" name="SNS_GADGET_PUBLISH">
       <ownedAttribute xmi:id="_7vHLklvcEd6mL_elNvAZZA" name="gadget_id"/>
@@ -32,7 +33,7 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRlErlveEd6mL_elNvAZZA" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRlEr1veEd6mL_elNvAZZA" value="1"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_eRlEsFveEd6mL_elNvAZZA" name="sNS_GADGET_REVIEW" type="_Y8IU2FvcEd6mL_elNvAZZA" association="_eRlErFveEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_eRlEsFveEd6mL_elNvAZZA" name="sNS_GADGET_REVIEW" type="_Y8IU2FvcEd6mL_elNvAZZA" isUnique="false" association="_eRlErFveEd6mL_elNvAZZA">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRlEsVveEd6mL_elNvAZZA" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRlEslveEd6mL_elNvAZZA"/>
       </ownedEnd>
