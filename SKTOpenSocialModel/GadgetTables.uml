@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
+  <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="GadgetTables">
+    <packagedElement xmi:type="uml:Class" xmi:id="_g8QCgFvbEd6mL_elNvAZZA" name="SNS_GADGET">
+      <ownedAttribute xmi:id="_zv02QFvbEd6mL_elNvAZZA" name="id"/>
+      <ownedAttribute xmi:id="_1Y33slvbEd6mL_elNvAZZA" name="name"/>
+      <ownedAttribute xmi:id="_2ybrolvbEd6mL_elNvAZZA" name="register_date"/>
+      <ownedAttribute xmi:id="_4OhPIlvbEd6mL_elNvAZZA" name="publish_date"/>
+      <ownedAttribute xmi:id="_74UnYlvbEd6mL_elNvAZZA" name="state"/>
+      <ownedAttribute xmi:id="_9cdTolvbEd6mL_elNvAZZA" name="register_type"/>
+      <ownedAttribute xmi:id="_-7FNwlvbEd6mL_elNvAZZA" name="introduction"/>
+      <ownedAttribute xmi:id="_EP3hIlvcEd6mL_elNvAZZA" name="register_src"/>
+      <ownedAttribute xmi:id="_GuQ2MFvcEd6mL_elNvAZZA" name="register_url"/>
+      <ownedAttribute xmi:id="_L0wO4FvcEd6mL_elNvAZZA" name="icon_url"/>
+      <ownedAttribute xmi:id="_kDi4slvdEd6mL_elNvAZZA" name="developer_id"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Y8IU2FvcEd6mL_elNvAZZA" name="SNS_GADGET_REVIEW">
+      <ownedAttribute xmi:id="_ddEJYlvcEd6mL_elNvAZZA" name="id"/>
+      <ownedAttribute xmi:id="_i-0hwlvcEd6mL_elNvAZZA" name="gadget_id"/>
+      <ownedAttribute xmi:id="_opqkslvcEd6mL_elNvAZZA" name="review_text"/>
+      <ownedAttribute xmi:id="_rWORklvcEd6mL_elNvAZZA" name="review_grade"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_uyKM-FvcEd6mL_elNvAZZA" name="SNS_GADGET_PUBLISH">
+      <ownedAttribute xmi:id="_4vVnwlvcEd6mL_elNvAZZA" name="id"/>
+      <ownedAttribute xmi:id="_7vHLklvcEd6mL_elNvAZZA" name="gadget_id"/>
+      <ownedAttribute xmi:id="_B9bH8lvdEd6mL_elNvAZZA" name="requested_date"/>
+      <ownedAttribute xmi:id="_Sv8C4lvdEd6mL_elNvAZZA" name="reject_reason"/>
+      <ownedAttribute xmi:id="_ET_EwlvfEd6mL_elNvAZZA" name="approved"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_eRlErFveEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET>_&lt;sNS_GADGET_REVIEW>" memberEnd="_eRlErVveEd6mL_elNvAZZA _eRlEsFveEd6mL_elNvAZZA" navigableOwnedEnd="_eRlEsFveEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_eRlErVveEd6mL_elNvAZZA" name="sNS_GADGET" type="_g8QCgFvbEd6mL_elNvAZZA" association="_eRlErFveEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRlErlveEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRlEr1veEd6mL_elNvAZZA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_eRlEsFveEd6mL_elNvAZZA" name="sNS_GADGET_REVIEW" type="_Y8IU2FvcEd6mL_elNvAZZA" association="_eRlErFveEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRlEsVveEd6mL_elNvAZZA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRlEslveEd6mL_elNvAZZA"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_yC_Zq1veEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET>_&lt;sNS_GADGET_PUBLISH>" memberEnd="_yC_ZrFveEd6mL_elNvAZZA _yC_Zr1veEd6mL_elNvAZZA" navigableOwnedEnd="_yC_Zr1veEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_yC_ZrFveEd6mL_elNvAZZA" name="sNS_GADGET" type="_g8QCgFvbEd6mL_elNvAZZA" association="_yC_Zq1veEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yC_ZrVveEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yC_ZrlveEd6mL_elNvAZZA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_yC_Zr1veEd6mL_elNvAZZA" name="sNS_GADGET_PUBLISH" type="_uyKM-FvcEd6mL_elNvAZZA" association="_yC_Zq1veEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yC_ZsFveEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yC_ZsVveEd6mL_elNvAZZA"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>
