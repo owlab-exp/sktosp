@@ -64,5 +64,34 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y_MxAFvjEd6mL_elNvAZZA"/>
       </ownedEnd>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1Q8RqFwFEd6mL_elNvAZZA" name="SNS_GADGET_CATEGORY">
+      <ownedAttribute xmi:id="_34b4UlwFEd6mL_elNvAZZA" name="id"/>
+      <ownedAttribute xmi:id="_5KFtclwFEd6mL_elNvAZZA" name="category"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6im_mFwFEd6mL_elNvAZZA" name="SNS_GADGET_CATEGORY_GADGET">
+      <ownedAttribute xmi:id="_8R7BElwFEd6mL_elNvAZZA" name="id"/>
+      <ownedAttribute xmi:id="_9CWYclwFEd6mL_elNvAZZA" name="gadget_id"/>
+      <ownedAttribute xmi:id="_-BrHclwFEd6mL_elNvAZZA" name="categroy_id"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CgFMe1wGEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET>_&lt;sNS_GADGET_CATEGORY>" memberEnd="_CgFMfFwGEd6mL_elNvAZZA _CgFMf1wGEd6mL_elNvAZZA" navigableOwnedEnd="_CgFMf1wGEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_CgFMfFwGEd6mL_elNvAZZA" name="sNS_GADGET" type="_g8QCgFvbEd6mL_elNvAZZA" association="_CgFMe1wGEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CgFMfVwGEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CgFMflwGEd6mL_elNvAZZA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_CgFMf1wGEd6mL_elNvAZZA" name="sNS_GADGET_CATEGORY" type="_6im_mFwFEd6mL_elNvAZZA" association="_CgFMe1wGEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CgFMgFwGEd6mL_elNvAZZA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CgFMgVwGEd6mL_elNvAZZA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_LopTelwGEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET_CATEGORY_GADGET>_&lt;sNS_GADGET_CATEGORY>" memberEnd="_LopTe1wGEd6mL_elNvAZZA _LopTflwGEd6mL_elNvAZZA" navigableOwnedEnd="_LopTflwGEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_LopTe1wGEd6mL_elNvAZZA" name="sNS_GADGET_CATEGORY_GADGET" type="_6im_mFwFEd6mL_elNvAZZA" association="_LopTelwGEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LopTfFwGEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LopTfVwGEd6mL_elNvAZZA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_LopTflwGEd6mL_elNvAZZA" name="sNS_GADGET_CATEGORY" type="_1Q8RqFwFEd6mL_elNvAZZA" association="_LopTelwGEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LopTf1wGEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LopTgFwGEd6mL_elNvAZZA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
   </packagedElement>
 </uml:Model>
