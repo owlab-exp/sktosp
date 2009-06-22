@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ page import="com.skt.opensocial.common.*" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
@@ -16,7 +17,7 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="1000">
+<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -55,7 +56,7 @@
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td>가젯 이름(ID): iLike (ilike)</td>
+									<td>가젯 이름(ID): <s:property value="gadgetName"/> (<s:property value="gadgetId"/>)</td>
 								</tr>
 								<tr>
 									<td valign="top"><img src="ilike.png" height="70%" width="70%"> </td>
@@ -70,14 +71,20 @@
 					<tr>
 						<td><!-- buttons -->
 						<div class="paging">
+						<s:url id="finishRegisterUrl" action="RegisterGadget" method="finishGadgetRegister">
+											<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
+						</s:url>
+						<s:url id="modifyGadgetUrl" action="ModifyGadget">
+											<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
+						</s:url>
 						<s:if test="%{gadgetStatus.equals('nr')}"> <%-- Not registered--%>
-							<em class="p"><a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">등록완료</a> <a href="javascript: history.go(-1)">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+							<em class="p"><s:a href="%{finishRegisterUrl}">등록완료</s:a> <s:a href="%{modifyGadgetUrl}">수정</s:a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
 						</s:if>
 						<s:elseif test="%{gadgetStatus.equals('rg')}"><%-- Registered--%>
-							<em class="p"><a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a> <a href="<%= request.getContextPath() %>/developer/ModifyGadget.action">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+							<em class="p"><a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a> <s:a href="%{modifyGadgetUrl}">수정</s:a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
 						</s:elseif>
 						<s:elseif test="%{gadgetStatus.equals('pd')}"><%-- Publish Denied--%>
-							<em class="p"><a href="<%= request.getContextPath() %>/developer/ModifyGadget.action">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+							<em class="p"><s:a href="%{modifyGadgetUrl}">수정</s:a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
 						</s:elseif>
 						<s:else>	<%-- Published or Publish requested--%>
 							<em class="p"><a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">목록으로 돌아가기</a></em>
@@ -90,12 +97,21 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-  <!-- south -->
-  <tr>
-    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
-<%@ include file="/common/south.jsp"%>
-	</td>
-  </tr> 
+		<!-- south -->
+		<tr valign="top" height="5%">
+			<td colspan="3" align="center" height="10%" valign="middle">
+			<div id="footer">
+			<table border="1" height="100%" width="100%">
+				<tbody>
+					<tr>
+						<td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			</td>
+		</tr>
+	</tbody>
 </table>
 </body>
 </html>

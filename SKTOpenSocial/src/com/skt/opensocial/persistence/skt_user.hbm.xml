@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.skt.opensocial.persistence.User" table="SKT_USER">
+		<id name="userId" column="ID">
+			<!-- generator class="native" /-->
+		</id>
+		<property name="password" column="PASSWORD" />
+		<property name="isDeveloper" column="IS_DEVELOPER" />
+		<property name="isAdministrator" column="IS_ADMINISTRATOR" />
+		<property name="registeredDate" column="REGISTERED_DATE" />
+		<one-to-one name="person" class="com.skt.opensocial.persistence.Person" cascade="all"/>
+		<set name="reviews" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.GadgetReview"/>
+		</set>
+		<set name="gadgets" inverse="true"><!-- for gadgets developed by this user -->
+			<key column="DEVELOPER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.Gadget"/>
+		</set>
+		<set name="favoriteGadgets" table="SKT_FAVORITE_GADGET"><!-- favorite list of gadgets of this user -->
+			<key column="USER_ID"/>
+			<many-to-many column="GADGET_ID" class="com.skt.opensocial.persistence.Gadget"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -3,73 +3,73 @@
  */
 package com.skt.opensocial.developer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.apache.struts2.interceptor.RequestAware;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
 
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
-import com.skt.opensocial.common.GadgetStatusConstants;
+import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
+import com.skt.opensocial.persistence.Gadget;
+import com.skt.opensocial.persistence.HibernateUtil;
+import com.skt.opensocial.persistence.User;
 
 /**
  * @author Ernest Lee
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class ListGadgetsAction extends ActionSupport {
+public class ListGadgetsAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(ListGadgetsAction.class);
 	
-	//Map<String, Object> request;
-	List<GadgetInfoData> gadgets;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
+	//GadgetDataList gadgetDataList;
+	//Map<String, GadgetData> gadgetMap;
+	Map<String, Object> session;
+	//Collection<GadgetData> gadgetList;
+	Set<Gadget> gadgets;
+	
+	int requestedPage = 1;
 	
 	public String execute(){
-		//ListGadgetInfoData gadgets = new ListGadgetInfoData();
-		this.gadgets = new ArrayList<GadgetInfoData>();
+		//
+		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
-		// dummy
-		for(int i = 0; i < 5; i++) {
-			GadgetInfoData gadget = new GadgetInfoData();
-			gadget.setGadgetId(i+1000);
-			gadget.setGadgetName("Gadget" + i);
-			gadget.setGadgetStatus(GadgetStatusConstants.PUBLISHED);
-			gadget.setNumberOfUsers(i+500);
-			gadget.setRegisterDate("2009/05/31");
-			gadget.setPublishDate("2009/06/01");
-			gadgets.add(gadget);
+		String userId = user.getUserId();
+		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		hs.beginTransaction();
+		
+		user = (User)hs.load(User.class, userId);
+		
+		
+		session.put(SKTOpenSocialSupportConstants.USER, user);
+		
+		this.gadgets = user.getGadgets();
+		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+		
+		hs.getTransaction().commit();
+		
+		//
+		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
+		if(gadgetDataList == null) {
+			session.put("gadgets", new GadgetDataList());
+			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
+		} else {
+			this.gadgetDataList = gadgetDataListS;
 		}
-		for(int i = 0; i < 5; i++) {
-			GadgetInfoData gadget = new GadgetInfoData();
-			gadget.setGadgetId(i+1000);
-			gadget.setGadgetName("Gadget" + i);
-			gadget.setGadgetStatus(GadgetStatusConstants.REGISTERED);
-			//gadget.setNumberOfUsers(i+500+5);
-			gadget.setRegisterDate("2009/05/31");
-			gadget.setPublishDate("");
-			gadgets.add(gadget);
-		}
-		for(int i = 0; i < 3; i++) {
-			GadgetInfoData gadget = new GadgetInfoData();
-			gadget.setGadgetId(i+1000+9);
-			gadget.setGadgetName("Gadget" + i);
-			gadget.setGadgetStatus(GadgetStatusConstants.PUBLISH_REQUESTED);
-			//gadget.setNumberOfUsers(i+500+5);
-			gadget.setRegisterDate("2009/05/31");
-			gadget.setPublishDate("");
-			gadgets.add(gadget);
-		}
-		for(int i = 0; i < 2; i++) {
-			GadgetInfoData gadget = new GadgetInfoData();
-			gadget.setGadgetId(i+1000+20);
-			gadget.setGadgetName("Gadget" + i);
-			gadget.setGadgetStatus(GadgetStatusConstants.PUBLISH_DENIED);
-			//gadget.setNumberOfUsers();
-			gadget.setRegisterDate("2009/05/31");
-			gadget.setPublishDate("");
-			gadgets.add(gadget);
-		}
-		//request.put("gadgetInfoListData", gadgets);
-
+		gadgetMap = this.gadgetDataList.getGadgetMap();
+		gadgetList = gadgetMap.values();
+		
+		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
+		*/
 		return Action.SUCCESS;
 	}
 
@@ -83,13 +83,52 @@ public class ListGadgetsAction extends ActionSupport {
 
 	}*/
 
-	public List<GadgetInfoData> getGadgets() {
+	
+	
+	public void setSession(Map<String, Object> map) {
+		this.session = map;
+	}
+
+//	public GadgetDataList getGadgetDataList() {
+//		return gadgetDataList;
+//	}
+//
+//	public void setGadgetDataList(GadgetDataList gadgetDataList) {
+//		this.gadgetDataList = gadgetDataList;
+//	}
+//
+//	public Map<String, GadgetData> getGadgetMap() {
+//		return gadgetMap;
+//	}
+//
+//	public void setGadgetMap(Map<String, GadgetData> gadgetMap) {
+//		this.gadgetMap = gadgetMap;
+//	}
+//
+//	public Collection<GadgetData> getGadgetList() {
+//		return gadgetList;
+//	}
+//
+//	public void setGadgetList(Collection<GadgetData> gadgetList) {
+//		this.gadgetList = gadgetList;
+//	}
+
+	public int getRequestedPage() {
+		return requestedPage;
+	}
+
+	public void setRequestedPage(int requestedPage) {
+		this.requestedPage = requestedPage;
+	}
+
+	public Set<Gadget> getGadgets() {
 		return gadgets;
 	}
 
-	public void setGadgets(List<GadgetInfoData> gadgets) {
+	public void setGadgets(Set<Gadget> gadgets) {
 		this.gadgets = gadgets;
 	}
 
+	
 	
 }

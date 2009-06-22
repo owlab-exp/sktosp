@@ -9,14 +9,14 @@
 <script type="text/javascript" src="../js/main.js"></script>
 
 
-<title>새 가젯 등록</title>
+<title>개발자 신규가젯등록</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
 <table border="1" cellpadding="0" cellspacing="0" height="567"
-	width="1000">
+	width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -41,7 +41,7 @@
 						<ul class="subject_sub">
 							<li>홈</li>
 							<li>개발자 메뉴</li>
-							<li><strong>새 가젯 등록</strong></li>
+							<li><strong>신규 가젯 등록</strong></li>
 						</ul>
 						</div>
 						</td>
@@ -60,13 +60,11 @@
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td>등록 유형:</td>
+									<s:form action="RegisterGadgetPage" id="changeRegisterType" theme="simple">
 									<td colspan="4">
-										<form action="" method="""><input type="radio"
-										name="registerType" value="source" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=source'">소스 등록 <input
-										type="radio" name="registerType" value="url" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=url'">URL 등록
-										<input type="radio" name="registerType" value="url" checked="checked" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=multiple_url'">다중 URL 등록
-										</form>
+										<s:radio name="registerType" list="registerTypeMap" value="%{registerType}" onclick="document.getElementById('changeRegisterType').submit()"/>
 									</td>
+									</s:form>
 								</tr>
 								<tr>
 									<td class="line" colspan="5"></td>
@@ -237,12 +235,22 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-  <!-- south -->
-  <tr>
-    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
-<%@ include file="/common/south.jsp"%>
-	</td>
-  </tr> 
+		<!-- south -->
+		<tr height="5%">
+			<td colspan="3" align="center" height="10%" valign="middle">
+			<div id="footer">
+			<table border="1" height="100%" width="100%">
+				<tbody>
+					<tr>
+						<td><strong>Copyright &copy; SK Telecom. All rights
+						reserved.</strong></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			</td>
+		</tr>
+	</tbody>
 </table>
 </body>
 </html>

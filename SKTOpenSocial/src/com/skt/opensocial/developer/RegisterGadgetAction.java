@@ -3,96 +3,126 @@
  */
 package com.skt.opensocial.developer;
 
-import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.hibernate.classic.Session;
+
+import com.skt.opensocial.common.GadgetRegisterTypeConstants;
+import com.skt.opensocial.common.GadgetRegisterTypeMap;
+import com.skt.opensocial.common.GadgetStatusConstants;
+import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
+import com.skt.opensocial.persistence.Gadget;
+import com.skt.opensocial.persistence.GadgetCategory;
+import com.skt.opensocial.persistence.HibernateUtil;
+import com.skt.opensocial.persistence.User;
 
 /**
  * @author Ernest Lee
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class RegisterGadgetAction extends ActionSupport {
+public class RegisterGadgetAction extends ManageGadgetAction {
+	private Logger logger = Logger.getLogger(RegisterGadgetAction.class); 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String registerType;// = "source"; //source, url, multiple_url
-	private String gagdetId;
-	private String gadgetName;
-	private String gadgetCategory;
-	private String gadgetIntro;
-	private String gadgetSource;
 	
-	private String gadgetStatus;
 	
-	public String execute(){
-		System.out.println(">>>>>>>>>>>>>>>>>>>> registerType=" + registerType);
-		if(registerType.equals("source")){
-			return "REGISTER_SOURCE";
-		} else if(registerType.equals("url")){
-			return "REGISTER_URL";
-		}else if(registerType.equals("multiple_url")){
-			return "REGISTER_MULTIPLE_URL";
+	public String getGadgetRegisterPage() {
+		prepare();
+		
+		setGadgetStatus(GadgetStatusConstants.NOT_REGISTERED);
+		if(registerType == null) {
+			registerType = GadgetRegisterTypeConstants.SRC;
 		}
-		return "REGISTER_SOURCE";
+		
+		if(registerType.equals(GadgetRegisterTypeConstants.URL_MULTI))
+			return "input_multiple";
+		else
+			return "input_one";
+		
 	}
-	
-	public String getGadgetStatus() {
-		return this.gadgetStatus;
+	public String finishGadgetRegister() {
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		hs.beginTransaction();
+		
+		Gadget gadget =(Gadget)hs.load(Gadget.class, gadgetId);
+		gadget.setStatus(GadgetStatusConstants.REGISTERED);
+		gadget.setRegisterDate(new Date());
+		hs.save(gadget);
+		hs.getTransaction().commit();
+		
+		return "gadget_list";
 	}
-	
-	public void setGadgetStatus(String gadgetStatus){
-		this.gadgetStatus = gadgetStatus;
-	}
+	public String execute(){
+		System.out.println(">>>>>>>>>>>>>>>>>>>> Gadget Registration");
+		System.out.println(">>>>>>>>>>>>>>>>>>>> registerType=" + getRegisterType());
+		//System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetId=" + getGadgetId());
+		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetName=" + getGadgetName());
+		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetCategory=" + getGadgetCategory());
+		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetIntro=" + getGadgetIntro());
+		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetSource=" + getGadgetSource());
+		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetStatus=" + getGadgetStatus());
+		
+		prepare();
+		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		hs.beginTransaction();
+		
+		Gadget newGadget = new Gadget();
+		
+		
+		if(getGadgetName() == null || getGadgetName().equals(""))// return to input page
+			return "input";
+		// prepare saving new gadget
+		newGadget.setName(getGadgetName());
+		newGadget.setIconUrl(getGadgetIconUrl());
+		newGadget.setIntroduction(getGadgetIntro());
+		newGadget.setSource(getGadgetSource());
+		newGadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
+		newGadget.setRegisterType(getRegisterType());
+		newGadget.setDeveloper((User)session.get(SKTOpenSocialSupportConstants.USER));
+		
+		gadgetId = (Long) hs.save(newGadget);
+		
+		// prepare categories
+		String categoryIds = getGadgetCategory();
+		String[] categoryIdArray = categoryIds.replace(" ", "").split(",");
+		
+		for(int i = 0; i < categoryIdArray.length; i++) {
+			GadgetCategory category = (GadgetCategory)hs.load(GadgetCategory.class, categoryIdArray[i]);
+			newGadget.addCategory(category);
+		}
+		
+		hs.getTransaction().commit();
+		
+		// get gadget list from session
+		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
+		if(gadgetDataList == null) {
+			session.put("gadgets", new GadgetDataList());
+			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
+		} else {
+			this.gadgetDataList = gadgetDataListS;
+		}
+		
+		// put new gadget into gadget list
+		GadgetData aGadget = new GadgetData();
+		aGadget.setGadgetId(gadgetId);
+		aGadget.setGadgetName(gadgetName);
+		aGadget.setGadgetCategory(gadgetCategory);
+		aGadget.setGadgetIntro(gadgetIntro);
+		aGadget.setGadgetStatus(gadgetStatus);
+		aGadget.setGadgetSource(gadgetSource);
+		aGadget.setRegisterType(registerType);
 
-	public String getRegisterType() {
-		return registerType;
+		gadgetDataList.addNewGadgetData(gadgetId, aGadget);*/
+		
+		return "preview";
 	}
-
-	public void setRegisterType(String registerType) {
-		this.registerType = registerType;
-	}
-
-	public String getGagdetId() {
-		return gagdetId;
-	}
-
-	public void setGagdetId(String gagdetId) {
-		this.gagdetId = gagdetId;
-	}
-
-	public String getGadgetName() {
-		return gadgetName;
-	}
-
-	public void setGadgetName(String gadgetName) {
-		this.gadgetName = gadgetName;
-	}
-
-	public String getGadgetCategory() {
-		return gadgetCategory;
-	}
-
-	public void setGadgetCategory(String gadgetCategory) {
-		this.gadgetCategory = gadgetCategory;
-	}
-
-	public String getGadgetIntro() {
-		return gadgetIntro;
-	}
-
-	public void setGadgetIntro(String gadgetIntro) {
-		this.gadgetIntro = gadgetIntro;
-	}
-
-	public String getGadgetSource() {
-		return gadgetSource;
-	}
-
-	public void setGadgetSource(String gadgetSource) {
-		this.gadgetSource = gadgetSource;
-	}
-	
-	
 	
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.skt.opensocial.persistence.Gadget" table="SKT_GADGET">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="NAME" />
+		<property name="registerDate" column="REGISTER_DATE" />
+		<property name="publishDate" column="PUBLISH_DATE" />
+		<property name="status" column="STATUS" />
+		<property name="registerType" column="REGISTER_TYPE" />
+		<property name="introduction" column="INTRODUCTION" />
+		<property name="source" column="SOURCE" />
+		<property name="iconUrl" column="ICON_URL" />
+		<many-to-one name="developer" class="com.skt.opensocial.persistence.User" column="DEVELOPER_ID" not-null="true"/>
+		<set name="categories" table="SKT_GADGET_CATEGORY_GADGET">
+			<key column="GADGET_ID"/>
+			<many-to-many column="CATEGORY_ID" class="com.skt.opensocial.persistence.GadgetCategory"/>
+		</set>
+		<set name="reviews">
+			<key column="GADGET_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.GadgetReview"/>
+		</set>
+		<set name="favoriteUsers" table="SKT_FAVORITE_GADGET" lazy="false">
+			<key column="GADGET_ID"/>
+			<many-to-many column="USER_ID" class="com.skt.opensocial.persistence.User"/>
+		</set>
+	</class>
+</hibernate-mapping>
+<!--
+	private long id;
+	private String name;
+	private Date registerDate;
+	private Date publishDate;
+	private String status;
+	private String registerType;
+	private String introduction;
+	private String source;
+	private String iconUrl;
+	private String developerId;
+-->

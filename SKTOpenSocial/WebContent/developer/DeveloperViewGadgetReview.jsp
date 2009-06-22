@@ -7,16 +7,17 @@
 
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
+<%@page import="com.skt.opensocial.common.*" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
-
-<title>가젯 리뷰 보기</title>
+<title>개발자 신규가젯등록</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
 <table border="1" cellpadding="0" cellspacing="0" position: height="567"
-	width="1000">
+	width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -57,17 +58,17 @@
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td colspan="2">가젯 이름:</td>
-									<td colspan="2" align="left">iLikeGadget</td>
+									<td colspan="2" align="left"><s:property value="gadgetName"/></td>
 								</tr>
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td colspan="2">가젯 ID:</td>
-									<td colspan="2" align="left">ilike</td>
+									<td colspan="2" align="left"><s:property value="gadgetId"/></td>
 								</tr>
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td colspan="2">등록사용자 수: 1</td>
+									<td colspan="2">리뷰 수: 1</td>
 									<td colspan="2">평균 점수: 9</td>
 
 								</tr>
@@ -114,12 +115,22 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-  <!-- south -->
-  <tr>
-    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
-<%@ include file="/common/south.jsp"%>
-	</td>
-  </tr> 
+		<!-- south -->
+		<tr valign="top" height="5%">
+			<td colspan="3" align="center" height="10%" valign="middle">
+			<div id="footer">
+			<table border="1" height="100%" width="100%">
+				<tbody>
+					<tr>
+						<td><strong>Copyright &copy; SK Telecom. All rights
+						reserved.</strong></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			</td>
+		</tr>
+	</tbody>
 </table>
 </body>
 </html>

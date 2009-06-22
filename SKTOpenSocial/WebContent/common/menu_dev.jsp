@@ -24,7 +24,7 @@
 <!--				<s:param name="registerType">source</s:param>-->
 <!--			</s:url>-->
 			<td></td>
-			<td align="left" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadget.action?registerType=source'" style="cursor:hand">새 가젯 등록
+			<td align="left" onclick="location.href='<%= request.getContextPath() %>/developer/RegisterGadgetPage.action'" style="cursor:hand">새 가젯 등록
 			</td>
 		</tr>	
 	</table>

@@ -7,15 +7,16 @@
 
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
+<%@page import="com.skt.opensocial.common.*" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
-
-<title>개발자 신규가젯등록</title>
+<title>개발자 가젯 수정</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" height="567" width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -40,7 +41,7 @@
 						<ul class="subject_sub">
 							<li>홈</li>
 							<li>개발자 메뉴</li>
-							<li><strong>가젯 수정 (URL 등록)</strong></li>
+							<li><strong>가젯 수정</strong></li>
 						</ul>
 						</div>
 						</td>
@@ -56,76 +57,76 @@
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td>가젯 아이디:</td>
-									<td>emartgame</td>
+									<td><s:property value="gadgetId"/></td>
 								</tr>
+								<s:form action="ModifyGadget" id="modifyGadgetForm" theme="simple">
+								<s:hidden name="gadgetId" value="%{gadgetId}"/>
+								<s:hidden name="registerType" value="%{registerType}"/>
+								<s:hidden name="gadgetStatus" value="nr"/>
 								<tr>
 									<td>*가젯 이름:</td>
 									<td>
-									<form action=""><input type="text" value="기상천외">
-									</form>
+									<s:textfield name="gadgetName"></s:textfield>
 									</td>
 								</tr>
 								<tr>
 									<td>*가젯 유형:</td>
 									<td>
-									<form action=""><select id="appCategory"
-										name="appCategory"
-										onchange="_showValidationError(this,_validateRequired(this));">
-										<option value="">유형을 선택하세요</option>
-										<!-- option value="badges">Badges</option> -->
-										<option value="communication">커뮤니케이션</option>
-										<option value="dating">데이트</option>
-										<option value="events">이벤트</option>
-										<option value="finance" selected="selected">경제</option>
-										<option value="food_and_drinks">음식</option>
-										<option value="games_and_fun">게임&재미</option>
-										<option value="lifestyle">생활</option>
-										<option value="movies_and_tv">영화& TV</option>
-										<option value="music">음악</option>
-										<option value="news">뉴스</option>
-										<option value="politics">정치</option>
-										<option value="sports">스포츠</option>
-										<option value="tools">도구</option>
-										<option value="travel">여행</option>
-										<option value="video">비디오</option>
-									</select></form>
+										<s:select name="gadgetCategory" 
+											list="categoryList"
+											listKey="id"
+											listValue="name"
+											value="%{gadgetCategoryIdSelected}"
+											
+											multiple="true"
+											>
+										</s:select>
 									</td>
 								</tr>
 								<tr>
 									<td valign="top">*가젯 소개:</td>
-									<td>
-										<form action="">
-											<textarea rows="2" cols="20" >경제를 살리자</textarea>
-										</form>
+									<td valign="top">
+											<s:textarea rows="2" cols="20" name="gadgetIntro"/>
 									</td>
 								</tr>
 								<tr>
 									<td>아이콘:</td>
 									<td>
-										<form action="">
-											<input type="text"><input type="button" value="찾아보기"> 권장사이즈: 23px X 23px
-										</form>
+											<s:textfield name="gadgetIconUrl" size="50"/><input type="button" value="찾아보기"> 권장사이즈: 23px X 23px
 									</td>
 								</tr>
+								<s:if test="%{registerType.equals('src')}">
+								<tr>
+									<td valign="top">가젯 소스:</td>
+									<td>
+										<s:textarea cols="70" rows="10" name="gadgetSource" />
+									</td>
+								</tr>
+								</s:if>
+								<s:elseif test="%{registerType.equals('url')}">
 								<tr>
 									<td valign="top">가젯 URL:</td>
 									<td>
-										<form action="">
-										<input type="text" size="50">
-										</form>
+										<s:textfield name="gadgetSource" size="50"/>
 									</td>
 								</tr>
+								</s:elseif>
 								<tr>
 									<td class="line" colspan="2"></td>
 								</tr>
+								</s:form>
 							</tbody>
 						</table>
 						</td>
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="p"><a href="javascript:void">수정확인</a></em><em class="n"></div>
-						</td>
+						<div class="paging">
+<!--						<s:url id="modifyGadgetUrl" action="ModifyGadget">-->
+<!--							<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>-->
+<!--						</s:url>-->
+						<em class="n"><s:submit  type="button" onclick="document.getElementById('modifyGadgetForm').submit()" theme="simple">수정확인</s:submit></em>
+						</div></td>
 					</tr>
 				</tbody>
 			</table>

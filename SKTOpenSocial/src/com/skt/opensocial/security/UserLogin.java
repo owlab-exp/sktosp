@@ -6,7 +6,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
+import com.skt.opensocial.common.CommonConstants;
 import com.skt.opensocial.common.UserData;
 
 public class UserLogin extends ActionSupport implements SessionAware {
@@ -30,7 +30,7 @@ public class UserLogin extends ActionSupport implements SessionAware {
 			userData.setUserId(userId);
 			userData.setUserName("NASH Team");
 			userData.setAdministrator(true);
-			session.put(SKTOpenSocialSupportConstants.USER, userData);
+			session.put(CommonConstants.USER, userData);
 		}
 		else
 			return Action.INPUT;
