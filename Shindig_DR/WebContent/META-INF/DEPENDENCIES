@@ -1,0 +1,133 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Apache Shindig Web App
+
+
+From: 'an unknown organization'
+  - AOP alliance (http://aopalliance.sourceforge.net) aopalliance:aopalliance:jar:1.0
+    License: Public Domain 
+  - Unnamed - caja:json_simple:pom:r1  caja:json_simple:pom:r1
+
+  - Unnamed - com.google.code.guice:guice:jar:2.0  com.google.code.guice:guice:jar:2.0
+
+  - ICU4J (http://www-306.ibm.com/software/globalization/icu/) com.ibm.icu:icu4j:jar:3.8
+    License: ICU License  (http://www-306.ibm.com/software/globalization/icu/license.jsp)
+  - Unnamed - commons-beanutils:commons-beanutils:jar:1.7.0  commons-beanutils:commons-beanutils:jar:1.7.0
+
+  - Unnamed - commons-beanutils:commons-beanutils-core:jar:1.7.0  commons-beanutils:commons-beanutils-core:jar:1.7.0
+
+  - Unnamed - jdom:jdom:jar:1.0  jdom:jdom:jar:1.0
+
+  - Unnamed - jstl:jstl:jar:1.2  jstl:jstl:jar:1.2
+
+  - Unnamed - juel:juel-impl:jar:2.1.0  juel:juel-impl:jar:2.1.0
+
+  - OAuth::Core (http://oauth.net/code/oauth-core) net.oauth:oauth-core:jar:20090531
+
+  - OAuth Core (http://oauth.net/code/oauth-core-parent/oauth) net.oauth.core:oauth:jar:20090531
+
+  - OAuth Core: Consumer (http://oauth.net/code/oauth-core-parent/oauth-consumer) net.oauth.core:oauth-consumer:jar:20090531
+
+  - OAuth Core: HttpClient3 (http://oauth.net/code/oauth-core-parent/oauth-httpclient3) net.oauth.core:oauth-httpclient3:jar:20090531
+
+  - OAuth Core: HttpClient4 (http://oauth.net/code/oauth-core-parent/oauth-httpclient4) net.oauth.core:oauth-httpclient4:jar:20090531
+
+  - OAuth Core: Provider (http://oauth.net/code/oauth-core-parent/oauth-provider) net.oauth.core:oauth-provider:jar:20090531
+
+  - ezmorph (http://ezmorph.sourceforge.net) net.sf.ezmorph:ezmorph:jar:1.0.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Neko HTML (http://nekohtml.sourceforge.net/) net.sourceforge.nekohtml:nekohtml:jar:1.9.12
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - htmlparser (http://about.validator.nu/htmlparser/) nu.validator.htmlparser:htmlparser:jar:1.0.7
+    License: The MIT License  (http://www.opensource.org/licenses/mit-license.php)
+  - Apache Sanselan (http://sanselan.apache.org/) org.apache.sanselan:sanselan:bundle:0.97-incubator
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - JSecurity (http://www.jsecurity.org) org.jsecurity:jsecurity:jar:0.9.0
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Apache Software Foundation' (http://jakarta.apache.org/)
+  - HttpClient (http://jakarta.apache.org/httpcomponents/httpclient-3.x/) commons-httpclient:commons-httpclient:jar:3.1
+    License: Apache License  (http://www.apache.org/licenses/LICENSE-2.0)
+
+From: 'Apache Software Foundation' (http://www.apache.org)
+  - Streaming API for XML (STAX API 1.0) (http://geronimo.apache.org/specs/geronimo-stax-api_1.0_spec) org.apache.geronimo.specs:geronimo-stax-api_1.0_spec:bundle:1.0.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Apache Software Foundation' (http://www.apache.org/)
+  - FileUpload (http://jakarta.apache.org/commons/fileupload/) commons-fileupload:commons-fileupload:jar:1.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - HttpClient (http://hc.apache.org/httpcomponents-client) org.apache.httpcomponents:httpclient:jar:4.0-beta2
+    License: Apache License  (../LICENSE.txt)
+  - HttpCore (http://hc.apache.org/httpcomponents-core/) org.apache.httpcomponents:httpcore:jar:4.0-beta3
+    License: Apache License  (http://www.apache.org/licenses/LICENSE-2.0.html)
+  - XML Commons External Components XML APIs (http://xml.apache.org/commons/components/external/) xml-apis:xml-apis:jar:1.3.04
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Extreme! Lab, Indiana University' (http://www.extreme.indiana.edu/)
+  - MXP1: Xml Pull Parser 3rd Edition (XPP3) (http://www.extreme.indiana.edu/xgws/xsoap/xpp/mxp1/) xpp3:xpp3_min:jar:1.1.4c
+    License: Indiana University Extreme! Lab Software License, vesion 1.1.1  (http://www.extreme.indiana.edu/viewcvs/~checkout~/XPP3/java/LICENSE.txt)    License: Public Domain  (http://creativecommons.org/licenses/publicdomain)
+
+From: 'Google' (http://www.google.com)
+  - Caja (http://code.google.com/p/google-caja) caja:caja:jar:r3375
+    License: Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0.html)
+  - Google Collections Library (http://code.google.com/p/google-collections/) com.google.collections:google-collections:jar:1.0-rc2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Joda.org' (http://www.joda.org)
+  - Joda time (http://joda-time.sourceforge.net) joda-time:joda-time:jar:1.6
+    License: Apache 2  (http://www.apache.org/licenses/)
+
+From: 'JSON' (http://json.org/)
+  - JSON (JavaScript Object Notation) (http://www.json.org/java/index.html) org.json:json:jar:20070829
+
+
+From: 'Json-lib' (http://json-lib.sourceforge.net)
+  - json-lib (http://json-lib.sourceforge.net) net.sf.json-lib:json-lib:jar:2.2.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Luck Consulting Pty Ltd' (http://gregluck.com)
+  - Ehcache Core (http://ehcache.sf.net/ehcache) net.sf.ehcache:ehcache:jar:1.6.0
+    License: The Apache Software License, Version 2.0  (http://ehcache.sourceforge.net/LICENSE.txt)
+
+From: 'Sun Microsystems' (http://java.sun.com/)
+  - ROME, RSS and atOM utilitiEs for Java (https://rome.dev.java.net/) rome:rome:jar:0.9
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Apache Software Foundation' (http://jakarta.apache.org)
+  - Betwixt (http://jakarta.apache.org/commons/betwixt/) commons-betwixt:commons-betwixt:jar:0.8
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+  - Codec (http://jakarta.apache.org/commons/codec/) commons-codec:commons-codec:jar:1.3
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+  - Digester (http://jakarta.apache.org/commons/digester/) commons-digester:commons-digester:jar:1.7
+    License: The Apache Software License, Version 2.0  (/LICENSE.txt)
+
+From: 'The Apache Software Foundation' (http://www.apache.org/)
+  - Commons Collections (http://commons.apache.org/collections/) commons-collections:commons-collections:jar:3.2.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons IO (http://commons.apache.org/io/) commons-io:commons-io:jar:1.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Lang (http://commons.apache.org/lang/) commons-lang:commons-lang:jar:2.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Logging (http://commons.apache.org/logging) commons-logging:commons-logging:jar:1.1.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Shindig Common Code (http://incubator.apache.org/shindig/shindig-parent/shindig-common) org.apache.shindig:shindig-common:jar:1.1-SNAPSHOT
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Shindig Features (http://incubator.apache.org/shindig/shindig-features) org.apache.shindig:shindig-features:jar:1.1-SNAPSHOT
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Shindig Gadget Renderer (http://incubator.apache.org/shindig/shindig-parent/shindig-gadgets) org.apache.shindig:shindig-gadgets:jar:1.1-SNAPSHOT
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Shindig Social API (http://incubator.apache.org/shindig/shindig-parent/shindig-social-api) org.apache.shindig:shindig-social-api:jar:1.1-SNAPSHOT
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Xerces2 Java Parser (http://xerces.apache.org/xerces2-j) xerces:xercesImpl:jar:2.9.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'XStream' (http://xstream.codehaus.org)
+  - XStream Core  com.thoughtworks.xstream:xstream:jar:1.3.1
+    License: BSD style  (http://xstream.codehaus.com/license.html)
+
+
+
+

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Activity">
+
+<select id="getActivity" parameterClass="java.lang.String" resultClass="activity">
+SELECT
+appId as appId, 
+body as body, 
+bodyId asbodyId, 
+externalId as externalId, 
+activity_id as id, 
+updated as updated, 
+postedTime as postedTime, 
+priority as priority, 
+streamFaviconUrl as streamFaviconUrl,
+streamSourceUrl as streamSourceUrl, 
+streamTitle as streamTitle, 
+streamUrl as streamUrl, 
+title as title, 
+titleId as titleId, 
+url as url, 
+userId userId
+FROM activities
+WHERE userId = #uesr#
+</select>
+
+<select id="getMediaItems" parameterClass="activity" resultClass="mediaItem">
+SELECT
+mimetype as mimeType,
+type as type,
+url as url,
+thumbnailUrl as thumbnailUrl
+FROM activity_media_items
+WHERE activity_id = #id# and user_id = #userId#
+</select>
+
+
+<select id="getTemplateParams" parameterClass="activity" resultClass="activityTemplateParamDB">
+SELECT
+param_key as param_key,
+param_value as param_value
+FROM activity_template_params
+WHERE activity_id = #id# and user_id = #userId#
+</select>
+
+
+<!-- Use Activity object (JavaBean) properties as parameters for insert; but not mediaItems and templateParams of the activity. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<insert id="insertActivity" parameterClass="activity">
+INSERT INTO
+activities 
+(appId, body, bodyId, externalId, activity_id, updated, postedTime, priority, streamFaviconUrl,
+streamSourceUrl, streamTitle, streamUrl, title, titleId, url, userId)
+
+VALUES 
+(#appId#, #body#, #bodyId#, #externalId#, #id#, #updated#, #postedTime#, #priority#, #streamFaviconUrl#,
+#streamSourceUrl#, #streamTitle#, #streamUrl#, #title#, #titleId#, #url#, #userId#)
+</insert>
+
+
+<!-- Use ActivityMediaItems object (JavaBean) properties as parameters for insert. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<insert id="insertActivityMediaItem" parameterClass="activityMediaItemDB">
+INSERT INTO
+activity_media_items
+(mimetype, type, url, thumbnailUrl, activitiy_id, user_id)
+
+VALUES 
+(#mimeType#, #type#, #url#, #thumbnailUrl#, #activityId#, #userId#)
+</insert>
+
+<!-- Use ActivityTemplateParamh object (JavaBean) properties as parameters for insert. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<insert id="insertTemplateParam" parameterClass="activityTemplateParamDB">
+INSERT INTO
+activity_template_params
+(param_key, param_value, activity_id, user_id)
+
+VALUES 
+(#param_key#, #param_value#, #activityId#, #userId#)
+</insert>
+
+
+<!-- Use Activity object (JavaBean) properties as parameters for delete. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<delete id="deleteActivities" parameterClass="activity">
+DELETE FROM 
+activities
+WHERE activity_id = #id# and userId = #userId#
+</delete>
+
+
+<!-- Use Activity object (JavaBean) properties as parameters for delete. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<delete id="deleteActivityMediaParams" parameterClass="activity">
+DELETE FROM 
+activity_media_items
+WHERE activity_id = #id# and user_id = #userId#
+</delete>
+
+
+<!-- Use Activity object (JavaBean) properties as parameters for delete. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<delete id="deleteActivityTemplateParams" parameterClass="activity">
+DELETE FROM 
+activity_template_params
+WHERE activity_id = #id# and user_id = #userId#
+</delete>
+
+</sqlMap>

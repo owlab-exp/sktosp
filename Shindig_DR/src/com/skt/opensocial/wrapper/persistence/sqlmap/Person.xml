@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Person">
+<select id="getPersonDefaultInfo" resultClass="personDB">
+SELECT
+os_id as id,
+aboutMe as aboutMe,
+age as age,
+birthday as birthday,
+bodyType_build as bodyType_build,
+bodyType_eyeColor as bodyType_eyeColor,
+bodyType_hairColor as bodyType_hairColor,
+bodyType_height as bodyType_height,
+bodyType_weight as bodyType_weight,
+children as children,
+currentLocation_country as currentLocation_country,
+currentLocation_latitude as currentLocation_latitude,
+currentLocation_longitude as currentLocation_longitude,
+currentLocation_locality as currentLocation_locality,
+currentLocation_postalCode as currentLocation_postalCode,
+currentLocation_region as currentLocation_region,
+currentLocation_streetAddress as currentLocation_streetAddress,
+currentLocation_type as currentLocation_type,
+currentLocation_formatted as currentLocation_formatted,
+currentLocation_primary as currentLocation_primary,
+displayName as displayName,
+drinker as drinker,
+ethnicity as ethinicity,
+fashion as fashion,
+gender as gender,
+happiestWhen as happiestWhen,
+hasApp as hasApp,
+humor as humor,
+jobInterests as jobInterests,
+livingArrangement as livingArrangement,
+name_additionalName as name_additionalName,
+name_familyName as name_familyName,
+name_givenName as name_givenName,
+name_honorificPrefix as name_honorificPrefix,
+name_honorificSuffix as name_honorificSuffix,
+name_formatted as name_formatted,
+networkPresence as networkPresence,
+nickName as nickName,
+pets as pets,
+politicalViews as politicalViews,
+preferredUsername as preferredUsername,
+profileSongUrl as profileSongUrl,
+profileVideoUrl as profileVideoUrl,
+relationshipStatus as relationshipStatus,
+religion as religion,
+romance as romance,
+scaredOf as scaredOf,
+sexualOrientation as sexualOrientation,
+smoker as smoker,
+status as status,
+utcOffset as utcOffset, 
+updated as updated,
+profileUrl as profileUrl,
+thumbnailUrl as thumbnailUrl
+FROM person
+WHERE os_id = #id#
+</select>
+
+<!-- Use PersonListStringDB object (JavaBean) properties as parameters for select. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<select id="getListStringOneByOne" parameterClass="personListStringDB" resultClass="java.lang.String">
+SELECT
+value
+FROM personAdditionalInfo_1
+WHERE person_id = #person_id# and attribute = #attribute#
+</select>
+
+<!-- ... -->
+<select id="getAllUserIds" resultClass="java.lang.String">
+SELECT
+os_id
+FROM person
+</select>
+
+
+<!-- Use Person object (JavaBean) properties as parameters for insert. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<insert id="insertPersonDefaultInfo" parameterClass="personDB">
+INSERT INTO
+person 
+(os_id, aboutMe, age, birthday, bodyType_build, bodyType_eyeColor, bodyType_hairColor, bodyType_height,
+bodyType_weight, children, currentLocation_country, currentLocation_latitude, currentLocation_longitude,
+currentLocation_locality, currentLocation_postalCode, currentLocation_region, currentLocation_streetAddress,
+currentLocation_type, currentLocation_formatted, currentLocation_primary, displayName, drinker,
+ethnicity, fashion, gender, happiestWhen, hasApp, humor, jobInterests, livingArrangement,
+name_additionalName, name_familyName, name_givenName, name_honorificPrefix, name_honorificSuffix,
+name_formatted, networkPresence, nickName, pets, politicalViews, preferredUsername,
+profileSongUrl, profileVideoUrl, relationshipStatus, religion, romance, scaredOf, sexualOrientation,
+smoker, status, utcOffset, updated, profileUrl, thumbnailUrl)
+
+VALUES 
+(#id#, #aboutMe#, #age#, #birthday#, #bodyType_build#, #bodyType_eyeColor#, #bodyType_hairColor#, #bodyType_height#,
+#bodyType_weight#, #children#, #currentLocation_country#, #currentLocation_latitude#, #currentLocation_longitude#,
+#currentLocation_locality#, #currentLocation_postalCode#, #currentLocation_region#, #currentLocation_streetAddress#,
+#currentLocation_type#, #currentLocation_formatted#, #currentLocation_primary#, #displayName#, #drinker#,
+#ethnicity#, #fashion#, #gender#, #happiestWhen#, #hasApp#, #humor#, #jobInterests#, #livingArrangement#,
+#name_additionalName#, #name_familyName#, #name_givenName#, #name_honorificPrefix#, #name_honorificSuffix#,
+#name_formatted#, #networkPresence#, #nickName#, #pets#, #politicalViews#, #preferredUsername#,
+#profileSongUrl#, #profileVideoUrl#, #relationshipStatus#, #religion#, #romance#, #scaredOf#, #sexualOrientation#,
+#smoker#, #status#, #utcOffset#, #updated#, #profileUrl#, #thumbnailUrl#)
+</insert>
+
+
+<!-- Use List<String> object (JavaBean) properties as parameters for insert one by one. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<insert id="insertListStringOneByOne" parameterClass="personListStringDB">
+INSERT INTO
+personAdditionalInfo_1 
+(person_id, attribute, value)
+VALUES
+(#person_id#, #attribute#, #value#)
+</insert>
+
+
+<!-- Use List<String> object (JavaBean) properties as parameters for insert one by one. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<insert id="insertListFieldOneByOne" parameterClass="personListFieldDB">
+INSERT INTO
+personAdditionalInfo_2 
+(person_id, attribute, field_type, field_value, field_primary)
+VALUES
+(#person_id#, #attribute#, #type#, #value#, #primary#)
+</insert>
+
+
+<!-- Use Person object (JavaBean) properties as parameters for update. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<update id="updatePerson" parameterClass="person">
+UPDATE person
+SET fashion = #fashion#
+WHERE os_id = #id#
+</update>
+
+<!-- Use Person object (JavaBean) ??놼??properties as parameters for delete. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<delete id="deletePerson" parameterClass="person">
+DELETE FROM 
+person
+WHERE os_id = #id#
+</delete>
+
+</sqlMap>
