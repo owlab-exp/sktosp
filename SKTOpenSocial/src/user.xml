@@ -46,18 +46,24 @@
 		</action>
 		
 		<action name="ManageGadget">
-			<result >/user/gadget.jsp</result>
+			<result >/user/UserListGadgets.jsp</result>
 		</action>
 		
-		
-		
 		<action name="ListMyGadgets">
-			<result>/user/gadget.jsp</result>
+			<result>/user/UserListGadgets.jsp</result>
+		</action>
+		
+		<action name="ManageFriend">
+			<result>/user/UserListFriends.jsp</result>
+		</action>
+		
+		<action name="ManageActivity">
+			<result>/user/UserListActivities.jsp</result>
 		</action>
 		
 		<action name="Search" class="com.skt.opensocial.user.GadgetList">
 			<interceptor-ref name="defaultStack"/>
-			<result name="SUCCESS">/user/gadget.jsp</result>
+			<result name="SUCCESS">/user/UserListGadgets.jsp</result>
 		</action>
 	</package>
 </struts>
