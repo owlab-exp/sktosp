@@ -13,7 +13,8 @@
 		<property name="isAdministrator" column="IS_ADMINISTRATOR" />
 		<property name="registeredDate" column="REGISTERED_DATE" />
 		<one-to-one name="person" class="com.skt.opensocial.persistence.Person" cascade="all"/>
-		<set name="reviews" inverse="true">
+		<one-to-one name="userVisibility" class="com.skt.opensocial.persistence.UserVisibility" cascade="all"/>
+		<set name="reviews" inverse="true"> <!-- reviews by this user -->
 			<key column="USER_ID"/>
 			<one-to-many class="com.skt.opensocial.persistence.GadgetReview"/>
 		</set>
@@ -24,6 +25,10 @@
 		<set name="favoriteGadgets" table="SKT_FAVORITE_GADGET"><!-- favorite list of gadgets of this user -->
 			<key column="USER_ID"/>
 			<many-to-many column="GADGET_ID" class="com.skt.opensocial.persistence.Gadget"/>
+		</set>
+		<set name="friends" table="SKT_USER_FRIENDS">
+			<key column="USERID"/>
+			<many-to-many column="FRIENDID" class="com.skt.opensocial.persistence.User"/>
 		</set>
 	</class>
 </hibernate-mapping>

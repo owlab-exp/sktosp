@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.skt.opensocial.persistence.UserVisibility" table="SKT_USER_SECURE">
+		<id name="userId" column="USERID">
+			<!-- generator class="native" /-->
+		</id>
+		<property name="name" column="name" />
+		<property name="addresses" column="addresses" />
+		<property name="age" column="age" />
+		<property name="bodyType" column="botyType" />
+		<property name="books" column="books" />
+		<property name="cars" column="cars" />
+		<property name="children" column="children" />
+		<property name="currentLocation" column="currentLocation" />
+		<property name="dateOfBirth" column="dateOfBirth" />
+		<property name="drinker" column="drinker" />
+		<property name="emails" column="emails" />
+		<property name="ethinicity" column="ethinicity" />
+		<property name="fashion" column="fashion" />
+		<property name="food" column="food" />
+		<property name="gender" column="gender" />
+		<property name="happiesWhen" column="happiesWhen" />
+		<property name="hasApp" column="hasApp" />
+		<property name="heroes" column="heroes" />
+		<property name="humor" column="humor" />
+		<property name="interests" column="interests" />
+		<property name="jobinterests" column="jobinterests" />
+		<property name="jobs" column="jobs" />
+		<property name="languagesSpoken" column="languagesSpoken" />
+		<property name="livingArrangement" column="livingArrangement" />
+		<property name="lookingFor" column="lookingFor" />
+		<property name="movies" column="movies" />
+		<property name="music" column="music" />
+		<property name="networkPresence" column="networkPresence" />
+		<property name="nickName" column="nickName" />
+		<property name="pets" column="pets" />
+		<property name="phoneNumbers" column="phoneNumbers" />
+		<property name="politicalViews" column="politicalViews" />
+		<property name="profileSong" column="profileSong" />
+		<property name="profileUrl" column="profileUrl" />
+		<property name="quotes" column="quotes" />
+		<property name="relationshipStatus" column="relationshipStatus" />
+		<property name="religion" column="religion" />
+		<property name="romance" column="romance" />
+		<property name="scaredOf" column="scaredOf" />
+		<property name="schools" column="schools" />
+		<property name="sexualOrientation" column="sexualOrientation" />
+		<property name="smoker" column="smoker" />
+		<property name="sports" column="sports" />
+		<property name="status" column="status" />
+		<property name="tags" column="tags" />
+		<property name="thumbnailUrl" column="thumbnailUrl" />
+		<property name="timeZone" column="timeZone" />
+		<property name="turnOffs" column="turnOffs" />
+		<property name="turnOns" column="turnOns" />
+		<property name="tvShows" column="tvShows" />
+		<property name="urls" column="urls" />
+	</class>
+</hibernate-mapping>

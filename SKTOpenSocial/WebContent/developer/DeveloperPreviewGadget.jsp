@@ -59,10 +59,17 @@
 									<td>가젯 이름(ID): <s:property value="gadgetName"/> (<s:property value="gadgetId"/>)</td>
 								</tr>
 								<tr>
-									<td valign="top"><img src="ilike.png" height="70%" width="70%"> </td>
+									<s:if test="%{registerType.equals('url')}">
+										
+										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>
+									</s:if>
+									<s:else>
+										<td valign="top"><img src="ilike.png" height="70%" width="70%"> </td>
+									</s:else>
 								</tr>
 								<tr>
-									<td class="line" colspan="2"></td>
+									<td class="line"></td>
+									
 								</tr>
 							</tbody>
 						</table>

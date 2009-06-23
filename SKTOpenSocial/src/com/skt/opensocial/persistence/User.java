@@ -13,6 +13,8 @@ public class User {
 	private Set<GadgetReview> reviews; // reviews by this user
 	private Set<Gadget> gadgets; //  gadgets developed by this user
 	private Set<Gadget> favoriteGadgets;
+	private UserVisibility userVisibility;
+	private Set<User> friends;
 	
 	public String getUserId() {
 		return userId;
@@ -101,4 +103,25 @@ public class User {
 		this.favoriteGadgets = favoriteGadgets;
 	}
 
+	public UserVisibility getUserVisibility() {
+		return userVisibility;
+	}
+
+	public void setUserVisibility(UserVisibility userVisibility) {
+		this.userVisibility = userVisibility;
+	}
+
+	public Set<User> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Set<User> friends) {
+		this.friends = friends;
+	}
+	
+	public void addFriend(User user){
+		Set<User> friends = getFriends();
+		friends.add(user);
+		setFriends(friends);
+	}
 }
