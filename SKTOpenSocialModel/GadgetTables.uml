@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA">
   <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="GadgetTables">
-    <packagedElement xmi:type="uml:Class" xmi:id="_g8QCgFvbEd6mL_elNvAZZA" name="SNS_GADGET">
+    <packagedElement xmi:type="uml:Class" xmi:id="_g8QCgFvbEd6mL_elNvAZZA" name="SKT_GADGET">
       <ownedAttribute xmi:id="_zv02QFvbEd6mL_elNvAZZA" name="id"/>
       <ownedAttribute xmi:id="_1Y33slvbEd6mL_elNvAZZA" name="name"/>
       <ownedAttribute xmi:id="_2ybrolvbEd6mL_elNvAZZA" name="register_date"/>
@@ -12,9 +12,8 @@
       <ownedAttribute xmi:id="_EP3hIlvcEd6mL_elNvAZZA" name="source"/>
       <ownedAttribute xmi:id="_L0wO4FvcEd6mL_elNvAZZA" name="icon_url"/>
       <ownedAttribute xmi:id="_kDi4slvdEd6mL_elNvAZZA" name="developer_id"/>
-      <ownedAttribute xmi:id="_Yf2WwFwDEd6mL_elNvAZZA" name="category"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Y8IU2FvcEd6mL_elNvAZZA" name="SNS_GADGET_REVIEW">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Y8IU2FvcEd6mL_elNvAZZA" name="SKT_GADGET_REVIEW">
       <ownedAttribute xmi:id="_ddEJYlvcEd6mL_elNvAZZA" name="id"/>
       <ownedAttribute xmi:id="_i-0hwlvcEd6mL_elNvAZZA" name="gadget_id"/>
       <ownedAttribute xmi:id="_opqkslvcEd6mL_elNvAZZA" name="review_text"/>
@@ -22,76 +21,109 @@
       <ownedAttribute xmi:id="_FCtrolviEd6mL_elNvAZZA" name="user_id"/>
       <ownedAttribute xmi:id="_ag5rglviEd6mL_elNvAZZA" name="review_date"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_uyKM-FvcEd6mL_elNvAZZA" name="SNS_GADGET_PUBLISH">
+    <packagedElement xmi:type="uml:Class" xmi:id="_uyKM-FvcEd6mL_elNvAZZA" name="SKT_GADGET_PUBLISH">
       <ownedAttribute xmi:id="_7vHLklvcEd6mL_elNvAZZA" name="gadget_id"/>
       <ownedAttribute xmi:id="_B9bH8lvdEd6mL_elNvAZZA" name="requested_date"/>
       <ownedAttribute xmi:id="_Sv8C4lvdEd6mL_elNvAZZA" name="reject_reason"/>
-      <ownedAttribute xmi:id="_ET_EwlvfEd6mL_elNvAZZA" name="approved"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_eRlErFveEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET>_&lt;sNS_GADGET_REVIEW>" memberEnd="_eRlErVveEd6mL_elNvAZZA _eRlEsFveEd6mL_elNvAZZA" navigableOwnedEnd="_eRlEsFveEd6mL_elNvAZZA">
-      <ownedEnd xmi:id="_eRlErVveEd6mL_elNvAZZA" name="sNS_GADGET" type="_g8QCgFvbEd6mL_elNvAZZA" association="_eRlErFveEd6mL_elNvAZZA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRlErlveEd6mL_elNvAZZA" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRlEr1veEd6mL_elNvAZZA" value="1"/>
-      </ownedEnd>
-      <ownedEnd xmi:id="_eRlEsFveEd6mL_elNvAZZA" name="sNS_GADGET_REVIEW" type="_Y8IU2FvcEd6mL_elNvAZZA" isUnique="false" association="_eRlErFveEd6mL_elNvAZZA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eRlEsVveEd6mL_elNvAZZA" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eRlEslveEd6mL_elNvAZZA"/>
-      </ownedEnd>
+      <ownedAttribute xmi:id="_ET_EwlvfEd6mL_elNvAZZA" name="is_approved"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_yC_Zq1veEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET>_&lt;sNS_GADGET_PUBLISH>" memberEnd="_yC_ZrFveEd6mL_elNvAZZA _yC_Zr1veEd6mL_elNvAZZA" navigableOwnedEnd="_yC_Zr1veEd6mL_elNvAZZA">
-      <ownedEnd xmi:id="_yC_ZrFveEd6mL_elNvAZZA" name="sNS_GADGET" type="_g8QCgFvbEd6mL_elNvAZZA" association="_yC_Zq1veEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_yC_ZrFveEd6mL_elNvAZZA" name="gadget" type="_g8QCgFvbEd6mL_elNvAZZA" association="_yC_Zq1veEd6mL_elNvAZZA">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yC_ZrVveEd6mL_elNvAZZA" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yC_ZrlveEd6mL_elNvAZZA" value="1"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_yC_Zr1veEd6mL_elNvAZZA" name="sNS_GADGET_PUBLISH" type="_uyKM-FvcEd6mL_elNvAZZA" association="_yC_Zq1veEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_yC_Zr1veEd6mL_elNvAZZA" name="publish activity" type="_uyKM-FvcEd6mL_elNvAZZA" association="_yC_Zq1veEd6mL_elNvAZZA">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yC_ZsFveEd6mL_elNvAZZA" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yC_ZsVveEd6mL_elNvAZZA"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_lAYFqFvjEd6mL_elNvAZZA" name="SNS_USER">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lAYFqFvjEd6mL_elNvAZZA" name="SKT_USER">
       <ownedAttribute xmi:id="_niD_QlvjEd6mL_elNvAZZA" name="id"/>
-      <ownedAttribute xmi:id="_o6kqUlvjEd6mL_elNvAZZA" name="name"/>
       <ownedAttribute xmi:id="_uKlycFvjEd6mL_elNvAZZA" name="is_developer"/>
       <ownedAttribute xmi:id="_xC6qclvjEd6mL_elNvAZZA" name="is_administrator"/>
+      <ownedAttribute xmi:id="_46eNwlytEd6mL_elNvAZZA" name="password"/>
+      <ownedAttribute xmi:id="_sPScIl9AEd6Ia9Y2HBkITA" name="registered_date"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_y_Mw-lvjEd6mL_elNvAZZA" name="A_&lt;sNS_USER>_&lt;sNS_GADGET_REVIEW>" memberEnd="_y_Mw-1vjEd6mL_elNvAZZA _y_Mw_lvjEd6mL_elNvAZZA" navigableOwnedEnd="_y_Mw_lvjEd6mL_elNvAZZA">
-      <ownedEnd xmi:id="_y_Mw-1vjEd6mL_elNvAZZA" name="sNS_USER" type="_lAYFqFvjEd6mL_elNvAZZA" association="_y_Mw-lvjEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_y_Mw-1vjEd6mL_elNvAZZA" name="reviewer" type="_lAYFqFvjEd6mL_elNvAZZA" association="_y_Mw-lvjEd6mL_elNvAZZA">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y_Mw_FvjEd6mL_elNvAZZA" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y_Mw_VvjEd6mL_elNvAZZA" value="1"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_y_Mw_lvjEd6mL_elNvAZZA" name="sNS_GADGET_REVIEW" type="_Y8IU2FvcEd6mL_elNvAZZA" association="_y_Mw-lvjEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_y_Mw_lvjEd6mL_elNvAZZA" name="review" type="_Y8IU2FvcEd6mL_elNvAZZA" association="_y_Mw-lvjEd6mL_elNvAZZA">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_y_Mw_1vjEd6mL_elNvAZZA" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_y_MxAFvjEd6mL_elNvAZZA"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_1Q8RqFwFEd6mL_elNvAZZA" name="SNS_GADGET_CATEGORY">
+    <packagedElement xmi:type="uml:Class" xmi:id="_1Q8RqFwFEd6mL_elNvAZZA" name="SKT_GADGET_CATEGORY">
       <ownedAttribute xmi:id="_34b4UlwFEd6mL_elNvAZZA" name="id"/>
-      <ownedAttribute xmi:id="_5KFtclwFEd6mL_elNvAZZA" name="category"/>
+      <ownedAttribute xmi:id="_5KFtclwFEd6mL_elNvAZZA" name="name"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_6im_mFwFEd6mL_elNvAZZA" name="SNS_GADGET_CATEGORY_GADGET">
-      <ownedAttribute xmi:id="_8R7BElwFEd6mL_elNvAZZA" name="id"/>
-      <ownedAttribute xmi:id="_9CWYclwFEd6mL_elNvAZZA" name="gadget_id"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6im_mFwFEd6mL_elNvAZZA" name="SKT_GADGET_CATEGORY_GADGET1">
       <ownedAttribute xmi:id="_-BrHclwFEd6mL_elNvAZZA" name="categroy_id"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_CgFMe1wGEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET>_&lt;sNS_GADGET_CATEGORY>" memberEnd="_CgFMfFwGEd6mL_elNvAZZA _CgFMf1wGEd6mL_elNvAZZA" navigableOwnedEnd="_CgFMf1wGEd6mL_elNvAZZA">
-      <ownedEnd xmi:id="_CgFMfFwGEd6mL_elNvAZZA" name="sNS_GADGET" type="_g8QCgFvbEd6mL_elNvAZZA" association="_CgFMe1wGEd6mL_elNvAZZA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CgFMfVwGEd6mL_elNvAZZA" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CgFMflwGEd6mL_elNvAZZA" value="1"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_uzmNCl5xEd6mL_elNvAZZA" name="A_&lt;sKT_USER>_&lt;sKT_GADGET>" memberEnd="_uzmNC15xEd6mL_elNvAZZA _uzmNDl5xEd6mL_elNvAZZA" navigableOwnedEnd="_uzmNDl5xEd6mL_elNvAZZA">
+      <ownedEnd xmi:id="_uzmNC15xEd6mL_elNvAZZA" name="developer" type="_lAYFqFvjEd6mL_elNvAZZA" association="_uzmNCl5xEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uzmNDF5xEd6mL_elNvAZZA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uzmNDV5xEd6mL_elNvAZZA" value="1"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_CgFMf1wGEd6mL_elNvAZZA" name="sNS_GADGET_CATEGORY" type="_6im_mFwFEd6mL_elNvAZZA" association="_CgFMe1wGEd6mL_elNvAZZA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CgFMgFwGEd6mL_elNvAZZA" value="*"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CgFMgVwGEd6mL_elNvAZZA" value="1"/>
+      <ownedEnd xmi:id="_uzmNDl5xEd6mL_elNvAZZA" name="developed gadget" type="_g8QCgFvbEd6mL_elNvAZZA" association="_uzmNCl5xEd6mL_elNvAZZA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uzmND15xEd6mL_elNvAZZA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uzmNEF5xEd6mL_elNvAZZA"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_LopTelwGEd6mL_elNvAZZA" name="A_&lt;sNS_GADGET_CATEGORY_GADGET>_&lt;sNS_GADGET_CATEGORY>" memberEnd="_LopTe1wGEd6mL_elNvAZZA _LopTflwGEd6mL_elNvAZZA" navigableOwnedEnd="_LopTflwGEd6mL_elNvAZZA">
-      <ownedEnd xmi:id="_LopTe1wGEd6mL_elNvAZZA" name="sNS_GADGET_CATEGORY_GADGET" type="_6im_mFwFEd6mL_elNvAZZA" association="_LopTelwGEd6mL_elNvAZZA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LopTfFwGEd6mL_elNvAZZA" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LopTfVwGEd6mL_elNvAZZA" value="1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6DLD2F5xEd6mL_elNvAZZA" name="SKT_FAVORITE_GADGET">
+      <ownedAttribute xmi:id="_9ehJUl5xEd6mL_elNvAZZA" name="user_id"/>
+      <ownedAttribute xmi:id="__FVWIl5xEd6mL_elNvAZZA" name="gadget_id"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:AssociationClass" xmi:id="_MPqIwV8-Ed6Ia9Y2HBkITA" name="SKT_GADGET_CATEGORY_GADGET" memberEnd="_MPqIwl8-Ed6Ia9Y2HBkITA _MPqIxV8-Ed6Ia9Y2HBkITA">
+      <ownedAttribute xmi:id="_OJjCgl8-Ed6Ia9Y2HBkITA" name="gadget_id"/>
+      <ownedAttribute xmi:id="_Ph6jol8-Ed6Ia9Y2HBkITA" name="category_id"/>
+      <ownedEnd xmi:id="_MPqIwl8-Ed6Ia9Y2HBkITA" name="gadget" type="_g8QCgFvbEd6mL_elNvAZZA" association="_MPqIwV8-Ed6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MPqIw18-Ed6Ia9Y2HBkITA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MPqIxF8-Ed6Ia9Y2HBkITA"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_LopTflwGEd6mL_elNvAZZA" name="sNS_GADGET_CATEGORY" type="_1Q8RqFwFEd6mL_elNvAZZA" association="_LopTelwGEd6mL_elNvAZZA">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LopTf1wGEd6mL_elNvAZZA" value="1"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LopTgFwGEd6mL_elNvAZZA" value="1"/>
+      <ownedEnd xmi:id="_MPqIxV8-Ed6Ia9Y2HBkITA" name="gadget category" type="_1Q8RqFwFEd6mL_elNvAZZA" association="_MPqIwV8-Ed6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MPqIxl8-Ed6Ia9Y2HBkITA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MPqIx18-Ed6Ia9Y2HBkITA" value="1"/>
       </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:AssociationClass" xmi:id="_ZV170F8-Ed6Ia9Y2HBkITA" name="SKT_FAVORITE_GADGET" memberEnd="_ZV170V8-Ed6Ia9Y2HBkITA _ZV171F8-Ed6Ia9Y2HBkITA">
+      <ownedAttribute xmi:id="_bAF3Il8-Ed6Ia9Y2HBkITA" name="user_id"/>
+      <ownedAttribute xmi:id="_b8SZol8-Ed6Ia9Y2HBkITA" name="gadget_id"/>
+      <ownedEnd xmi:id="_ZV170V8-Ed6Ia9Y2HBkITA" name="user" type="_lAYFqFvjEd6mL_elNvAZZA" association="_ZV170F8-Ed6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZV170l8-Ed6Ia9Y2HBkITA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZV17018-Ed6Ia9Y2HBkITA"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_ZV171F8-Ed6Ia9Y2HBkITA" name="favorite gadget" type="_g8QCgFvbEd6mL_elNvAZZA" association="_ZV170F8-Ed6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZV171V8-Ed6Ia9Y2HBkITA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZV171l8-Ed6Ia9Y2HBkITA"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_oTH-Cl8_Ed6Ia9Y2HBkITA" name="A_&lt;sKT_GADGET_REVIEW>_&lt;sKT_GADGET>" memberEnd="_oTH-C18_Ed6Ia9Y2HBkITA _oTH-Dl8_Ed6Ia9Y2HBkITA" navigableOwnedEnd="_oTH-C18_Ed6Ia9Y2HBkITA _oTH-Dl8_Ed6Ia9Y2HBkITA">
+      <ownedEnd xmi:id="_oTH-C18_Ed6Ia9Y2HBkITA" name="review" type="_Y8IU2FvcEd6mL_elNvAZZA" association="_oTH-Cl8_Ed6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oTH-DF8_Ed6Ia9Y2HBkITA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oTH-DV8_Ed6Ia9Y2HBkITA"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_oTH-Dl8_Ed6Ia9Y2HBkITA" name="reviewed gadget" type="_g8QCgFvbEd6mL_elNvAZZA" association="_oTH-Cl8_Ed6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oTH-D18_Ed6Ia9Y2HBkITA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oTH-EF8_Ed6Ia9Y2HBkITA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_DxpTO19BEd6Ia9Y2HBkITA" name="A_&lt;sKT_USER>_&lt;sHINDIG_PERSON>" memberEnd="_DxpTPF9BEd6Ia9Y2HBkITA _DxpTP19BEd6Ia9Y2HBkITA" navigableOwnedEnd="_DxpTPF9BEd6Ia9Y2HBkITA _DxpTP19BEd6Ia9Y2HBkITA">
+      <ownedEnd xmi:id="_DxpTPF9BEd6Ia9Y2HBkITA" name="SKT user" type="_lAYFqFvjEd6mL_elNvAZZA" association="_DxpTO19BEd6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DxpTPV9BEd6Ia9Y2HBkITA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DxpTPl9BEd6Ia9Y2HBkITA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_DxpTP19BEd6Ia9Y2HBkITA" name="Shindig person" type="_7U4iQF9AEd6Ia9Y2HBkITA" association="_DxpTO19BEd6Ia9Y2HBkITA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DxpTQF9BEd6Ia9Y2HBkITA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DxpTQV9BEd6Ia9Y2HBkITA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_4pEcQF9AEd6Ia9Y2HBkITA" name="ShindigTables">
+    <packagedElement xmi:type="uml:Class" xmi:id="_7U4iQF9AEd6Ia9Y2HBkITA" name="SHINDIG_PERSON">
+      <ownedAttribute xmi:id="_-8vZwl9AEd6Ia9Y2HBkITA" name="id"/>
+      <ownedAttribute xmi:id="__sk7QF9AEd6Ia9Y2HBkITA" name="formattedname"/>
     </packagedElement>
   </packagedElement>
 </uml:Model>
