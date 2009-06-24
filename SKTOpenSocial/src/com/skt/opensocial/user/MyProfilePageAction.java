@@ -3,6 +3,7 @@
  */
 package com.skt.opensocial.user;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,7 +14,6 @@ import org.hibernate.Session;
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.developer.DeveloperBaseAction;
-import com.skt.opensocial.developer.GadgetDataList;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
@@ -40,18 +40,65 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 	
 	int requestedPage = 1;
 	
+	String userId;
+	String name;
+	Date registeredDate;
+	int age;
+	
+	
+	
+	
+	public Date getRegisteredDate() {
+		return registeredDate;
+	}
+
+	public void setRegisteredDate(Date registeredDate) {
+		this.registeredDate = registeredDate;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	public String execute(){
 		//
 		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
-		String userId = user.getUserId();
-		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
 		
+		userId = user.getUserId();
+		
 		user = (User)hs.load(User.class, userId);
+				
+		name = user.getPerson().getName();
+		registeredDate = user.getRegisteredDate();
+		System.out.println("--------------------------------------list count " + registeredDate);
+		age = user.getPerson().getAge();
 		
-		
+	
+
+		System.out.println("--------------------------------------list count ");
 		session.put(SKTOpenSocialSupportConstants.USER, user);
 		
 		this.gadgets = user.getFavoriteGadgets();
