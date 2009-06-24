@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@page import="com.skt.opensocial.common.*" %>
+<%@page import="com.skt.opensocial.persistence.*" %>
+<%@page import="org.hibernate.*" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <head>
@@ -66,27 +69,27 @@
 			           
 				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="left">이름</td> 
-                	<td><s:text name="%{user.name}"/></td> 
+                	<td align="center"><s:property value="name"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="left">아이디</td> 
-                	<td><s:text name="%{user.id}"/></td> 
+                	<td align="center"><s:property value="userId"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#FFFFFF;" height="25">
           			<td align="left">전화번호</td> 
-                	<td><s:text name="%{user.phone}"/></td> 
+                	<td align="center"><s:property value="userId"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="left">주소</td> 
-                	<td><s:text name="%{user.address}"/></td> 
+          			<td align="left">나이</td> 
+                	<td align="center"><s:property value="age"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="left">가입일</td> 
-                	<td><s:text name="%{user.regDate}"/></td> 
+                	<td align="center"><s:property value="registeredDate"/></td> 
       			  </tr>
       			<tr><td class="line" colspan="6"></td></tr>
       			
