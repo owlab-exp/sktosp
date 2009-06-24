@@ -11,7 +11,7 @@
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
-<title>사용자 가젯 목록</title>
+<title>사용자 가젯 모음</title>
 </head>
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
