@@ -4,7 +4,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="user" namespace="/user" extends="default">
-		<action name="MyProfilePage">
+		<action name="MyProfilePage" class="com.skt.opensocial.user.MyProfilePageAction">
 			<result>/user/mypage.jsp</result>
 		</action>
 		<action name="Registration">
@@ -26,7 +26,7 @@
 			<result >/main.jsp</result>
 		</action>
 		
-		<action name="MoveDeveloper">
+		<action name="MoveDeveloper" class="com.skt.opensocial.developer.ListGadgetsAction">
 			<result >/developer/DeveloperListGadgets.jsp</result>
 		</action>
 		
@@ -49,7 +49,7 @@
 			<result >/user/UserListGadgets.jsp</result>
 		</action>
 		
-		<action name="ListMyGadgets">
+		<action name="ListGadgets" class="com.skt.opensocial.user.ListGadgetsAction">
 			<result>/user/UserListGadgets.jsp</result>
 		</action>
 		
