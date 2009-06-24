@@ -8,7 +8,7 @@
 		<action name="UserLogin" class="com.skt.opensocial.security.LoginAction">
 			<interceptor-ref name="defaultStack"/>
 			<result name="input">/main.jsp</result>
-			<result name="success" >/user/mypage.jsp</result>
+			<result name="success" type="redirectAction">../user/MyProfilePage</result>
 		</action>
 		<action name="UserLogout" class="com.skt.opensocial.security.LogoutAction">
 			<interceptor-ref name="defaultStack"/>
