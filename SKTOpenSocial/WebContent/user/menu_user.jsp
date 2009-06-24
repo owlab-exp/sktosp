@@ -11,13 +11,13 @@
 			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/Modification.action'" style="cursor:hand">개인정보수정</td>
 		</tr>	
 		<tr>
-			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ManageGadget.action'" style="cursor:hand">가젯모음</td>
+			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ListGadgets.action'" style="cursor:hand">가젯모음</td>
 		</tr>
 		<tr>
 			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ManageFriend.action'" style="cursor:hand">친구모음</td>
 		</tr>
 		<tr>
-			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ManageActivity.action'" style="cursor:hand">행동모음</td>
+			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ManageActivity.action'" style="cursor:hand">액티비티모음</td>
 		</tr>
 	</table>
 
