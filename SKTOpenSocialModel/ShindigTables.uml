@@ -57,9 +57,11 @@
       <ownedAttribute xmi:id="_qVHlQmCPEd6Q3-W4e6hhtA" name="profile_song_url_value"/>
       <ownedAttribute xmi:id="_sg45QmCPEd6Q3-W4e6hhtA" name="profile_song_url_link_text"/>
       <ownedAttribute xmi:id="_t9uDoGCPEd6Q3-W4e6hhtA" name="profile_song_url_type"/>
-      <ownedAttribute xmi:id="_voHI4mCPEd6Q3-W4e6hhtA" name="profile_video_url_value"/>
-      <ownedAttribute xmi:id="_xUAC8mCPEd6Q3-W4e6hhtA" name="profile_video_url_link_text"/>
-      <ownedAttribute xmi:id="_zqgAQmCPEd6Q3-W4e6hhtA" name="profile_video_url_type"/>
+      <ownedAttribute xmi:id="_BI1bYGCVEd6t9OUmxEYqOA" name="profile_song_url_primary"/>
+      <ownedAttribute xmi:id="_DHpRcmCVEd6t9OUmxEYqOA" name="profile_video_url_value"/>
+      <ownedAttribute xmi:id="_Eay7YmCVEd6t9OUmxEYqOA" name="profile_video_url_link_text"/>
+      <ownedAttribute xmi:id="_FvSCEmCVEd6t9OUmxEYqOA" name="profile_video_url_type"/>
+      <ownedAttribute xmi:id="_G9N00mCVEd6t9OUmxEYqOA" name="profile_video_url_primary"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_No3nmGBgEd6Q3-W4e6hhtA" name="SHINDIG_PERSON_ADDITIONAL_INFO_1">
       <ownedAttribute xmi:id="_U8BFEmBgEd6Q3-W4e6hhtA" name="id"/>
@@ -71,9 +73,9 @@
       <ownedAttribute xmi:id="_bL-AMGBgEd6Q3-W4e6hhtA" name="id"/>
       <ownedAttribute xmi:id="_cuwoomBgEd6Q3-W4e6hhtA" name="user_id"/>
       <ownedAttribute xmi:id="_duiqomBgEd6Q3-W4e6hhtA" name="attribute"/>
-      <ownedAttribute xmi:id="_enKUsmBgEd6Q3-W4e6hhtA" name="field_type"/>
-      <ownedAttribute xmi:id="_fjNtQmBgEd6Q3-W4e6hhtA" name="field_value"/>
-      <ownedAttribute xmi:id="_gVb0YmBgEd6Q3-W4e6hhtA" name="field_primary"/>
+      <ownedAttribute xmi:id="_enKUsmBgEd6Q3-W4e6hhtA" name="type"/>
+      <ownedAttribute xmi:id="_fjNtQmBgEd6Q3-W4e6hhtA" name="value"/>
+      <ownedAttribute xmi:id="_gVb0YmBgEd6Q3-W4e6hhtA" name="primary"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_pNUbHGBgEd6Q3-W4e6hhtA" name="A_&lt;sHINDIG_PERSON>_&lt;sHINDIG_PERSON_ADDITIONAL_INFO_1>" memberEnd="_pNUbHWBgEd6Q3-W4e6hhtA _pNUbIGBgEd6Q3-W4e6hhtA" navigableOwnedEnd="_pNUbIGBgEd6Q3-W4e6hhtA">
       <ownedEnd xmi:id="_pNUbHWBgEd6Q3-W4e6hhtA" name="person" type="_u07rMGBdEd6Q3-W4e6hhtA" association="_pNUbHGBgEd6Q3-W4e6hhtA">
@@ -114,7 +116,7 @@
       <ownedAttribute xmi:id="_CB0AsmBnEd6Q3-W4e6hhtA" name="url"/>
       <ownedAttribute xmi:id="_DUg-smBnEd6Q3-W4e6hhtA" name="user_id"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_H4SE2GBnEd6Q3-W4e6hhtA" name="SHINDIG_ACTIVITIES_MEDIA_ITEMS">
+    <packagedElement xmi:type="uml:Class" xmi:id="_H4SE2GBnEd6Q3-W4e6hhtA" name="SHINDIG_ACTIVITY_MEDIA_ITEMS">
       <ownedAttribute xmi:id="_OGmBMmBnEd6Q3-W4e6hhtA" name="id"/>
       <ownedAttribute xmi:id="_PZ41EmBnEd6Q3-W4e6hhtA" name="mime_type"/>
       <ownedAttribute xmi:id="_QIOhwmBnEd6Q3-W4e6hhtA" name="type"/>
@@ -223,13 +225,13 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w5WYF2BzEd6Q3-W4e6hhtA"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_3frWUGB0Ed6Q3-W4e6hhtA" name="SHINDIG_ACCOUNTS">
+    <packagedElement xmi:type="uml:Class" xmi:id="_3frWUGB0Ed6Q3-W4e6hhtA" name="SHINDIG_PERSON_ACCOUNTS">
       <ownedAttribute xmi:id="_bepfEmB1Ed6Q3-W4e6hhtA" name="id"/>
       <ownedAttribute xmi:id="_cvteUmB1Ed6Q3-W4e6hhtA" name="domain"/>
       <ownedAttribute xmi:id="_eRUbAmB1Ed6Q3-W4e6hhtA" name="user_id"/>
       <ownedAttribute xmi:id="_gYnesmB1Ed6Q3-W4e6hhtA" name="user_name"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_-D5RSGB0Ed6Q3-W4e6hhtA" name="SHINDIG_ADDRESSES">
+    <packagedElement xmi:type="uml:Class" xmi:id="_-D5RSGB0Ed6Q3-W4e6hhtA" name="SHINDIG_PERSON_ADDRESSES">
       <ownedAttribute xmi:id="_1-HAcmB1Ed6Q3-W4e6hhtA" name="id"/>
       <ownedAttribute xmi:id="_5Ur6smB1Ed6Q3-W4e6hhtA" name="user_id"/>
       <ownedAttribute xmi:id="_8wCAMmB1Ed6Q3-W4e6hhtA" name="country"/>
@@ -243,7 +245,7 @@
       <ownedAttribute xmi:id="_PSnKkmB2Ed6Q3-W4e6hhtA" name="formatted"/>
       <ownedAttribute xmi:id="_QVgyAmB2Ed6Q3-W4e6hhtA" name="primary"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="__8vCOGB0Ed6Q3-W4e6hhtA" name="SHINDIG_ORGANIZATIONS">
+    <packagedElement xmi:type="uml:Class" xmi:id="__8vCOGB0Ed6Q3-W4e6hhtA" name="SHINDIG_PERSON_ORGANIZATIONS">
       <ownedAttribute xmi:id="_VW7dcmB2Ed6Q3-W4e6hhtA" name="id"/>
       <ownedAttribute xmi:id="_WV94kmB2Ed6Q3-W4e6hhtA" name="user_id"/>
       <ownedAttribute xmi:id="_XI6_gmB2Ed6Q3-W4e6hhtA" name="description">
@@ -259,7 +261,7 @@
       <ownedAttribute xmi:id="_SUWn0mB3Ed6Q3-W4e6hhtA" name="start_date"/>
       <ownedAttribute xmi:id="_Tq7ZMmB3Ed6Q3-W4e6hhtA" name="sub_field"/>
       <ownedAttribute xmi:id="_UrKHImB3Ed6Q3-W4e6hhtA" name="title"/>
-      <ownedAttribute xmi:id="_VJtEUmB3Ed6Q3-W4e6hhtA" name="sebpage"/>
+      <ownedAttribute xmi:id="_VJtEUmB3Ed6Q3-W4e6hhtA" name="webpage"/>
       <ownedAttribute xmi:id="_WBlHgmB3Ed6Q3-W4e6hhtA" name="type"/>
       <ownedAttribute xmi:id="_WhLNkmB3Ed6Q3-W4e6hhtA" name="primary"/>
       <ownedAttribute xmi:id="_Y0iO8mCFEd6Q3-W4e6hhtA" name="address_country"/>
@@ -273,12 +275,13 @@
       <ownedAttribute xmi:id="_q8SegmCFEd6Q3-W4e6hhtA" name="address_formatted"/>
       <ownedAttribute xmi:id="_w--ZsmCFEd6Q3-W4e6hhtA" name="address_primary"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_CAK5mGB1Ed6Q3-W4e6hhtA" name="SHINDIG_URLS">
+    <packagedElement xmi:type="uml:Class" xmi:id="_CAK5mGB1Ed6Q3-W4e6hhtA" name="SHINDIG_PERSON_URLS">
       <ownedAttribute xmi:id="_cXoqoGB3Ed6Q3-W4e6hhtA" name="id"/>
       <ownedAttribute xmi:id="_c_t-UGB3Ed6Q3-W4e6hhtA" name="user_id"/>
       <ownedAttribute xmi:id="_zE8wEmB3Ed6Q3-W4e6hhtA" name="value"/>
       <ownedAttribute xmi:id="_0EbQEGB3Ed6Q3-W4e6hhtA" name="link_text"/>
       <ownedAttribute xmi:id="_073OYmB3Ed6Q3-W4e6hhtA" name="type"/>
+      <ownedAttribute xmi:id="__SVuoGCmEd6t9OUmxEYqOA" name="primary"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_4GqWe2B3Ed6Q3-W4e6hhtA" name="A_&lt;sHINDIG_PERSON>_&lt;sHINDIG_ACCOUNTS>" memberEnd="_4GqWfGB3Ed6Q3-W4e6hhtA _4GqWf2B3Ed6Q3-W4e6hhtA" navigableOwnedEnd="_4GqWf2B3Ed6Q3-W4e6hhtA">
       <ownedEnd xmi:id="_4GqWfGB3Ed6Q3-W4e6hhtA" name="person" type="_u07rMGBdEd6Q3-W4e6hhtA" isUnique="false" association="_4GqWe2B3Ed6Q3-W4e6hhtA">
