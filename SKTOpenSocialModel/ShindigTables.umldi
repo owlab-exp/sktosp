@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_lHtX8WBdEd6Q3-W4e6hhtA" activeDiagram="_lHtX8mBdEd6Q3-W4e6hhtA">
   <model href="ShindigTables.uml#_w8IxIM37EdqwVrslYOdUDA"/>
-  <diagrams xmi:id="_lHtX8mBdEd6Q3-W4e6hhtA" position="0,0" size="100,100" name="ShindigTables" viewport="276,0">
+  <diagrams xmi:id="_lHtX8mBdEd6Q3-W4e6hhtA" position="0,0" size="100,100" name="ShindigTables" viewport="0,0">
     <property xmi:id="_lIAS4GBdEd6Q3-W4e6hhtA" key="pageFormatName" value="A1"/>
     <property xmi:id="_lIAS4WBdEd6Q3-W4e6hhtA" key="diagramWidth" value="2376"/>
     <property xmi:id="_lIAS4mBdEd6Q3-W4e6hhtA" key="diagramHeight" value="3364"/>
@@ -1124,8 +1124,8 @@
       <contained xsi:type="di:EdgeObjectOffset" xmi:id="_gPB9iGB4Ed6Q3-W4e6hhtA" visible="false" id="middleNameEdgeObject" offset="0,10"/>
       <contained xsi:type="di:EdgeObjectOffset" xmi:id="_gPB9iWB4Ed6Q3-W4e6hhtA" id="stereotypeEdgeObject" offset="0,-10"/>
     </contained>
-    <contained xsi:type="di:GraphNode" xmi:id="_CeZJ0GB5Ed6Q3-W4e6hhtA" position="313,19" size="115,226">
-      <property xmi:id="_CeZJ0WB5Ed6Q3-W4e6hhtA" key="noteValue" value="List of &quot;attribute&quot;&#xD;&#xA;&#xD;&#xA;activities,&#xD;&#xA;books,&#xD;&#xA;cars,&#xD;&#xA;food,&#xD;&#xA;heroes,&#xD;&#xA;languagesSpoken,&#xD;&#xA;movies,&#xD;&#xA;music,&#xD;&#xA;quotes,&#xD;&#xA;sports,&#xD;&#xA;tags,&#xD;&#xA;turnOffs,&#xD;&#xA;turnOns,&#xD;&#xA;tvShows"/>
+    <contained xsi:type="di:GraphNode" xmi:id="_CeZJ0GB5Ed6Q3-W4e6hhtA" position="313,3" size="115,242">
+      <property xmi:id="_CeZJ0WB5Ed6Q3-W4e6hhtA" key="noteValue" value="List of &quot;attribute&quot;&#xD;&#xA;&#xD;&#xA;activities,&#xD;&#xA;books,&#xD;&#xA;cars,&#xD;&#xA;food,&#xD;&#xA;heroes,&#xD;&#xA;interests,&#xD;&#xA;languagesSpoken,&#xD;&#xA;lookingFors,&#xD;&#xA;movies,&#xD;&#xA;music,&#xD;&#xA;quotes,&#xD;&#xA;sports,&#xD;&#xA;tags,&#xD;&#xA;turnOffs,&#xD;&#xA;turnOns,&#xD;&#xA;tvShows"/>
       <semanticModel xsi:type="di:SimpleSemanticModelElement" xmi:id="_CeZJ0mB5Ed6Q3-W4e6hhtA" presentation="default" typeInfo="Note"/>
     </contained>
     <contained xsi:type="di:GraphNode" xmi:id="_5gQX4GB9Ed6Q3-W4e6hhtA" position="312,344" size="96,105">

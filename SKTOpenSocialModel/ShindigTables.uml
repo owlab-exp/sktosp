@@ -54,14 +54,14 @@
       <ownedAttribute xmi:id="_kZbp8mCPEd6Q3-W4e6hhtA" name="currentlocation_type"/>
       <ownedAttribute xmi:id="_lterwmCPEd6Q3-W4e6hhtA" name="currentlocation_formatted"/>
       <ownedAttribute xmi:id="_m8mKQmCPEd6Q3-W4e6hhtA" name="currentlocation_primary"/>
-      <ownedAttribute xmi:id="_qVHlQmCPEd6Q3-W4e6hhtA" name="profile_song_url_value"/>
-      <ownedAttribute xmi:id="_sg45QmCPEd6Q3-W4e6hhtA" name="profile_song_url_link_text"/>
-      <ownedAttribute xmi:id="_t9uDoGCPEd6Q3-W4e6hhtA" name="profile_song_url_type"/>
-      <ownedAttribute xmi:id="_BI1bYGCVEd6t9OUmxEYqOA" name="profile_song_url_primary"/>
-      <ownedAttribute xmi:id="_DHpRcmCVEd6t9OUmxEYqOA" name="profile_video_url_value"/>
-      <ownedAttribute xmi:id="_Eay7YmCVEd6t9OUmxEYqOA" name="profile_video_url_link_text"/>
-      <ownedAttribute xmi:id="_FvSCEmCVEd6t9OUmxEYqOA" name="profile_video_url_type"/>
-      <ownedAttribute xmi:id="_G9N00mCVEd6t9OUmxEYqOA" name="profile_video_url_primary"/>
+      <ownedAttribute xmi:id="_qVHlQmCPEd6Q3-W4e6hhtA" name="profilesongurl_value"/>
+      <ownedAttribute xmi:id="_sg45QmCPEd6Q3-W4e6hhtA" name="profilesongurl_link_text"/>
+      <ownedAttribute xmi:id="_t9uDoGCPEd6Q3-W4e6hhtA" name="profilesongurl_type"/>
+      <ownedAttribute xmi:id="_BI1bYGCVEd6t9OUmxEYqOA" name="profilesongurl_primary"/>
+      <ownedAttribute xmi:id="_DHpRcmCVEd6t9OUmxEYqOA" name="profilevideourl_value"/>
+      <ownedAttribute xmi:id="_Eay7YmCVEd6t9OUmxEYqOA" name="profilevideourl_link_text"/>
+      <ownedAttribute xmi:id="_FvSCEmCVEd6t9OUmxEYqOA" name="profilevideourl_type"/>
+      <ownedAttribute xmi:id="_G9N00mCVEd6t9OUmxEYqOA" name="profilevideourl_primary"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_No3nmGBgEd6Q3-W4e6hhtA" name="SHINDIG_PERSON_ADDITIONAL_INFO_1">
       <ownedAttribute xmi:id="_U8BFEmBgEd6Q3-W4e6hhtA" name="id"/>
