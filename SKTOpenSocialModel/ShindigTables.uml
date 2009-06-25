@@ -73,9 +73,9 @@
       <ownedAttribute xmi:id="_bL-AMGBgEd6Q3-W4e6hhtA" name="id"/>
       <ownedAttribute xmi:id="_cuwoomBgEd6Q3-W4e6hhtA" name="user_id"/>
       <ownedAttribute xmi:id="_duiqomBgEd6Q3-W4e6hhtA" name="attribute"/>
-      <ownedAttribute xmi:id="_enKUsmBgEd6Q3-W4e6hhtA" name="type"/>
-      <ownedAttribute xmi:id="_fjNtQmBgEd6Q3-W4e6hhtA" name="value"/>
-      <ownedAttribute xmi:id="_gVb0YmBgEd6Q3-W4e6hhtA" name="primary"/>
+      <ownedAttribute xmi:id="_enKUsmBgEd6Q3-W4e6hhtA" name="filed_type"/>
+      <ownedAttribute xmi:id="_fjNtQmBgEd6Q3-W4e6hhtA" name="field_value"/>
+      <ownedAttribute xmi:id="_gVb0YmBgEd6Q3-W4e6hhtA" name="field_primary"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_pNUbHGBgEd6Q3-W4e6hhtA" name="A_&lt;sHINDIG_PERSON>_&lt;sHINDIG_PERSON_ADDITIONAL_INFO_1>" memberEnd="_pNUbHWBgEd6Q3-W4e6hhtA _pNUbIGBgEd6Q3-W4e6hhtA" navigableOwnedEnd="_pNUbIGBgEd6Q3-W4e6hhtA">
       <ownedEnd xmi:id="_pNUbHWBgEd6Q3-W4e6hhtA" name="person" type="_u07rMGBdEd6Q3-W4e6hhtA" association="_pNUbHGBgEd6Q3-W4e6hhtA">

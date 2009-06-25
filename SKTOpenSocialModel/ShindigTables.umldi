@@ -1125,7 +1125,7 @@
       <contained xsi:type="di:EdgeObjectOffset" xmi:id="_gPB9iWB4Ed6Q3-W4e6hhtA" id="stereotypeEdgeObject" offset="0,-10"/>
     </contained>
     <contained xsi:type="di:GraphNode" xmi:id="_CeZJ0GB5Ed6Q3-W4e6hhtA" position="313,3" size="115,242">
-      <property xmi:id="_CeZJ0WB5Ed6Q3-W4e6hhtA" key="noteValue" value="List of &quot;attribute&quot;&#xD;&#xA;&#xD;&#xA;activities,&#xD;&#xA;books,&#xD;&#xA;cars,&#xD;&#xA;food,&#xD;&#xA;heroes,&#xD;&#xA;interests,&#xD;&#xA;languagesSpoken,&#xD;&#xA;lookingFors,&#xD;&#xA;movies,&#xD;&#xA;music,&#xD;&#xA;quotes,&#xD;&#xA;sports,&#xD;&#xA;tags,&#xD;&#xA;turnOffs,&#xD;&#xA;turnOns,&#xD;&#xA;tvShows"/>
+      <property xmi:id="_CeZJ0WB5Ed6Q3-W4e6hhtA" key="noteValue" value="List of &quot;attribute&quot;&#xD;&#xA;&#xD;&#xA;activities,&#xD;&#xA;books,&#xD;&#xA;cars,&#xD;&#xA;food,&#xD;&#xA;heroes,&#xD;&#xA;interests,&#xD;&#xA;languagesSpoken,&#xD;&#xA;lookingFor,&#xD;&#xA;movies,&#xD;&#xA;music,&#xD;&#xA;quotes,&#xD;&#xA;sports,&#xD;&#xA;tags,&#xD;&#xA;turnOffs,&#xD;&#xA;turnOns,&#xD;&#xA;tvShows"/>
       <semanticModel xsi:type="di:SimpleSemanticModelElement" xmi:id="_CeZJ0mB5Ed6Q3-W4e6hhtA" presentation="default" typeInfo="Note"/>
     </contained>
     <contained xsi:type="di:GraphNode" xmi:id="_5gQX4GB9Ed6Q3-W4e6hhtA" position="312,344" size="96,105">
