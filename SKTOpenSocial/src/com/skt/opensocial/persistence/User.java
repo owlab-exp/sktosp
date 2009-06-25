@@ -1,9 +1,10 @@
 package com.skt.opensocial.persistence;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
 	private String userId;
 	private String password;
 	private boolean isDeveloper;
