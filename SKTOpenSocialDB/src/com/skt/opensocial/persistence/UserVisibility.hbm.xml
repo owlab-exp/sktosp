@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 25, 2009 4:34:44 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.skt.opensocial.persistence.UserVisibility" table="SKT_USER_SECURE" catalog="test">
+        <id name="userId" type="string">
+            <column name="USER_ID" length="20" />
+<!--            <generator class="assigned" />-->
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="5" not-null="true" />
+        </property>
+        <property name="addresses" type="string">
+            <column name="ADDRESSES" length="5" not-null="true" />
+        </property>
+        <property name="age" type="string">
+            <column name="AGE" length="5" not-null="true" />
+        </property>
+        <property name="botytype" type="string">
+            <column name="BOTYTYPE" length="5" not-null="true" />
+        </property>
+        <property name="books" type="string">
+            <column name="BOOKS" length="5" not-null="true" />
+        </property>
+        <property name="cars" type="string">
+            <column name="CARS" length="5" not-null="true" />
+        </property>
+        <property name="children" type="string">
+            <column name="CHILDREN" length="5" not-null="true" />
+        </property>
+        <property name="currentlocation" type="string">
+            <column name="CURRENTLOCATION" length="5" not-null="true" />
+        </property>
+        <property name="dateofbirth" type="string">
+            <column name="DATEOFBIRTH" length="5" not-null="true" />
+        </property>
+        <property name="drinker" type="string">
+            <column name="DRINKER" length="5" not-null="true" />
+        </property>
+        <property name="emails" type="string">
+            <column name="EMAILS" length="5" not-null="true" />
+        </property>
+        <property name="ethnicity" type="string">
+            <column name="ETHNICITY" length="5" not-null="true" />
+        </property>
+        <property name="fashion" type="string">
+            <column name="FASHION" length="5" not-null="true" />
+        </property>
+        <property name="food" type="string">
+            <column name="FOOD" length="5" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="GENDER" length="5" not-null="true" />
+        </property>
+        <property name="happiestwhen" type="string">
+            <column name="HAPPIESTWHEN" length="5" not-null="true" />
+        </property>
+        <property name="hasapp" type="string">
+            <column name="HASAPP" length="5" not-null="true" />
+        </property>
+        <property name="heroes" type="string">
+            <column name="HEROES" length="5" not-null="true" />
+        </property>
+        <property name="humor" type="string">
+            <column name="HUMOR" length="5" not-null="true" />
+        </property>
+        <property name="interests" type="string">
+            <column name="INTERESTS" length="5" not-null="true" />
+        </property>
+        <property name="jobinterests" type="string">
+            <column name="JOBINTERESTS" length="5" not-null="true" />
+        </property>
+        <property name="jobs" type="string">
+            <column name="JOBS" length="5" not-null="true" />
+        </property>
+        <property name="languagesspoken" type="string">
+            <column name="LANGUAGESSPOKEN" length="5" not-null="true" />
+        </property>
+        <property name="livingarrangement" type="string">
+            <column name="LIVINGARRANGEMENT" length="5" not-null="true" />
+        </property>
+        <property name="lookingfor" type="string">
+            <column name="LOOKINGFOR" length="5" not-null="true" />
+        </property>
+        <property name="movies" type="string">
+            <column name="MOVIES" length="5" not-null="true" />
+        </property>
+        <property name="music" type="string">
+            <column name="MUSIC" length="5" not-null="true" />
+        </property>
+        <property name="networkpresence" type="string">
+            <column name="NETWORKPRESENCE" length="5" not-null="true" />
+        </property>
+        <property name="nickname" type="string">
+            <column name="NICKNAME" length="5" not-null="true" />
+        </property>
+        <property name="pets" type="string">
+            <column name="PETS" length="5" not-null="true" />
+        </property>
+        <property name="phonenumbers" type="string">
+            <column name="PHONENUMBERS" length="5" not-null="true" />
+        </property>
+        <property name="politicalviews" type="string">
+            <column name="POLITICALVIEWS" length="5" not-null="true" />
+        </property>
+        <property name="profilesong" type="string">
+            <column name="PROFILESONG" length="5" not-null="true" />
+        </property>
+        <property name="profileurl" type="string">
+            <column name="PROFILEURL" length="5" not-null="true" />
+        </property>
+        <property name="profilevideo" type="string">
+            <column name="PROFILEVIDEO" length="5" not-null="true" />
+        </property>
+        <property name="quotes" type="string">
+            <column name="QUOTES" length="5" not-null="true" />
+        </property>
+        <property name="relationshipstatus" type="string">
+            <column name="RELATIONSHIPSTATUS" length="5" not-null="true" />
+        </property>
+        <property name="religion" type="string">
+            <column name="RELIGION" length="5" not-null="true" />
+        </property>
+        <property name="romance" type="string">
+            <column name="ROMANCE" length="5" not-null="true" />
+        </property>
+        <property name="scaredof" type="string">
+            <column name="SCAREDOF" length="5" not-null="true" />
+        </property>
+        <property name="schools" type="string">
+            <column name="SCHOOLS" length="5" not-null="true" />
+        </property>
+        <property name="sexualorientation" type="string">
+            <column name="SEXUALORIENTATION" length="5" not-null="true" />
+        </property>
+        <property name="smoker" type="string">
+            <column name="SMOKER" length="5" not-null="true" />
+        </property>
+        <property name="sports" type="string">
+            <column name="SPORTS" length="5" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="5" not-null="true" />
+        </property>
+        <property name="tags" type="string">
+            <column name="TAGS" length="5" not-null="true" />
+        </property>
+        <property name="thumbnailurl" type="string">
+            <column name="THUMBNAILURL" length="5" not-null="true" />
+        </property>
+        <property name="timezone" type="string">
+            <column name="TIMEZONE" length="5" not-null="true" />
+        </property>
+        <property name="turnoffs" type="string">
+            <column name="TURNOFFS" length="5" not-null="true" />
+        </property>
+        <property name="turnons" type="string">
+            <column name="TURNONS" length="5" not-null="true" />
+        </property>
+        <property name="tvshows" type="string">
+            <column name="TVSHOWS" length="5" not-null="true" />
+        </property>
+        <property name="urls" type="string">
+            <column name="URLS" length="5" not-null="true" />
+        </property>
+        <property name="ethinicity" type="string">
+            <column name="ETHINICITY" />
+        </property>
+        <property name="happieswhen" type="string">
+            <column name="HAPPIESWHEN" />
+        </property>
+        
+        <one-to-one name="user" class="com.skt.opensocial.persistence.User" property-ref="userVisibility"/>
+        
+    </class>
+</hibernate-mapping>
