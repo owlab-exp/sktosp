@@ -69,51 +69,94 @@
             <!-- bbs -->
             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
 			<colgroup> 
+                <col width="5%" /> 
                 <col width="10%" /> 
-                <col width="30%" /> 
+                <col width="20%" />
                 <col width="10%" />
-                <col width="15%" />
-                <col width="15%" /> 
-                <col width="15%" /> 
+                <col width="10%" /> 
+                <col width="10%" /> 
+                <col width="10%" /> 
+                <col width="10%" /> 
+                <col width="10%" /> 
                 <col width="5%" /> 
               </colgroup>
               
 <!--  <s:property value="gadgetlistStr"/>	-->
 
     			  <tr style="background-color:#F5F5F5;">
+          			<td>번호</td> 
           			<td>이름</td> 
                 	<td>설명</td> 
       			    <td align="center">개발자</td> 
       			    <td align="center">등록일자</td> 
+      			    <td align="center">발행일자</td> 
+      			    <td align="center">선호등록인수</td> 
       			    <td align="center">상태</td> 
       			    <td align="center">작업</td> 
       			    <td align="center">삭제</td> 
       			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>
+      			  <tr><td class="line" colspan="10"></td></tr>
 
-    			<s:iterator value="gadgetlist">
+
+    			<s:iterator value="gadgets">
     			  <tr> 
+					<s:url id="gadgetPreviewUrl" action="PreviewGadget">
+						<s:param name="gadgetId"><s:property value="id"/></s:param>
+					</s:url>    			  
+                	<td><s:property value="id"/></td> 
           			<td><span class="num"><s:url var="url" namespace="/admin" action="GadgetDetail"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
-                	<td><s:property value="desc"/></td> 
+                	<td><s:property value="introduction"/></td> 
       			    <td align="center">
-      			    <s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="owner"/></s:a>
+      			    <s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="developer.id"/></s:a>
       			    </td> 
-      			    <td align="center"><span class="num"><s:property value="createdDate"/></span></td> 
-      			    <td align="center"><s:property value="status"/></td>					 
-      			    <td align="center">
+					<td align="center"><s:date name="registerDate" format="yyyy/MM/dd"/></td>
+					<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
+					<td align="center"><s:property value="favoriteUsers.size"/></td>
       			    
-				<s:if test="%{nextstate.equals('발행')}">
-      			    <a href="#" onclick="javascript:popup('popup_gadget_publish_response.jsp','GadgetRegister')"><input type="button" value="<s:property value="nextstate"/>"></a>
-				</s:if>
-
-				<s:if test="%{!nextstate.equals('발행')}">
- 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
- 	    			<s:param name="name" value="%{gadget.name}" />
- 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
- 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
- 	    			<input type="button" value="<s:property value="%{nextstate}"/>"></s:a> 	    			
-				</s:if>
-
+					<td align="center">
+					<s:if test="%{status.equals('rg')}">
+						등록완료
+					</s:if>
+					<s:elseif test="%{status.equals('pr')}">
+						발행요청
+					</s:elseif>
+					<s:elseif test="%{status.equals('pg')}">
+						발행완료
+					</s:elseif>
+					<s:elseif test="%{status.equals('pd')}">
+						발행거절
+					</s:elseif>
+					<s:elseif test="%{status.equals('nr')}">
+						미등록
+					</s:elseif>
+					</td>
+					 
+      			    <td align="center">      			    
+						<s:if test="%{status.equals('rg')}">
+		 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
+		 	    			<s:param name="name" value="%{gadget.name}" />
+		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
+		 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
+		 	    			<input type="button" value="비활성"/></s:a> 	    			
+						</s:if>
+						<s:elseif test="%{status.equals('pr')}">
+							<a href="#" onclick="javascript:popup('popup_gadget_publish_response.jsp','GadgetRegister')">
+							<input type="button" value="발행">
+							</a>
+						</s:elseif>
+						<s:elseif test="%{status.equals('pg')}">
+		 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
+		 	    			<s:param name="name" value="%{gadget.name}" />
+		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
+		 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
+		 	    			<input type="button" value="비활성"/></s:a> 	    			
+						</s:elseif>
+						<s:elseif test="%{status.equals('pd')}">
+							
+						</s:elseif>
+						<s:elseif test="%{status.equals('nr')}">
+							
+						</s:elseif>
 					</td>
 					<td align="center">
  	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
@@ -122,8 +165,9 @@
  	    			<input type="button" value="삭제"></s:a>			    
       			    </td> 
       			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>
+      			  <tr><td class="line" colspan="10"></td></tr>
       			</s:iterator>
+
 				</table>
             </td>
            </tr>
