@@ -6,32 +6,32 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 
 <select id="getActivities" parameterClass="java.lang.String" resultClass="activity">
 SELECT
-appId as appId, 
+app_id as appId, 
 body as body, 
-bodyId as bodyId, 
-externalId as externalId, 
+body_id as bodyId, 
+external_id as externalId, 
 activity_id as id, 
 updated as updated, 
-postedTime as postedTime, 
+posted_time as postedTime, 
 priority as priority, 
-streamFaviconUrl as streamFaviconUrl,
-streamSourceUrl as streamSourceUrl, 
-streamTitle as streamTitle, 
-streamUrl as streamUrl, 
+stream_favicon_url as streamFaviconUrl,
+stream_source_url as streamSourceUrl, 
+stream_title as streamTitle, 
+stream_url as streamUrl, 
 title as title, 
-titleId as titleId, 
+title_id as titleId, 
 url as url, 
-userId userId
+user_id userId
 FROM SHINDIG_ACTIVITIES
-WHERE userId = #uesr#
+WHERE user_id = #uesr#
 </select>
 
 <select id="getMediaItems" parameterClass="activity" resultClass="mediaItem">
 SELECT
-mimetype as mimeType,
+mime_type as mimeType,
 type as type,
 url as url,
-thumbnailUrl as thumbnailUrl
+thumbnail_url as thumbnailUrl
 FROM SHINDIG_ACTIVITY_MEDIA_ITEMS
 WHERE activity_id = #id# and user_id = #userId#
 </select>
