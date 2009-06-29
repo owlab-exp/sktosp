@@ -76,7 +76,7 @@ public class PersonDB {
   private Boolean currentLocation_primary;
   
   private String displayName;
-  private Drinker drinker;			//private Enum<Drinker> drinker;
+  private String drinker;			//private Enum<Drinker> drinker;
   
   //to be implemented in DB
   private List<ListField> emails;
@@ -84,7 +84,7 @@ public class PersonDB {
   private String ethnicity;
   private String fashion;
   private List<String> food;
-  private Gender gender;			//private Gender gender;
+  private String gender;			//private Gender gender;
   private String happiestWhen;
   private Boolean hasApp;
   private List<String> heroes;
@@ -98,7 +98,7 @@ public class PersonDB {
   private String jobInterests;
   private List<String> languagesSpoken;
   private String livingArrangement;
-  private List<LookingFor> lookingFor;		//private List<Enum<LookingFor>> lookingFor;
+  private List<String> lookingFor;		//private List<Enum<LookingFor>> lookingFor;
   private List<String> movies;
   private List<String> music;
 
@@ -110,7 +110,7 @@ public class PersonDB {
   private String name_honorificSuffix;
   private String name_formatted;
   
-  private NetworkPresence networkPresence;	//private Enum<NetworkPresence> networkPresence;
+  private String networkPresence;	//private Enum<NetworkPresence> networkPresence;
   private String nickName;
   private List<Organization> organizations;
   private String pets;
@@ -121,15 +121,13 @@ public class PersonDB {
   
   private String politicalViews;
   private String preferredUsername;
-  private String profileSongUrl;	//private Url profileSong;
-  private String profileVideoUrl;	//private Url profileVideo;
   private List<String> quotes;
   private String relationshipStatus;
   private String religion;
   private String romance;
   private String scaredOf;
   private String sexualOrientation;
-  private Smoker smoker;			//private Enum<Smoker> smoker;
+  private String smoker;			//private Enum<Smoker> smoker;
   private List<String> sports;
   private String status;
   private List<String> tags;
@@ -140,9 +138,15 @@ public class PersonDB {
   private Date updated;
   private List<Url> urls;
   
-  /* additional urls that are not parameters of Person but can be obtained from the parameters */
-  private String profileUrl;
-  private String thumbnailUrl;
+  private String profileSongUrl_value;
+  private String profileSongUrl_linkText;
+  private String profileSongUrl_type;
+  private Boolean profileSongUrl_primary;
+  private String profileVideoUrl_value;
+  private String profileVideoUrl_linkText;
+  private String profileVideoUrl_type;
+  private Boolean profileVideoUrl_primary;
+  
 
   public PersonDB() {
   }
@@ -379,11 +383,11 @@ public class PersonDB {
     this.displayName = displayName;
   }
 
-  public Drinker getDrinker() {
+  public String getDrinker() {
     return this.drinker;
   }
 
-  public void setDrinker(Drinker newDrinker) {
+  public void setDrinker(String newDrinker) {
     this.drinker = newDrinker;
   }
 
@@ -419,11 +423,11 @@ public class PersonDB {
     this.food = food;
   }
 
-  public Gender getGender() {
+  public String getGender() {
     return gender;
   }
 
-  public void setGender(Gender newGender) {
+  public void setGender(String newGender) {
     this.gender = newGender;
   }
 
@@ -522,11 +526,11 @@ public class PersonDB {
     this.livingArrangement = livingArrangement;
   }
 
-  public List<LookingFor> getLookingFor() {
+  public List<String> getLookingFor() {
     return lookingFor;
   }
 
-  public void setLookingFor(List<LookingFor> lookingFor) {
+  public void setLookingFor(List<String> lookingFor) {
     this.lookingFor = lookingFor;
   }
 
@@ -594,11 +598,11 @@ public class PersonDB {
     this.name_formatted = name_formatted;
   }
 
-  public NetworkPresence getNetworkPresence() {
+  public String getNetworkPresence() {
     return networkPresence;
   }
 
-  public void setNetworkPresence(NetworkPresence networkPresence) {
+  public void setNetworkPresence(String networkPresence) {
     this.networkPresence = networkPresence;
   }
 
@@ -658,22 +662,6 @@ public class PersonDB {
     this.preferredUsername = preferredUsername;
   }
 
-  public String getProfileSongUrl() {
-    return profileSongUrl;
-  }
-
-  public void setProfileSongUrl(String profileSongUrl) {
-    this.profileSongUrl = profileSongUrl;
-  }
-
-  public String getProfileVideoUrl() {
-    return profileVideoUrl;
-  }
-
-  public void setProfileVideoUrl(String profileVideoUrl) {
-    this.profileVideoUrl = profileVideoUrl;
-  }
-
   public List<String> getQuotes() {
     return quotes;
   }
@@ -722,11 +710,11 @@ public class PersonDB {
     this.sexualOrientation = sexualOrientation;
   }
 
-  public Smoker getSmoker() {
+  public String getSmoker() {
     return this.smoker;
   }
 
-  public void setSmoker(Smoker newSmoker) {
+  public void setSmoker(String newSmoker) {
     this.smoker = newSmoker;
   }
 
@@ -793,20 +781,67 @@ public class PersonDB {
     this.urls = urls;
   }
 
-  public String getProfileUrl() {
-    return profileUrl;
+  public String getProfileSongUrl_value() {
+    return profileSongUrl_value;
   }
 
-  public void setProfileUrl(String profileUrl) {
-    this.profileUrl = profileUrl;
+  public void setProfileSongUrl_value(String profileSongUrl_value) {
+    this.profileSongUrl_value = profileSongUrl_value;
   }
 
-  public String getThumbnailUrl() {
-    return thumbnailUrl;
+  public String getProfileSongUrl_linkText() {
+	    return profileSongUrl_linkText;
+	  }
+
+  public void setProfileSongUrl_linkText(String profileSongUrl_linkText) {
+    this.profileSongUrl_linkText = profileSongUrl_linkText;
+  }
+  
+  public String getProfileSongUrl_type() {
+	    return profileSongUrl_type;
+	  }
+
+  public void setProfileSongUrl_type(String profileSongUrl_type) {
+    this.profileSongUrl_type = profileSongUrl_type;
+  }
+	  
+  public Boolean getProfileSongUrl_primary() {
+	    return profileSongUrl_primary;
+	  }
+
+  public void setProfileSongUrl_primary(Boolean profileSongUrl_primary) {
+    this.profileSongUrl_primary = profileSongUrl_primary;
   }
 
-  public void setThumbnailUrl(String thumbnailUrl) {
-    this.thumbnailUrl = thumbnailUrl;
+  public String getProfileVideoUrl_value() {
+	    return profileVideoUrl_value;
+	  }
+
+  public void setProfileVideoUrl_value(String profileVideoUrl_value) {
+    this.profileVideoUrl_value = profileVideoUrl_value;
   }
 
+  public String getProfileVideoUrl_linkText() {
+	    return profileVideoUrl_linkText;
+	  }
+
+  public void setProfileVideoUrl_linkText(String profileVideoUrl_linkText) {
+    this.profileVideoUrl_linkText = profileVideoUrl_linkText;
+  }
+  
+  public String getProfileVideoUrl_type() {
+	    return profileVideoUrl_type;
+	  }
+
+  public void setProfileVideoUrl_type(String profileVideoUrl_type) {
+    this.profileVideoUrl_type = profileVideoUrl_type;
+  }
+	  
+  public Boolean getProfileVideoUrl_primary() {
+	    return profileVideoUrl_primary;
+	  }
+
+  public void setProfileVideoUrl_primary(Boolean profileVideoUrl_primary) {
+    this.profileVideoUrl_primary = profileVideoUrl_primary;
+  }
 }

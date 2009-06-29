@@ -8,7 +8,6 @@ import org.apache.shindig.protocol.RestfulCollection;
 import org.apache.shindig.protocol.model.SortOrder;
 import org.apache.shindig.social.core.model.PersonImpl;
 import org.apache.shindig.social.opensocial.model.Person;
-import org.apache.shindig.social.opensocial.model.ListField;
 import org.apache.shindig.social.opensocial.spi.CollectionOptions;
 import org.apache.shindig.social.opensocial.spi.GroupId;
 import org.apache.shindig.social.opensocial.spi.PersonService;
@@ -32,8 +31,8 @@ import com.google.inject.Singleton;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.skt.opensocial.wrapper.persistence.util.IBATISSqlMapper;
 import com.skt.opensocial.wrapper.persistence.domain.PersonDB;
-import com.skt.opensocial.wrapper.persistence.domain.PersonListStringDB;
-import com.skt.opensocial.wrapper.persistence.domain.PersonListFieldDB;
+import com.skt.opensocial.wrapper.persistence.domain.OrganizationDB;
+import com.skt.opensocial.wrapper.persistence.domain.PersonAddInfoQueryParam;
 import com.skt.opensocial.wrapper.persistence.util.DBTableMapper;
 
 
@@ -66,24 +65,24 @@ public class PersonDBService implements PersonService {
 	  List<Person> result = Lists.newArrayList();
 	  
 	  try {
-	      Set<UserId> idSet = getIdSet(userIds, groupId, token);
+	      Set<String> idSet = getIdSet(userIds, groupId, token);
 	
-	      for (UserId id : idSet) {
+	      for (String id : idSet) {
 	    	  Person person = this.getPersonFromDB(id, fields, token);
 	    	  
 	    	  result.add(person);
 	      }
 	      
-	      if (result != null) {
+	      if (result.size() > 0) {
 	
 		      if (GroupId.Type.self == groupId.getType() && result.isEmpty()) {
 		        throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Person not found");
 		      }
 		
 		      // We can pretend that by default the people are in top friends order
-	//	      if (options.getSortBy().equals(Person.Field.NAME.toString())) {
-	//	        Collections.sort(result, NAME_COMPARATOR);
-	//	      }
+		      if (options.getSortBy().equals(Person.Field.NAME.toString())) {
+		        Collections.sort(result, NAME_COMPARATOR);
+		      }
 		
 		      if (options.getSortOrder() == SortOrder.descending) {
 		        Collections.reverse(result);
@@ -113,7 +112,9 @@ public class PersonDBService implements PersonService {
 	  
 	  
 	  try {
-		 Person person = this.getPersonFromDB(id, fields, token);
+		  String userId = id.getUserId(token);
+		  
+		 Person person = this.getPersonFromDB(userId, fields, token);
 		  
 		  if (person != null) {
 			  return ImmediateFuture.newInstance(person);
@@ -128,36 +129,55 @@ public class PersonDBService implements PersonService {
   }
   
   @SuppressWarnings("unchecked")
-private Person getPersonFromDB (UserId id, Set<String> fields, SecurityToken token) {
+  private Person getPersonFromDB (String userId, Set<String> fields, SecurityToken token) {
 	  PersonImpl person = new PersonImpl();
 	  PersonDB personDB = new PersonDB();
 	  
 	  try {
 		  //*** get the default information of the person ***//
-		  personDB = (PersonDB) sqlMap.queryForObject("getPersonDefaultInfo", id.getUserId(token));
+		  personDB = (PersonDB) sqlMap.queryForObject("getPersonDefaultInfo", userId);
 		  
 		  if (personDB != null) {
-		  
+			  
 			  //*** get the additional information of the person in forms of List<String> ***//
-			  personDB.setBooks( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.books))) );
-			  personDB.setCars( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.cars))) );
-			  personDB.setFood( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.food))) );
-			  personDB.setHeroes( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.heroes))) );
-			  personDB.setInterests( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.interests))) );
-			  personDB.setLanguagesSpoken( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.languagesSpoken))) );
-			 
-			  List<String> lookingForList = sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.lookingFor)));
-			  //PersonDB.setLookingFor( DBTableMapper.getLookingForFrom(lookingForList) );
-			
-			  personDB.setMovies( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.movies))) );
-			  personDB.setMusic( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.music))) );
-			  personDB.setQuotes( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.quotes))) );
-			  personDB.setMusic( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.music))) );
-			  personDB.setSports( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.sports))) );
-			  personDB.setTags( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.tags))) );
-			  personDB.setTurnOffs( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.turnOffs))) );
-			  personDB.setTurnOns( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.turnOns))) );
-			  personDB.setTvShows( sqlMap.queryForList("getListStringOneByOne", (new PersonListStringDB(id.getUserId(token), PersonListStringDB.Attribute.tvShows))) );
+			  personDB.setActivities( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "activities")) );
+			  personDB.setBooks( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "books")) );
+			  personDB.setCars( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "cars")) );
+			  personDB.setFood( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "food")) );
+			  personDB.setHeroes( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "heroes")) );
+			  personDB.setInterests( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "interests")) );
+			  personDB.setLanguagesSpoken( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "languageSpoken")) );
+			  personDB.setLookingFor( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "lookingFor")) );
+			  personDB.setMovies( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "Movies")) );
+			  personDB.setMusic( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "Music")) );
+			  personDB.setQuotes( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "Quotes")) );
+			  personDB.setSports( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "Sports")) );
+			  personDB.setTags( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "Tags")) );
+			  personDB.setTurnOffs( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "TurnOffs")) );
+			  personDB.setTurnOns( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "TurnOns")) );
+			  personDB.setTvShows( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "TvShows")) );
+			  
+			  //*** get the additional information of the person in forms of List<ListField> ***//
+			  personDB.setEmails( sqlMap.queryForList("getPersonListFieldOneByOne", new PersonAddInfoQueryParam(userId, "emails")) );
+			  personDB.setIms( sqlMap.queryForList("getPersonListFieldOneByOne", new PersonAddInfoQueryParam(userId, "ims")) );
+			  personDB.setPhoneNumbers( sqlMap.queryForList("getPersonListFieldOneByOne", new PersonAddInfoQueryParam(userId, "phoneNumbers")) );
+			  personDB.setPhotos( sqlMap.queryForList("getPersonListFieldOneByOne", new PersonAddInfoQueryParam(userId, "photos")) );
+		  
+			  //*** get the Accounts of the person ***//
+			  personDB.setAccounts( sqlMap.queryForList("getPersonAccounts", userId) );
+			  
+			  //*** get the Addresses of the person ***//
+			  personDB.setAddresses( sqlMap.queryForList("getPersonAddresses", userId) );
+			  
+			  //*** get the Urls of the person ***//
+			  personDB.setUrls( sqlMap.queryForList("getPersonUrls", userId) );
+			  
+			  //*** get the Organizations of the person ***//
+			  List<OrganizationDB> organizationDBList= sqlMap.queryForList("getPersonOrganizations", userId);
+			  personDB.setOrganizations( DBTableMapper.getOrganizationsFromOrganizationDBList(organizationDBList) );
+			  
+			  //*** get the AppData of the person ***//
+			  personDB.setAppData( sqlMap.queryForMap("getPersonAppData", userId, "field", "data") );
 			  
 			  person = (PersonImpl) DBTableMapper.getPersonFromPersonDB(personDB);
 		  }
@@ -169,195 +189,70 @@ private Person getPersonFromDB (UserId id, Set<String> fields, SecurityToken tok
 	  
 	  return person;
   }
-  
- /**
-  *  test for inserting Person data
-  */
-  public void insertPerson(Person person) {
-
-	  try {
-		  
-		  //****insert Default Information ****//
-		  PersonDB personDB = DBTableMapper.getPersonDBFromPerson(person);
-		  sqlMap.insert("insertPersonDefaultInfo", personDB);
-
-		  //**** insert additional information in forms of List<String> ****//
-		  // insert books
-		  List<String> books = personDB.getBooks();
-		  this.insertListString(personDB.getId(), books, PersonListStringDB.Attribute.books);
-		  
-		  // insert cars
-		  List<String> cars = personDB.getCars();
-		  this.insertListString(personDB.getId(), cars, PersonListStringDB.Attribute.cars);
-		  
-		  // insert food
-		  List<String> food = personDB.getFood();
-		  this.insertListString(personDB.getId(), food, PersonListStringDB.Attribute.food);
-		  
-		  // insert heroes
-		  List<String> heroes = personDB.getHeroes();
-		  this.insertListString(personDB.getId(), heroes, PersonListStringDB.Attribute.heroes);
-		  
-		  // insert interests
-		  List<String> interests = personDB.getInterests();
-		  this.insertListString(personDB.getId(), interests, PersonListStringDB.Attribute.interests);
-		  
-		  // insert languagesSpoken
-		  List<String> languagesSpoken = personDB.getLanguagesSpoken();
-		  this.insertListString(personDB.getId(), languagesSpoken, PersonListStringDB.Attribute.languagesSpoken);
-		  
-		  // insert lookingFor
-		  //List<String> lookingFor = personDB.getLookingFor();
-		  //this.insertListString(personDB.getId(), lookingFor, PersonListStringDB.Attribute.lookingFor);
-		  
-		  // insert movies
-		  List<String> movies = personDB.getMovies();
-		  this.insertListString(personDB.getId(), movies, PersonListStringDB.Attribute.movies);
-		  
-		  // insert music
-		  List<String> music = personDB.getMusic();
-		  this.insertListString(personDB.getId(), music, PersonListStringDB.Attribute.music);
-		  
-		  // insert quotes
-		  List<String> quotes = personDB.getQuotes();
-		  this.insertListString(personDB.getId(), quotes, PersonListStringDB.Attribute.quotes);
-		  
-		  // insert sports
-		  List<String> sports = personDB.getSports();
-		  this.insertListString(personDB.getId(), sports, PersonListStringDB.Attribute.sports);
-		  
-		  // insert tags
-		  List<String> tags = personDB.getTags();
-		  this.insertListString(personDB.getId(), tags, PersonListStringDB.Attribute.tags);
-		  
-		  // insert turnOffs
-		  List<String> turnOffs = personDB.getTurnOffs();
-		  this.insertListString(personDB.getId(), turnOffs, PersonListStringDB.Attribute.turnOffs);
-		  
-		  // insert turnOns
-		  List<String> turnOns = personDB.getTurnOns();
-		  this.insertListString(personDB.getId(), turnOns, PersonListStringDB.Attribute.turnOns);
-			
-		  // insert tvShows
-		  List<String> tvShows = personDB.getTvShows();
-		  this.insertListString(personDB.getId(), tvShows, PersonListStringDB.Attribute.tvShows);
-		  
-		  
-		  //**** insert additional information in forms of List<String> ****/
-		  //insert emails
-		  List<ListField> emails = personDB.getEmails();
-		  this.insertListField(personDB.getId(), emails, PersonListFieldDB.Attribute.emails);
-		  
-		  //insert ims
-		  List<ListField> ims = personDB.getIms();
-		  this.insertListField(personDB.getId(), ims, PersonListFieldDB.Attribute.ims);
-		  
-		  //insert phoneNumbers
-		  List<ListField> phoneNumbers = personDB.getPhoneNumbers();
-		  this.insertListField(personDB.getId(), phoneNumbers, PersonListFieldDB.Attribute.phoneNumbers);
-		  
-		  //insert photos
-		  List<ListField> photos = personDB.getPhotos();
-		  this.insertListField(personDB.getId(), photos, PersonListFieldDB.Attribute.photos);
-	  } 
-	  catch(Exception e) {
-		  e.printStackTrace();
-	  }
-  }
-  
-  private void insertListString(String personId, List<String> list, PersonListStringDB.Attribute attributeType) {
-	  try {
-		  if (list != null) {
-			  for ( String element : list ) {
-				  PersonListStringDB personListStringDB = new PersonListStringDB(personId, attributeType, element);
-				  sqlMap.insert("insertListStringOneByOne", personListStringDB);
-			  }
-		  }  
-	  } catch(Exception e) {
-		  e.printStackTrace();
-	  }
-	
-  }
-  
-  private void insertListField(String personId, List<ListField> list, PersonListFieldDB.Attribute attributeType) {
-	  try {
-		  if (list != null) {
-			  for ( ListField element : list ) {
-				  PersonListFieldDB personListFieldDB = new PersonListFieldDB(personId, attributeType, element);
-				  sqlMap.insert("insertListFieldOneByOne", personListFieldDB);
-			  }
-		  }
-	  } catch(Exception e) {
-		  e.printStackTrace();
-	  }
-  }
+ 
   
   /**
    * Get the set of user id's from a user and group
    */
   @SuppressWarnings("unchecked")
-private Set<UserId> getIdSet(UserId user, GroupId group, SecurityToken token)
+  private Set<String> getIdSet(UserId userId, GroupId groupId, SecurityToken token)
       throws JSONException {
-
-    if (group == null) {
-      return ImmutableSortedSet.of(user);
+	  
+	  String user = userId.getUserId(token);
+	  
+	  
+    if (groupId == null) {
+    	return ImmutableSortedSet.of(user);
     }
 
-    Set<UserId> returnVal = new HashSet<UserId>();
+    Set<String> idSet = new HashSet<String>();
     
-    switch (group.getType()) {
+    switch (groupId.getType()) {
     case all:
-    	returnVal.add(user);
+    	idSet.add(user);
     	try {
-    		List<String> allUserIds = sqlMap.queryForList("getAllUserIds");
+    		List<String> allUserIds = sqlMap.queryForList( "getAllUserIds" );
     		
     		for (String id : allUserIds ) {
-        		this.buildUserIds(id);
-        		returnVal.add( new UserId(Type.userId, id) );
+        		idSet.add( id );
         	}
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
     	
     	break;
-    case friends:
-/*
     case groupId:
-      if (db.getJSONObject(FRIEND_LINK_TABLE).has(userId)) {
-        JSONArray friends = db.getJSONObject(FRIEND_LINK_TABLE).getJSONArray(userId);
-        for (int i = 0; i < friends.length(); i++) {
-          returnVal.add(friends.getString(i));
-        }
-      }
-*/
-      break;
+    case friends:
+    	try {
+    		List<String> friendsIds = sqlMap.queryForList( "getFriendsIds", user );
+    		
+    		for (String id : friendsIds ) {
+        		idSet.add( id );
+        	}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	break;
     case self:
-      returnVal.add(user);
+      idSet.add(user);
       break;
     }
-    return returnVal;
+    return idSet;
   }
 
   /**
    * Get the set of user id's for a set of users and a group
    */
-  private Set<UserId> getIdSet(Set<UserId> users, GroupId group, SecurityToken token)
+  private Set<String> getIdSet(Set<UserId> users, GroupId group, SecurityToken token)
       throws JSONException {
-    Set<UserId> ids = new HashSet<UserId>();
+    Set<String> ids = new HashSet<String>();
     for (UserId user : users) {
       ids.addAll(getIdSet(user, group, token));
     }
     return ids;
   }
 
-  private Set<UserId> buildUserIds(String... userIds) {
-	    // Set user id list
-	    Set<UserId> userIdSet = new HashSet<UserId>();
-	    for (String userId: userIds) {
-	      userIdSet.add(new UserId(Type.userId, userId));
-	    }
-	    return userIdSet;
-	  }
 
 }
 

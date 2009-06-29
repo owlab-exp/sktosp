@@ -7,6 +7,8 @@ public class PersonListStringDB {
 	private String value;
 	
 	public static enum Attribute {
+		/** the mysql field for activities. */
+		activities,
 		/** the mysql field for books. */
 		books,
 		/** the mysql field for cars. */
@@ -37,8 +39,6 @@ public class PersonListStringDB {
 		turnOns,
 		/** the mysql field for tvShows. */
 		tvShows,
-		/** the mysql field for urls. */
-		urls,
 	}
 	
 	

@@ -4,11 +4,11 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="Activity">
 
-<select id="getActivity" parameterClass="java.lang.String" resultClass="activity">
+<select id="getActivities" parameterClass="java.lang.String" resultClass="activity">
 SELECT
 appId as appId, 
 body as body, 
-bodyId asbodyId, 
+bodyId as bodyId, 
 externalId as externalId, 
 activity_id as id, 
 updated as updated, 
@@ -22,7 +22,7 @@ title as title,
 titleId as titleId, 
 url as url, 
 userId userId
-FROM activities
+FROM SHINDIG_ACTIVITIES
 WHERE userId = #uesr#
 </select>
 
@@ -32,7 +32,7 @@ mimetype as mimeType,
 type as type,
 url as url,
 thumbnailUrl as thumbnailUrl
-FROM activity_media_items
+FROM SHINDIG_ACTIVITY_MEDIA_ITEMS
 WHERE activity_id = #id# and user_id = #userId#
 </select>
 
@@ -41,7 +41,7 @@ WHERE activity_id = #id# and user_id = #userId#
 SELECT
 param_key as param_key,
 param_value as param_value
-FROM activity_template_params
+FROM SHINDIG_ACTIVITY_TEMPLATE_PARAMS
 WHERE activity_id = #id# and user_id = #userId#
 </select>
 
@@ -50,9 +50,9 @@ WHERE activity_id = #id# and user_id = #userId#
 parameters in the #hash# symbols is a JavaBeans property. -->
 <insert id="insertActivity" parameterClass="activity">
 INSERT INTO
-activities 
-(appId, body, bodyId, externalId, activity_id, updated, postedTime, priority, streamFaviconUrl,
-streamSourceUrl, streamTitle, streamUrl, title, titleId, url, userId)
+SHINDIG_ACTIVITIES 
+(app_id, body, body_id, external_id, activity_id, updated, posted_time, priority, stream_favicon_url,
+stream_source_url, stream_title, stream_url, title, title_id, url, user_id)
 
 VALUES 
 (#appId#, #body#, #bodyId#, #externalId#, #id#, #updated#, #postedTime#, #priority#, #streamFaviconUrl#,
@@ -64,8 +64,8 @@ VALUES
 parameters in the #hash# symbols is a JavaBeans property. -->
 <insert id="insertActivityMediaItem" parameterClass="activityMediaItemDB">
 INSERT INTO
-activity_media_items
-(mimetype, type, url, thumbnailUrl, activitiy_id, user_id)
+SHINDIG_ACTIVITY_MEDIA_ITEMS
+(mime_type, type, url, thumbnail_url, activitiy_id, user_id)
 
 VALUES 
 (#mimeType#, #type#, #url#, #thumbnailUrl#, #activityId#, #userId#)
@@ -75,7 +75,7 @@ VALUES
 parameters in the #hash# symbols is a JavaBeans property. -->
 <insert id="insertTemplateParam" parameterClass="activityTemplateParamDB">
 INSERT INTO
-activity_template_params
+SHINDIG_ACTIVITY_TEMPLATE_PARAMS
 (param_key, param_value, activity_id, user_id)
 
 VALUES 
@@ -87,8 +87,8 @@ VALUES
 parameters in the #hash# symbols is a JavaBeans property. -->
 <delete id="deleteActivities" parameterClass="activity">
 DELETE FROM 
-activities
-WHERE activity_id = #id# and userId = #userId#
+SHINDIG_ACTIVITIES
+WHERE activity_id = #id# and user_id = #userId#
 </delete>
 
 
@@ -96,7 +96,7 @@ WHERE activity_id = #id# and userId = #userId#
 parameters in the #hash# symbols is a JavaBeans property. -->
 <delete id="deleteActivityMediaParams" parameterClass="activity">
 DELETE FROM 
-activity_media_items
+SHINDIG_ACTIVITIES_MEDIA_ITEMS
 WHERE activity_id = #id# and user_id = #userId#
 </delete>
 
@@ -105,7 +105,7 @@ WHERE activity_id = #id# and user_id = #userId#
 parameters in the #hash# symbols is a JavaBeans property. -->
 <delete id="deleteActivityTemplateParams" parameterClass="activity">
 DELETE FROM 
-activity_template_params
+SHINDIG_ACTIVITIES_TEMPLATE_PARAMS
 WHERE activity_id = #id# and user_id = #userId#
 </delete>
 

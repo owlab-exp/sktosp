@@ -47,14 +47,6 @@ public class PersonDBServiceTest {
      System.out.println(canonical.getId());
   }
 
-  @Test
-  public void insertCanonicalPerson() throws Exception {
-	  Set<String> fields = new HashSet<String>();
-	  fields.add("id");
-	  
-     this.personServiceDb.insertPerson(canonical);
-
-  }
   
   @Test
   public void getCanonicalPeople() throws Exception {
@@ -65,8 +57,7 @@ public class PersonDBServiceTest {
 	    collectionOptions.setMax(20);
 	    
 	//Get first friend of john.doe
-	  Future<RestfulCollection<Person>> result = this.personServiceDb.getPeople(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.all, "@all"), collectionOptions, Person.Field.ALL_FIELDS, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
-     
+	  Future<RestfulCollection<Person>> result = this.personServiceDb.getPeople(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.friends, "@friends"), collectionOptions, Person.Field.ALL_FIELDS, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
   }
 
   /* 

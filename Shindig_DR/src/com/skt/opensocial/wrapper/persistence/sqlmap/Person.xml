@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 <sqlMap namespace="Person">
 <select id="getPersonDefaultInfo" resultClass="personDB">
 SELECT
-os_id as id,
+id as id,
+updated as updated,
 aboutMe as aboutMe,
 age as age,
 birthday as birthday,
@@ -15,16 +16,6 @@ bodyType_hairColor as bodyType_hairColor,
 bodyType_height as bodyType_height,
 bodyType_weight as bodyType_weight,
 children as children,
-currentLocation_country as currentLocation_country,
-currentLocation_latitude as currentLocation_latitude,
-currentLocation_longitude as currentLocation_longitude,
-currentLocation_locality as currentLocation_locality,
-currentLocation_postalCode as currentLocation_postalCode,
-currentLocation_region as currentLocation_region,
-currentLocation_streetAddress as currentLocation_streetAddress,
-currentLocation_type as currentLocation_type,
-currentLocation_formatted as currentLocation_formatted,
-currentLocation_primary as currentLocation_primary,
 displayName as displayName,
 drinker as drinker,
 ethnicity as ethinicity,
@@ -46,8 +37,6 @@ nickName as nickName,
 pets as pets,
 politicalViews as politicalViews,
 preferredUsername as preferredUsername,
-profileSongUrl as profileSongUrl,
-profileVideoUrl as profileVideoUrl,
 relationshipStatus as relationshipStatus,
 religion as religion,
 romance as romance,
@@ -56,94 +45,164 @@ sexualOrientation as sexualOrientation,
 smoker as smoker,
 status as status,
 utcOffset as utcOffset, 
-updated as updated,
-profileUrl as profileUrl,
-thumbnailUrl as thumbnailUrl
-FROM person
-WHERE os_id = #id#
+currentLocation_country as currentLocation_country,
+currentLocation_latitude as currentLocation_latitude,
+currentLocation_longitude as currentLocation_longitude,
+currentLocation_locality as currentLocation_locality,
+currentLocation_postalCode as currentLocation_postalCode,
+currentLocation_region as currentLocation_region,
+currentLocation_streetAddress as currentLocation_streetAddress,
+currentLocation_type as currentLocation_type,
+currentLocation_formatted as currentLocation_formatted,
+currentLocation_primary as currentLocation_primary,
+profilesongurl_value as profilesongurl_value,
+profilesongurl_link_text as profilesongurl_linkText, 
+profilesongurl_type as profilesongurl_type,
+profilesongurl_primary as profilesongurl_primary,
+profilevideourl_value as profilevideourl_value,
+profilevideourl_link_text as profilevideourl_linkText,
+profilevideourl_type as profilevideourl_type,
+profilevideourl_primary as profilevideourl_primary
+FROM SHINDIG_PERSON
+WHERE id = #id#
 </select>
 
 <!-- Use PersonListStringDB object (JavaBean) properties as parameters for select. Each of the
 parameters in the #hash# symbols is a JavaBeans property. -->
-<select id="getListStringOneByOne" parameterClass="personListStringDB" resultClass="java.lang.String">
+<select id="getPersonListStringOneByOne" parameterClass="PersonAddInfoQueryParam" resultClass="java.lang.String">
 SELECT
 value
-FROM personAdditionalInfo_1
-WHERE person_id = #person_id# and attribute = #attribute#
+FROM SHINDIG_PERSON_ADDITIONAL_INFO_1
+WHERE user_id = #userId# and attribute = #attribute#
 </select>
+
+<!-- Use PersonListFieldDB object (JavaBean) properties as parameters for select. Each of the
+parameters in the #hash# symbols is a JavaBeans property. -->
+<select id="getPersonListFieldOneByOne" parameterClass="PersonAddInfoQueryParam" resultClass="ListField">
+SELECT
+field_type as type,
+field_value as `value`,
+field_primary as `primary`
+FROM SHINDIG_PERSON_ADDITIONAL_INFO_2
+WHERE user_id = #userId# and attribute = #attribute#
+</select>
+
+
+<!-- ... -->
+<select id="getPersonAccounts" parameterClass="java.lang.String" resultClass="Account">
+SELECT
+domain as domain,
+user_id as userId,
+user_name as userName
+FROM SHINDIG_PERSON_ACCOUNTS
+WHERE user_id = #id#
+</select>
+
+<!-- ... -->
+<select id="getPersonAddresses" parameterClass="java.lang.String" resultClass="Address">
+SELECT
+country as country,
+latitude as latitude,
+longitude as longitude,
+locality as locality,
+postal_code as postalCode,
+region as region,
+street_address as streetAddress,
+type as type,
+formatted as formatted,
+Address_primary as `primary`
+FROM SHINDIG_PERSON_ADDRESSES
+WHERE user_id = #id#
+</select>
+
+<!-- ... -->
+<select id="getPersonUrls" parameterClass="java.lang.String" resultClass="Url">
+SELECT
+value as value,
+type as type,
+url_primary as `primary`,
+link_text as linkText
+FROM SHINDIG_PERSON_URLS
+WHERE user_id = #id#
+</select>
+
+
+<!--  ... -->
+<select id="getPersonOrganizations" parameterClass="java.lang.String" resultClass="OrganizationDB">
+SELECT
+description as description,
+end_date as endData,
+field as field,
+name as name,
+salary as salary,
+start_date as startDate,
+sub_field as subField,
+title as title,
+webpage as webpage,
+type as type,
+organization_primary as `primary`,
+address_country as address_country,
+address_latitude as address_latitude,
+address_longitude as address_longitude,
+address_longitude as address_longitude,
+address_postal_code as address_postal_code,
+address_region as address_region,
+address_street_address as address_street_address,
+address_type as address_type,
+address_formatted as address_formatted,
+address_primary as address_primary
+FROM SHINDIG_PERSON_ORGANIZATIONS
+WHERE user_id = #id#
+</select>
+
 
 <!-- ... -->
 <select id="getAllUserIds" resultClass="java.lang.String">
 SELECT
-os_id
-FROM person
+id
+FROM SHINDIG_PERSON
+</select>
+
+<!-- ... -->
+<select id="getFriendsIds" resultClass="java.lang.String">
+SELECT
+friend_id
+FROM SKT_USER_FRIENDS
+WHERE user_id = #userIdString#
 </select>
 
 
-<!-- Use Person object (JavaBean) properties as parameters for insert. Each of the
-parameters in the #hash# symbols is a JavaBeans property. -->
-<insert id="insertPersonDefaultInfo" parameterClass="personDB">
-INSERT INTO
-person 
-(os_id, aboutMe, age, birthday, bodyType_build, bodyType_eyeColor, bodyType_hairColor, bodyType_height,
-bodyType_weight, children, currentLocation_country, currentLocation_latitude, currentLocation_longitude,
-currentLocation_locality, currentLocation_postalCode, currentLocation_region, currentLocation_streetAddress,
-currentLocation_type, currentLocation_formatted, currentLocation_primary, displayName, drinker,
-ethnicity, fashion, gender, happiestWhen, hasApp, humor, jobInterests, livingArrangement,
-name_additionalName, name_familyName, name_givenName, name_honorificPrefix, name_honorificSuffix,
-name_formatted, networkPresence, nickName, pets, politicalViews, preferredUsername,
-profileSongUrl, profileVideoUrl, relationshipStatus, religion, romance, scaredOf, sexualOrientation,
-smoker, status, utcOffset, updated, profileUrl, thumbnailUrl)
-
-VALUES 
-(#id#, #aboutMe#, #age#, #birthday#, #bodyType_build#, #bodyType_eyeColor#, #bodyType_hairColor#, #bodyType_height#,
-#bodyType_weight#, #children#, #currentLocation_country#, #currentLocation_latitude#, #currentLocation_longitude#,
-#currentLocation_locality#, #currentLocation_postalCode#, #currentLocation_region#, #currentLocation_streetAddress#,
-#currentLocation_type#, #currentLocation_formatted#, #currentLocation_primary#, #displayName#, #drinker#,
-#ethnicity#, #fashion#, #gender#, #happiestWhen#, #hasApp#, #humor#, #jobInterests#, #livingArrangement#,
-#name_additionalName#, #name_familyName#, #name_givenName#, #name_honorificPrefix#, #name_honorificSuffix#,
-#name_formatted#, #networkPresence#, #nickName#, #pets#, #politicalViews#, #preferredUsername#,
-#profileSongUrl#, #profileVideoUrl#, #relationshipStatus#, #religion#, #romance#, #scaredOf#, #sexualOrientation#,
-#smoker#, #status#, #utcOffset#, #updated#, #profileUrl#, #thumbnailUrl#)
-</insert>
+<!-- ... -->
+<select id="getPersonAppData" parameterClass="java.lang.String" resultClass="AppDataDB">
+SELECT
+app_id as appId,
+user_id as userId,
+field as field,
+data as data
+FROM SHINDIG_PERSON_APP_DATA
+WHERE user_id = #userId#
+</select>
 
 
-<!-- Use List<String> object (JavaBean) properties as parameters for insert one by one. Each of the
-parameters in the #hash# symbols is a JavaBeans property. -->
-<insert id="insertListStringOneByOne" parameterClass="personListStringDB">
-INSERT INTO
-personAdditionalInfo_1 
-(person_id, attribute, value)
-VALUES
-(#person_id#, #attribute#, #value#)
-</insert>
-
-
-<!-- Use List<String> object (JavaBean) properties as parameters for insert one by one. Each of the
-parameters in the #hash# symbols is a JavaBeans property. -->
-<insert id="insertListFieldOneByOne" parameterClass="personListFieldDB">
-INSERT INTO
-personAdditionalInfo_2 
-(person_id, attribute, field_type, field_value, field_primary)
-VALUES
-(#person_id#, #attribute#, #type#, #value#, #primary#)
-</insert>
-
-
-<!-- Use Person object (JavaBean) properties as parameters for update. Each of the
-parameters in the #hash# symbols is a JavaBeans property. -->
-<update id="updatePerson" parameterClass="person">
-UPDATE person
-SET fashion = #fashion#
-WHERE os_id = #id#
-</update>
-
-<!-- Use Person object (JavaBean) ??놼??properties as parameters for delete. Each of the
-parameters in the #hash# symbols is a JavaBeans property. -->
-<delete id="deletePerson" parameterClass="person">
+<!-- ... -->
+<select id="deletePersonAppDataWithAppId" parameterClass="AppDataDB">
 DELETE FROM 
-person
-WHERE os_id = #id#
-</delete>
+SHINDIG_PERSON_APP_DATA
+WHERE app_id = #appId# and user_id = #userId#
+</select>
 
+<!-- ... -->
+<select id="deletePersonAppData" parameterClass="java.lang.String">
+DELETE FROM 
+SHINDIG_PERSON_APP_DATA
+WHERE user_id = #userId#
+</select>
+
+
+<!-- ... -->
+<select id="updatePersonAppData" parameterClass="AppDataDB">
+UPDATE SHINDIG_PERSON_APP_DATA
+SET data = #data#
+WHERE app_id = #appId# and user_id = #userId#
+</select>
 </sqlMap>

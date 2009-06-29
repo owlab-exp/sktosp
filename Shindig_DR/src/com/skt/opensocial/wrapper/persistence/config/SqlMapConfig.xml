@@ -22,15 +22,24 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
 		Type aliases allow you to use a shorter name for long fully qualified
 		class names.
 	-->
+	<typeAlias alias="ListField" type="org.apache.shindig.social.core.model.ListFieldImpl" />
+	<typeAlias alias="Account" type="org.apache.shindig.social.core.model.AccountImpl" />
+	<typeAlias alias="Address" type="org.apache.shindig.social.core.model.AddressImpl" />
+	<typeAlias alias="Url" type="org.apache.shindig.social.core.model.UrlImpl" />
+	
 	<typeAlias alias="person" type="org.apache.shindig.social.core.model.PersonImpl" />
 	<typeAlias alias="personDB" type="com.skt.opensocial.wrapper.persistence.domain.PersonDB" />
 	<typeAlias alias="personListStringDB" type="com.skt.opensocial.wrapper.persistence.domain.PersonListStringDB" />
 	<typeAlias alias="personListFieldDB" type="com.skt.opensocial.wrapper.persistence.domain.PersonListFieldDB" />
+	<typeAlias alias="OrganizationDB" type="com.skt.opensocial.wrapper.persistence.domain.OrganizationDB" />
+	<typeAlias alias="AppDataDB" type="com.skt.opensocial.wrapper.persistence.domain.AppDataDB" />
+	<typeAlias alias="PersonAddInfoQueryParam" type="com.skt.opensocial.wrapper.persistence.domain.PersonAddInfoQueryParam" />	
 	
 	<typeAlias alias="mediaItem" type="org.apache.shindig.social.core.model.MediaItemImpl" />
 	<typeAlias alias="activity" type="org.apache.shindig.social.core.model.ActivityImpl" />
 	<typeAlias alias="activityMediaItemDB" type="com.skt.opensocial.wrapper.persistence.domain.ActivityMediaItemDB" />
 	<typeAlias alias="activityTemplateParamDB" type="com.skt.opensocial.wrapper.persistence.domain.ActivityTemplateParamDB" />
+
 	<!--
 		Configure a datasource to use with this SQL Map using
 		SimpleDataSource. Notice the use of the properties from the above

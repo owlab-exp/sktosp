@@ -6,8 +6,8 @@ import org.apache.shindig.social.opensocial.model.MediaItem.Type;
 
 public class ActivityMediaItemDB {
 	
-	private String mimeType;
-	  private Type type;
+	  private String mimeType;
+	  private String type;
 	  private String url;
 	  private String thumbnailUrl;
 	  private String activityId;
@@ -20,7 +20,7 @@ public class ActivityMediaItemDB {
 		  this.activityId = activityId;
 		  this.userId = userId;
 	    this.mimeType = mediaItem.getMimeType();
-	    this.type = mediaItem.getType();
+	    this.type = String.valueOf( mediaItem.getType() );
 	    this.url = mediaItem.getUrl();
 	    this.thumbnailUrl = mediaItem.getThumbnailUrl();
 	  }
@@ -49,11 +49,11 @@ public class ActivityMediaItemDB {
 	    this.mimeType = mimeType;
 	  }
 
-	  public Type getType() {
+	  public String getType() {
 	    return type;
 	  }
 
-	  public void setType(Type type) {
+	  public void setType(String type) {
 	    this.type = type;
 	  }
 
