@@ -38,11 +38,16 @@ public class User implements java.io.Serializable {
 	public String getId() {
 		return this.id;
 	}
-
+	public String getUserId(){
+		return getId();
+	}
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
+	public void setUserid(String id){
+		setId(id);
+	}
 	public boolean isIsDeveloper() {
 		return this.isDeveloper;
 	}

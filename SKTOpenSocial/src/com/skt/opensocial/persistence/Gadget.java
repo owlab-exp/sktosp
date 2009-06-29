@@ -20,34 +20,34 @@ public class Gadget implements java.io.Serializable {
 	private String introduction;
 	private String source;
 	private String iconUrl;
-	//private String developerId;
+	// private String developerId;
 	private User developer;
 	private Set<GadgetCategory> categories;
 	private Set<GadgetReview> reviews;
 	private Set<User> favoriteUsers;
 	private GadgetPublish gadgetPublish;
-	
+
 	public Gadget() {
 	}
 
-//	public Gadget(String name, String developerId) {
-//		this.name = name;
-//		this.developerId = developerId;
-//	}
+	// public Gadget(String name, String developerId) {
+	// this.name = name;
+	// this.developerId = developerId;
+	// }
 
-//	public Gadget(String name, Date registerDate, Date publishDate,
-//			String status, String registerType, String introduction,
-//			String source, String iconUrl, String developerId) {
-//		this.name = name;
-//		this.registerDate = registerDate;
-//		this.publishDate = publishDate;
-//		this.status = status;
-//		this.registerType = registerType;
-//		this.introduction = introduction;
-//		this.source = source;
-//		this.iconUrl = iconUrl;
-//		this.developerId = developerId;
-//	}
+	// public Gadget(String name, Date registerDate, Date publishDate,
+	// String status, String registerType, String introduction,
+	// String source, String iconUrl, String developerId) {
+	// this.name = name;
+	// this.registerDate = registerDate;
+	// this.publishDate = publishDate;
+	// this.status = status;
+	// this.registerType = registerType;
+	// this.introduction = introduction;
+	// this.source = source;
+	// this.iconUrl = iconUrl;
+	// this.developerId = developerId;
+	// }
 
 	public Long getId() {
 		return this.id;
@@ -121,13 +121,13 @@ public class Gadget implements java.io.Serializable {
 		this.iconUrl = iconUrl;
 	}
 
-//	public String getDeveloperId() {
-//		return this.developerId;
-//	}
-//
-//	public void setDeveloperId(String developerId) {
-//		this.developerId = developerId;
-//	}
+	// public String getDeveloperId() {
+	// return this.developerId;
+	// }
+	//
+	// public void setDeveloperId(String developerId) {
+	// this.developerId = developerId;
+	// }
 
 	public User getDeveloper() {
 		return developer;
@@ -145,6 +145,16 @@ public class Gadget implements java.io.Serializable {
 		this.categories = categories;
 	}
 
+	public void addCategory(GadgetCategory category) {
+
+		Set<GadgetCategory> set = getCategories();
+		if (set == null)
+			set = new HashSet<GadgetCategory>();
+		set.add(category);
+		setCategories(set);
+
+	}
+
 	public Set<GadgetReview> getReviews() {
 		return reviews;
 	}
@@ -152,10 +162,10 @@ public class Gadget implements java.io.Serializable {
 	public void setReviews(Set<GadgetReview> reviews) {
 		this.reviews = reviews;
 	}
-	
+
 	public void addReview(GadgetReview review) {
 		Set<GadgetReview> set = getReviews();
-		if(set == null)
+		if (set == null)
 			set = new HashSet<GadgetReview>();
 		set.add(review);
 		setReviews(set);
@@ -176,5 +186,5 @@ public class Gadget implements java.io.Serializable {
 	public void setGadgetPublish(GadgetPublish gadgetPublish) {
 		this.gadgetPublish = gadgetPublish;
 	}
-	
+
 }

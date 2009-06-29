@@ -498,11 +498,18 @@ public class Person implements java.io.Serializable {
 	public String getNameFormatted() {
 		return this.nameFormatted;
 	}
+	
+	public String getName(){
+		return getNameFormatted();
+	}
 
 	public void setNameFormatted(String nameFormatted) {
 		this.nameFormatted = nameFormatted;
 	}
 
+	public void setName(String name) {
+		setNameFormatted(name);
+	}
 	/*public String getNetworkpresence() {
 		return this.networkpresence;
 	}
