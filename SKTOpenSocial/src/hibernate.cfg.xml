@@ -5,7 +5,8 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://nash.owlab.com:3306/SKTOpenSocialDB_1</property>
+<!--        <property name="hibernate.connection.url">jdbc:mysql://nash.owlab.com:3306/SKTOpenSocialDB_1?autoReconnect=true</property>-->
+        <property name="hibernate.connection.url">jdbc:mysql://220.69.176.198:3306/SKTOpenSocialDB_1?autoReconnect=true</property>
         <property name="hibernate.connection.username">nash</property>
         <property name="hibernate.connection.password">123456</property>
         <property name="hibernate.connection.pool_size">10</property>
