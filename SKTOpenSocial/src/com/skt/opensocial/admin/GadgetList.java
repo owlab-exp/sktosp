@@ -10,36 +10,26 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
-import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
- * @author Ernest Lee
+ * @author Sejoon Oh
  *
  */
-//public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class GadgetList extends AdministratorBaseAction {
 	private static Logger logger = Logger.getLogger(GadgetList.class);
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
-	
-	//GadgetDataList gadgetDataList;
-	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
-	//Collection<GadgetData> gadgetList;
 	Set<Gadget> gadgets;
 	
 	int requestedPage = 1;
 	
 	public String execute(){
-		//
 		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
 		String userId = user.getUserId();
@@ -48,7 +38,6 @@ public class GadgetList extends AdministratorBaseAction {
 		hs.beginTransaction();
 		
 		user = (User)hs.load(User.class, userId);
-		
 		
 		session.put(SKTOpenSocialSupportConstants.USER, user);
 		
@@ -59,8 +48,6 @@ public class GadgetList extends AdministratorBaseAction {
 
 		return "SUCCESS";
 	}
-
-	
 	
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
@@ -81,9 +68,6 @@ public class GadgetList extends AdministratorBaseAction {
 	public void setGadgets(Set<Gadget> gadgets) {
 		this.gadgets = gadgets;
 	}
-
-	
-	
 }
 
 
