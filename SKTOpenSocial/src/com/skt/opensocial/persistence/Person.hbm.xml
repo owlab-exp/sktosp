@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jun 25, 2009 4:34:44 PM by Hibernate Tools 3.2.4.GA -->
 <hibernate-mapping>
-    <class name="com.skt.opensocial.persistence.Person" table="SHINDIG_PERSON" catalog="test">
+    <class name="com.skt.opensocial.persistence.Person" table="SHINDIG_PERSON">
         <id name="id" type="string">
             <column name="ID" />
 <!--            <generator class="assigned" />-->
