@@ -1,58 +1,38 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-
-	<session-factory>
-
-		<!-- Database connection settings -->
-		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<!-- 
-		<property name="connection.url">jdbc:mysql://open.owlab.com:3306/sample_HJ</property>
-		<property name="connection.url">jdbc:mysql://nash.owlab.com:3306/nash</property>
-		-->
-		<property name="connection.url">jdbc:mysql://nash.owlab.com:3306/SKTOpenSocialDB?autoReconnect=true</property>
-		<property name="connection.username">nash</property>
-		<property name="connection.password">123456</property>
-
-		<!-- JDBC connection pool (use the built-in) -->
-		<property name="connection.pool_size">10</property>
-
-		<!-- SQL dialect -->
-		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-
-		<!-- Enable Hibernate's automatic session context management -->
-		<property name="current_session_context_class">thread</property>
-
-		<!-- Disable the second-level cache  -->
-		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-
-		<!-- Echo all executed SQL to stdout -->
-		<property name="show_sql">true</property>
-
-		<!-- Don't drop/create table and don't delete rows on startup/stop -->
-		
-		<property name="hbm2ddl.auto">update</property>
-		
-		<!-- 
-		<property name="hbm2ddl.auto">create</property>
-		-->
-		<mapping resource="com/skt/opensocial/persistence/shindig_person.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/shindig_person_additional_info1.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/shindig_person_additional_info2.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/shindig_activities.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/shindig_activity_media_items.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/shindig_activity_template_params.hbm.xml" />
-		
-		<mapping resource="com/skt/opensocial/persistence/skt_user.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/skt_user_secure.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/skt_gadget.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/skt_gadget_category.hbm.xml" />
-		<mapping resource="com/skt/opensocial/persistence/skt_gadget_review.hbm.xml" />
-		
-
-	</session-factory>
-
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://nash.owlab.com:3306/SKTOpenSocialDB_1</property>
+        <property name="hibernate.connection.username">nash</property>
+        <property name="hibernate.connection.password">123456</property>
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="hibernate.show_sql">true</property>
+        
+        <mapping resource="com/skt/opensocial/persistence/Activity.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/ActivityMediaItem.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/ActivityTemplateParam.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/Address.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/FavoriteGadget.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/Friends.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/Gadget.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/GadgetCategory.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/GadgetPublish.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/GadgetReview.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/Person.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/PersonAccount.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/PersonAdditionalInfo1.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/PersonAdditionalInfo2.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/PersonAppData.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/PersonOrganization.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/PersonUrl.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/User.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/UserVisibility.hbm.xml" />
+        
+    </session-factory>
 </hibernate-configuration>
