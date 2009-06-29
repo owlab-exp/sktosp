@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	<!-- Generated Jun 25, 2009 4:34:44 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="com.skt.opensocial.persistence.PersonAdditionalInfo1"
+		table="SHINDIG_PERSON_ADDITIONAL_INFO_1" catalog="test">
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+
+		<property name="userId" type="string" insert="false" update="false">
+			<column name="USER_ID" not-null="true" />
+		</property>
+		<property name="attribute">
+			<column name="ATTRIBUTE">
+				<comment>A defined set of ATTRIBUTE exists, so only a value in the
+					set can be added. The set is {activities, books, cars, food,
+					heroes, interests, languagesSpoken,
+					lookinFor, movies, music, quotes, sports, tags, turnOffs, turnOns, tvShows}
+					(Case Sensitive)</comment>
+			</column>
+			<type name="com.skt.opensocial.persistence.GenericEnumUserType" >
+        		<param name="enumClass">com.skt.opensocial.persistence.Info1AttributeEnum</param>
+        	</type>
+		</property>
+		<property name="value" type="string">
+			<column name="VALUE" length="1000" />
+		</property>
+		<many-to-one name="person" class="com.skt.opensocial.persistence.Person"
+			column="USER_ID" not-null="true" />
+	</class>
+</hibernate-mapping>
