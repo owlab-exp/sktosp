@@ -20,8 +20,8 @@
         <mapping resource="com/skt/opensocial/persistence/ActivityMediaItem.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/ActivityTemplateParam.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/Address.hbm.xml" />
-        <mapping resource="com/skt/opensocial/persistence/FavoriteGadget.hbm.xml" />
-        <mapping resource="com/skt/opensocial/persistence/Friends.hbm.xml" />
+  
+        
         <mapping resource="com/skt/opensocial/persistence/Gadget.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/GadgetCategory.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/GadgetPublish.hbm.xml" />

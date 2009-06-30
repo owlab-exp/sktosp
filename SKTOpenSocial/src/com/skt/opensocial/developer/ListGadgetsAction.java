@@ -47,6 +47,7 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
 		
+		logger.log(Level.INFO, "User ID=" + userId);
 		user = (User)hs.load(User.class, userId);
 		
 		

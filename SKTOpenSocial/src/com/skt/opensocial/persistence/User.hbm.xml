@@ -20,9 +20,9 @@
         <property name="registeredDate" type="date">
             <column name="REGISTERED_DATE" length="10" not-null="true" />
         </property>
-        <one-to-one name="person" class="com.skt.opensocial.persistence.Person" cascade="all"/>
-        <one-to-one name="userVisibility" class="com.skt.opensocial.persistence.UserVisibility" cascade="all"/>
-		<set name="reviews" inverse="true"> <!-- reviews by this user -->
+        <many-to-one name="person" class="com.skt.opensocial.persistence.Person" cascade="all" column="ID" unique="true" insert="false" update="false"/>
+        <many-to-one name="userVisibility" class="com.skt.opensocial.persistence.UserVisibility" cascade="all" column="ID" unique="true" insert="false" update="false"/>
+		<set name="reviews" inverse="true"> 
 			<key column="REVIEWER_ID"/>
 			<one-to-many class="com.skt.opensocial.persistence.GadgetReview"/>
 		</set>
@@ -35,9 +35,18 @@
 			<many-to-many class="com.skt.opensocial.persistence.Gadget" column="GADGET_ID"/>
 		</set>
 		<!-- -->
-		<set name="friends" table="SKT_USER_FRIENDS" cascade="all">
-			<key column="FRIEND_ID"/>
-			<many-to-many class="com.skt.opensocial.persistence.User" column="USER_ID" />
+<!--		<set name="friends" table="SKT_USER_FRIENDS" cascade="all">-->
+<!--			<key column="FRIEND_ID" />-->
+<!--			<many-to-many class="com.skt.opensocial.persistence.User" column="USER_ID" />-->
+<!--		</set>-->
+		<set name="friendsByMe" table="SKT_USER_FRIENDS" inverse="false" lazy="true">
+			<key column="USER_ID" />
+			<many-to-many class="com.skt.opensocial.persistence.User" column="FRIEND_ID"/>
+		</set>
+		<set name="friendsByOther" table="SKT_USER_FRIENDS" inverse="true" lazy="true">
+			
+			<key column="FRIEND_ID" />
+			<many-to-many class="com.skt.opensocial.persistence.User" column="USER_ID"/>
 		</set>
     </class>
 </hibernate-mapping>

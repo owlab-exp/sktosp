@@ -1,6 +1,7 @@
 package com.skt.opensocial.persistence;
 
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,12 +15,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.skt.opensocial.security.PasswordEncryptor;
+
 
 public class DatabaseInitializeTask {
 	Logger logger = Logger.getLogger(DatabaseInitializeTask.class);
 	private static String userId = "nash";
+	private static String friendId = "friend2";
+	private static Long gadgetId1;
+	private static Long gadgetId2;
 	
-	//private static String friendId = "friend1";
+	//private static String friendId = "aFriend";
 	
 
 	@BeforeClass
@@ -66,13 +72,14 @@ public class DatabaseInitializeTask {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tran = session.beginTransaction();
 		
+		// add default user
 		User user = (User) session.get(User.class, userId);
 		if(user == null) {
 			user = new User();
 			user.setId(userId);
 		}
 		user.setRegisteredDate(new Date());
-		user.setPassword("nash");
+		user.setPassword(PasswordEncryptor.getInstance().encrypt("nash"));
 		user.setIsAdministrator(true);
 		user.setIsDeveloper(true);
 		
@@ -89,12 +96,13 @@ public class DatabaseInitializeTask {
 			person.setUser(user);
 		}
 		person.setNameFormatted("NASH 팀");
-		person.setAboutme("Sample Test 사용자");
+		person.setAboutme("Sample Test 개발자이자 관리자");
+		person.setAge(18);
 		
 		session.saveOrUpdate(person);
 		tran.commit();
-
 	}
+	
 	
 	@Test
 	public void addGadget(){
@@ -123,7 +131,7 @@ public class DatabaseInitializeTask {
 		
 		gadget.setCategories(categorySet);
 	
-		session.saveOrUpdate(gadget);
+		gadgetId1 = (Long)session.save(gadget);
 		
 		// add second gadget
 		Gadget anotherGadget = new Gadget();
@@ -145,11 +153,98 @@ public class DatabaseInitializeTask {
 		
 		anotherGadget.setCategories(categorySet2);
 		
-		session.saveOrUpdate(anotherGadget);
+		//session.saveOrUpdate(anotherGadget);
+		
+		gadgetId2 = (Long)session.save(anotherGadget);
 		tran.commit();
 
 	}
 	
+	@Test
+	public void addFriend(){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = session.beginTransaction();
+		
+		// add a friend user
+		User aFriend = (User) session.get(User.class, friendId);
+		if(aFriend == null) {
+			aFriend = new User();
+			aFriend.setId(friendId);
+		}
+		aFriend.setRegisteredDate(new Date());
+		aFriend.setPassword(PasswordEncryptor.getInstance().encrypt("friend"));
+		aFriend.setIsAdministrator(true);
+		aFriend.setIsDeveloper(true);
+		
+		session.saveOrUpdate(aFriend);
+		tran.commit();
+		
+		
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		tran = session.beginTransaction();
+		
+		aFriend = (User) session.get(User.class, friendId);
+		
+		Person aFriendP = (Person) session.get(Person.class, friendId);
+		if(aFriendP == null) {
+			aFriendP = new Person();
+			//person.setId(userId);
+			aFriendP.setUser(aFriend);
+		}
+		aFriendP.setNameFormatted("NASH 팀의 친구");
+		aFriendP.setAboutme("Sample Test 사용자");
+		aFriendP.setAge(18);
+		
+		session.saveOrUpdate(aFriendP);
+		
+		// add favorite gadget
+		aFriend = (User) session.load(User.class, friendId);
+		
+		Gadget gadget1 = (Gadget)session.load(Gadget.class, gadgetId1);
+		Gadget gadget2 = (Gadget)session.load(Gadget.class, gadgetId2);
+		
+		aFriend.addFavoriteGadget(gadget1);
+		aFriend.addFavoriteGadget(gadget2);
+		
+		session.saveOrUpdate(aFriend);
+		
+		// add friend to user
+		User user = (User) session.get(User.class, userId);
+		aFriend = (User) session.load(User.class, friendId);
+		user.addFriendsByMe(aFriend);
+		//user.addFriend(aFriend);
+		session.saveOrUpdate(user);
+		
+		tran.commit();
+		
+		
+	}
+	
+	@Test
+	public void listGadget(){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = session.beginTransaction();
+		
+		
+		User user = (User) session.get(User.class, userId);
+		
+		Collection<Gadget> gadgetSet = user.getGadgets();
+		System.out.println("Num of developed gadgets=" + gadgetSet.size());
+
+		Gadget gadget1 = (Gadget)session.load(Gadget.class, gadgetId1);
+		Collection<User> favoriteUsers = gadget1.getFavoriteUsers();
+		System.out.println("Num of favorite users=" + favoriteUsers.size());
+		
+		User friend = (User)session.get(User.class, friendId);
+		Collection<Gadget> favoriteGadgets = friend.getFavoriteGadgets();
+		System.out.println("Num of favorite gadgets=" + favoriteGadgets.size());
+		
+		
+		
+		tran.commit();
+		
+		
+	}
 	
 	
 	@After

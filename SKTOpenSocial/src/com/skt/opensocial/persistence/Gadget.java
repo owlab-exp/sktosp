@@ -24,7 +24,7 @@ public class Gadget implements java.io.Serializable {
 	private User developer;
 	private Set<GadgetCategory> categories;
 	private Set<GadgetReview> reviews;
-	private Set<User> favoriteUsers;
+	private Set<User> favoriteUsers = new HashSet<User>();
 	private GadgetPublish gadgetPublish;
 
 	public Gadget() {

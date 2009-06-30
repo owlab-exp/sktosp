@@ -19,9 +19,11 @@ public class User implements java.io.Serializable {
 	private Person person;
 	private UserVisibility userVisibility;
 	private Set<GadgetReview> reviews;
-	private Set<Gadget> gadgets;// = new HashSet<Gadget>();
+	private Set<Gadget> gadgets = new HashSet<Gadget>();
 	private Set<Gadget> favoriteGadgets;
-	private Set<User> friends = new HashSet<User>();
+	//private Set<User> friends = new HashSet<User>();
+	private Set<User> friendsByMe = new HashSet<User>();
+	private Set<User> friendsByOther = new HashSet<User>();
 
 	public User() {
 	}
@@ -149,20 +151,39 @@ public class User implements java.io.Serializable {
 		setFavoriteGadgets(gadgets);
 	}*/
 
-	public Set<User> getFriends() {
-		return friends;
+//	public Set<User> getFriends() {
+//		return friends;
+//	}
+//
+//	public void setFriends(Set<User> friends) {
+//		this.friends = friends;
+//	}
+//	
+//	public void addFriend(User friend) {
+//		Set<User> friends = getFriends();
+////		if(friends == null)
+////			friends = new HashSet<User>();
+//		friends.add(friend);
+//		setFriends(friends);
+//	}
+	public Set<User> getFriendsByMe() {
+		return friendsByMe;
 	}
 
-	public void setFriends(Set<User> friends) {
-		this.friends = friends;
+	public void setFriendsByMe(Set<User> friendsByMe) {
+		this.friendsByMe = friendsByMe;
 	}
 	
-	public void addFriend(User friend) {
-		Set<User> friends = getFriends();
-//		if(friends == null)
-//			friends = new HashSet<User>();
-		friends.add(friend);
-		setFriends(friends);
+	public void addFriendsByMe(User friend){
+		this.friendsByMe.add(friend);
+	}
+	
+	public Set<User> getFriendsByOther() {
+		return friendsByOther;
+	}
+
+	private void setFriendsByOther(Set<User> friendsByOther) {
+		this.friendsByOther = friendsByOther;
 	}
 	
 
