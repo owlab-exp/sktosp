@@ -3,7 +3,7 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="admin" namespace="/admin" extends="struts-default">
+	<package name="admin" namespace="/admin" extends="default">
 		<action name="GadgetList" class="com.skt.opensocial.admin.GadgetList">
 			<result name="SUCCESS">/admin/GadgetList.jsp</result>
 		</action>
