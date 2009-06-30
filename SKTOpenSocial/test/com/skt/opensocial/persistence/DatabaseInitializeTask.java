@@ -99,7 +99,14 @@ public class DatabaseInitializeTask {
 		person.setAboutme("Sample Test 개발자이자 관리자");
 		person.setAge(18);
 		
+		UserVisibility visibility = (UserVisibility) session.get(UserVisibility.class, userId);
+		if(visibility == null) {
+			visibility = new UserVisibility();
+			visibility.setUser(user);
+			visibility.setName("NONE");
+		}
 		session.saveOrUpdate(person);
+		session.saveOrUpdate(visibility);
 		tran.commit();
 	}
 	
@@ -246,6 +253,21 @@ public class DatabaseInitializeTask {
 		
 	}
 	
+//	@Test
+//	public void deleteUser(){
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Transaction tran = session.beginTransaction();
+//		
+//		
+//		User user = (User) session.load(User.class, userId);
+//		session.delete(user);
+//		
+//		
+//		
+//		tran.commit();
+//		
+//		
+//	}
 	
 	@After
 	public void tearDown() throws Exception {
