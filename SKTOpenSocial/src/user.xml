@@ -45,12 +45,17 @@
 			<result >/user/mypage.jsp</result>
 		</action>
 		
-		<action name="ManageGadget">
+		<action name="ManageGadget" class="com.skt.opensocial.user.ListGadgetsAction">
 			<result >/user/UserListGadgets.jsp</result>
 		</action>
 		
 		<action name="ListGadgets" class="com.skt.opensocial.user.ListGadgetsAction">
 			<result>/user/UserListGadgets.jsp</result>
+		</action>
+		
+		<action name="GadgetInfo" class="com.skt.opensocial.user.GadgetInfoAction">
+
+			<result name="success">/user/UserGadgetInfo.jsp</result>
 		</action>
 		
 		<action name="ManageFriend">
