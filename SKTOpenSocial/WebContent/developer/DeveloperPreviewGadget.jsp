@@ -63,6 +63,10 @@
 										
 										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>
 									</s:if>
+									<s:elseif test="%{registerType.equals('src')}">
+										
+										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/SKTOpenSocial/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>
+									</s:elseif>
 									<s:else>
 										<td valign="top"><img src="ilike.png" height="70%" width="70%"> </td>
 									</s:else>
