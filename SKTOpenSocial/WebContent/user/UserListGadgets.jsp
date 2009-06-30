@@ -52,88 +52,41 @@
 						<table class="subtit_board" summary="List of Gadgets"
 							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
-								<col width="10%">
-								<col width="10%">
-								<col width="10%">
-								<col width="10%">
-								<col width="10%">
-								<col width="20%">
-								<col width="30%">
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="15%">
+								<col width="25%">
+
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td>가젯ID</td>
 									<td>가젯이름</td>
-									<td align="center">등록일자</td>
+									<td align="center">개발자</td>
 									<td align="center">발행일자</td>
 									<td align="center">사용자수</td>
-									<td align="center">가젯상태</td>
-									<td align="center">작 업</td>
+									<td align="center">가젯설명</td>
+
 								</tr>
 								<s:iterator value="gadgets">
 								<tr style="background-color: rgb(300, 300, 300);">
 									<s:url id="gadgetPreviewUrl" action="PreviewGadget">
 										<s:param name="gadgetId"><s:property value="id"/></s:param>
 									</s:url>
-									<td><s:a href="%{gadgetPreviewUrl}"><s:property value="id"/></s:a></td>
-									<td><s:a href="%{gadgetPreviewUrl}"><s:property value="name"/></s:a></td>
-									<td align="center"><s:date name="registerDate" format="yyyy/MM/dd"/></td>
+									<s:url id="gadgetInfoUrl" action="GadgetInfo">
+										<s:param name="gadgetId"><s:property value="id"/></s:param>
+									</s:url>
+									<s:url id="userInfoUrl" action="UserInfo">
+										<s:param name="developername"><s:property value="developer.person.name"/></s:param>
+									</s:url>
+									<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
+									<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
+									<td align="center"><s:a href="%{userInfoUrl}"><s:property value="developer.person.name" /></s:a></td>
 									<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
 									<td align="center"><s:property value="favoriteUsers.size"/></td>
-									
-									<td align="center">
-									<s:if test="%{status.equals('rg')}">
-										등록완료
-									</s:if>
-									<s:elseif test="%{status.equals('pr')}">
-										발행요청
-									</s:elseif>
-									<s:elseif test="%{status.equals('pg')}">
-										발행완료
-									</s:elseif>
-									<s:elseif test="%{status.equals('pd')}">
-										발행거절
-									</s:elseif>
-									<s:elseif test="%{status.equals('nr')}">
-										미등록
-									</s:elseif>
-									</td>
-										<s:url id="finishRegisterUrl" action="RegisterGadget" method="finishGadgetRegister">
-											<s:param name="gadgetId"><s:property value="id"/></s:param>
-										</s:url>
-										<s:url id="viewReviewUrl" action="ViewGadgetReview">
-											<s:param name="gadgetId"><s:property value="id"/></s:param>
-										</s:url>
-										<s:url id="modifyGadgetUrl" action="ModifyGadget" method="getModifyGadgetPage">
-											<s:param name="gadgetId"><s:property value="id"/></s:param>
-										</s:url>
-										<s:url id="removeGadgetUrl" action="RemoveGadget">
-											<s:param name="gadgetId"><s:property value="id"/></s:param>
-										</s:url>
-									<s:if test="status.equals('nr')">
-									<td align="center">
-										<s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="%{removeGadgetUrl}">삭제</s:a>
-									</td>
-									</s:if>
-									<s:if test="status.equals('rg')">
-									<td align="center">
-										<a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="%{removeGadgetUrl}">삭제</s:a>
-									</td>
-									</s:if>
-									<s:elseif test="status.equals('pg')">
-									<td align="center">
-										<s:a href="%{viewReviewUrl}">사용자 리뷰 보기</s:a>
-									</td> 
-									</s:elseif>
-									<s:elseif test="status.equals('pd')">
-										<td align="center">
-										<a href="#" onclick="javascript:popup('popup_publish_deny.jsp','PublishDeny')">거절사유</a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="%{removeGadgetUrl}">삭제</s:a>
-										</td>
-									</s:elseif>
-									<s:else>
-									<td align="center">
-									</td> 
-									</s:else>
+									<td align="center"><s:property value="introduction"/></td>
 									
 								</tr>
 								</s:iterator>
