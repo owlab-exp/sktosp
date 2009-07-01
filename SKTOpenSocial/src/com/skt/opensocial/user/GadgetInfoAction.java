@@ -3,13 +3,12 @@
  */
 package com.skt.opensocial.user;
 
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.hibernate.classic.Session;
 
 import com.opensymphony.xwork2.Action;
-import com.skt.opensocial.common.GadgetStatusConstants;
 import com.skt.opensocial.developer.ManageGadgetAction;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetCategory;
@@ -28,6 +27,12 @@ public class GadgetInfoAction extends ManageGadgetAction{
 	private static final long serialVersionUID = 1L;
 	
 	public Gadget gadget;
+	public String name;
+	public String introduction;
+	public String categoryStringList;
+	public String registerType;
+	public String gadgetSource;
+	public String gadgetIconUrl;
 	
 	
 	public Gadget getGadget() {
@@ -38,6 +43,48 @@ public class GadgetInfoAction extends ManageGadgetAction{
 		this.gadget = gadget;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	
+	public String getRegisterType() {
+		return registerType;
+	}
+
+	public void setRegisterType(String registerType) {
+		this.registerType = registerType;
+	}
+
+	public String getGadgetSource() {
+		return gadgetSource;
+	}
+
+	public void setGadgetSource(String gadgetSource) {
+		this.gadgetSource = gadgetSource;
+	}
+
+	public String getGadgetIconUrl() {
+		return gadgetIconUrl;
+	}
+
+	public void setGadgetIconUrl(String gadgetIconUrl) {
+		this.gadgetIconUrl = gadgetIconUrl;
+	}
+	
+	
+
 	public String execute() {
 		prepare();
 		
@@ -45,6 +92,33 @@ public class GadgetInfoAction extends ManageGadgetAction{
 		hs.beginTransaction();
 		
 		gadget = (Gadget) hs.load(Gadget.class, gadgetId);
+		
+		name = gadget.getName();
+		introduction = gadget.getIntroduction();
+		gadgetSource = gadget.getSource();
+		registerType = gadget.getRegisterType();
+		gadgetIconUrl = gadget.getIconUrl();
+		
+		Set<GadgetCategory> categorySet = gadget.getCategories();
+		
+		Iterator<GadgetCategory> it = categorySet.iterator();
+		
+		categoryStringList = new String("");
+		
+		while (it.hasNext()) {
+		        // Get element
+		        GadgetCategory element = it.next();
+		        //System.out.println("list count = " + element.getName() + element.getId());
+		        if (!categoryStringList.isEmpty())
+		        {
+		        	categoryStringList = categoryStringList.concat(",");
+		        }
+		        categoryStringList = categoryStringList.concat(element.getName()); 
+		        //System.out.println("list count = " + categoryStringList);
+		}
+		
+        //System.out.println("list count = " + categoryStringList);
+		
 		
 		/* 
 		 * 
@@ -83,6 +157,14 @@ public class GadgetInfoAction extends ManageGadgetAction{
 		return Action.SUCCESS;
 	}
 	
+	public String getCategoryStringList() {
+		return categoryStringList;
+	}
+
+	public void setCategoryList(String categoryStringList) {
+		this.categoryStringList = categoryStringList;
+	}
+
 	public String getModifyGadgetPage(){
 		prepare();
 		

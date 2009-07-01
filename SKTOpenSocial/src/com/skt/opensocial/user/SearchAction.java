@@ -22,8 +22,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class ListGadgetsAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(ListGadgetsAction.class);
+public class SearchAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(SearchAction.class);
 	
 	/**
 	 * 
@@ -36,24 +36,34 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
 	Set<Gadget> gadgets;
-	
+	String searchfield;
+	String query;
 	int requestedPage = 1;
 	
+	public String getSearchfield() {
+		return searchfield;
+	}
+
+	public void setSearchfield(String searchfield) {
+		this.searchfield = searchfield;
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
 	public String execute(){
 		//
-		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
-		
-		String userId = user.getUserId();
-		
+				
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
 		
-		user = (User)hs.load(User.class, userId);
-		
-		
-		session.put(SKTOpenSocialSupportConstants.USER, user);
-		
-		this.gadgets = user.getFavoriteGadgets();
+		System.out.println("list count = " + searchfield + query);
+			
 		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
 		
 		hs.getTransaction().commit();

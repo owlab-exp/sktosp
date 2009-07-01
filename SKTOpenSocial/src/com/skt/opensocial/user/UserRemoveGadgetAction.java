@@ -22,8 +22,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class ListGadgetsAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(ListGadgetsAction.class);
+public class UserRemoveGadgetAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(UserRemoveGadgetAction.class);
 	
 	/**
 	 * 
@@ -38,6 +38,15 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 	Set<Gadget> gadgets;
 	
 	int requestedPage = 1;
+	private Long gadgetId;
+	
+	public Long getGadgetId() {
+		return gadgetId;
+	}
+
+	public void setGadgetId(Long gadgetId) {
+		this.gadgetId = gadgetId;
+	}
 	
 	public String execute(){
 		//
@@ -52,6 +61,12 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		
 		
 		session.put(SKTOpenSocialSupportConstants.USER, user);
+		Gadget gadget = (Gadget)hs.load(Gadget.class,gadgetId);
+		
+		this.gadgets = user.getFavoriteGadgets();
+		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+		
+		user.removeFavoriteGadget(gadget);
 		
 		this.gadgets = user.getFavoriteGadgets();
 		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
