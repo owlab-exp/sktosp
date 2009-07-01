@@ -10,9 +10,20 @@
 		<action name="GadgetDetail" class="com.skt.opensocial.admin.GadgetDetail">
 			<result name="SUCCESS">/admin/GadgetDetail.jsp</result>
 		</action>
+		
+		
+		<action name="RemoveGadget" class="com.skt.opensocial.admin.RemoveGadgetAction">
+			<result name="SUCCESS" type="redirectAction">GadgetList</result>
+		</action>		
+
+		<action name="ChangeStatusGadgetAction" class="com.skt.opensocial.admin.ChangeStatusGadgetAction">
+			<result name="SUCCESS" type="redirectAction">GadgetList</result>
+		</action>	
+
 		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.admin.GadgetController">
 			<result name="SUCCESS" type="redirectAction">GadgetList</result>			
 		</action>
+		
 		
 		<action name="DeveloperList" class="com.skt.opensocial.admin.DeveloperList">
 			<result name="SUCCESS">/admin/DeveloperList.jsp</result>

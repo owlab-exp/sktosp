@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.skt.opensocial.admin;
 
 import java.util.Map;
@@ -5,18 +8,22 @@ import java.util.Map;
 import org.hibernate.Session;
 
 import com.opensymphony.xwork2.Action;
-import com.skt.opensocial.developer.DeveloperBaseAction;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 
-public class GadgetController extends AdministratorBaseAction {
+/**
+ * @author Sejoon Oh
+ *
+ */
+public class RemoveGadgetAction extends AdministratorBaseAction {
 	
 	private static final long serialVersionUID = 1L;
 	private Long gadgetId;
 	private String gadgetName;
+	
 	private Map<String, Object> session;
-
-    public String delete() {
+	
+	public String execute(){
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
 		
@@ -25,14 +32,13 @@ public class GadgetController extends AdministratorBaseAction {
 		hs.delete(gadget);
 		
 		hs.getTransaction().commit();
-				
-        return "SUCCESS";
-    }
+		
+		
+		return "SUCCESS";
+	}
+	
+	
 
-    public String changeStatus() {
-        return "SUCCESS";
-    }
-    
 	public Long getGadgetId() {
 		return gadgetId;
 	}
@@ -50,5 +56,4 @@ public class GadgetController extends AdministratorBaseAction {
 	}
 	
 	
-
 }

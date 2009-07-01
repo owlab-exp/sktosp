@@ -34,6 +34,7 @@ public class GadgetDetail extends ManageGadgetAction{
 		setGadgetSource(gadget.getSource());
 		setGadgetIntro(gadget.getIntroduction());
 		setGadgetIconUrl(gadget.getIconUrl());
+		setGadgetStatus(gadget.getStatus());
 		
 		/*
 		return Action.SUCCESS;

@@ -100,11 +100,17 @@
 
     			<s:iterator value="gadgets">
     			  <tr> 
-					<s:url id="gadgetPreviewUrl" action="PreviewGadget">
+    			  
+					<s:url id="gadgetPreviewUrl" namespace="/developer" action="PreviewGadget">
 						<s:param name="gadgetId"><s:property value="id"/></s:param>
 					</s:url>    			  
-                	<td><s:property value="id"/></td> 
-          			<td><span class="num"><s:url var="url" namespace="/admin" action="GadgetDetail"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
+                	<td><s:a href="%{gadgetPreviewUrl}"><s:property value="id"/></s:a></td> 
+                	
+          				<s:url var="GadgetDetailUrl" namespace="/admin" action="GadgetDetail">
+          					<s:param name="gadgetId"><s:property value="id"/></s:param>
+          				</s:url>
+          			<td><span class="num"><s:a href="%{GadgetDetailUrl}"><s:property value="name"/></s:a></span></td> 
+          			
                 	<td><s:property value="introduction"/></td> 
       			    <td align="center">
       			    <s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="developer.id"/></s:a>
@@ -133,11 +139,7 @@
 					 
       			    <td align="center">      			    
 						<s:if test="%{status.equals('rg')}">
-		 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
-		 	    			<s:param name="name" value="%{gadget.name}" />
-		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
-		 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
-		 	    			<input type="button" value="비활성"/></s:a> 	    			
+							-	    			
 						</s:if>
 						<s:elseif test="%{status.equals('pr')}">
 							<a href="#" onclick="javascript:popup('popup_gadget_publish_response.jsp','GadgetRegister')">
@@ -148,14 +150,14 @@
 		 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
 		 	    			<s:param name="name" value="%{gadget.name}" />
 		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
-		 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
-		 	    			<input type="button" value="비활성"/></s:a> 	    			
+		 	    			<s:a onclick='return confirmbox("발행취소하시겠습니까?", "%{url}");'>
+		 	    			<input type="button" value="발행취소"/></s:a> 	    			
 						</s:elseif>
 						<s:elseif test="%{status.equals('pd')}">
-							
+							-
 						</s:elseif>
 						<s:elseif test="%{status.equals('nr')}">
-							
+							-
 						</s:elseif>
 					</td>
 					<td align="center">
