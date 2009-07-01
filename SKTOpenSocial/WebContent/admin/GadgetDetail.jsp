@@ -58,27 +58,33 @@
 			</colgroup>
 			
 				<tr>
-          			<td rowspan="8"><img src='<s:url value="../images/logo.jpg"/>'></td> 
+          			<td rowspan="10"><img src='<s:url value="../images/logo.jpg"/>'></td> 
       			</tr>
 			           
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="center">가젯명</td> 
-                	<td><s:text name="%{gadget.name}"/></td> 
+          			<td align="center">가젯ID</td> 
+                	<td><s:property value="gadgetId"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">가젯이름</td> 
+                	<td><s:property value="gadgetName"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#FFFFFF;" height="25">
           			<td align="center">개발자</td> 
-                	<td><s:text name="%{gadget.owner}"/></td> 
+                	<td><s:property value="%{developer.id}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="center">등록유저수</td> 
-                	<td><s:text name="%{gadget.numRegUsers}"/></td> 
+          			<td align="center">선호등록유저수</td> 
+                	<td><s:property value="%{favoriteUsers.size()}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="center">소개</td> 
-                	<td><s:text name="%{gadget.desc}"/></td> 
+                	<td><s:property value="gadgetIntro"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
      		 </table>
@@ -90,8 +96,10 @@
  	    		<tr>
  	    			<td style="font-size=13px">
  	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
- 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
- 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
+ 	    			<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
+ 	    			<s:param name="name" value="%{gadget.name}" />
+ 	    			</s:url>
+ 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{GadgetController_delete}");'>
  	    			<input type="button" value="삭제"></s:a>
  	    			</td>
  	    			<td style="font-size=13px">
