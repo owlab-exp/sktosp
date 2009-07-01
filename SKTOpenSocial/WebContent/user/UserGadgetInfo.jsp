@@ -59,47 +59,35 @@
 									<td>가젯 아이디:</td>
 									<td><s:property value="gadgetId"/></td>
 								</tr>
-								<s:form action="ModifyGadget" id="modifyGadgetForm" theme="simple">
-								<s:hidden name="gadgetId" value="%{gadgetId}"/>
-								<s:hidden name="registerType" value="%{registerType}"/>
-								<s:hidden name="gadgetStatus" value="nr"/>
-								<tr>
-									<td>*가젯 이름:</td>
-									<td>
-									<s:textfield name="gadgetName"></s:textfield>
-									</td>
+								<tr style="background-color: rgb(245, 245, 245);">
+									<td>가젯 이름:</td>
+									
+									<td><s:property value="name"/></td>
+									
 								</tr>
-								<tr>
-									<td>*가젯 유형:</td>
-									<td>
-										<s:select name="gadgetCategory" 
-											list="categoryList"
-											listKey="id"
-											listValue="name"
-											value="%{gadgetCategoryIdSelected}"
-											
-											multiple="true"
-											>
-										</s:select>
-									</td>
+														
+								<tr style="background-color: rgb(245, 245, 245);">
+									<td>가젯 유형:</td>
+									<td><s:property value="categoryStringList"/></td>
 								</tr>
-								<tr>
-									<td valign="top">*가젯 소개:</td>
+								
+								<tr style="background-color: rgb(245, 245, 245);">
+									<td valign="top">가젯 소개:</td>
 									<td valign="top">
-											<s:textarea rows="2" cols="20" name="gadgetIntro"/>
+											<s:property value="introduction"/>
 									</td>
 								</tr>
-								<tr>
+								<tr style="background-color: rgb(245, 245, 245);">
 									<td>아이콘:</td>
 									<td>
-											<s:textfield name="gadgetIconUrl" size="50"/><input type="button" value="찾아보기"> 권장사이즈: 23px X 23px
+										<s:property value="gadgetIconUrl"/>	
 									</td>
 								</tr>
 								<s:if test="%{registerType.equals('src')}">
 								<tr>
 									<td valign="top">가젯 소스:</td>
 									<td>
-										<s:textarea cols="70" rows="10" name="gadgetSource" />
+										<s:property value="gadgetSource" />
 									</td>
 								</tr>
 								</s:if>
@@ -107,27 +95,36 @@
 								<tr>
 									<td valign="top">가젯 URL:</td>
 									<td>
-										<s:textfield name="gadgetSource" size="50"/>
+										<s:property value="gadgetSource" />
 									</td>
 								</tr>
 								</s:elseif>
 								<tr>
 									<td class="line" colspan="2"></td>
 								</tr>
-								</s:form>
+								<tr>
+									<td valign="top">가젯 실행</td>
+
+									<s:if test="%{registerType.equals('url')}">
+										
+										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>
+									</s:if>
+									
+									<s:else>
+										<td valign="top"><img src="ilike.png" height="70%" width="70%"> </td>
+									</s:else>
+
+								</tr>
+								<tr>
+									<td class="line"></td>
+									
+								</tr>
+
 							</tbody>
 						</table>
 						</td>
 					</tr>
-					<tr>
-						<td><!-- buttons -->
-						<div class="paging">
-<!--						<s:url id="modifyGadgetUrl" action="ModifyGadget">-->
-<!--							<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>-->
-<!--						</s:url>-->
-						<em class="n"><s:submit  type="button" onclick="document.getElementById('modifyGadgetForm').submit()" theme="simple">수정확인</s:submit></em>
-						</div></td>
-					</tr>
+
 				</tbody>
 			</table>
 			</div>

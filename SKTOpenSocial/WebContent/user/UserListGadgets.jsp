@@ -36,7 +36,7 @@
 			<table cellpadding="10" width="100%">
 				<!-- navigation -->
 				<tbody valign="top">
-					<tr v>
+					<tr >
 						<td valign="top">
 						<div class="subject subject_char">
 						<ul class="subject_sub">
@@ -57,7 +57,8 @@
 								<col width="15%">
 								<col width="15%">
 								<col width="15%">
-								<col width="25%">
+								<col width="20%">
+								<col width="5%">
 
 							</colgroup>
 							<tbody>
@@ -68,18 +69,19 @@
 									<td align="center">발행일자</td>
 									<td align="center">사용자수</td>
 									<td align="center">가젯설명</td>
+									<td align="center">삭제요청</td>
 
 								</tr>
 								<s:iterator value="gadgets">
 								<tr style="background-color: rgb(300, 300, 300);">
-									<s:url id="gadgetPreviewUrl" action="PreviewGadget">
-										<s:param name="gadgetId"><s:property value="id"/></s:param>
-									</s:url>
 									<s:url id="gadgetInfoUrl" action="GadgetInfo">
 										<s:param name="gadgetId"><s:property value="id"/></s:param>
 									</s:url>
 									<s:url id="userInfoUrl" action="UserInfo">
 										<s:param name="developername"><s:property value="developer.person.name"/></s:param>
+									</s:url>
+									<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
+										<s:param name="gadgetId"><s:property value="id"/></s:param>
 									</s:url>
 									<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
 									<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
@@ -87,6 +89,7 @@
 									<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
 									<td align="center"><s:property value="favoriteUsers.size"/></td>
 									<td align="center"><s:property value="introduction"/></td>
+									<td align="center"><s:a href="%{userRemoveGadgetUrl}">삭제</s:a></td>
 									
 								</tr>
 								</s:iterator>
