@@ -10,26 +10,26 @@
 </head>
 <body >
 <div align="center" >
-<s:form action="GadgetRegister" theme="simple">
 <table height="100" width="100">
 	<tr>
 		<td colspan="2">가젯의 발행여부 선택</td>
 	</tr>
-	<tr>
- 	    <s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
- 			<s:param name="name" value="%{gadget.name}" />
- 			<s:param name="status" value="%{gadget.status}" />
+	<tr>	
+
+ 	    <s:url id="PublishGadgetUrl" action="PublishGadgetAction" namespace="/admin">
+ 			<s:param name="gadgetId"><%= request.getParameter("gadgetId") %></s:param>
  		</s:url>
-		<td><s:submit value="발행허가" onclick="opener.location.href='%{url}';window.close()" ></s:submit>
+		<td>
+		<s:a onclick="opener.location.href='%{PublishGadgetUrl}'"><input type="button" value="발행허가"/></s:a>    
+		 	    			
 		</td>
-		<td><s:submit value="발행거부" onclick="window.close()" ></s:submit>
+		<td><s:submit value="발행거부" onclick="window.close()"></s:submit>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2"><s:textfield value="거부사유"/></td>
 	</tr>
 </table>
-</s:form>
 </div>
 </body>
 </html>

@@ -18,7 +18,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 public class GadgetDetail extends ManageGadgetAction{
 	
 	private Gadget gadget;
-		
+	
 	public String execute() {
 		
 		
@@ -35,6 +35,7 @@ public class GadgetDetail extends ManageGadgetAction{
 		setGadgetIntro(gadget.getIntroduction());
 		setGadgetIconUrl(gadget.getIconUrl());
 		setGadgetStatus(gadget.getStatus());
+		
 		
 		/*
 		return Action.SUCCESS;

@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin.js"></script>
 <title>관리자 가젯 리스트 보기</title>
 </head>
 
@@ -137,7 +138,7 @@
 		 	    			<input type="button" value="발행취소"/></s:a> 	     			
 						</s:if>
 						<s:elseif test="%{gadgetStatus.equals('pr')}">
-							<a href="#" onclick="javascript:popup('popup_gadget_publish_response.jsp','GadgetRegister')">
+							<a href="#" onclick="javascript:adminpopup('popup_gadget_publish_response.jsp?gadgetId=<s:property value="gadgetId"/>','GadgetPublish');">
 							<input type="button" value="발행">
 							</a>
 						</s:elseif>
@@ -170,6 +171,7 @@
     <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
 <%@ include file="/common/south.jsp"%>
 	</td>
+  </tr>
 </table>
 
 </body>
