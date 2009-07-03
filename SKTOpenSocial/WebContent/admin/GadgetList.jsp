@@ -52,11 +52,10 @@
           <td>
 
 
-	<s:form action="GadgetList" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'name':'이름','owner':'등록자'}"/> 
-	    <s:textfield name="query"/> 
+		<s:form action="GadgetList" theme="simple">
+	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'NAME':'이름','DEVELOPER_ID':'개발자'}"/> 
+	    <s:textfield name="query" value="%{query}"/> 
 	    <s:submit value="검색"/>
-	    
 	</s:form>
 
 		      </td>
