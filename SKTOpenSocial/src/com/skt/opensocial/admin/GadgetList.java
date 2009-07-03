@@ -3,14 +3,25 @@
  */
 package com.skt.opensocial.admin;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
 
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
+import com.skt.opensocial.persistence.ActivityMediaItem;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
@@ -27,11 +38,77 @@ public class GadgetList extends AdministratorBaseAction {
 	Map<String, Object> session;
 	Set<Gadget> gadgets;
 	
+	static int scale	= 10;
 	int requestedPage = 1;
+	int start	= 0;
+	int totalcount	= 0;
+	String searchfield	= "";
+	String query	= "";
 	
 	public String execute(){
-		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = session.beginTransaction();
+		
+		Criteria c = session.createCriteria(Gadget.class);
+		c.addOrder( Order.desc("id") );
+		//crit.addOrder( Property.forName("registerDate").desc() );
+		if (!this.searchfield.isEmpty() && !this.query.isEmpty()) {
+			c.add( Restrictions.like(this.searchfield, this.query) );
+			System.out.println("searchfield: "+this.searchfield);
+			System.out.println("query: "+this.query);
+		}
+			
+		c.setFirstResult(this.start);
+		c.setMaxResults(this.scale);
+
+		//System.out.println("START: "+this.start);
+		
+		
+		// all items
+		List<Gadget> items	= (List<Gadget>)c.list();
+		this.gadgets = new HashSet<Gadget>(items);
+
+		
+		// for total count
+		c = session.createCriteria(Gadget.class);
+		c.setProjection( Projections.projectionList()
+				.add( Projections.rowCount(), "GadgetTotalCount" )
+		);		
+		this.totalcount	=  ((Integer)c.list().get(0)).intValue();
+	
+		/*		
+		
+for(Object item: items) {
+	System.out.println("[["+item +"]]");
+}
+		for(Gadget item: items) {
+			System.out.println("NAME: "+item.getName());
+			System.out.println("INTRODUCTION: "+item.getIntroduction());
+		}
+*/
+		/*
+		// filer by an userId and an activityId
+		crit = session.createCriteria(ActivityMediaItem.class);
+		items = crit
+		.add(Restrictions.eq("userId", userId))
+		.add(Restrictions.eq("activityId", actId_1))
+		.list();
+		
+		for(ActivityMediaItem item: items) {
+			System.out.println("ACTIVITY_ID: "+item.getActivityId());
+			System.out.println("USER_ID: "+item.getUserId());
+		}
+		*/
+		tran.commit();
+		//items.addAll(this.gadgets);
+
+		/*
+		
+		
+		
+		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+				
 		String userId = user.getUserId();
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -41,11 +118,12 @@ public class GadgetList extends AdministratorBaseAction {
 		
 		session.put(SKTOpenSocialSupportConstants.USER, user);
 		
-		this.gadgets = user.getGadgets();
+		this.gadgets = user.getAllgadgets();
 		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
 		
 		hs.getTransaction().commit();
-
+		
+		*/
 		return "SUCCESS";
 	}
 	
@@ -67,6 +145,13 @@ public class GadgetList extends AdministratorBaseAction {
 
 	public void setGadgets(Set<Gadget> gadgets) {
 		this.gadgets = gadgets;
+	}
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
 	}
 }
 
