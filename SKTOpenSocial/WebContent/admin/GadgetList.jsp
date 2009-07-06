@@ -137,11 +137,15 @@
 					</td>
 					 
       			    <td align="center">      			    
-						<s:if test="%{status.equals('rg')}">
-							-	    			
+     					<s:if test="%{status.equals('rg')}">
+		 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
+		 	    			<s:param name="name" value="%{gadget.name}" />
+		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
+		 	    			<s:a onclick='return confirmbox("발행취소하시겠습니까?", "%{url}");'>
+		 	    			<input type="button" value="발행취소"/></s:a> 	     			
 						</s:if>
 						<s:elseif test="%{status.equals('pr')}">
-							<a href="#" onclick="javascript:popup('popup_gadget_publish_response.jsp','GadgetRegister')">
+							<a href="#" onclick="javascript:adminpopup('popup_gadget_publish_response.jsp?gadgetId=<s:property value="gadgetId"/>','GadgetPublish');">
 							<input type="button" value="발행">
 							</a>
 						</s:elseif>
@@ -150,20 +154,22 @@
 		 	    			<s:param name="name" value="%{gadget.name}" />
 		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
 		 	    			<s:a onclick='return confirmbox("발행취소하시겠습니까?", "%{url}");'>
-		 	    			<input type="button" value="발행취소"/></s:a> 	    			
+		 	    			<input type="button" value="발행취소"/></s:a>    			
 						</s:elseif>
 						<s:elseif test="%{status.equals('pd')}">
-							-
+							
 						</s:elseif>
 						<s:elseif test="%{status.equals('nr')}">
-							-
+							
 						</s:elseif>
+
 					</td>
 					<td align="center">
- 	    			<s:url var="url" action="GadgetController_delete" namespace="/admin">
- 	    			<s:param name="name" value="%{gadget.name}" /></s:url>
- 	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{url}");'>
- 	    			<input type="button" value="삭제"></s:a>			    
+					<s:url id="removeGadgetUrl" action="RemoveGadget" namespace="/admin">
+						<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
+					</s:url>
+  	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{removeGadgetUrl}");'>
+ 	    			<input type="button" value="삭제"></s:a>	    
       			    </td> 
       			  </tr>
       			  <tr><td class="line" colspan="10"></td></tr>

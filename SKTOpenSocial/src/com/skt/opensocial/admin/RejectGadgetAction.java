@@ -39,10 +39,11 @@ public class RejectGadgetAction extends ManageGadgetAction {
 
 		GadgetPublish gadgetpublish	= new GadgetPublish();
 		gadgetpublish.setRejectReason("444444444444");
+		
 		gadget.setGadgetPublish(gadgetpublish);
 
-		GadgetPublish publishRequest = gadget.getGadgetPublish();
-		publishRequest.setApprove(false);	
+		//GadgetPublish publishRequest = gadget.getGadgetPublish();
+		//publishRequest.setApprove(false);	
 
 		hs.update(gadget);
 		hs.getTransaction().commit();
