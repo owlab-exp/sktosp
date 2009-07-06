@@ -23,7 +23,11 @@
 		<s:a onclick="opener.location.href='%{PublishGadgetUrl}'"><input type="button" value="발행허가"/></s:a>    
 		 	    			
 		</td>
-		<td><s:submit value="발행거부" onclick="window.close()"></s:submit>
+ 	    <s:url id="RejectGadgetUrl" action="RejectGadgetAction" namespace="/admin">
+ 			<s:param name="gadgetId"><%= request.getParameter("gadgetId") %></s:param>
+ 		</s:url>
+		<td>
+		<s:a onclick="opener.location.href='%{RejectGadgetUrl}'"><input type="button" value="발행거부"/></s:a>  
 		</td>
 	</tr>
 	<tr>

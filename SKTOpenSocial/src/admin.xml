@@ -16,7 +16,11 @@
 		</action>		
 
 		<action name="PublishGadgetAction" class="com.skt.opensocial.admin.PublishGadgetAction">
-			<result name="SUCCESS" type="redirectAction">GadgetDetail</result>
+			<result name="SUCCESS" type="redirectAction">GadgetList</result>
+		</action>	
+
+		<action name="RejectGadgetAction" class="com.skt.opensocial.admin.RejectGadgetAction">
+			<result name="SUCCESS" type="redirectAction">GadgetList</result>
 		</action>	
 
 		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.admin.GadgetController">

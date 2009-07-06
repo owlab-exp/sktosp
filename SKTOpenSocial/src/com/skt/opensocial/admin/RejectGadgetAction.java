@@ -13,13 +13,14 @@ import com.skt.opensocial.common.GadgetStatusConstants;
 import com.skt.opensocial.developer.ManageGadgetAction;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetCategory;
+import com.skt.opensocial.persistence.GadgetPublish;
 import com.skt.opensocial.persistence.HibernateUtil;
 
 /**
  * @author Sejoon Oh
  *
  */
-public class PublishGadgetAction extends ManageGadgetAction {
+public class RejectGadgetAction extends ManageGadgetAction {
 	
 
 	public String execute(){
@@ -33,8 +34,16 @@ public class PublishGadgetAction extends ManageGadgetAction {
 
 		//gadget.setName(getGadgetName());
 		
-		gadget.setStatus(GadgetStatusConstants.PUBLISHED);
-		
+
+		gadget.setStatus(GadgetStatusConstants.PUBLISH_DENIED);
+
+		GadgetPublish gadgetpublish	= new GadgetPublish();
+		gadgetpublish.setRejectReason("444444444444");
+		gadget.setGadgetPublish(gadgetpublish);
+
+		GadgetPublish publishRequest = gadget.getGadgetPublish();
+		publishRequest.setApprove(false);	
+
 		hs.update(gadget);
 		hs.getTransaction().commit();
 
