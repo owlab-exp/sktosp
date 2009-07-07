@@ -20,14 +20,14 @@
  			<s:param name="gadgetId"><%= request.getParameter("gadgetId") %></s:param>
  		</s:url>
 		<td>
-		<s:a onclick="opener.location.href='%{PublishGadgetUrl}'"><input type="button" value="발행허가"/></s:a>    
+		<s:a onclick="opener.location.href='%{PublishGadgetUrl}';window.close();"><input type="button" value="발행허가"/></s:a>    
 		 	    			
 		</td>
  	    <s:url id="RejectGadgetUrl" action="RejectGadgetAction" namespace="/admin">
  			<s:param name="gadgetId"><%= request.getParameter("gadgetId") %></s:param>
  		</s:url>
 		<td>
-		<s:a onclick="opener.location.href='%{RejectGadgetUrl}'"><input type="button" value="발행거부"/></s:a>  
+		<s:a onclick="opener.location.href='%{RejectGadgetUrl}';window.close();"><input type="button" value="발행거부"/></s:a>  
 		</td>
 	</tr>
 	<tr>

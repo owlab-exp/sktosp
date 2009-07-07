@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
-<script type="text/javascript" src="../js/developer.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin.js"></script>
 <title>관리자 가젯 리스트 보기</title>
 </head>
 
