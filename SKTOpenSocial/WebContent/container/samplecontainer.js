@@ -44,13 +44,16 @@ shindig.samplecontainer = {};
     + "/social/rest/samplecontainer/"; // HJ
   //alert(socialDataPath);
   var gadgetUrlMatches = /[?&]url=((?:[^#&]+|&amp;)+)/.exec(parentUrl);
-  var gadgetUrl = (gadgetUrlMatches)
-      ? gadgetUrlMatches[1]
-      : baseUrl + 'examples/SocialHelloWorld.xml';
-
+  //var gadgetUrl = (gadgetUrlMatches)
+  //    ? gadgetUrlMatches[1]
+  //    : baseUrl + 'examples/SocialHelloWorld.xml';
+  var gadgetUrl = 'http://localhost:8080/gadgets/files/samplecontainer/examples/SocialHelloWorld.xml';
+  
   var gadgetUrlCookie = 'sampleContainerGadgetUrl';
 
-  var stateFileUrl = baseUrl + '../sampledata/canonicaldb.json';
+  //var stateFileUrl = baseUrl + '../sampledata/canonicaldb.json';
+  var stateFileUrl = 'http://localhost:8080/gadgets/files/sampledata/canonicaldb.json';
+  
   var stateFileUrlCookie = 'sampleContainerStateFileUrl';
 
   var useCaja;

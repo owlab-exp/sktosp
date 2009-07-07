@@ -6,15 +6,25 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 <!--        <property name="hibernate.connection.url">jdbc:mysql://nash.owlab.com:3306/SKTOpenSocialDB_1?autoReconnect=true</property>-->
-        <property name="hibernate.connection.url">jdbc:mysql://220.69.176.198:3306/SKTOpenSocialDB_1?autoReconnect=true</property>
+        <property name="hibernate.connection.url">jdbc:mysql://220.69.176.198:3306/SKTOpenSocialDB_1</property>
         <property name="hibernate.connection.username">nash</property>
         <property name="hibernate.connection.password">123456</property>
-        <property name="hibernate.connection.pool_size">10</property>
+        <!-- pool is defined by c3po section -->
+<!--        <property name="hibernate.connection.pool_size">10</property>-->
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hbm2ddl.auto">validate</property>
+        <!-- c3po section -->
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.c3p0.max_size">10</property>
+        <property name="hibernate.c3p0.min_size">1</property>
+        <property name="hibernate.c3p0.timeout">60</property>
+        <property name="hibernate.c3p0.max_statement">0</property>
+        <property name="hibernate.c3p0.acquire_increment">3</property>
+        <property name="hibernate.c3p0.idle_test_period">30</property>
+        <property name="hibernate.c3p0.validate">true</property>
         
         <mapping resource="com/skt/opensocial/persistence/Activity.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/ActivityMediaItem.hbm.xml" />
@@ -23,6 +33,7 @@
   
         
         <mapping resource="com/skt/opensocial/persistence/Gadget.hbm.xml" />
+        <mapping resource="com/skt/opensocial/persistence/GadgetIcon.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/GadgetCategory.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/GadgetPublish.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/GadgetReview.hbm.xml" />
@@ -35,6 +46,5 @@
         <mapping resource="com/skt/opensocial/persistence/PersonUrl.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/User.hbm.xml" />
         <mapping resource="com/skt/opensocial/persistence/UserVisibility.hbm.xml" />
-        
-    </session-factory>
+     </session-factory>
 </hibernate-configuration>

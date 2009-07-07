@@ -26,7 +26,28 @@
 		<action name="ViewGadgetReview" class="com.skt.opensocial.developer.ViewReviewAction">
 			<result>/developer/DeveloperViewGadgetReview.jsp</result>
 		</action>
+		<action name="ViewDenyReason" class="com.skt.opensocial.developer.ViewDenyReasonAction">
+			<result>/developer/PopupPublishDenyReason.jsp</result>
+		</action>
 		<action name="RemoveGadget" class="com.skt.opensocial.developer.RemoveGadgetAction">
+			<result name="remove_confirm_page">/developer/PopupGadgetRemoveConfirm.jsp</result>
+			<result name="success" type="redirectAction">ListGadgets</result>
+		</action>
+		<action name="PublishRequest" class="com.skt.opensocial.developer.PublishRequestAction">
+			<result name="publish_confirm_page">/developer/PopupGadgetPublishRequest.jsp</result>
+			<result name="success" type="redirectAction">ListGadgets</result>
+		</action>
+		<action name="GadgetIconUpload" class="com.skt.opensocial.developer.IconUploadAction">
+			<result name="register_gadget" type="redirectAction">RegisterGadgetPage</result>
+			<result name="input">/developer/PopupGadgetIconUploadInput.jsp</result>
+			<result name="success">/developer/DeveloperRegisterGadget_WithIcon.jsp</result>
+		</action>
+		<action name="ViewIcon" class="com.skt.opensocial.developer.IconViewAction">
+			<result name="success" type="stream"/>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="RegisterMultipleGadgets" class="com.skt.opensocial.developer.RegisterMultipleGadgetsAction">
+			<result name="input">/developer/DeveloperRegisterGadget_URL_Multi.jsp</result>
 			<result name="success" type="redirectAction">ListGadgets</result>
 		</action>
 	</package>

@@ -11,7 +11,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="img" uri="/struts-images" %>
 
-<title>개발자 가젯 수정</title>
+<title>새 가젯 등록</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
@@ -60,11 +60,10 @@
 									<td>가젯 아이디:</td>
 									<td><s:property value="gadgetId"/></td>
 								</tr>
-								<s:form action="ModifyGadget" id="modifyGadgetForm" theme="simple" method="post" enctype="multipart/form-data">
+								<s:form action="RegisterGadget" id="registerGadgetForm" theme="simple">
 								<s:hidden name="gadgetId" value="%{gadgetId}"/>
 								<s:hidden name="registerType" value="%{registerType}"/>
 								<s:hidden name="gadgetStatus" value="nr"/>
-								<s:hidden name="gadgetIconUrl" value="%{gadgetIconUrl}"/>
 								<tr>
 									<td>*가젯 이름:</td>
 									<td>
@@ -110,14 +109,11 @@
 								<tr>
 									<td>아이콘:</td>
 									<td>
-										<s:if test="%{gadgetIconUrl != null}">
 										<s:url id="iconUrl" action="ViewIcon">
 											<s:param name="gadgetId" value="%{gadgetId}"></s:param>
 										</s:url>
-										<img:image src="%{iconUrl}" resize="false" height="100" width="100"/>
-										</s:if>
-									
-										<s:file name="icon" label="새 아이콘 파일 위치"/>
+										<img:image src="%{iconUrl}" resize="false" height="23" width="23"/>
+										<s:submit type="button" action="GadgetIconUpload">아이콘 변경</s:submit>
 									</td>
 								</tr>
 								<tr>
@@ -134,7 +130,7 @@
 <!--						<s:url id="modifyGadgetUrl" action="ModifyGadget">-->
 <!--							<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>-->
 <!--						</s:url>-->
-						<em class="n"><s:submit  type="button" onclick="document.getElementById('modifyGadgetForm').submit()" theme="simple">수정확인</s:submit></em>
+						<s:submit theme="simple" type="button" value="가젯 미리보기" onclick="document.getElementById('registerGadgetForm').submit()"/>
 						</div></td>
 					</tr>
 				</tbody>

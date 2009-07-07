@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="com.skt.opensocial.common.*" %>
+<%@ page import="com.skt.opensocial.common.*"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
@@ -17,19 +17,18 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" position: height="567"
+	width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
-			<td colspan="3" align="center" height="10%" valign="top">
-			<%@ include file="/common/north.jsp"%>
-			</td>
+			<td colspan="3" align="center" height="10%" valign="top"><%@ include
+				file="/common/north.jsp"%></td>
 		</tr>
 		<tr valign="top" height="80%">
 			<!-- west -->
-			<td align="center" valign="top" width="25%">
-			<%@ include file="/common/west_dev.jsp"%>
-			</td>
+			<td align="center" valign="top" width="25%"><%@ include
+				file="/common/west_dev.jsp"%></td>
 			<!-- east -->
 			<td align="left" valign="top" width="75%">
 			<div id="east">
@@ -56,24 +55,28 @@
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td>가젯 이름(ID): <s:property value="gadgetName"/> (<s:property value="gadgetId"/>)</td>
+									<td>가젯 이름(ID): <s:property value="gadgetName" /> (<s:property
+										value="gadgetId" />)</td>
 								</tr>
 								<tr>
 									<s:if test="%{registerType.equals('url')}">
-										
-										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>
+
+										<td valign="top"><iframe id="gadgetFrame"
+											src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>"
+											width="100%" height="300"></iframe></td>
 									</s:if>
-									<s:elseif test="%{registerType.equals('src')}">
-										
-										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/SKTOpenSocial/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>
-									</s:elseif>
+									<!--									<s:elseif test="%{registerType.equals('src')}">-->
+									<!--										-->
+									<!--										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/SKTOpenSocial/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>-->
+									<!--									</s:elseif>-->
 									<s:else>
-										<td valign="top"><img src="ilike.png" height="70%" width="70%"> </td>
+										<td valign="top"><img src="ilike.png" height="70%"
+											width="70%"></td>
 									</s:else>
 								</tr>
 								<tr>
 									<td class="line"></td>
-									
+
 								</tr>
 							</tbody>
 						</table>
@@ -81,26 +84,51 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging">
-						<s:url id="finishRegisterUrl" action="RegisterGadget" method="finishGadgetRegister">
-											<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
+						<div class="paging"><s:url id="finishRegisterUrl"
+							action="RegisterGadget" method="finishGadgetRegister">
+							<s:param name="gadgetId">
+								<s:property value="gadgetId" />
+							</s:param>
+						</s:url> <s:url id="viewReviewUrl" action="ViewGadgetReview">
+							<s:param name="gadgetId">
+								<s:property value="gadgetId" />
+							</s:param>
+						</s:url> <s:url id="modifyGadgetUrl" action="ModifyGadget"
+							method="getModifyGadgetPage">
+							<s:param name="gadgetId">
+								<s:property value="gadgetId" />
+							</s:param>
+						</s:url> <s:url id="publishRequestUrl" action="PublishRequest"
+							method="publishConfirm">
+							<s:param name="gadgetId">
+								<s:property value="gadgetId" />
+							</s:param>
+						</s:url> <s:url id="removeGadgetUrl" action="RemoveGadget"
+							method="requestConfirm">
+							<s:param name="gadgetId">
+								<s:property value="gadgetId" />
+							</s:param>
+						</s:url> <s:url id="viewDenyReasonUrl" action="ViewDenyReason">
+							<s:param name="gadgetId">
+								<s:property value="gadgetId" />
+							</s:param>
 						</s:url>
-						<s:url id="modifyGadgetUrl" action="ModifyGadget">
-											<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
-						</s:url>
-						<s:if test="%{gadgetStatus.equals('nr')}"> <%-- Not registered--%>
-							<em class="p"><s:a href="%{finishRegisterUrl}">등록완료</s:a> <s:a href="%{modifyGadgetUrl}">수정</s:a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
-						</s:if>
-						<s:elseif test="%{gadgetStatus.equals('rg')}"><%-- Registered--%>
-							<em class="p"><a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a> <s:a href="%{modifyGadgetUrl}">수정</s:a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
-						</s:elseif>
-						<s:elseif test="%{gadgetStatus.equals('pd')}"><%-- Publish Denied--%>
-							<em class="p"><s:a href="%{modifyGadgetUrl}">수정</s:a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
-						</s:elseif>
-						<s:else>	<%-- Published or Publish requested--%>
-							<em class="p"><a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">목록으로 돌아가기</a></em>
-						</s:else>
-						</div>
+						<s:if test="%{gadgetStatus.equals('nr')}">
+							<%-- Not registered--%>
+							<em class="p"><s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+						</s:if> 
+						<s:elseif test="%{gadgetStatus.equals('rg')}">
+							<%-- Registered--%>
+							<em class="p"><s:a href="#" onclick="javascript:popup('%{publishRequestUrl}','PublishConfirm')">발행요청</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+						</s:elseif> <s:elseif test="%{gadgetStatus.equals('pd')}">
+							<%-- Publish Denied--%>
+							<em class="p"><s:a href="#" onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+						</s:elseif> <s:else>
+							<%-- Published or Publish requested--%>
+							<em class="p"><a href="#"
+								onclick="javacript:location.href='<%=request.getContextPath()%>/developer/ListGadgets.action'">목록으로
+							돌아가기</a></em>
+						</s:else></div>
 						</td>
 					</tr>
 				</tbody>
@@ -115,7 +143,8 @@
 			<table border="1" height="100%" width="100%">
 				<tbody>
 					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights reserved.</strong></td>
+						<td><strong>Copyright &copy; SK Telecom. All rights
+						reserved.</strong></td>
 					</tr>
 				</tbody>
 			</table>

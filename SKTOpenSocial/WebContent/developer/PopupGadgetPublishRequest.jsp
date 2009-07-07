@@ -10,16 +10,17 @@
 </head>
 <body >
 <div align="center" >
-<s:form action="GadgetIdCheck" theme="simple">
+<s:form theme="simple">
 <table height="100" width="100">
-	<tr>
-		<td colspan="2">삭제된 가젯은 복구되지 않습니다.</td>
+		<tr>
+		<td colspan="2">발행요청된 가젯은 수정할 수 없습니다</td>
 	</tr>
 	<tr>
-		<s:url id="url" action="ListGadgets">
+		<s:url id="publishRequestUrl" action="PublishRequest">
+			<s:param name="gadgetId"  value="%{gadgetId}"/>
 		</s:url>
-		<td><s:submit value="삭제" onclick="opener.location.href='%{url}';window.close()" ></s:submit>
-		</td>		
+		<td><s:submit value="발행요청" onclick="opener.location.href='%{publishRequestUrl}';window.close()" ></s:submit>
+		</td>
 		<td><s:submit value="취소" onclick="window.close()" ></s:submit>
 		</td>
 	</tr>

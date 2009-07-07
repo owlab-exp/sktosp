@@ -1,4 +1,4 @@
-package com.skt.opensocial.servlet;
+package com.skt.opensocial.shindigwrapper;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -12,7 +12,6 @@ import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,13 +30,12 @@ import org.apache.commons.httpclient.methods.multipart.FilePart;
 import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
 import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.httpclient.methods.multipart.StringPart;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-/**
- * Servlet implementation class ShindigProxyServlet
- */
-public class ShindigProxyServlet extends HttpServlet {
+import com.skt.opensocial.common.CommonBaseAction;
+import com.skt.opensocial.servlet.ShindigProxyServlet;
+
+public class ShindigProxyAction extends CommonBaseAction {
 	private static Logger logger = Logger.getLogger(ShindigProxyServlet.class);
 
 	private static final long serialVersionUID = 1L;

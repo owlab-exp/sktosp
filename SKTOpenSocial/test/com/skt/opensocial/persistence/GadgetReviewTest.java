@@ -28,21 +28,54 @@ public class GadgetReviewTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		boolean userExist = true;
+		boolean reviewerExist = true;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tran = session.beginTransaction();
 		
-		User user = new User();
-		user.setId(userId);
+		User user = (User)session.get(User.class, userId);
+		if(user == null) {
+			userExist = false;
+			user = new User();
+			user.setId(userId);
+		}
 		user.setRegisteredDate(new Date());
 		user.setPassword("password");
-		
-		User reviewer = new User();
-		reviewer.setId(reviewerId);
+
+		User reviewer = (User)session.get(User.class, reviewerId);
+		if(reviewer == null) {
+			reviewerExist = false;
+			reviewer = new User();
+			reviewer.setId(reviewerId);
+		}
 		reviewer.setRegisteredDate(new Date());
 		reviewer.setPassword("password");
 		
 		session.saveOrUpdate(reviewer);
 		session.saveOrUpdate(user);
+		
+		UserVisibility uV = new UserVisibility();
+		uV.setUser(user);
+		UserVisibility rV = new UserVisibility();
+		rV.setUser(reviewer);
+//		user.setUserVisibility(uV);
+//		reviewer.setUserVisibility(rV);
+		
+		if(!reviewerExist)
+		session.saveOrUpdate(rV);
+		if(!userExist)
+		session.saveOrUpdate(uV);
+
+		Person uP = new Person();
+		uP.setUser(user);
+		Person rP = new Person();
+		rP.setUser(reviewer);
+		
+		if(!userExist)
+		session.saveOrUpdate(uP);
+		if(!reviewerExist)
+		session.saveOrUpdate(rP);
+		
 		tran.commit();
 		
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -55,8 +88,13 @@ public class GadgetReviewTest {
 		g.setName("Sample Gadget");
 		g.setRegisterDate(new Date());
 		g.setSource("AAAAAAAAAA");
-		g.setStatus("pd");
+		g.setStatus("pg");
 		g.setDeveloper(user);
+		
+		GadgetIcon gi = new GadgetIcon();
+		gi.setGadget(g);
+		
+		session.save(gi);
 		
 		gadgetId = (Long) session.save(g);
 		
@@ -68,37 +106,19 @@ public class GadgetReviewTest {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tran = session.beginTransaction();
 		
-		User user = (User)session.load(User.class, userId);
-		User reviewer = (User)session.load(User.class, reviewerId);
-		Gadget gadget = (Gadget)session.load(Gadget.class, gadgetId);
-		
-		session.delete(gadget);
-		session.delete(user);
-		session.delete(reviewer);
-		
+//		User user = (User)session.load(User.class, userId);
+//		User reviewer = (User)session.load(User.class, reviewerId);
+//		Gadget gadget = (Gadget)session.load(Gadget.class, gadgetId);
+//		
+//		session.delete(gadget);
+//		session.delete(user);
+//		session.delete(reviewer);
+//		
 		
 		tran.commit();
 	}
 
-	@Before
-	public void setUp() throws Exception { // Create a Gadget
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		Transaction tran = session.beginTransaction();
-//		
-//		User user = (User)session.load(User.class, userId);
-//		
-//		Gadget g = new Gadget();
-//		g.setName("Sample Gadget");
-//		g.setRegisterDate(new Date());
-//		g.setSource("AAAAAAAAAA");
-//		g.setStatus("pd");
-//		g.setDeveloper(user);
-//		
-//		gadgetId = (Long) session.save(g);
-//		
-//		tran.commit();
-		
-	}
+	
 	
 	@Test
 	public void addReview(){
@@ -159,16 +179,12 @@ public class GadgetReviewTest {
 		reviewer = (User)session.load(User.class, reviewerId);
 		
 		gr = reviewer.getReviews();
-		assertEquals("Gadget se", 0, gr.size());
+		assertEquals("Gadget review set", 0, gr.size());
 		
 		tran.commit();
 		
 
 	}
 	
-	@After
-	public void tearDown() throws Exception {
-		
-	}
 	
 }

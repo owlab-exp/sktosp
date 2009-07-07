@@ -3,15 +3,16 @@
  */
 package com.skt.opensocial.developer;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import com.opensymphony.xwork2.Action;
+import com.skt.opensocial.common.GadgetStatusConstants;
 import com.skt.opensocial.persistence.Gadget;
-import com.skt.opensocial.persistence.GadgetIcon;
+import com.skt.opensocial.persistence.GadgetPublish;
 import com.skt.opensocial.persistence.HibernateUtil;
 
 /**
@@ -20,8 +21,8 @@ import com.skt.opensocial.persistence.HibernateUtil;
  */
 // public class ListGadgetsAction extends ActionSupport implements RequestAware
 // {
-public class RemoveGadgetAction extends DeveloperBaseAction {
-	private Logger logger = Logger.getLogger(RemoveGadgetAction.class);
+public class PublishRequestAction extends DeveloperBaseAction {
+	private Logger logger = Logger.getLogger(PublishRequestAction.class);
 
 	/**
 	 * 
@@ -32,28 +33,26 @@ public class RemoveGadgetAction extends DeveloperBaseAction {
 
 	private Map<String, Object> session;
 
-	public String requestConfirm(){
+	public String publishConfirm(){
 		
-		return "remove_confirm_page";
+		return "publish_confirm_page";
 	}
 	public String execute() {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
 
 		Gadget gadget = (Gadget) hs.get(Gadget.class, gadgetId);
-
-		if (gadget != null)
-			hs.delete(gadget);
-
-		GadgetIcon icon = null;
-		try {
-			icon = (GadgetIcon) hs.get(GadgetIcon.class, gadgetId);
-		} catch (HibernateException he) {
-			logger.error(he.getMessage());
+		
+		GadgetPublish gp = gadget.getGadgetPublish();
+		if(gp == null) {
+			gp = new GadgetPublish();
+			gp.setGadget(gadget);
 		}
-		if (icon != null)
-			hs.delete(icon);
-
+		gp.setRequestedDate(new Date());
+		gadget.setStatus(GadgetStatusConstants.PUBLISH_REQUESTED);
+		
+		hs.saveOrUpdate(gadget);
+		hs.saveOrUpdate(gp);
 		hs.getTransaction().commit();
 
 		return Action.SUCCESS;

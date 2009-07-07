@@ -10,13 +10,19 @@
 </head>
 <body >
 <div align="center" >
-<s:form action="GadgetIdCheck" theme="simple">
+<s:form theme="simple">
 <table height="100" width="100">
 	<tr>
-		<td>내용이 건전하지 않습니다.</td>
+		<td colspan="2">삭제된 가젯은 복구되지 않습니다.</td>
+		
 	</tr>
-	<tr>	
-		<td><s:submit value="닫기" onclick="window.close()" ></s:submit>
+	<tr>
+		<s:url id="removeUrl" action="RemoveGadget">
+			<s:param name="gadgetId"  value="%{gadgetId}"/>
+		</s:url>
+		<td><s:submit value="삭제" onclick="opener.location.href='%{removeUrl}';window.close()" ></s:submit>
+		</td>		
+		<td><s:submit value="취소" onclick="window.close()" ></s:submit>
 		</td>
 	</tr>
 </table>

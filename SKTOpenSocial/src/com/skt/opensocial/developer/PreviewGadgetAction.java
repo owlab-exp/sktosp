@@ -27,7 +27,7 @@ public class PreviewGadgetAction extends ManageGadgetAction{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
 		
-		Gadget gadget = (Gadget)hs.load(Gadget.class, gadgetId);
+		Gadget gadget = (Gadget)hs.get(Gadget.class, gadgetId);
 
 		setGadgetId(gadget.getId());
 		setGadgetStatus(gadget.getStatus());

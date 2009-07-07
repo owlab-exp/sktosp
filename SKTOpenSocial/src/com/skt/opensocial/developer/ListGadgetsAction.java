@@ -3,12 +3,15 @@
  */
 package com.skt.opensocial.developer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
@@ -32,9 +35,13 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 	
 	//GadgetDataList gadgetDataList;
 	//Map<String, GadgetData> gadgetMap;
-	Map<String, Object> session;
+	private Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
-	Set<Gadget> gadgets;
+	//Set<Gadget> gadgets;
+	private List<Gadget> gadgetList;
+	
+	private int pageSize = 5;
+	private int currentPage = 1;
 	
 	int requestedPage = 1;
 	
@@ -45,7 +52,7 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		String userId = user.getUserId();
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		Transaction tran = hs.beginTransaction();
 		
 		logger.log(Level.INFO, "User ID=" + userId);
 		user = (User)hs.load(User.class, userId);
@@ -53,10 +60,21 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		
 		session.put(SKTOpenSocialSupportConstants.USER, user);
 		
-		this.gadgets = user.getGadgets();
-		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+		Set<Gadget> gadgets = user.getGadgets();
 		
-		hs.getTransaction().commit();
+		gadgetList = new ArrayList<Gadget>();
+		gadgetList.addAll(gadgets);
+		
+//		Criteria crit = hs.createCriteria(Gadget.class);
+//		crit.add(Restrictions.eq("developer.id", user.getId()));
+//		crit.addOrder(Order.desc("id"));
+//		//crit.setFirstResult((currentPage-1)*pageSize);
+//		crit.setMaxResults(pageSize);
+//		gadgetList = crit.list();
+		
+		logger.log(Level.INFO, "Number of gadgets = " + gadgetList.size());
+		
+		tran.commit();
 		
 		//
 		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
@@ -122,12 +140,28 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		this.requestedPage = requestedPage;
 	}
 
-	public Set<Gadget> getGadgets() {
-		return gadgets;
+//	public Set<Gadget> getGadgets() {
+//		return gadgets;
+//	}
+//
+//	public void setGadgets(Set<Gadget> gadgets) {
+//		this.gadgets = gadgets;
+//	}
+
+	public List<Gadget> getGadgetList() {
+		return gadgetList;
 	}
 
-	public void setGadgets(Set<Gadget> gadgets) {
-		this.gadgets = gadgets;
+	public void setGadgetList(List<Gadget> gadgetList) {
+		this.gadgetList = gadgetList;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
 
 	

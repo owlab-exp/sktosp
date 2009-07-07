@@ -70,7 +70,8 @@
 									<td align="center">가젯상태</td>
 									<td align="center">작 업</td>
 								</tr>
-								<s:iterator value="gadgets">
+								<%--<s:iterator value="gadgets">  --%>
+								<s:iterator value="gadgetList">
 								<tr style="background-color: rgb(300, 300, 300);">
 									<s:url id="gadgetPreviewUrl" action="PreviewGadget">
 										<s:param name="gadgetId"><s:property value="id"/></s:param>
@@ -107,17 +108,23 @@
 										<s:url id="modifyGadgetUrl" action="ModifyGadget" method="getModifyGadgetPage">
 											<s:param name="gadgetId"><s:property value="id"/></s:param>
 										</s:url>
-										<s:url id="removeGadgetUrl" action="RemoveGadget">
+										<s:url id="publishRequestUrl" action="PublishRequest" method="publishConfirm">
+											<s:param name="gadgetId"><s:property value="id"/></s:param>
+										</s:url>
+										<s:url id="removeGadgetUrl" action="RemoveGadget" method="requestConfirm">
+											<s:param name="gadgetId"><s:property value="id"/></s:param>
+										</s:url>
+										<s:url id="viewDenyReasonUrl" action="ViewDenyReason">
 											<s:param name="gadgetId"><s:property value="id"/></s:param>
 										</s:url>
 									<s:if test="status.equals('nr')">
 									<td align="center">
-										<s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="%{removeGadgetUrl}">삭제</s:a>
+										<s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a>
 									</td>
 									</s:if>
 									<s:if test="status.equals('rg')">
 									<td align="center">
-										<a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="%{removeGadgetUrl}">삭제</s:a>
+										<s:a href="#" onclick="javascript:popup('%{publishRequestUrl}','PublishConfirm')">발행요청</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a>
 									</td>
 									</s:if>
 									<s:elseif test="status.equals('pg')">
@@ -127,7 +134,7 @@
 									</s:elseif>
 									<s:elseif test="status.equals('pd')">
 										<td align="center">
-										<a href="#" onclick="javascript:popup('popup_publish_deny.jsp','PublishDeny')">거절사유</a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="%{removeGadgetUrl}">삭제</s:a>
+										<s:a href="#" onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a>
 										</td>
 									</s:elseif>
 									<s:else>

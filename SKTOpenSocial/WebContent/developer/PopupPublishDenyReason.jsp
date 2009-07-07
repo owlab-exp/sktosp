@@ -6,25 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/main.css" type="text/css" rel="stylesheet">
-<title>Insert title here</title>
+<title>가젯 발행 거절 사유</title>
 </head>
 <body >
 <div align="center" >
-<s:form action="GadgetIdCheck" theme="simple">
+
 <table height="100" width="100">
-		<tr>
-		<td colspan="2">발행요청된 가젯은 수정할 수 없습니다</td>
-	</tr>
 	<tr>
-		<s:url id="url" action="ListGadgets">
-		</s:url>
-		<td><s:submit value="발행요청" onclick="opener.location.href='%{url}';window.close()" ></s:submit>
-		</td>
-		<td><s:submit value="취소" onclick="window.close()" ></s:submit>
-		</td>
+		<td><s:property  value="rejectReason"></s:property></td>
+	</tr>
+	<tr>	
+		<td><s:submit value="닫기" onclick="window.close()" theme="simple"></s:submit></td>
 	</tr>
 </table>
-</s:form>
+
 </div>
 </body>
 </html>

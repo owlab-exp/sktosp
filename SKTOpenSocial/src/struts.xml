@@ -6,6 +6,7 @@
 	<constant name="struts.devMode" value="false"/>
 	<constant name="struts.ui.theme" value="xhtml"/>
 	<constant name="struts.ui.templateDir" value="template"/>
+	<constant name="struts.multipart.saveDir" value="/temp"/>
 	
 	<package name="default" namespace="/" extends="struts-default">
 		<!-- Section for Authentication Check -->
@@ -33,10 +34,10 @@
 		<global-exception-mappings>
 			<exception-mapping result="error" exception="java.lang.Exception" />
 		</global-exception-mappings>
-		<action name="*">
-			<interceptor-ref name="defaultStack"/>
-			<result>/main.jsp</result>
-		</action>
+<!--		<action name="*">-->
+<!--			<interceptor-ref name="defaultStack"/>-->
+<!--			<result>/main.jsp</result>-->
+<!--		</action>-->
 	</package>
 	
 	<include file="sample/hello.xml" /><!--  this is a sample -->
@@ -44,5 +45,6 @@
 	<include file="user.xml"/>
 	<include file="developer.xml"/>
 	<include file="admin.xml"/>
+	<include file="shindig.xml"/>
 	
 </struts>

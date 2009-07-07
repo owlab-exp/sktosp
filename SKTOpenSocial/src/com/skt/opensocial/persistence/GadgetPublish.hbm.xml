@@ -12,13 +12,13 @@
 			</generator>
         </id>
         <property name="requestedDate" type="date">
-            <column name="REQUESTED_DATE" length="10" not-null="true" />
+            <column name="REQUESTED_DATE" length="10"/>
         </property>
         <property name="isApproved" type="boolean">
-            <column name="IS_APPROVED" not-null="true" />
+            <column name="IS_APPROVED" />
         </property>
         <property name="rejectReason" type="text">
-            <column name="REJECT_REASON" not-null="false" />
+            <column name="REJECT_REASON" />
         </property>
         <one-to-one name="gadget" class="com.skt.opensocial.persistence.Gadget" property-ref="gadgetPublish"/>
     </class>

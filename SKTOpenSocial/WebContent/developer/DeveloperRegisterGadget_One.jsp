@@ -59,7 +59,7 @@
 							</colgroup>
 							
 							<tbody>
-								<s:form action="RegisterGadgetPage" id="changeRegisterTypeForm" theme="simple">
+								<s:form action="RegisterGadgetPage" id="changeRegisterTypeForm" theme="simple" >
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td>등록 유형:</td>
 									
@@ -78,7 +78,7 @@
 									</td>
 								</tr>
 								--%>
-								<s:form action="RegisterGadget" id="registerGadgetForm" theme="simple">
+								<s:form action="RegisterGadget" id="registerGadgetForm" theme="simple" method="post" enctype="multipart/form-data">
 								<s:hidden name="registerType" value="%{registerType}"/>
 								<s:hidden name="gadgetStatus" value="nr"/>
 								<tr>
@@ -96,6 +96,7 @@
 											listValue="name"
 											value="gadgetCategory"
 											multiple="true"
+											size="5"
 											>
 										</s:select>
 									</td>
@@ -106,12 +107,7 @@
 											<s:textarea rows="2" cols="20" name="gadgetIntro"/>
 									</td>
 								</tr>
-								<tr>
-									<td>아이콘:</td>
-									<td>
-											<s:textfield name="gadgetIconUrl" size="50"/><input type="button" value="찾아보기"> 권장사이즈: 23px X 23px
-									</td>
-								</tr>
+								
 								<s:if test="%{registerType.equals('src')}">
 								<tr>
 									<td valign="top">가젯 소스:</td>
@@ -128,6 +124,12 @@
 									</td>
 								</tr>
 								</s:elseif>
+								<tr>
+									<td>아이콘:</td>
+									<td>
+									<s:file name="icon" label="파일 위치"/>
+									</td>
+								</tr>
 								<tr>
 									<td class="line" colspan="2"></td>
 								</tr>

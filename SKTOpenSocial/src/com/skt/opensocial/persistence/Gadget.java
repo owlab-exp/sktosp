@@ -26,6 +26,7 @@ public class Gadget implements java.io.Serializable {
 	private Set<GadgetReview> reviews;
 	private Set<User> favoriteUsers = new HashSet<User>();
 	private GadgetPublish gadgetPublish;
+	private GadgetIcon icon;
 
 	public Gadget() {
 	}
@@ -185,6 +186,14 @@ public class Gadget implements java.io.Serializable {
 
 	public void setGadgetPublish(GadgetPublish gadgetPublish) {
 		this.gadgetPublish = gadgetPublish;
+	}
+
+	public GadgetIcon getIcon() {
+		return icon;
+	}
+
+	public void setIcon(GadgetIcon icon) {
+		this.icon = icon;
 	}
 
 }

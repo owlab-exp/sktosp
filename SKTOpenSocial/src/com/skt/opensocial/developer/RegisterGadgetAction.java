@@ -3,81 +3,90 @@
  */
 package com.skt.opensocial.developer;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
+import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.GadgetRegisterTypeConstants;
-import com.skt.opensocial.common.GadgetRegisterTypeMap;
 import com.skt.opensocial.common.GadgetStatusConstants;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetCategory;
+import com.skt.opensocial.persistence.GadgetIcon;
+import com.skt.opensocial.persistence.GadgetPublish;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
  * @author Ernest Lee
- *
+ * 
  */
-//public class ListGadgetsAction extends ActionSupport implements RequestAware {
+// public class ListGadgetsAction extends ActionSupport implements RequestAware
+// {
 public class RegisterGadgetAction extends ManageGadgetAction {
-	private Logger logger = Logger.getLogger(RegisterGadgetAction.class); 
+	private Logger logger = Logger.getLogger(RegisterGadgetAction.class);
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	public String getGadgetRegisterPage() {
 		prepare();
-		
+
 		setGadgetStatus(GadgetStatusConstants.NOT_REGISTERED);
-		if(registerType == null) {
+		if (registerType == null) {
 			registerType = GadgetRegisterTypeConstants.SRC;
 		}
-		
-		if(registerType.equals(GadgetRegisterTypeConstants.URL_MULTI))
+
+		if (registerType.equals(GadgetRegisterTypeConstants.URL_MULTI))
 			return "input_multiple";
 		else
 			return "input_one";
-		
+
 	}
+
 	public String finishGadgetRegister() {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
-		
-		Gadget gadget =(Gadget)hs.load(Gadget.class, gadgetId);
+
+		Gadget gadget = (Gadget) hs.get(Gadget.class, gadgetId);
 		gadget.setStatus(GadgetStatusConstants.REGISTERED);
 		gadget.setRegisterDate(new Date());
 		hs.save(gadget);
 		hs.getTransaction().commit();
-		
+
 		return "gadget_list";
 	}
-	public String execute(){
-		System.out.println(">>>>>>>>>>>>>>>>>>>> Gadget Registration");
-		System.out.println(">>>>>>>>>>>>>>>>>>>> registerType=" + getRegisterType());
-		//System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetId=" + getGadgetId());
-		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetName=" + getGadgetName());
-		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetCategory=" + getGadgetCategory());
-		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetIntro=" + getGadgetIntro());
-		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetSource=" + getGadgetSource());
-		System.out.println(">>>>>>>>>>>>>>>>>>>> gadgetStatus=" + getGadgetStatus());
-		
+
+	public String execute() {
+		logger.info(">>>>>>>>>>>>>>>>>>>> Gadget Registration");
+		logger.info(">>>>>>>>>>>>>>>>>>>> registerType=" + getRegisterType());
+		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetId=" + getGadgetId());
+		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetName=" + getGadgetName());
+		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetCategory="
+				+ getGadgetCategory());
+		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetIntro=" + getGadgetIntro());
+		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetSource=" + getGadgetSource());
+		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetStatus=" + getGadgetStatus());
+
 		prepare();
-		
+
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
-		
+		Transaction tran = hs.beginTransaction();
+
 		Gadget newGadget = new Gadget();
-		
-		
-		if(getGadgetName() == null || getGadgetName().equals(""))// return to input page
+
+		if (getGadgetName() == null || getGadgetName().equals(""))// return to
+			// input
+			// page
 			return "input";
 		// prepare saving new gadget
 		newGadget.setName(getGadgetName());
@@ -86,43 +95,88 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 		newGadget.setSource(getGadgetSource());
 		newGadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
 		newGadget.setRegisterType(getRegisterType());
-		newGadget.setDeveloper((User)session.get(SKTOpenSocialSupportConstants.USER));
-		
+		newGadget.setDeveloper((User) session
+				.get(SKTOpenSocialSupportConstants.USER));
+
 		gadgetId = (Long) hs.save(newGadget);
-		
+
 		// prepare categories
 		String categoryIds = getGadgetCategory();
 		String[] categoryIdArray = categoryIds.replace(" ", "").split(",");
-		
-		for(int i = 0; i < categoryIdArray.length; i++) {
-			GadgetCategory category = (GadgetCategory)hs.load(GadgetCategory.class, categoryIdArray[i]);
+
+		for (int i = 0; i < categoryIdArray.length; i++) {
+			GadgetCategory category = (GadgetCategory) hs.load(
+					GadgetCategory.class, categoryIdArray[i]);
 			newGadget.addCategory(category);
 		}
 		
-		hs.getTransaction().commit();
+		// for gadget publish
+		GadgetPublish publish = new GadgetPublish();
+		publish.setGadget(newGadget);
 		
-		// get gadget list from session
-		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
-		if(gadgetDataList == null) {
-			session.put("gadgets", new GadgetDataList());
-			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
-		} else {
-			this.gadgetDataList = gadgetDataListS;
-		}
+		hs.saveOrUpdate(publish);
 		
-		// put new gadget into gadget list
-		GadgetData aGadget = new GadgetData();
-		aGadget.setGadgetId(gadgetId);
-		aGadget.setGadgetName(gadgetName);
-		aGadget.setGadgetCategory(gadgetCategory);
-		aGadget.setGadgetIntro(gadgetIntro);
-		aGadget.setGadgetStatus(gadgetStatus);
-		aGadget.setGadgetSource(gadgetSource);
-		aGadget.setRegisterType(registerType);
+		// for gadget icon
+		GadgetIcon gadgetIcon = new GadgetIcon();
+		gadgetIcon.setGadget(newGadget);
+		if (getIconFileName() != null && getIconContentType() != null) {
 
-		gadgetDataList.addNewGadgetData(gadgetId, aGadget);*/
-		
+			gadgetIcon.setName(getIconFileName());
+			gadgetIcon.setContentType(getIconContentType());
+			
+			try {
+				gadgetIcon.setContent(Hibernate.createBlob(new FileInputStream(
+						icon)));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				logger.error(e.getMessage());
+				tran.rollback();
+				return Action.INPUT;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				logger.error(e.getMessage());
+				tran.rollback();
+				return Action.INPUT;
+			}
+			
+			newGadget.setIconUrl("exist");
+		} 
+
+		hs.saveOrUpdate(gadgetIcon);
+
+		tran.commit();
+
 		return "preview";
 	}
-	
+
+	// for icon upload
+	private File icon;
+	private String iconContentType;
+	private String iconFileName;
+
+	public File getIcon() {
+		return icon;
+	}
+
+	public void setIcon(File file) {
+		this.icon = file;
+	}
+
+	public String getIconContentType() {
+		return iconContentType;
+	}
+
+	public void setIconContentType(String contentType) {
+		this.iconContentType = contentType;
+	}
+
+	public String getIconFileName() {
+		return iconFileName;
+	}
+
+	public void setIconFileName(String iconFileName) {
+		this.iconFileName = iconFileName;
+	}
+	// end of icon file upload
+
 }

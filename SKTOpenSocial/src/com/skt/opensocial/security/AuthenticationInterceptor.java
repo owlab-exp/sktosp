@@ -34,7 +34,6 @@ public class AuthenticationInterceptor implements Interceptor {
 		
 		
 		Map<String, Object> session = actionInvocation.getInvocationContext().getSession();
-		
 		User user = (User) session.get(SKTOpenSocialSupportConstants.USER);
 		if(user == null) {
 			System.out.println("Not logged in");

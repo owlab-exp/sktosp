@@ -5,17 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Error Occurred!</title>
 </head>
 <body>
-<h4>This application has malfunctioned.</h4>
-<p>  Please read through the following detailed account of the
-		problems encounted during the processing of your request.  After determining what mistakes you
-		may have made, please resubmit your request.  Better luck next time! </p> 
+<h4>작업 수행 중 예외가 발견되었습니다.</h4>
+<p>아래의 메시지를 관리자에게 보고하여 주시기 바랍니다.</p> 
 		
-		<h4>Exception Name: </h4><s:property value="exception" /> 
-		<h4>What you did wrong:</h4> <s:property value="exceptionStack" /> 
+		<h4>예외 이름: </h4><s:property value="exception" /> 
+		<h4>Stack Trace:</h4> <s:property value="exceptionStack" /> 
 		
-		<h5>Also, please confirm that your Internet is working before actually contacting us.</h5>
+		<h5></h5>
 </body>
 </html>
