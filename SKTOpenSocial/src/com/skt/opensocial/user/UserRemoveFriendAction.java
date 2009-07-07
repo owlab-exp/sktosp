@@ -22,8 +22,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class UserRemoveGadgetAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(UserRemoveGadgetAction.class);
+public class UserRemoveFriendAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(UserRemoveFriendAction.class);
 	
 	/**
 	 * 
@@ -38,16 +38,27 @@ public class UserRemoveGadgetAction extends DeveloperBaseAction {
 	Set<Gadget> gadgets;
 	
 	int requestedPage = 1;
-	private Long gadgetId;
+	String friendId;
+	User friend;
 	
-	public Long getGadgetId() {
-		return gadgetId;
+	
+	
+	public String getFriendId() {
+		return friendId;
 	}
 
-	public void setGadgetId(Long gadgetId) {
-		this.gadgetId = gadgetId;
+	public void setFriendId(String friendId) {
+		this.friendId = friendId;
 	}
-	
+
+	public User getFriend() {
+		return friend;
+	}
+
+	public void setFriend(User friend) {
+		this.friend = friend;
+	}
+
 	public String execute(){
 		//
 		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
@@ -58,17 +69,10 @@ public class UserRemoveGadgetAction extends DeveloperBaseAction {
 		hs.beginTransaction();
 		
 		user = (User)hs.load(User.class, userId);
-						
-		Gadget gadget = (Gadget)hs.load(Gadget.class,gadgetId);
+		friend = (User)hs.load(User.class, friendId);
 		
-		this.gadgets = user.getFavoriteGadgets();
-		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-		
-		user.removeFavoriteGadget(gadget);
-		
-		this.gadgets = user.getFavoriteGadgets();
-		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-		
+		user.removeFriendByMe(friend);
+				
 		hs.saveOrUpdate(user);
 		
 		//this.gadgets = user.getFavoriteGadgets();

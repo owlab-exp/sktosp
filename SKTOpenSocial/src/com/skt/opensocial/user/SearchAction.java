@@ -3,6 +3,7 @@
  */
 package com.skt.opensocial.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
@@ -10,9 +11,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import com.skt.opensocial.developer.DeveloperBaseAction;
-import com.skt.opensocial.persistence.Anonymous;
+
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
+import com.skt.opensocial.persistence.Person;
 import com.skt.opensocial.persistence.User;
 
 /**
@@ -34,10 +36,11 @@ public class SearchAction extends DeveloperBaseAction {
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
 	List<Gadget> gadgets;
-	List<User> users;
+	List<User> users = new ArrayList<User>();
+	List<Person> persons;
 	String searchfield;
 	String query;
-	Anonymous anony;
+
 	
 	int requestedPage = 1;
 	
@@ -57,13 +60,6 @@ public class SearchAction extends DeveloperBaseAction {
 		this.query = query;
 	}
 
-	public Anonymous getAnony() {
-		return anony;
-	}
-
-	public void setAnony(Anonymous anony) {
-		this.anony = anony;
-	}
 
 	public List<User> getUsers() {
 		return users;
@@ -81,6 +77,14 @@ public class SearchAction extends DeveloperBaseAction {
 		return gadgets;
 	}
 
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+
 	public String execute(){
 		//
 		//Anonymous anony = (Anonymous)session.get(SKTOpenSocialSupportConstants.ANONYMOUS);
@@ -96,7 +100,7 @@ public class SearchAction extends DeveloperBaseAction {
 		
 		// logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
 		
-		String queryKey = new String("%" + query + "%");
+		String queryKey = "%" + query + "%";
 		
 		System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
 		
@@ -107,14 +111,20 @@ public class SearchAction extends DeveloperBaseAction {
 				.add(Restrictions.eq("status", "pb"))
 				.list();
 		else if ( searchfield.equals("username"))
-			this.users = (List<User>) hs.createCriteria(User.class)
-			.add(Restrictions.like("name", queryKey)).list();
+			this.persons = (List<Person>) hs.createCriteria(Person.class)
+				.add(Restrictions.like("nameFormatted", queryKey))
+				.list();
 		
 		if (this.gadgets != null && !this.gadgets.isEmpty())
 			System.out.println("searched gadgets.size = " + gadgets.size());
-		if (this.users != null && !this.users.isEmpty())
-			System.out.println("searched users.size = " + users.size());
-		
+		if (this.persons != null && !this.persons.isEmpty())
+		{
+			System.out.println("searched persons.size = " + persons.size());
+			for (int i = 0; i < persons.size(); i++)
+			{
+				this.users.add(persons.get(i).getUser());
+			}
+		}
 		
 		//List cats = sess.createCriteria(Cat.class)
 	    //.add( Restrictions.like("name", "Fritz%") )

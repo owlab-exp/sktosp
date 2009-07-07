@@ -22,8 +22,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class UserRemoveGadgetAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(UserRemoveGadgetAction.class);
+public class ManageFriendAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(ManageFriendAction.class);
 	
 	/**
 	 * 
@@ -35,19 +35,20 @@ public class UserRemoveGadgetAction extends DeveloperBaseAction {
 	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
-	Set<Gadget> gadgets;
+	Set<User> friends;
 	
 	int requestedPage = 1;
-	private Long gadgetId;
 	
-	public Long getGadgetId() {
-		return gadgetId;
+	
+	
+	public Set<User> getFriends() {
+		return friends;
 	}
 
-	public void setGadgetId(Long gadgetId) {
-		this.gadgetId = gadgetId;
+	public void setFriends(Set<User> friends) {
+		this.friends = friends;
 	}
-	
+
 	public String execute(){
 		//
 		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
@@ -58,24 +59,13 @@ public class UserRemoveGadgetAction extends DeveloperBaseAction {
 		hs.beginTransaction();
 		
 		user = (User)hs.load(User.class, userId);
-						
-		Gadget gadget = (Gadget)hs.load(Gadget.class,gadgetId);
 		
-		this.gadgets = user.getFavoriteGadgets();
-		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-		
-		user.removeFavoriteGadget(gadget);
-		
-		this.gadgets = user.getFavoriteGadgets();
-		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-		
-		hs.saveOrUpdate(user);
-		
-		//this.gadgets = user.getFavoriteGadgets();
-		//if (gadgets != null && !gadgets.isEmpty())
-		//	System.out.println("Added size of gadgets = " + gadgets.size());
 		
 		session.put(SKTOpenSocialSupportConstants.USER, user);
+		
+		this.friends = user.getFriendsByMe();
+		 logger.log(Level.INFO, "Number of gadgets = " + friends.size());
+		
 		hs.getTransaction().commit();
 		
 		//
@@ -143,14 +133,4 @@ public class UserRemoveGadgetAction extends DeveloperBaseAction {
 		this.requestedPage = requestedPage;
 	}
 
-	public Set<Gadget> getGadgets() {
-		return gadgets;
-	}
-
-	public void setGadgets(Set<Gadget> gadgets) {
-		this.gadgets = gadgets;
-	}
-
-	
-	
 }

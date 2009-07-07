@@ -103,7 +103,7 @@ public class SearchGadgetInfoAction extends ManageGadgetAction{
 		
 		Iterator<GadgetCategory> it = categorySet.iterator();
 		
-		categoryStringList = new String("");
+		categoryStringList = "";
 		
 		while (it.hasNext()) {
 		        // Get element

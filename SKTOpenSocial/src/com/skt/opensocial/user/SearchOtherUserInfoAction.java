@@ -4,56 +4,46 @@
 package com.skt.opensocial.user;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.hibernate.Session;
+import org.hibernate.classic.Session;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.developer.DeveloperBaseAction;
+import com.skt.opensocial.developer.ManageGadgetAction;
 import com.skt.opensocial.persistence.Gadget;
+import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
- * @author Seong Yong Lim based on Ernest Lee's
+ * @author Seong yong Lim based on Ernest Lee's
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class SearchOtherUserInfoAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(SearchOtherUserInfoAction.class);
+public class SearchOtherUserInfoAction extends DeveloperBaseAction{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-	//GadgetDataList gadgetDataList;
-	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
-	//Collection<GadgetData> gadgetList;
-	Set<Gadget> gadgets;
-	
-	int requestedPage = 1;
 	
 	String userId;
 	String name;
 	Date registeredDate;
 	int age;
 	
-	
-	
-	
-	public Date getRegisteredDate() {
-		return registeredDate;
+	public String getName() {
+		return name;
 	}
 
-	public void setRegisteredDate(Date registeredDate) {
-		this.registeredDate = registeredDate;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getUserId() {
@@ -64,12 +54,12 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public Date getRegisteredDate() {
+		return registeredDate;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRegisteredDate(Date registeredDate) {
+		this.registeredDate = registeredDate;
 	}
 
 	public int getAge() {
@@ -79,8 +69,13 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction {
 	public void setAge(int age) {
 		this.age = age;
 	}
-
-	public String execute(){
+	
+	public void setSession(Map<String, Object> map) {
+		this.session = map;
+	}
+	
+	public String execute() {
+	
 		//
 		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
@@ -100,85 +95,44 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction {
 
 		System.out.println("--------------------------------------list count ");
 		session.put(SKTOpenSocialSupportConstants.USER, user);
+        //System.out.println("list count = " + categoryStringList);
 		
-		this.gadgets = user.getFavoriteGadgets();
-		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
 		
-		hs.getTransaction().commit();
+		/* 
+		 * 
+
+		gadget.setName(getGadgetName());
 		
-		//
-		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
-		if(gadgetDataList == null) {
-			session.put("gadgets", new GadgetDataList());
-			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
-		} else {
-			this.gadgetDataList = gadgetDataListS;
+		String categoryIds = getGadgetCategory();
+		
+		System.out.println("list count = " + gadgetId + gadget.getName() + categoryIds);
+		
+		categoryIds = categoryIds.replace(" ", "");
+		String[] categoryIdArray = categoryIds.split(",");
+		if(categoryIdArray.length > 0) {
+			HashSet<GadgetCategory> categorySet = new HashSet<GadgetCategory>();
+			
+			for(int i = 0; i < categoryIdArray.length; i++) {
+				GadgetCategory gadgetCategory = (GadgetCategory)hs.load(GadgetCategory.class, categoryIdArray[i]);
+				categorySet.add(gadgetCategory);
+			}
+			
+			gadget.setCategories(categorySet);
 		}
-		gadgetMap = this.gadgetDataList.getGadgetMap();
-		gadgetList = gadgetMap.values();
+
+		gadget.setIconUrl(getGadgetIconUrl());
+		gadget.setIntroduction(getGadgetIntro());
+		gadget.setSource(getGadgetSource());
+		gadget.setRegisterDate(null);
+		gadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
+		gadget.setRegisterType(getRegisterType());		
 		
-		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
 		*/
+		
+
+		hs.getTransaction().commit();
 		
 		return Action.SUCCESS;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.apache.struts2.interceptor.RequestAware#setRequest(java.util.Map)
-	 */
-	/*@Override
-	public void setRequest(Map<String, Object> request) {
-		// TODO Auto-generated method stub
-		//this.request = request;
-
-	}*/
-
-	
-	
-	public void setSession(Map<String, Object> map) {
-		this.session = map;
-	}
-
-//	public GadgetDataList getGadgetDataList() {
-//		return gadgetDataList;
-//	}
-//
-//	public void setGadgetDataList(GadgetDataList gadgetDataList) {
-//		this.gadgetDataList = gadgetDataList;
-//	}
-//
-//	public Map<String, GadgetData> getGadgetMap() {
-//		return gadgetMap;
-//	}
-//
-//	public void setGadgetMap(Map<String, GadgetData> gadgetMap) {
-//		this.gadgetMap = gadgetMap;
-//	}
-//
-//	public Collection<GadgetData> getGadgetList() {
-//		return gadgetList;
-//	}
-//
-//	public void setGadgetList(Collection<GadgetData> gadgetList) {
-//		this.gadgetList = gadgetList;
-//	}
-
-	public int getRequestedPage() {
-		return requestedPage;
-	}
-
-	public void setRequestedPage(int requestedPage) {
-		this.requestedPage = requestedPage;
-	}
-
-	public Set<Gadget> getGadgets() {
-		return gadgets;
-	}
-
-	public void setGadgets(Set<Gadget> gadgets) {
-		this.gadgets = gadgets;
-	}
-
-	
-	
 }
