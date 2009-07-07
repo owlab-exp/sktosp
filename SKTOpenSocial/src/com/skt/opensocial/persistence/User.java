@@ -178,6 +178,11 @@ public class User implements java.io.Serializable {
 		this.friendsByMe.add(friend);
 	}
 	
+	public void removeFriendByMe(User friend)
+	{
+		this.friendsByMe.remove(friend);
+	}
+	
 	public Set<User> getFriendsByOther() {
 		return friendsByOther;
 	}
