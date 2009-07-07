@@ -12,7 +12,7 @@
 			<td align="left" style="font-size:13px"><img src="../images/blu_rank_subject.gif"> 
 			</td>
 			<td>
-			개발자 메뉴
+			관리자 메뉴
 			</td>
 		</tr>
 		<tr>
