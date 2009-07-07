@@ -18,7 +18,7 @@ bodyType_weight as bodyType_weight,
 children as children,
 displayName as displayName,
 drinker as drinker,
-ethnicity as ethinicity,
+ethnicity as ethnicity,
 fashion as fashion,
 gender as gender,
 happiestWhen as happiestWhen,
@@ -169,6 +169,14 @@ SELECT
 friend_id
 FROM SKT_USER_FRIENDS
 WHERE user_id = #userIdString#
+</select>
+
+<!-- ... -->
+<select id="findOutIfHasApp" parameterClass="java.lang.String" resultClass="java.lang.Boolean">
+SELECT
+hasApp
+FROM SHINDIG_PERSON
+WHERE id = #friendId#
 </select>
 
 

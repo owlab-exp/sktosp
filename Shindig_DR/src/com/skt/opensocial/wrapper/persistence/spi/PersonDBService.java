@@ -65,41 +65,36 @@ public class PersonDBService implements PersonService {
 	  List<Person> result = Lists.newArrayList();
 	  
 	  try {
-	      Set<String> idSet = getIdSet(userIds, groupId, token);
+	      Set<String> idSet = getIdSet(userIds, groupId, options, token);
 	
 	      for (String id : idSet) {
 	    	  Person person = this.getPersonFromDB(id, fields, token);
 	    	  
 	    	  result.add(person);
 	      }
-	      
-	      if (result.size() > 0) {
 	
-		      if (GroupId.Type.self == groupId.getType() && result.isEmpty()) {
-		        throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Person not found");
-		      }
-		
-		      // We can pretend that by default the people are in top friends order
-		      if (options.getSortBy().equals(Person.Field.NAME.toString())) {
-		        Collections.sort(result, NAME_COMPARATOR);
-		      }
-		
-		      if (options.getSortOrder() == SortOrder.descending) {
-		        Collections.reverse(result);
-		      }
-		
-		      // TODO: The samplecontainer doesn't really have the concept of HAS_APP so
-		      // we can't support any filters yet. We should fix this.
-		
-		      int totalSize = result.size();
-		      int last = options.getFirst() + options.getMax();
-		      result = result.subList(options.getFirst(), Math.min(last, totalSize));
-		
-		      return ImmediateFuture.newInstance(new RestfulCollection<Person>(result, options.getFirst(), totalSize));
-	      } else {
-	    	  throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Person not found");
-	      }	      
-	      
+	      if (GroupId.Type.self == groupId.getType() && result.isEmpty()) {
+	        throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Person not found");
+	      }
+	
+	      // We can pretend that by default the people are in top friends order
+	      if (options.getSortBy().equals(Person.Field.NAME.toString())) {
+	        Collections.sort(result, NAME_COMPARATOR);
+	      }
+	
+	      if (options.getSortOrder() == SortOrder.descending) {
+	        Collections.reverse(result);
+	      }
+	
+	      // TODO: The samplecontainer doesn't really have the concept of HAS_APP so
+	      // we can't support any filters yet. We should fix this.
+	
+	      int totalSize = result.size();
+	      int last = options.getFirst() + options.getMax();
+	      result = result.subList(options.getFirst(), Math.min(last, totalSize));
+	
+	      return ImmediateFuture.newInstance(new RestfulCollection<Person>(result, options.getFirst(), totalSize));
+   
 	  } catch(Exception e) {
 		  e.printStackTrace();
 		  throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
@@ -146,7 +141,7 @@ public class PersonDBService implements PersonService {
 			  personDB.setFood( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "food")) );
 			  personDB.setHeroes( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "heroes")) );
 			  personDB.setInterests( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "interests")) );
-			  personDB.setLanguagesSpoken( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "languageSpoken")) );
+			  personDB.setLanguagesSpoken( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "languagesSpoken")) );
 			  personDB.setLookingFor( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "lookingFor")) );
 			  personDB.setMovies( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "Movies")) );
 			  personDB.setMusic( sqlMap.queryForList("getPersonListStringOneByOne", new PersonAddInfoQueryParam(userId, "Music")) );
@@ -252,7 +247,100 @@ public class PersonDBService implements PersonService {
     }
     return ids;
   }
+  
+  /**
+   * Get the set of user id's for a set of users and a group
+   */
+  private Set<String> getIdSet(Set<UserId> users, GroupId group, CollectionOptions options, SecurityToken token)
+      throws JSONException {
+    Set<String> ids = new HashSet<String>();
+    for (UserId user : users) {
+      ids.addAll(getIdSet(user, group, options, token));
+      
+    }
+    return ids;
+  }
 
+  /**
+   * Get the set of user id's from a user and group
+   */
+  @SuppressWarnings("unchecked")
+  private Set<String> getIdSet(UserId userId, GroupId groupId, CollectionOptions options, SecurityToken token)
+      throws JSONException {
+	  
+	  String user = userId.getUserId(token);
+	  
+	  
+    if (groupId == null) {
+    	return ImmutableSortedSet.of(user);
+    }
+
+    Set<String> idSet = new HashSet<String>();
+    
+    switch (groupId.getType()) {
+    case all:
+    	idSet.add(user);
+    	try {
+    		List<String> allUserIds = sqlMap.queryForList( "getAllUserIds" );
+    		
+    		for (String id : allUserIds ) {
+        		idSet.add( id );
+        	}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	break;
+    case groupId:
+    case friends:
+    	try {
+    		/**
+    		   * <p>
+    		   * This filter can be any field of the object being filtered or the special js filters,
+    		   * hasApp or topFriends.
+    		   * Other special Filters defined in the OpenSocial v.9 specification are
+    		   * </p>
+    		   * <dl>
+    		   * <dt>all</dt>
+    		   * <dd>Retrieves all friends</dd>
+    		   * <dt>hasApp</dt>
+    		   * <dd>Retrieves all friends with any data for this application.</dd>
+    		   * <dt>'topFriends</dt>
+    		   * <dd>Retrieves only the user's top friends.</dd>
+    		   * <dt>isFriendsWith</dt>
+    		   * <dd>Only "hasApp filter" is implemented here</dd>
+    		   * </dl>
+    		   */
+    		
+    		List<String> friendsIds = sqlMap.queryForList( "getFriendsIds", user );
+    		
+    		if( options.getFilter() != null && options.getFilter().equals("hasApp") ) {
+    			for (int i=0; i < friendsIds.size(); i++) {
+    				String friendId = friendsIds.get(i);
+    				Boolean hasApp = false;
+    				hasApp = (Boolean) sqlMap.queryForObject( "findOutIfHasApp", friendId );
+    				
+    				if( !hasApp) {
+    					friendsIds.remove(i);
+    				}
+    				
+    			}
+    		} 
+    		
+    		for (String id : friendsIds ) {
+        		idSet.add( id );
+        	}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	break;
+    case self:
+      idSet.add(user);
+      break;
+    }
+    return idSet;
+  }
 
 }
 

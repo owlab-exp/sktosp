@@ -216,7 +216,7 @@ public class DBTableMapper {
 		person.setEmails(personDB.getEmails());
 		person.setEthnicity(personDB.getEthnicity());
 		person.setFashion(personDB.getFashion());
-		person.setFood( person.getFood() );	
+		person.setFood( personDB.getFood() );	
 		
 		// find ENUM value comparing the word and set it as a Gender
 		if (personDB.getGender() != null) {

@@ -53,7 +53,8 @@ public class ActivityDBService implements ActivityService {
 			
 			Set<String> idSet = getIdSet(userIds, groupId, token);
 			
-			// get a set of users' ids
+			
+			// for all users in the idSet, get activities of each user
 		    for (String userId : idSet) {
 				result = sqlMap.queryForList("getActivities", userId);
 				
@@ -70,11 +71,8 @@ public class ActivityDBService implements ActivityService {
 				}
 		    }
 			
-		    if (activityList.size() > 0) {
-		    	return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
-		    }
+		    return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
 		    
-		    throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Activity not found");
 		} catch (Exception e) {
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
@@ -86,36 +84,40 @@ public class ActivityDBService implements ActivityService {
 		      SecurityToken token) throws ProtocolException {
 		
 		List<Activity> activityList = Lists.newArrayList();
-		
+
+	
 		try {
-			List<Activity> result = Lists.newArrayList();
-			String user = userId.getUserId(token);
-			result = sqlMap.queryForList("getActivities", user);
 			
-			for (int i=0; i<result.size(); i++) {
-				Activity activity = new ActivityImpl();
-				activity = result.get(i); 
+			List<Activity> result = Lists.newArrayList();
+			Set<String> idSet = getIdSet(userId, groupId, token);
+			
+			// for all users in the idSet, get activities of each user
+		    for (String user : idSet) {
+				result = sqlMap.queryForList("getActivities", user);
 				
-				for (String activityId : activityIds) {
-					if ( activity.getId().equals(activityId) ) {
-						//*** get the mediaItems and templateParams of the activitiy stored separately ***//
-						activity.setTemplateParams( sqlMap.queryForMap("getTemplateParams", activity, "param_key", "param_value") );
-						activity.setMediaItems( sqlMap.queryForList("getMediaItems", activity) );
-						
-						activityList.add(activity);
+				for (int i=0; i<result.size(); i++) {
+					Activity activity = new ActivityImpl();
+					activity = result.get(i); 
+					
+					for (String activityId : activityIds) {
+						if ( activity.getId().equals(activityId) ) {
+							//*** get the mediaItems and templateParams of the activitiy stored separately ***//
+							activity.setTemplateParams( sqlMap.queryForMap("getTemplateParams", activity, "param_key", "param_value") );
+							activity.setMediaItems( sqlMap.queryForList("getMediaItems", activity) );
+							
+							activityList.add(activity);
+						}
 					}
 				}
-			}
+		    }
 			
-			if (activityList.size() > 0) {
-				return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
-			}
-			
-			throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Activity not found");
+		
+			return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
 			
 		} catch (Exception e) {
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -179,16 +181,14 @@ public class ActivityDBService implements ActivityService {
 		      Set<String> fields, Activity activity, SecurityToken token) throws ProtocolException {
 		
 		try {
-			if ( userId.getUserId(token) == activity.getUserId() ) {
-				//**** insert activity with mediaItems and templateParams separately ****//
-				sqlMap.insert("insertActivity", activity);
-				this.insertMediaItem(activity.getId(), activity.getUserId(), activity.getMediaItems());
-				this.insertTemplateParams(activity.getId(), activity.getUserId(), activity.getTemplateParams());
-			
-				return ImmediateFuture.newInstance(null);
-			} else {
-				throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "userId unmatched");
-			}
+			//**** insert activity with mediaItems and templateParams separately ****//
+			activity.setUserId(userId.getUserId(token));
+			sqlMap.insert("insertActivity", activity);
+			this.insertMediaItem(activity.getId(), activity.getUserId(), activity.getMediaItems());
+			this.insertTemplateParams(activity.getId(), activity.getUserId(), activity.getTemplateParams());
+		
+			return ImmediateFuture.newInstance(null);
+		
 		} catch (Exception e) {
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
