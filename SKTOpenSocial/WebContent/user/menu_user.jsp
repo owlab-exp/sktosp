@@ -19,6 +19,10 @@
 		<tr>
 			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/ManageActivity.action'" style="cursor:hand">액티비티모음</td>
 		</tr>
+		
+		<tr>
+			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/PrepareSearch.action'" style="cursor:hand">가젯사용자검색</td>
+		</tr>
 	</table>
 
 	</div>
