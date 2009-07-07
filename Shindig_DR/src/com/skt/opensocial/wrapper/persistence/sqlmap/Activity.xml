@@ -65,7 +65,7 @@ parameters in the #hash# symbols is a JavaBeans property. -->
 <insert id="insertActivityMediaItem" parameterClass="activityMediaItemDB">
 INSERT INTO
 SHINDIG_ACTIVITY_MEDIA_ITEMS
-(mime_type, type, url, thumbnail_url, activitiy_id, user_id)
+(mime_type, type, url, thumbnail_url, activity_id, user_id)
 
 VALUES 
 (#mimeType#, #type#, #url#, #thumbnailUrl#, #activityId#, #userId#)
