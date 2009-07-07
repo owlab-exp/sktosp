@@ -138,11 +138,7 @@
 					 
       			    <td align="center">      			    
      					<s:if test="%{status.equals('rg')}">
-		 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
-		 	    			<s:param name="name" value="%{gadget.name}" />
-		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
-		 	    			<s:a onclick='return confirmbox("발행취소하시겠습니까?", "%{url}");'>
-		 	    			<input type="button" value="발행취소"/></s:a> 	     			
+
 						</s:if>
 						<s:elseif test="%{status.equals('pr')}">
 							<a href="#" onclick="javascript:adminpopup('popup_gadget_publish_response.jsp?gadgetId=<s:property value="gadgetId"/>','GadgetPublish');">
