@@ -54,8 +54,12 @@
 		</action>
 		
 		<action name="GadgetInfo" class="com.skt.opensocial.user.GadgetInfoAction">
-
 			<result name="success">/user/UserGadgetInfo.jsp</result>
+		</action>
+		
+		<action name="UserRemoveGadget" class="com.skt.opensocial.user.UserRemoveGadgetAction">
+
+			<result type="redirectAction">ListGadgets</result>
 		</action>
 		
 		<action name="ManageFriend">
@@ -66,9 +70,31 @@
 			<result>/user/UserListActivities.jsp</result>
 		</action>
 		
-		<action name="Search" class="com.skt.opensocial.user.GadgetList">
-			<interceptor-ref name="defaultStack"/>
-			<result name="SUCCESS">/user/UserListGadgets.jsp</result>
+		<action name="PrepareSearch" >
+			<result >/user/UserSearch.jsp</result>
 		</action>
+		
+		<action name="Search" class="com.skt.opensocial.user.SearchAction">
+			
+			<result name="gadget">/user/SearchListGadgets.jsp</result>
+			<result name="user">/user/SearchListUsers.jsp</result>
+			<result name="fail">/main.jsp</result>
+		</action>
+		
+		<action name="SearchGadgetInfo" class="com.skt.opensocial.user.SearchGadgetInfoAction">
+			
+			<result name="success">/user/SearchGadgetInfo.jsp</result>
+		</action>
+		
+		<action name="SetFavoriteGadget" class="com.skt.opensocial.user.SetFavoriteGadgetAction">
+			
+			<result name="success" type="redirectAction">ListGadgets</result>
+		</action>
+		
+		<action name="SearchOtherUserInfo" class="com.skt.opensocial.user.SearchOtherUserInfoAction">
+			
+			<result name="success">/user/SearchOtherUserInfo.jsp</result>
+		</action>
+		
 	</package>
 </struts>
