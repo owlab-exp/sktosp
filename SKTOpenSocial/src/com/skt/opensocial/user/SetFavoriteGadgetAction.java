@@ -3,14 +3,16 @@
  */
 package com.skt.opensocial.user;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
+import com.opensymphony.xwork2.Action;
+import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.developer.DeveloperBaseAction;
-import com.skt.opensocial.persistence.Anonymous;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
@@ -20,8 +22,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class SearchAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(SearchAction.class);
+public class SetFavoriteGadgetAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(SetFavoriteGadgetAction.class);
 	
 	/**
 	 * 
@@ -33,94 +35,64 @@ public class SearchAction extends DeveloperBaseAction {
 	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
-	List<Gadget> gadgets;
-	List<User> users;
-	String searchfield;
-	String query;
-	Anonymous anony;
+	Set<Gadget> gadgets;
+	Long gadgetId;
+	Gadget gadget;
 	
+	public Gadget getGadget() {
+		return gadget;
+	}
+
+	public void setGadget(Gadget gadget) {
+		this.gadget = gadget;
+	}
+
 	int requestedPage = 1;
 	
-	public String getSearchfield() {
-		return searchfield;
+	public Long getGadgetId() {
+		return gadgetId;
 	}
 
-	public void setSearchfield(String searchfield) {
-		this.searchfield = searchfield;
-	}
-
-	public String getQuery() {
-		return query;
-	}
-
-	public void setQuery(String query) {
-		this.query = query;
-	}
-
-	public Anonymous getAnony() {
-		return anony;
-	}
-
-	public void setAnony(Anonymous anony) {
-		this.anony = anony;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public void setGadgets(List<Gadget> gadgets) {
-		this.gadgets = gadgets;
-	}
-
-	public List<Gadget> getGadgets() {
-		return gadgets;
+	public void setGadgetId(Long gadgetId) {
+		this.gadgetId = gadgetId;
 	}
 
 	public String execute(){
 		//
-		//Anonymous anony = (Anonymous)session.get(SKTOpenSocialSupportConstants.ANONYMOUS);
+		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+		
+		String userId = user.getUserId();
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
 		
+		user = (User)hs.load(User.class, userId);
+		
+		System.out.println("gadgetId = " + gadgetId);
+		
+		gadget = (Gadget) hs.load(Gadget.class, gadgetId);
 		
 		
-		//session.put(SKTOpenSocialSupportConstants.ANONYMOUS, anony);
+		System.out.println("gadgetName " + gadget.getName());
 		
-		//this.gadgets = Anonymous.getGadgets(searchfield);
+		//this.gadgets = user.getFavoriteGadgets();
 		
-		// logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+		// if (gadgets != null && !gadgets.isEmpty())
+		//	System.out.println("Original size of gadgets = " + gadgets.size());
 		
-		String queryKey = new String("%" + query + "%");
+		user.addFavoriteGadget(gadget);
 		
-		System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
+		hs.saveOrUpdate(user);
 		
-		if ( searchfield.equals("gadget"))
-			this.gadgets = (List<Gadget>) hs.createCriteria(Gadget.class)
-				.add(Restrictions.like("name", queryKey))
-				.add(Restrictions.isNotNull("publishDate"))
-				.add(Restrictions.eq("status", "pb"))
-				.list();
-		else if ( searchfield.equals("username"))
-			this.users = (List<User>) hs.createCriteria(User.class)
-			.add(Restrictions.like("name", queryKey)).list();
+		//this.gadgets = user.getFavoriteGadgets();
+		//if (gadgets != null && !gadgets.isEmpty())
+		//	System.out.println("Added size of gadgets = " + gadgets.size());
 		
-		if (this.gadgets != null && !this.gadgets.isEmpty())
-			System.out.println("searched gadgets.size = " + gadgets.size());
-		if (this.users != null && !this.users.isEmpty())
-			System.out.println("searched users.size = " + users.size());
+		session.put(SKTOpenSocialSupportConstants.USER, user);
 		
 		
-		//List cats = sess.createCriteria(Cat.class)
-	    //.add( Restrictions.like("name", "Fritz%") )
-	    //.add( Restrictions.between("weight", minWeight, maxWeight) )
-	    //.list();
-		
+		//this.gadgets = this.gadgets.add(gadgetId);
+		//logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
 		
 		hs.getTransaction().commit();
 		
@@ -137,12 +109,8 @@ public class SearchAction extends DeveloperBaseAction {
 		
 		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
 		*/
-		if ( searchfield.equals("gadget"))
-			return "gadget";
-		else if ( searchfield.equals("username"))
-			return "user";
-		else
-			return "fail";
+		
+		return Action.SUCCESS;
 	}
 
 	/* (non-Javadoc)
@@ -193,5 +161,14 @@ public class SearchAction extends DeveloperBaseAction {
 		this.requestedPage = requestedPage;
 	}
 
+	public Set<Gadget> getGadgets() {
+		return gadgets;
+	}
+
+	public void setGadgets(Set<Gadget> gadgets) {
+		this.gadgets = gadgets;
+	}
+
+	
 	
 }

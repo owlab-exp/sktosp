@@ -102,7 +102,7 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 		session.put(SKTOpenSocialSupportConstants.USER, user);
 		
 		this.gadgets = user.getFavoriteGadgets();
-		logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+		// logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
 		
 		hs.getTransaction().commit();
 		
