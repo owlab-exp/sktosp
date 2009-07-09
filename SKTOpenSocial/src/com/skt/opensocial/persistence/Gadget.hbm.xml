@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <property name="name" type="string">
-            <column name="NAME" length="20" not-null="true" />
+            <column name="NAME" length="255" not-null="true" />
         </property>
         <property name="registerDate" type="date">
             <column name="REGISTER_DATE" length="10" />
@@ -57,7 +57,7 @@
 		</set>
 		<set name="favoriteUsers" table="SKT_FAVORITE_GADGET" lazy="false">
 			<key column="GADGET_ID"/>
-			<many-to-many column="USER_ID" class="com.skt.opensocial.persistence.User"/>
+			<many-to-many column="USER_ID" class="com.skt.opensocial.persistence.User" fetch="select"/>
 		</set>
 		<one-to-one name="gadgetPublish"  class="com.skt.opensocial.persistence.GadgetPublish" cascade="all"/>
 		<many-to-one name="icon" class="com.skt.opensocial.persistence.GadgetIcon" column="ID" unique="true" insert="false" update="false" cascade="all"/>

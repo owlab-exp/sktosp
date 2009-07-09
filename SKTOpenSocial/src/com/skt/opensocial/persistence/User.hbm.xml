@@ -30,9 +30,9 @@
 			<key column="DEVELOPER_ID"/>
 			<one-to-many class="com.skt.opensocial.persistence.Gadget" />
 		</set>
-		<set name="favoriteGadgets" table="SKT_FAVORITE_GADGET" cascade="all">  
+		<set name="favoriteGadgets" table="SKT_FAVORITE_GADGET" cascade="all" lazy="false" >  
 			<key column="USER_ID"/>
-			<many-to-many class="com.skt.opensocial.persistence.Gadget" column="GADGET_ID"/>
+			<many-to-many class="com.skt.opensocial.persistence.Gadget" column="GADGET_ID" fetch="select"/>
 		</set>
 		<!-- -->
 <!--		<set name="friends" table="SKT_USER_FRIENDS" cascade="all">-->
