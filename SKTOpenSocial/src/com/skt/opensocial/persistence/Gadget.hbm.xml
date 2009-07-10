@@ -45,7 +45,7 @@
             </column>
         </property>
         -->
-        <many-to-one name="developer"  column="DEVELOPER_ID" class="com.skt.opensocial.persistence.User" not-null="true"/>
+        <many-to-one name="developer"  column="DEVELOPER_ID" class="com.skt.opensocial.persistence.User" not-null="true" lazy="false"/>
 		
 		<set name="categories" table="SKT_GADGET_CATEGORY_GADGET">
 			<key column="GADGET_ID"/>

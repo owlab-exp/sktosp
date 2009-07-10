@@ -20,7 +20,7 @@ public class User implements java.io.Serializable {
 	private UserVisibility userVisibility;
 	private Set<GadgetReview> reviews;
 	private Set<Gadget> gadgets = new HashSet<Gadget>();
-	private Set<Gadget> favoriteGadgets;
+	private Set<Gadget> favoriteGadgets = new HashSet<Gadget>();
 	//private Set<User> friends = new HashSet<User>();
 	private Set<User> friendsByMe = new HashSet<User>();
 	private Set<User> friendsByOther = new HashSet<User>();
@@ -128,7 +128,7 @@ public class User implements java.io.Serializable {
 	
 
 	public Set<Gadget> getFavoriteGadgets() {
-		return favoriteGadgets;
+		return this.favoriteGadgets;
 	}
 
 	public void setFavoriteGadgets(Set<Gadget> favoriteGadgets) {
