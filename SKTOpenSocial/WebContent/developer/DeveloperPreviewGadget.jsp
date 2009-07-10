@@ -46,50 +46,35 @@
 </script>
 <!--// Gadget Style override -->
 <style type="text/css">
-  body {
-    font-family: arial, sans-serif;
-  }
-
-  #headerDiv {
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #e5ecf9;
-    color: #3366cc;
-    font-size: larger;
-    font-weight: bold;
-  }
-
-  .subTitle {
-    font-size: smaller;
-    float: right;
-  }
-
-  .gadgets-gadget-chrome {
+<!--
+ .gadgets-gadget-chrome {
     width: 90%;
-    float: none;
+    height: 100%;
+    float: center;
     margin: auto;
   }
 
   .gadgets-gadget {
     width: 100%;
+    height: 100%;
   }
-
+//-->
 </style>
 <title>가젯 미리보기</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
-	style="background-color: rgb(255, 255, 255);" marginheight="0"
-	marginwidth="0" onLoad="renderGadgets();">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567"
+	style="background-color: rgb(255, 255, 255);" marginheight="0" 
+	marginwidth="0" onLoad="renderGadgets();"><!-- height="567" -->
+<table border="1" cellpadding="0" cellspacing="0" 
 	width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
-			<td colspan="3" align="center" height="10%" valign="top"><%@ include
-				file="/common/north.jsp"%></td>
+			<td colspan="3" align="center" valign="top"><%@ include
+				file="/common/north.jsp"%></td><!-- height="10%"  -->
 		</tr>
-		<tr valign="top" height="80%">
+		<tr valign="top"><!-- height="80%" -->
 			<!-- west -->
 			<td align="center" valign="top" width="25%"><%@ include
 				file="/common/west_dev.jsp"%></td>
