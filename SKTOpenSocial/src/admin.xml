@@ -23,6 +23,13 @@
 			<result name="SUCCESS" type="redirectAction">GadgetList</result>
 		</action>	
 
+		<action name="SearchGadget" class="com.skt.opensocial.admin.SearchGadgetAction">
+			<result name="gadgetname">/admin/GadgetList.jsp</result>
+			<result name="gadgetstatus">/admin/GadgetList.jsp</result>
+			<result name="developerid">/admin/GadgetList.jsp</result>
+			<result name="fail">/main.jsp</result>
+		</action>
+
 		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.admin.GadgetController">
 			<result name="SUCCESS" type="redirectAction">GadgetList</result>			
 		</action>

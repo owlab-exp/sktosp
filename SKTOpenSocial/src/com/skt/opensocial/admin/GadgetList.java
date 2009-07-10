@@ -62,6 +62,8 @@ public class GadgetList extends AdministratorBaseAction {
 		c.setFirstResult(this.start);
 		c.setMaxResults(this.scale);
 
+		c.addOrder( Order.desc("id") );
+		
 		//System.out.println("START: "+this.start);
 		
 		

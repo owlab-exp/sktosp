@@ -52,8 +52,9 @@
           <td>
 
 
-		<s:form action="GadgetList" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'NAME':'이름','DEVELOPER_ID':'개발자'}"/> 
+		<s:form action="SearchGadget" theme="simple">
+	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" 
+	    list="#{'gadgetname':'가젯이름','gadgetstatus':'가젯상태','developerid':'개발자ID'}"/> 
 	    <s:textfield name="query" value="%{query}"/> 
 	    <s:submit value="검색"/>
 	</s:form>
@@ -180,6 +181,13 @@
             
 			<div class="paging"> 
 				<em class="p"><a href="">이전</a></em> 
+				
+[
+
+<s:iterator value="totalcount">
+  <p>day is: <s:property/></p>
+</s:iterator>
+]
 				<span class="on">1</span>
 				<a href="">2</a>
 				<a href="">3</a>
