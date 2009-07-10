@@ -10,13 +10,77 @@
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
 
+<!--// OpenSocial Gadget Related Setting -->
+<link rel="stylesheet"
+	href="http://localhost:8080/gadgets/files/container/gadgets.css">
+<script type="text/javascript"
+	src="http://localhost:8080/gadgets/js/rpc.js?c=1&debug=1"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/gadgets/files/container/cookies.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/gadgets/files/container/util.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/gadgets/files/container/gadgets.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/gadgets/files/container/cookiebaseduserprefstore.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8080/gadgets/files/container/osapi.js"></script>
 
+<!-- //Local Gadget Enabling Function -->
+<script type="text/javascript">
+	// Specify Gadget XML URL
+	var specUrl0 = '<s:property value="gadgetSource"/>';
+
+	function renderGadgets() {
+		var gadget0 = gadgets.container.createGadget( {
+			specUrl : specUrl0
+		});
+
+		gadget0.setServerBase('http://localhost:8080/gadgets/'); //Shindig Server Gadget Handling Endpoint
+
+		gadgets.container.addGadget(gadget0);
+		gadgets.container.layoutManager
+				.setGadgetChromeIds( [ 'gadget-chrome' ]);
+		gadgets.container.renderGadget(gadget0);
+	};
+</script>
+<!--// Gadget Style override -->
+<style type="text/css">
+  body {
+    font-family: arial, sans-serif;
+  }
+
+  #headerDiv {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #e5ecf9;
+    color: #3366cc;
+    font-size: larger;
+    font-weight: bold;
+  }
+
+  .subTitle {
+    font-size: smaller;
+    float: right;
+  }
+
+  .gadgets-gadget-chrome {
+    width: 90%;
+    float: none;
+    margin: auto;
+  }
+
+  .gadgets-gadget {
+    width: 100%;
+  }
+
+</style>
 <title>가젯 미리보기</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
-	marginwidth="0">
+	marginwidth="0" onLoad="renderGadgets();">
 <table border="1" cellpadding="0" cellspacing="0" position: height="567"
 	width="100%">
 	<tbody>
@@ -61,9 +125,11 @@
 								<tr>
 									<s:if test="%{registerType.equals('url')}">
 
-										<td valign="top"><iframe id="gadgetFrame"
-											src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>"
-											width="100%" height="300"></iframe></td>
+										<td valign="top"><!--										<iframe id="gadgetFrame" frameborder="0"-->
+										<!--											src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>"-->
+										<!--											width="100%" height="300">--> <!--										</iframe>-->
+										<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
+										</td>
 									</s:if>
 									<!--									<s:elseif test="%{registerType.equals('src')}">-->
 									<!--										-->
@@ -112,17 +178,23 @@
 							<s:param name="gadgetId">
 								<s:property value="gadgetId" />
 							</s:param>
-						</s:url>
-						<s:if test="%{gadgetStatus.equals('nr')}">
+						</s:url> <s:if test="%{gadgetStatus.equals('nr')}">
 							<%-- Not registered--%>
-							<em class="p"><s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
-						</s:if> 
-						<s:elseif test="%{gadgetStatus.equals('rg')}">
+							<em class="p"><s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a
+								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
+								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+						</s:if> <s:elseif test="%{gadgetStatus.equals('rg')}">
 							<%-- Registered--%>
-							<em class="p"><s:a href="#" onclick="javascript:popup('%{publishRequestUrl}','PublishConfirm')">발행요청</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+							<em class="p"><s:a href="#"
+								onclick="javascript:popup('%{publishRequestUrl}','PublishConfirm')">발행요청</s:a>/<s:a
+								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
+								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
 						</s:elseif> <s:elseif test="%{gadgetStatus.equals('pd')}">
 							<%-- Publish Denied--%>
-							<em class="p"><s:a href="#" onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#" onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+							<em class="p"><s:a href="#"
+								onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a
+								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
+								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
 						</s:elseif> <s:else>
 							<%-- Published or Publish requested--%>
 							<em class="p"><a href="#"
