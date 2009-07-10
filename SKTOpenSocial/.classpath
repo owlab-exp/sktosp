@@ -5,8 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Tools/Topcased-2.5.0/plugins/javax.servlet_2.4.0.v200806031604.jar"/>
-	<classpathentry kind="lib" path="C:/Tools/Topcased-2.5.0/plugins/javax.servlet.jsp_2.0.0.v200806031607.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
