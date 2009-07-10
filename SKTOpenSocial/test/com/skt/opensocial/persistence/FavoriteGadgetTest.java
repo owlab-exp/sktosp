@@ -20,94 +20,25 @@ import org.junit.Test;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetReview;
 import com.skt.opensocial.persistence.User;
+import com.skt.opensocial.security.PasswordEncryptor;
 
 public class FavoriteGadgetTest {
 	Logger logger = Logger.getLogger(FavoriteGadgetTest.class);
-	private static String developerId = "dev1";
-	private static String userId = "usr1";
-	private static Long gadgetId;
+	private static String developerId = "nash";
+	private static String userId = "friend2";
+	private static Long gadgetId = 230L;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Transaction tran = session.beginTransaction();
-		
-		User user = new User();
-		user.setId(developerId);
-		user.setRegisteredDate(new Date());
-		user.setPassword("password");
-		
-		User reviewer = new User();
-		reviewer.setId(userId);
-		reviewer.setRegisteredDate(new Date());
-		reviewer.setPassword("password");
-		
-		session.saveOrUpdate(reviewer);
-		session.saveOrUpdate(user);
-		tran.commit();
-		
-		session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		tran = session.beginTransaction();
-		
-		user = (User)session.load(User.class, developerId);
-		
-		Gadget g = new Gadget();
-		g.setName("Sample Gadget");
-		g.setRegisterDate(new Date());
-		g.setSource("AAAAAAAAAA");
-		g.setStatus("pd");
-		g.setDeveloper(user);
-		
-		gadgetId = (Long) session.save(g);
-		
-		tran.commit();
-	}
+	
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Transaction tran = session.beginTransaction();
-		
-		User developer = (User)session.load(User.class, developerId);
-		User user = (User)session.load(User.class, userId);
-		Gadget gadget = (Gadget)session.load(Gadget.class, gadgetId);
-		
-		session.delete(gadget);
-		session.delete(developer);
-		session.delete(user);
-		
-		
-		tran.commit();
-	}
-
-	@Before
-	public void setUp() throws Exception { // Create a Gadget
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		Transaction tran = session.beginTransaction();
-//		
-//		User user = (User)session.load(User.class, developerId);
-//		
-//		Gadget g = new Gadget();
-//		g.setName("Sample Gadget");
-//		g.setRegisterDate(new Date());
-//		g.setSource("AAAAAAAAAA");
-//		g.setStatus("pd");
-//		g.setDeveloper(user);
-//		
-//		gadgetId = (Long) session.save(g);
-//		
-//		tran.commit();
-		
-	}
 	
 	@Test
 	public void addFavoriteGadget(){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tran = session.beginTransaction();
 		
-		User user = (User)session.load(User.class, userId);
-		Gadget gadget = (Gadget)session.load(Gadget.class, gadgetId);
+		//User user = (User)session.get(User.class, userId);
+		User user = (User)session.get(User.class, developerId);
+		Gadget gadget = (Gadget)session.get(Gadget.class, gadgetId);
 		
 		Set<Gadget> gadgets = user.getFavoriteGadgets();
 		if(gadgets == null)
@@ -127,11 +58,22 @@ public class FavoriteGadgetTest {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tran = session.beginTransaction();
 		
-		User user = (User) session.load(User.class, userId);
+		//User user = (User) session.get(User.class, userId);
+		User user = (User) session.get(User.class, developerId);
 		Collection<Gadget> gadgets = user.getFavoriteGadgets();
 		
-		assertEquals("Number of gadgets", 1, gadgets.size());
+		logger.info("Number of gadgets=" + gadgets.size());
+		for(Gadget g: gadgets) {
+			logger.info("Developer=" + g.getDeveloper().getPerson().getNameFormatted());
+		}
 		
+		
+		Gadget gadget = (Gadget) session.get(Gadget.class, gadgetId);
+		Collection<User> users = gadget.getFavoriteUsers();
+		
+		//assertEquals("Number of gadgets", 1, gadgets.size());
+		
+		logger.info("Number of users=" + users.size());
 //		User reviewer = (User)session.load(User.class, userId);
 //		Collection<Gadget> reviewsFromReviewer = gadget.getReviews();
 //		
@@ -139,6 +81,10 @@ public class FavoriteGadgetTest {
 		
 
 		tran.commit();
+		
+		for(Gadget g: gadgets) {
+			logger.info("Developer=" + g.getDeveloper().getPerson().getNameFormatted());
+		}
 
 	}
 	@Test
@@ -146,8 +92,9 @@ public class FavoriteGadgetTest {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tran = session.beginTransaction();
 		
-		User user = (User)session.load(User.class, userId);
-		Gadget gadget = (Gadget) session.load(Gadget.class, gadgetId);
+		//User user = (User)session.get(User.class, userId);
+		User user = (User)session.get(User.class, developerId);
+		Gadget gadget = (Gadget) session.get(Gadget.class, gadgetId);
 		
 		user.removeFavoriteGadget(gadget);
 		
@@ -156,19 +103,16 @@ public class FavoriteGadgetTest {
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		tran = session.beginTransaction();
 		
-		user = (User)session.load(User.class, userId);
+		//user = (User)session.get(User.class, userId);
+		user = (User)session.get(User.class, developerId);
+		
 		
 		Set<Gadget> gs = user.getFavoriteGadgets();
-		assertEquals("Gadget se", 0, gs.size());
+		assertEquals("Gadget set", 0, gs.size());
 		
 		tran.commit();
 		
 
-	}
-	
-	@After
-	public void tearDown() throws Exception {
-		
 	}
 	
 }
