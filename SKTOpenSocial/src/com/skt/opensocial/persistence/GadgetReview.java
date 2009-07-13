@@ -18,7 +18,7 @@ public class GadgetReview implements java.io.Serializable {
 	private User reviewer;
 	private Gadget gadget;
 
-	private GadgetReview() {
+	public GadgetReview() {
 	}
 
 //	public GadgetReview(long gadgetId, String userId, String reviewText,
