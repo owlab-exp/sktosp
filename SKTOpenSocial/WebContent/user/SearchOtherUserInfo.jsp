@@ -73,12 +73,12 @@
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="left">아이디</td> 
-                	<td align="center"><s:property value="userId"/></td> 
+                	<td align="center"><s:property value="otherUserId"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#FFFFFF;" height="25">
           			<td align="left">전화번호</td> 
-                	<td align="center"><s:property value="userId"/></td> 
+                	<td align="center"><s:property value="otherUserId"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
@@ -91,10 +91,8 @@
                 	<td align="center"><s:property value="registeredDate"/></td> 
       			  </tr>
       			<tr><td class="line" colspan="6"></td></tr>
-      			
-
-
-      		  </table>
+  
+      		</table>
       		  
       		  <table cellpadding="0" cellspacing="0" width="100%" border="1"> 
 					<colgroup> 
@@ -114,19 +112,63 @@
 		     		</td>
 		     	</tr>
       		  </table>
-      		  
-      		  <!-- east -->
+      		        		  
+				<table class="subtit_board" summary="List of Gadgets"
+					cellpadding="0" cellspacing="0" width="100%">
+					<colgroup>
+						<col width="15%">
+						<col width="15%">
+						<col width="15%">
+						<col width="15%">
+						<col width="15%">
+						<col width="20%">
+						<col width="5%">
 
-			
-						
-			
+					</colgroup>
+					<tbody>
+						<tr style="background-color: rgb(245, 245, 245);">
+							<td>가젯ID</td>
+							<td>가젯이름</td>
+							<td align="center">개발자</td>
+							<td align="center">발행일자</td>
+							<td align="center">사용자수</td>
+							<td align="center">가젯설명</td>
+							<td align="center">삭제요청</td>
+
+						</tr>
+						<s:iterator value="otherUserGadgets">
+						<tr style="background-color: rgb(300, 300, 300);">
+							<s:url id="gadgetInfoUrl" action="GadgetInfo">
+								<s:param name="gadgetId"><s:property value="id"/></s:param>
+							</s:url>
+							<s:url id="userInfoUrl" action="UserInfo">
+								<s:param name="developername"><s:property value="developer.person.nameFormatted"/></s:param>
+							</s:url>
+							<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
+								<s:param name="gadgetId"><s:property value="id"/></s:param>
+							</s:url>
+							<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
+							<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
+							<td align="center"><s:a href="%{userInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
+							<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
+							<td align="center"><s:property value="favoriteUsers.size"/></td>
+							<td align="center"><s:property value="introduction"/></td>
+							<td align="center"><s:a href="%{userRemoveGadgetUrl}">삭제</s:a></td>
+									
+						</tr>
+						</s:iterator>
+						<tr>
+							<td class="line" colspan="7"></td>
+						</tr>
+					</tbody>
+				</table>
+						      		  
+      		  <!-- east -->
 			
 			<!-- east div -->
-
       		  
  			</td>
 		  </tr>
-		  
 
       </table>
       

@@ -120,6 +120,15 @@
 									
 								</tr>
 
+								<tr>
+									<td valign="top">가젯 리뷰</td>
+										
+									<td valign="top">
+										<iframe id="gadgetReview" src="<s:url value="%{'http://localhost:8080/SKTOpenSocial/user/Review.action?gadgetId='+gadgetId}"/>" width="100%" height="300"></iframe>
+									</td>
+									
+								</tr>
+
 							</tbody>
 						</table>
 						</td>

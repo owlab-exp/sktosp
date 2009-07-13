@@ -80,7 +80,7 @@
 								<s:iterator value="users">
 								<tr style="background-color: rgb(300, 300, 300);">
 									<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
-										<s:param name="userId"><s:property value="id"/></s:param>
+										<s:param name="otherUserId"><s:property value="id"/></s:param>
 									</s:url>
 									<td><s:a href="%{userOtherUserInfoUrl}"><s:property value="id"/></s:a></td>
 									<td><s:a href="%{userOtherUserInfoUrl}"><s:property value="person.nameFormatted"/></s:a></td>
