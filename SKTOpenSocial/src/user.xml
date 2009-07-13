@@ -9,16 +9,16 @@
 		</action>
 		<action name="Registration">
 			<interceptor-ref name="defaultStack"/>
-			<result>/user/registration.jsp</result>
+			<result>/user/UserRegistration.jsp</result>
 		</action>
 		<action name="RegistrationSubmit">
 			<interceptor-ref name="defaultStack"/>
 			<result name="success">/main.jsp</result>
-			<result name="fail">/user/registration.jsp</result>
+			<result name="fail">/user/UserRegistration.jsp</result>
 		</action>
 		<action name="ResetRegistration">
 			<interceptor-ref name="defaultStack"/>
-			<result >/user/registration.jsp</result>
+			<result >/user/UserRegistration.jsp</result>
 		</action>
 		
 		<action name="CancelRegistration">
@@ -57,13 +57,32 @@
 			<result name="success">/user/UserGadgetInfo.jsp</result>
 		</action>
 		
+		<action name="Review" class="com.skt.opensocial.user.ReviewAction">
+			<result name="success">/user/UserReview.jsp</result>
+		</action>
+		
+		<action name="AddReview" class="com.skt.opensocial.user.AddReviewAction">
+			<result name="success" type="redirectAction">Review</result>
+			<result name="fail" type="redirectAction">Review</result>
+		</action>
+		
+		<action name="RemoveReview" class="com.skt.opensocial.user.RemoveReviewAction">
+			<result name="success" type="redirectAction">Review</result>
+			<result name="fail" type="redirectAction">Review</result>
+		</action>
+		
 		<action name="UserRemoveGadget" class="com.skt.opensocial.user.UserRemoveGadgetAction">
 
 			<result type="redirectAction">ListGadgets</result>
 		</action>
 		
-		<action name="ManageFriend">
+		<action name="ManageFriend" class="com.skt.opensocial.user.ManageFriendAction">
 			<result>/user/UserListFriends.jsp</result>
+		</action>
+		
+		<action name="UserRemoveFriend" class="com.skt.opensocial.user.UserRemoveFriendAction">
+
+			<result type="redirectAction">ManageFriend</result>
 		</action>
 		
 		<action name="ManageActivity">
@@ -94,6 +113,11 @@
 		<action name="SearchOtherUserInfo" class="com.skt.opensocial.user.SearchOtherUserInfoAction">
 			
 			<result name="success">/user/SearchOtherUserInfo.jsp</result>
+		</action>
+		
+		<action name="SetFriend" class="com.skt.opensocial.user.SetFriendAction">
+			
+			<result name="success" type="redirectAction">ManageFriend</result>
 		</action>
 		
 	</package>
