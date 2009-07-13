@@ -103,7 +103,7 @@
 								<tr>
 									<td valign="top">가젯 URL:</td>
 									<td>
-										<s:textfield name="gadgetSource" size="50"/>
+										<s:textfield name="gadgetUrl" size="50"/>
 									</td>
 								</tr>
 								</s:elseif>

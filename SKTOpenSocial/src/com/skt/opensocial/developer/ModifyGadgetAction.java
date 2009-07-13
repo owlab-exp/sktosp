@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -28,7 +29,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 // public class ListGadgetsAction extends ActionSupport implements RequestAware
 // {
 public class ModifyGadgetAction extends ManageGadgetAction {
-
+	private Logger logger = Logger.getLogger(ModifyGadgetAction.class);
 	/**
 	 * 
 	 */
@@ -41,7 +42,12 @@ public class ModifyGadgetAction extends ManageGadgetAction {
 		Transaction tran = hs.beginTransaction();
 
 		Gadget gadget = (Gadget) hs.get(Gadget.class, gadgetId);
+		
 		gadget.setName(getGadgetName());
+		
+		setGadgetId(gadgetId);//??
+		//sessionMap.put("modifiedGadgetId", gadgetId);// temporal
+		sessionMap.put("GADGET_ID", gadgetId);
 
 		String categoryIds = getGadgetCategory();
 		categoryIds = categoryIds.replace(" ", "");
@@ -61,6 +67,8 @@ public class ModifyGadgetAction extends ManageGadgetAction {
 		gadget.setIconUrl(getGadgetIconUrl());
 		gadget.setIntroduction(getGadgetIntro());
 		gadget.setSource(getGadgetSource());
+		gadget.setGadgetSource(getGadgetSource());
+		gadget.setGadgetUrl(getGadgetUrl());
 		gadget.setRegisterDate(null);
 		gadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
 		gadget.setRegisterType(getRegisterType());
@@ -129,7 +137,8 @@ public class ModifyGadgetAction extends ManageGadgetAction {
 		// setGadgetCategory("dating, finance");
 		// setGadgetIconUrl(gadget.getIconUrl());
 		setGadgetIntro(gadget.getIntroduction());
-		setGadgetSource(gadget.getSource());
+		setGadgetSource(gadget.getGadgetSource());
+		setGadgetUrl(gadget.getGadgetUrl());
 		setGadgetStatus(gadget.getStatus());
 		setRegisterType(gadget.getRegisterType());
 		setGadgetIconUrl(gadget.getIconUrl());

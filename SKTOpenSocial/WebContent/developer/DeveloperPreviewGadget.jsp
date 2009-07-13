@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ page import="com.skt.opensocial.common.*"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
+
+
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
@@ -28,15 +31,40 @@
 
 <!-- //Local Gadget Enabling Function -->
 <script type="text/javascript">
-	// Specify Gadget XML URL
-	var specUrl0 = '<s:property value="gadgetSource"/>';
-
+	// Specify Gadget XML file URL
+	<s:if test="%{registerType.equals('url')}">
+		var gadget0Url = '<s:property value="gadgetUrl"/>';
+	</s:if>
+	<s:elseif test="%{registerType.equals('src')}">
+		var gadget0Url = '<s:property value="gadgetUrl"/>';
+	</s:elseif>
+	// Specify Gadget Owner & Viewer
+	var viewerId = '<s:property value="developerId"/>';
+	var ownerId = '<s:property value="developerId"/>';
+	var appId = '<s:property value="gadgetId"/>';
+	
+	function generateSecureToken() {
+	    // TODO: Use a less silly mechanism of mapping a gadget URL to an appid
+	    //var appId = 0;
+	    //for (var i = 0; i < gadget0Url.length; i++) {
+	    //  appId += gadget0Url.charCodeAt(i);
+	    //}
+	    var fields = [ownerId, viewerId, appId, "shindig", gadget0Url, "0", "default"];
+	    for (var i = 0; i < fields.length; i++) {
+	      // escape each field individually, for metachars in URL
+	      fields[i] = escape(fields[i]);
+	    }
+	    return fields.join(":");
+	  }
+	  
 	function renderGadgets() {
 		var gadget0 = gadgets.container.createGadget( {
-			specUrl : specUrl0
+			specUrl : gadget0Url
 		});
 
 		gadget0.setServerBase('http://localhost:8080/gadgets/'); //Shindig Server Gadget Handling Endpoint
+
+		gadget0.secureToken = escape(generateSecureToken()); // Including viewer and owner
 
 		gadgets.container.addGadget(gadget0);
 		gadgets.container.layoutManager
@@ -46,7 +74,7 @@
 </script>
 <!--// Gadget Style override -->
 <style type="text/css">
-<!--
+
  .gadgets-gadget-chrome {
     width: 90%;
     height: 100%;
@@ -58,7 +86,7 @@
     width: 100%;
     height: 100%;
   }
-//-->
+
 </style>
 <title>가젯 미리보기</title>
 </head>
@@ -108,21 +136,13 @@
 										value="gadgetId" />)</td>
 								</tr>
 								<tr>
-									<s:if test="%{registerType.equals('url')}">
-
-										<td valign="top"><!--										<iframe id="gadgetFrame" frameborder="0"-->
-										<!--											src="<s:url value="%{'http://localhost:8080/gadgets/ifr?url='+gadgetSource}"/>"-->
-										<!--											width="100%" height="300">--> <!--										</iframe>-->
-										<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
+									<s:if test="%{registerType.equals('url') || registerType.equals('src')}">
+										<td valign="top">
+											<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
 										</td>
 									</s:if>
-									<!--									<s:elseif test="%{registerType.equals('src')}">-->
-									<!--										-->
-									<!--										<td valign="top"><iframe id="gadgetFrame" src="<s:url value="%{'http://localhost:8080/SKTOpenSocial/gadgets/ifr?url='+gadgetSource}"/>" width="100%" height="300"></iframe></td>-->
-									<!--									</s:elseif>-->
 									<s:else>
-										<td valign="top"><img src="ilike.png" height="70%"
-											width="70%"></td>
+										<td valign="top">Gadget Register Type is neither 'url' nor 'src'</td>
 									</s:else>
 								</tr>
 								<tr>

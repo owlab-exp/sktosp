@@ -18,7 +18,9 @@ public class Gadget implements java.io.Serializable {
 	private String status;
 	private String registerType;
 	private String introduction;
-	private String source;
+	private String source; // this will be replaced by gadgetSource
+	private String gadgetUrl;
+	private String gadgetSource;
 	private String iconUrl;
 	// private String developerId;
 	private User developer;
@@ -112,6 +114,22 @@ public class Gadget implements java.io.Serializable {
 
 	public void setSource(String source) {
 		this.source = source;
+	}
+
+	public String getGadgetUrl() {
+		return gadgetUrl;
+	}
+
+	public void setGadgetUrl(String gadgetUrl) {
+		this.gadgetUrl = gadgetUrl;
+	}
+
+	public String getGadgetSource() {
+		return gadgetSource;
+	}
+
+	public void setGadgetSource(String gadgetSource) {
+		this.gadgetSource = gadgetSource;
 	}
 
 	public String getIconUrl() {

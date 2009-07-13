@@ -145,7 +145,7 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 			String url, Session hs) {
 		Gadget gadget = new Gadget();
 		gadget.setName(name);
-		gadget.setDeveloper((User) session
+		gadget.setDeveloper((User) sessionMap
 				.get(SKTOpenSocialSupportConstants.USER));
 		
 		Set<GadgetCategory> categories = new HashSet<GadgetCategory>();
@@ -158,7 +158,8 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 		gadget.setRegisterType(GadgetRegisterTypeConstants.URL);
 		gadget.setStatus(GadgetStatusConstants.REGISTERED);
 		gadget.setRegisterDate(new Date());
-		gadget.setSource(url);
+		//gadget.setSource(url);
+		gadget.setGadgetUrl(url);
 
 		hs.save(gadget);
 

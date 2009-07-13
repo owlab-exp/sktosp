@@ -43,7 +43,8 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 
 		setGadgetStatus(GadgetStatusConstants.NOT_REGISTERED);
 		if (registerType == null) {
-			registerType = GadgetRegisterTypeConstants.SRC;
+			// registerType = GadgetRegisterTypeConstants.SRC;
+			registerType = GadgetRegisterTypeConstants.URL;
 		}
 
 		if (registerType.equals(GadgetRegisterTypeConstants.URL_MULTI))
@@ -67,84 +68,110 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	}
 
 	public String execute() {
-		logger.info(">>>>>>>>>>>>>>>>>>>> Gadget Registration");
-		logger.info(">>>>>>>>>>>>>>>>>>>> registerType=" + getRegisterType());
-		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetId=" + getGadgetId());
-		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetName=" + getGadgetName());
-		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetCategory="
-				+ getGadgetCategory());
-		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetIntro=" + getGadgetIntro());
-		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetSource=" + getGadgetSource());
-		logger.info(">>>>>>>>>>>>>>>>>>>> gadgetStatus=" + getGadgetStatus());
+		try {
+			logger.info(">>>>>>>>>>>>>>>>>>>> Gadget Registration");
+			logger.info(">>>>>>>>>>>>>>>>>>>> registerType="
+					+ getRegisterType());
+			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetId=" + getGadgetId());
+			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetName=" + getGadgetName());
+			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetCategory="
+					+ getGadgetCategory());
+			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetIntro=" + getGadgetIntro());
+			// logger.info(">>>>>>>>>>>>>>>>>>>> gadgetSource=" +
+			// getGadgetSource());
+			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetStatus="
+					+ getGadgetStatus());
 
-		prepare();
+			prepare();
 
-		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		Transaction tran = hs.beginTransaction();
+			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+			Transaction tran = hs.beginTransaction();
 
-		Gadget newGadget = new Gadget();
+			Gadget newGadget = new Gadget();
 
-		if (getGadgetName() == null || getGadgetName().equals(""))// return to
-			// input
-			// page
-			return "input";
-		// prepare saving new gadget
-		newGadget.setName(getGadgetName());
-		newGadget.setIconUrl(getGadgetIconUrl());
-		newGadget.setIntroduction(getGadgetIntro());
-		newGadget.setSource(getGadgetSource());
-		newGadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
-		newGadget.setRegisterType(getRegisterType());
-		newGadget.setDeveloper((User) session
-				.get(SKTOpenSocialSupportConstants.USER));
+			if (getGadgetName() == null || getGadgetName().equals(""))// return
+																		// to
+				// input
+				// page
+				return "input";
+			// prepare saving new gadget
+			newGadget.setName(getGadgetName());
+			newGadget.setIconUrl(getGadgetIconUrl());
+			newGadget.setIntroduction(getGadgetIntro());
+			newGadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
 
-		gadgetId = (Long) hs.save(newGadget);
-
-		// prepare categories
-		String categoryIds = getGadgetCategory();
-		String[] categoryIdArray = categoryIds.replace(" ", "").split(",");
-
-		for (int i = 0; i < categoryIdArray.length; i++) {
-			GadgetCategory category = (GadgetCategory) hs.load(
-					GadgetCategory.class, categoryIdArray[i]);
-			newGadget.addCategory(category);
-		}
-		
-		// for gadget publish
-		GadgetPublish publish = new GadgetPublish();
-		publish.setGadget(newGadget);
-		
-		hs.saveOrUpdate(publish);
-		
-		// for gadget icon
-		GadgetIcon gadgetIcon = new GadgetIcon();
-		gadgetIcon.setGadget(newGadget);
-		if (getIconFileName() != null && getIconContentType() != null) {
-
-			gadgetIcon.setName(getIconFileName());
-			gadgetIcon.setContentType(getIconContentType());
-			
-			try {
-				gadgetIcon.setContent(Hibernate.createBlob(new FileInputStream(
-						icon)));
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				logger.error(e.getMessage());
-				tran.rollback();
-				return Action.INPUT;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				logger.error(e.getMessage());
-				tran.rollback();
+			if (getRegisterType() == null || getRegisterType().equals("")) {
 				return Action.INPUT;
 			}
+
+			newGadget.setRegisterType(getRegisterType());
+			if (registerType.equals(GadgetRegisterTypeConstants.SRC)) {
+				newGadget.setGadgetSource(getGadgetSource());
+			} else if (registerType.equals(GadgetRegisterTypeConstants.URL)) {
+				newGadget.setGadgetUrl(getGadgetUrl());
+			} else {
+				return Action.INPUT;
+			}
+
+			newGadget.setDeveloper((User) sessionMap
+					.get(SKTOpenSocialSupportConstants.USER));
+
+			gadgetId = (Long) hs.save(newGadget);
 			
-			newGadget.setIconUrl("exist");
-		} 
+			setGadgetId(gadgetId);//?
+			sessionMap.put("GADGET_ID", gadgetId);// for preview
+			// prepare categories
+			String categoryIds = getGadgetCategory();
+			String[] categoryIdArray = categoryIds.replace(" ", "").split(",");
 
-		hs.saveOrUpdate(gadgetIcon);
+			for (int i = 0; i < categoryIdArray.length; i++) {
+				GadgetCategory category = (GadgetCategory) hs.load(
+						GadgetCategory.class, categoryIdArray[i]);
+				newGadget.addCategory(category);
+			}
 
-		tran.commit();
+			// for gadget publish
+			GadgetPublish publish = new GadgetPublish();
+			publish.setGadget(newGadget);
+
+			hs.saveOrUpdate(publish);
+
+			// for gadget icon
+			GadgetIcon gadgetIcon = new GadgetIcon();
+			gadgetIcon.setGadget(newGadget);
+			if (getIconFileName() != null && getIconContentType() != null) {
+
+				gadgetIcon.setName(getIconFileName());
+				gadgetIcon.setContentType(getIconContentType());
+
+				try {
+					gadgetIcon.setContent(Hibernate
+							.createBlob(new FileInputStream(icon)));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					logger.error(e.getMessage());
+					tran.rollback();
+					return Action.INPUT;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					logger.error(e.getMessage());
+					tran.rollback();
+					return Action.INPUT;
+				}
+
+				newGadget.setIconUrl("exist");
+			}
+
+			hs.saveOrUpdate(gadgetIcon);
+
+			tran.commit();
+			
+		} catch (Exception e) {
+			HibernateUtil.getSessionFactory().getCurrentSession()
+					.getTransaction().rollback();
+			e.printStackTrace();
+			return "input";
+		}
 
 		return "preview";
 	}

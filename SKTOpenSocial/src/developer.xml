@@ -13,7 +13,7 @@
 		</action>
 		<action name="RegisterGadget" class="com.skt.opensocial.developer.RegisterGadgetAction">
 			<result name="input" type="redirectAction">RegisterGadgetPage</result>
-			<result name="preview">/developer/DeveloperPreviewGadget.jsp</result>
+			<result name="preview" type="redirectAction">PreviewGadget</result>
 			<result name="gadget_list" type="redirectAction">ListGadgets</result>
 		</action>
 		<action name="PreviewGadget" class="com.skt.opensocial.developer.PreviewGadgetAction">
@@ -21,7 +21,7 @@
 		</action>
 		<action name="ModifyGadget" class="com.skt.opensocial.developer.ModifyGadgetAction">
 			<result name="input">/developer/DeveloperModifyGadget.jsp</result>
-			<result name="preview">/developer/DeveloperPreviewGadget.jsp</result>
+			<result name="preview" type="redirectAction">PreviewGadget</result>
 		</action>
 		<action name="ViewGadgetReview" class="com.skt.opensocial.developer.ViewReviewAction">
 			<result>/developer/DeveloperViewGadgetReview.jsp</result>
@@ -43,6 +43,10 @@
 			<result name="success">/developer/DeveloperRegisterGadget_WithIcon.jsp</result>
 		</action>
 		<action name="ViewIcon" class="com.skt.opensocial.developer.IconViewAction">
+			<result name="success" type="stream"/>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="GetGadgetUrl" class="com.skt.opensocial.developer.GetGadgetUrlAction">
 			<result name="success" type="stream"/>
 			<result name="error">/Error.jsp</result>
 		</action>

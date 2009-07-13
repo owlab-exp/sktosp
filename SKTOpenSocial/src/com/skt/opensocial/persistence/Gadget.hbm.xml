@@ -35,6 +35,16 @@
                 <comment>source or url</comment>
             </column>
         </property>
+        <property name="gadgetUrl" type="text">
+            <column name="GADGET_URL">
+                <comment>external or internal url</comment>
+            </column>
+        </property>
+        <property name="gadgetSource" type="text">
+            <column name="GADGET_SOURCE">
+                <comment>source of this gadget</comment>
+            </column>
+        </property>
         <property name="iconUrl" type="text">
             <column name="ICON_URL" />
         </property>

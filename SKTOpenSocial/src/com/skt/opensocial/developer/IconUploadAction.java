@@ -99,7 +99,7 @@ public class IconUploadAction extends ManageGadgetAction {
 			newGadget.setSource(getGadgetSource());
 			newGadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
 			newGadget.setRegisterType(getRegisterType());
-			newGadget.setDeveloper((User) session
+			newGadget.setDeveloper((User) sessionMap
 					.get(SKTOpenSocialSupportConstants.USER));
 
 			String categoryIds = getGadgetCategory();
