@@ -3,22 +3,22 @@
  */
 package com.skt.opensocial.user;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.developer.DeveloperBaseAction;
+
 import com.skt.opensocial.persistence.Gadget;
+import com.skt.opensocial.persistence.GadgetReview;
 import com.skt.opensocial.persistence.HibernateUtil;
+import com.skt.opensocial.persistence.Person;
 import com.skt.opensocial.persistence.User;
 
 /**
@@ -26,8 +26,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class ListGadgetsAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(ListGadgetsAction.class);
+public class ReviewAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(ReviewAction.class);
 	
 	/**
 	 * 
@@ -39,57 +39,81 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
-	
-	Collection<Gadget> gadgets;
-	
+	String userId;
+	Long gadgetId;
+	Gadget gadget;
+	Set<GadgetReview> gadgetReviews;
+		
 	int requestedPage = 1;
-	
-	
-	
-	public Collection<Gadget> getGadgets() {
-		return gadgets;
+		
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setGadgets(Collection<Gadget> gadgets) {
-		this.gadgets = gadgets;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public Long getGadgetId() {
+		return gadgetId;
+	}
+
+	public void setGadgetId(Long gadgetId) {
+		this.gadgetId = gadgetId;
+	}
+
+	public Gadget getGadget() {
+		return gadget;
+	}
+
+	public void setGadget(Gadget gadget) {
+		this.gadget = gadget;
+	}
+
+	public Set<GadgetReview> getGadgetReviews() {
+		return gadgetReviews;
+	}
+
+	public void setGadgetReviews(Set<GadgetReview> gadgetReviews) {
+		this.gadgetReviews = gadgetReviews;
 	}
 
 	public String execute(){
-		//
-		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
-		String userId = user.getUserId();
+		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+		userId = user.getId();
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
-		
-		user = (User)hs.load(User.class, userId);
-		System.out.println(" ---- UserListGadget :A " + user.getId());
-		
-		this.gadgets = user.getFavoriteGadgets();
-		if (gadgets != null)
-		{	
-			for (Gadget g: gadgets)
-			{
-				g.getId();
-				g.getName();
-				g.getDeveloper().getPerson().getName();
-				g.getPublishDate();
-				g.getFavoriteUsers().size();
-				g.getIntroduction();
 				
-			}
+		if (gadgetId == null)
+		{
+			gadgetId = (Long) session.get(SKTOpenSocialSupportConstants.GADGETID);
 		}
 		
-		System.out.println(" ---- UserListGadget :B " );
-		if (gadgets == null)
-			System.out.println("gadgets is null " );
-		else
-			System.out.println("The size of gadgets is : " + gadgets.size() );	
-		//logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+		System.out.println("gadgetId" + gadgetId);
 		
-		System.out.println(" ---- UserListGadget :C " );
+		gadget = (Gadget)hs.load(Gadget.class, gadgetId);
 		
+		gadgetReviews = gadget.getReviews();
+		
+		if (gadgetReviews !=null)
+			System.out.println("number of reviews" + gadgetReviews.size());
+		else 
+			return "fail";
+		
+		for (GadgetReview gr:gadgetReviews)
+		{
+			gr.getReviewer().getPerson().getName();
+			gr.getGadget().getIcon();
+		}
+		
+		
+		//List cats = sess.createCriteria(Cat.class)
+	    //.add( Restrictions.like("name", "Fritz%") )
+	    //.add( Restrictions.between("weight", minWeight, maxWeight) )
+	    //.list();
+				
 		hs.getTransaction().commit();
 		
 		//
@@ -105,8 +129,8 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		
 		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
 		*/
-		
-		return Action.SUCCESS;
+
+			return "success" ;
 	}
 
 	/* (non-Javadoc)
@@ -157,4 +181,5 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		this.requestedPage = requestedPage;
 	}
 
+	
 }

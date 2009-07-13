@@ -34,10 +34,40 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction{
 	Map<String, Object> session;
 	
 	String userId;
+	String otherUserId;
+	Set<Gadget> otherUserGadgets;
+	
 	String name;
 	Date registeredDate;
 	int age;
 	
+	User otherUser;
+	
+	
+	public Set<Gadget> getOtherUserGadgets() {
+		return otherUserGadgets;
+	}
+
+	public void setOtherUserGadgets(Set<Gadget> otherUserGadgets) {
+		this.otherUserGadgets = otherUserGadgets;
+	}
+
+	public User getOtherUser() {
+		return otherUser;
+	}
+
+	public void setOtherUser(User otherUser) {
+		this.otherUser = otherUser;
+	}
+
+	public String getOtherUserId() {
+		return otherUserId;
+	}
+
+	public void setOtherUserId(String otherUserId) {
+		this.otherUserId = otherUserId;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -85,18 +115,31 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction{
 		userId = user.getUserId();
 		
 		user = (User)hs.load(User.class, userId);
-				
-		name = user.getPerson().getName();
-		registeredDate = user.getRegisteredDate();
-		System.out.println("--------------------------------------list count " + registeredDate);
-		age = user.getPerson().getAge();
+		otherUser = (User)hs.load(User.class, otherUserId);
 		
-	
-
-		System.out.println("--------------------------------------list count ");
-		session.put(SKTOpenSocialSupportConstants.USER, user);
-        //System.out.println("list count = " + categoryStringList);
+		System.out.println("--------------------------------------A " + otherUser.getId() );
 		
+		name = otherUser.getPerson().getName();
+		registeredDate = otherUser.getRegisteredDate();
+		System.out.println("--------------------------------------B " + registeredDate);
+		age = otherUser.getPerson().getAge();
+		
+		otherUserGadgets = otherUser.getFavoriteGadgets();
+		
+		for (Gadget g: otherUserGadgets)
+		{
+			g.getId();
+			g.getName();
+			g.getDeveloper().getPerson().getName();
+			g.getPublishDate();
+			g.getFavoriteUsers().size();
+			g.getIntroduction();
+			
+		}
+		System.out.println("--------------------------------------C" + otherUserGadgets.size());
+		//session.put(SKTOpenSocialSupportConstants.USER, user);
+        
+		//System.out.println("list count = " + categoryStringList);
 		
 		/* 
 		 * 
@@ -129,7 +172,6 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction{
 		
 		*/
 		
-
 		hs.getTransaction().commit();
 		
 		return Action.SUCCESS;
