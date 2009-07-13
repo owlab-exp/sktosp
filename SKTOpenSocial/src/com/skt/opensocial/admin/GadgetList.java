@@ -58,7 +58,7 @@ public class GadgetList extends AdministratorBaseAction {
 			System.out.println("searchfield: "+this.searchfield);
 			System.out.println("query: "+this.query);
 		}
-			
+
 		c.setFirstResult(this.start);
 		c.setMaxResults(this.scale);
 
@@ -66,19 +66,18 @@ public class GadgetList extends AdministratorBaseAction {
 		
 		//System.out.println("START: "+this.start);
 		
-		
 		// all items
 		List<Gadget> items	= (List<Gadget>)c.list();
 		this.gadgets = new HashSet<Gadget>(items);
 
-		
 		// for total count
 		c = session.createCriteria(Gadget.class);
 		c.setProjection( Projections.projectionList()
 				.add( Projections.rowCount(), "GadgetTotalCount" )
 		);		
 		this.totalcount	=  ((Integer)c.list().get(0)).intValue();
-	
+		System.out.println("TOTAL COUNT: "+this.totalcount);
+
 		/*		
 		
 for(Object item: items) {

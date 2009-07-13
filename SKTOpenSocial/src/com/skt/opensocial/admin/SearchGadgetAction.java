@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
+import org.apache.struts2.util.IteratorGenerator.Converter;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -31,12 +32,17 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 
 	Map<String, Object> session;
 	List<Gadget> gadgets;
+
 	String searchfield;
 	String query;
 
-	static int scale	= 5;
-	int start = 0;
+	int pagescale	= 5;
+	int currentpage	= 1;
 	int totalcount	= 0;
+	
+	// paging
+	Paging pages;
+	List<Integer> paging;
 
 	public String execute(){
 		
@@ -44,6 +50,9 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		hs.beginTransaction();
 		
 		String queryKey = "%" + query + "%";
+		
+		// paing
+		pages	= new Paging(this.pagescale);
 		
 		System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
 
@@ -76,8 +85,11 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 			c.add(Restrictions.like("developer.id", queryKey));
 			t.add(Restrictions.like("developer.id", queryKey));
 		}
-		c.setFirstResult(this.start);
-		c.setMaxResults(this.scale);
+		
+		c.setFirstResult(this.currentpage * this.pagescale);
+		System.out.println("setFirstResult" + this.currentpage * this.pagescale);
+
+		c.setMaxResults(this.pagescale);
 		c.addOrder( Order.desc("registerDate") );
 		this.gadgets = c.list();
 
@@ -85,6 +97,13 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		t.setProjection( Projections.rowCount() );		
 		this.totalcount	=  ((Integer)t.list().get(0)).intValue();
 		System.out.println("total count = " + totalcount);
+
+		// paging
+		pages.setCurrentpage(this.currentpage);
+		pages.setTotalcount(this.totalcount);
+		
+		this.paging	= pages.getPaging();
+		System.out.println("list" + paging.toString());
 		
 		if (this.gadgets != null && !this.gadgets.isEmpty()) {
 			System.out.println("searched gadgets.size = " + gadgets.size());
@@ -101,6 +120,23 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 			return "fail";
 		}
 	}
+
+	public int getCurrentpage() {
+		return currentpage;
+	}
+
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
+
+	public List<Integer> getPaging() {
+		return paging;
+	}
+
+	public void setPaging(List<Integer> paging) {
+		this.paging = paging;
+	}
+
 	public String getSearchfield() {
 		return searchfield;
 	}
@@ -128,10 +164,5 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
 	}
-	public int getStart() {
-		return start;
-	}
-	public void setStart(int start) {
-		this.start = start;
-	}
+
 }

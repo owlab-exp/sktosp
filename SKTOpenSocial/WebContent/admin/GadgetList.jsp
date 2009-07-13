@@ -184,13 +184,18 @@
 				
 [
 
-<s:iterator value="totalcount">
-  <p>day is: <s:property/></p>
+<s:iterator value="paging">
+    			<s:url var="pagingUrl" namespace="/admin">
+    			<s:param name="searchfield" value="%{searchfield}" />
+    			<s:param name="query" value="%{query}" />
+    			<s:param name="currentpage"><s:property/></s:param>
+    			</s:url>
+    			
+    			<s:a href="%{pagingUrl}"><s:property/></s:a>				
 </s:iterator>
 ]
-				<span class="on">1</span>
-				<a href="">2</a>
-				<a href="">3</a>
+				<span class="on"><s:property/></span>
+				
 				<em class="n"><a href="">다음</a></em> 
 			</div>
             </td>
