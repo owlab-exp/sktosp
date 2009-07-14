@@ -51,8 +51,8 @@
 							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
 								<col width="10%">
-								<col width="10%">
-								<col width="60%">
+								<col width="20%">
+								<col width="50%">
 								<col width="20%">
 							</colgroup>
 							<tbody>
@@ -68,8 +68,8 @@
 									<td class="line" colspan="4"></td>
 								</tr>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td colspan="2">리뷰 수: 1</td>
-									<td colspan="2">평균 점수: 9</td>
+									<td colspan="2">리뷰 수: <s:property value="totalReviewNumber"/> </td>
+									<td colspan="2">평균 점수: <s:property value="gradeAverage"/> </td>
 
 								</tr>
 								<tr>
@@ -87,12 +87,14 @@
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
+								<s:iterator value="gadgetReviews">
 								<tr>
-									<td valign="middle">emart</td>
-									<td valign="middle">이마트맨</td>
-									<td valign="middle" align="center">아주 좋음</td>
-									<td valign="middle">9</td>
+									<td valign="middle"><s:property value="reviewer.id"/> </td>
+									<td valign="middle"><s:property value="reviewer.person.nameFormatted"/> </td>
+									<td valign="middle" align="center"><s:property value="reviewText"/></td>
+									<td valign="middle"><s:property value="reviewGrade"/></td>
 								</tr>
+								</s:iterator>
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
@@ -102,12 +104,40 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging"><em class="p"><a
-							href="ViewGadgetReview.action">이 전</a></em><a
-							href="ViewGadgetReview.action">1</a> <a
-							href="ViewGadgetReview.action">2</a> <a
-							href="ViewGadgetReview.action">3</a> <em class="n"><a
-							href="ViewGadgetReview.action">다음</a></em></div>
+						<div class="paging">
+							<s:if test="%{requestedPage > 1}">
+								<s:url action="ViewGadgetReview" id="prevPageUrl">
+								<s:param name="requestedPage" value="%{requestedPage - 1}" />
+								</s:url>
+							</s:if>
+							<s:else>
+								<s:url action="ViewGadgetReview" id="prevPageUrl">
+								<s:param name="requestedPage" value="1" />
+								</s:url>
+							</s:else>
+						 <em class="p"><s:a href="%{prevPageUrl}">이 전</s:a></em> <s:iterator
+							value="pageList">
+							<s:url action="ViewGadgetReview" id="pageUrl">
+								<s:param name="requestedPage">
+									<s:property />
+								</s:param>
+							</s:url>
+							<s:a href="%{pageUrl}">
+								<s:property />
+							</s:a>
+						</s:iterator> 
+							<s:if test="%{requestedPage < maxPage}">
+								<s:url action="ViewGadgetReview" id="nextPageUrl">
+								<s:param name="requestedPage" value="%{requestedPage + 1}" />
+								</s:url>
+							</s:if>
+							<s:else>
+								<s:url action="ViewGadgetReview" id="nextPageUrl">
+								<s:param name="requestedPage" value="%{maxPage}" />
+								</s:url>
+							</s:else>
+						 <em class="n"><s:a href="%{nextPageUrl}">다음</s:a></em>
+						</div>
 						</td>
 					</tr>
 				</tbody>

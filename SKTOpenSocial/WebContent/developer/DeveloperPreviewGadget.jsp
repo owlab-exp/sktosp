@@ -8,7 +8,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 
-
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>

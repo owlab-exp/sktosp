@@ -6,12 +6,13 @@ package com.skt.opensocial.developer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
@@ -39,12 +40,19 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 	// Collection<GadgetData> gadgetList;
 	// Set<Gadget> gadgets;
 	private List<Gadget> gadgetList;
+	
 
-	private int pageSize = 5;
-	private int currentPage = 1;
+	// properties for pagenation
+	private int listSize = 10; // the size of gadget list
+	private int requestedPage = 1;
+	private int maxPage = 1;
+	
+	private int startPage = 1;
+	private int pageListSizeMax = 10;
 
-	int requestedPage = 1;
-
+	private List<Integer> pageList = new ArrayList<Integer>();
+	// end for pagenation
+	@SuppressWarnings("unchecked")
 	public String execute() {
 		try {
 			User user = (User) session.get(SKTOpenSocialSupportConstants.USER);
@@ -54,34 +62,61 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 			Transaction tran = hs.beginTransaction();
 
-			logger.log(Level.INFO, "User ID=" + userId);
+			logger.info("User ID=" + userId);
 			user = (User) hs.load(User.class, userId);
 
 			session.put(SKTOpenSocialSupportConstants.USER, user);
+			
+			Criteria crit = hs.createCriteria(Gadget.class);
+			crit.add(Restrictions.eq("developer.id", userId));
+			
+			int totalGadgetSize = crit.list().size();
+			if(listSize > 0)
+				maxPage = (int)Math.ceil((double)totalGadgetSize /listSize);
+			
+//			logger.info("Number of all gadgets = " + totalGadgetSize);
+//			logger.info("Max page = " + maxPage);
+			startPage = (requestedPage - (requestedPage%pageListSizeMax))+ 1; //1, 11, 21, ...
+			for(int i = startPage, j = 1 ; j <= pageListSizeMax; i++, j++){
+				if(i > maxPage)
+					break;
+				pageList.add(new Integer(i));
+			}
+			
+			// make order before selection
+			crit.addOrder(Order.desc("id"));
+			
+			// requestPage must be greater than 0
+			// requestPage must be less than equal maxPage
+			if (requestedPage > 0){ 
+				crit.setFirstResult((requestedPage - 1)*listSize);
+			} else if (requestedPage <= 0){
+				crit.setFirstResult(0);
+				requestedPage = 1;
+			} else if(requestedPage >= maxPage){
+				crit.setFirstResult((maxPage -1)*listSize);
+			}
+			
+			crit.setMaxResults(listSize);
+			gadgetList = (List<Gadget>)crit.list();
+			
+			
+//			for(Gadget gadget : gadgetList){
+//				//?? to fill data
+//				//gadget.getDeveloper().getPerson();
+//				logger.info(gadget.getFavoriteUsers());
+//			}
 
-			Set<Gadget> gadgets = user.getGadgets();
-
-			gadgetList = new ArrayList<Gadget>();
-			gadgetList.addAll(gadgets);
-
-			// Criteria crit = hs.createCriteria(Gadget.class);
-			// crit.add(Restrictions.eq("developer.id", user.getId()));
-			// crit.addOrder(Order.desc("id"));
-			// //crit.setFirstResult((currentPage-1)*pageSize);
-			// crit.setMaxResults(pageSize);
-			// gadgetList = crit.list();
-
-			logger.log(Level.INFO, "Number of gadgets = " + gadgetList.size());
+			logger.info("Number of gadgets of this page = " + gadgetList.size());
 
 			tran.commit();
 
-			
 		} catch (Exception e) {
 			HibernateUtil.getSessionFactory().getCurrentSession()
 					.getTransaction().rollback();
 			e.printStackTrace();
 		}
-		
+
 		return Action.SUCCESS;
 	}
 
@@ -150,12 +185,20 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		this.gadgetList = gadgetList;
 	}
 
-	public int getCurrentPage() {
-		return currentPage;
+	public int getMaxPage() {
+		return maxPage;
 	}
 
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
+	}
+
+	public List<Integer> getPageList() {
+		return pageList;
+	}
+
+	public void setPageList(List<Integer> pageList) {
+		this.pageList = pageList;
 	}
 
 }
