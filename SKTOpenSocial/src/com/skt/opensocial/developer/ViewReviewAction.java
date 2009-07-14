@@ -24,7 +24,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class ViewReviewAction extends ManageGadgetAction{
+public class ViewReviewAction extends ManageGadgetAction implements Pagenation{
 	Logger logger = Logger.getLogger(ViewReviewAction.class);
 	
 	private long totalReviewNumber = 0;
@@ -104,21 +104,6 @@ public class ViewReviewAction extends ManageGadgetAction{
 			
 			setGadgetName(gadget.getName());
 			setGadgetId(gadget.getId());
-//			
-//			Set<GadgetReview> reviews = gadget.getReviews();
-//			totalReviewNumber = reviews.size();
-//			
-//			int sum = 0;
-//			for(GadgetReview review: reviews) {
-//				review.getReviewer().getPerson(); //call to fill data
-//				sum += review.getReviewGrade();
-//				gadgetReviews.add(review);
-//			}
-//			
-//			if(totalReviewNumber != 0)
-//				gradeAverage = sum / totalReviewNumber;
-//			else
-//				gradeAverage = 0;
 			
 			tran.commit();
 		} catch (Exception e){

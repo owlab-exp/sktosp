@@ -26,7 +26,7 @@ import com.skt.opensocial.persistence.User;
  */
 // public class ListGadgetsAction extends ActionSupport implements RequestAware
 // {
-public class ListGadgetsAction extends DeveloperBaseAction {
+public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation{
 	private static Logger logger = Logger.getLogger(ListGadgetsAction.class);
 
 	/**
@@ -70,12 +70,13 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 			Criteria crit = hs.createCriteria(Gadget.class);
 			crit.add(Restrictions.eq("developer.id", userId));
 			
+			// to determine maximum possible pages
 			int totalGadgetSize = crit.list().size();
 			if(listSize > 0)
 				maxPage = (int)Math.ceil((double)totalGadgetSize /listSize);
 			
-//			logger.info("Number of all gadgets = " + totalGadgetSize);
-//			logger.info("Max page = " + maxPage);
+
+			// to determine the list of pages to be shown below the data table
 			startPage = (requestedPage - (requestedPage%pageListSizeMax))+ 1; //1, 11, 21, ...
 			for(int i = startPage, j = 1 ; j <= pageListSizeMax; i++, j++){
 				if(i > maxPage)
@@ -86,8 +87,7 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 			// make order before selection
 			crit.addOrder(Order.desc("id"));
 			
-			// requestPage must be greater than 0
-			// requestPage must be less than equal maxPage
+			// to determine result set
 			if (requestedPage > 0){ 
 				crit.setFirstResult((requestedPage - 1)*listSize);
 			} else if (requestedPage <= 0){
@@ -97,6 +97,7 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 				crit.setFirstResult((maxPage -1)*listSize);
 			}
 			
+			// fetch data
 			crit.setMaxResults(listSize);
 			gadgetList = (List<Gadget>)crit.list();
 			

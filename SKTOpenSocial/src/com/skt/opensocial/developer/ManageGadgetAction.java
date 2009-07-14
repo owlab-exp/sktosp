@@ -36,6 +36,7 @@ public class ManageGadgetAction extends DeveloperBaseAction implements RequestAw
 	//private GadgetDataList gadgetDataList;
 
 	protected Map<String, Object> requestMap;
+	
 	public void prepare() {
 		if (categoryList == null) {
 			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();

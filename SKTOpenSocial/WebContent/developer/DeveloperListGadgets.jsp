@@ -10,6 +10,7 @@
 
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
+<link href="../css/table.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
 <title>개발자 가젯 목록</title>
@@ -73,8 +74,14 @@
 									<td align="center">작 업</td>
 								</tr>
 								<%--<s:iterator value="gadgets">  --%>
-								<s:iterator value="gadgetList">
-									<tr style="background-color: rgb(300, 300, 300);">
+								<s:iterator value="gadgetList" status="rowStatus">
+									<s:if test="#rowStatus.odd == true">
+										<s:set name="trClass" value="%{'odd'}"/>
+									</s:if>
+									<s:else>
+										<s:set name="trClass" value="%{'even'}"/>
+									</s:else>
+										<tr class="<s:property value='#trClass'/>">
 										<s:url id="gadgetPreviewUrl" action="PreviewGadget">
 											<s:param name="gadgetId">
 												<s:property value="id" />
@@ -175,7 +182,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><!-- paging -->
+						<td><!-- pagenation start -->
 						<div class="paging">
 							<s:if test="%{requestedPage > 1}">
 								<s:url action="ListGadgets" id="prevPageUrl">
@@ -209,7 +216,7 @@
 								</s:url>
 							</s:else>
 						 <em class="n"><s:a href="%{nextPageUrl}">다음</s:a></em>
-						</div>
+						</div><!-- pagenation end -->
 						</td>
 					</tr>
 				</tbody>

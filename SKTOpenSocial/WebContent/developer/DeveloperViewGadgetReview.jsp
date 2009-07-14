@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link href="../css/main.css" type="text/css" rel="stylesheet">
+<link href="../css/table.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <%@page import="com.skt.opensocial.common.*" %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -87,8 +88,14 @@
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
-								<s:iterator value="gadgetReviews">
-								<tr>
+								<s:iterator value="gadgetReviews"status="rowStatus">
+									<s:if test="#rowStatus.odd == true">
+										<s:set name="trClass" value="%{'odd'}"/>
+									</s:if>
+									<s:else>
+										<s:set name="trClass" value="%{'even'}"/>
+									</s:else>
+									<tr class="<s:property value='#trClass'/>">
 									<td valign="middle"><s:property value="reviewer.id"/> </td>
 									<td valign="middle"><s:property value="reviewer.person.nameFormatted"/> </td>
 									<td valign="middle" align="center"><s:property value="reviewText"/></td>
