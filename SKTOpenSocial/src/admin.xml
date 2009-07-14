@@ -5,14 +5,15 @@
 <struts>
 	<package name="admin" namespace="/admin" extends="default">
 		<action name="GadgetList" class="com.skt.opensocial.admin.GadgetList">
-			<result name="SUCCESS">/admin/GadgetList.jsp</result>
+			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
+<!--			<result name="SUCCESS">/admin/GadgetList.jsp</result>-->
 		</action>
 		<action name="GadgetDetail" class="com.skt.opensocial.admin.GadgetDetail">
 			<result name="SUCCESS">/admin/GadgetDetail.jsp</result>
 		</action>
 		
 		<action name="RemoveGadget" class="com.skt.opensocial.admin.RemoveGadgetAction">
-			<result name="SUCCESS" type="redirectAction">GadgetList</result>
+			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
 		</action>		
 
 		<action name="PublishGadgetAction" class="com.skt.opensocial.admin.PublishGadgetAction">
@@ -27,6 +28,7 @@
 			<result name="gadgetname">/admin/GadgetList.jsp</result>
 			<result name="gadgetstatus">/admin/GadgetList.jsp</result>
 			<result name="developerid">/admin/GadgetList.jsp</result>
+			<result name="list">/admin/GadgetList.jsp</result>
 			<result name="fail">/main.jsp</result>
 		</action>
 

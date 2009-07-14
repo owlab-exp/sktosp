@@ -33,18 +33,25 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 	Map<String, Object> session;
 	List<Gadget> gadgets;
 
-	String searchfield;
-	String query;
+	String searchfield	= "";
+	String query	= "";
 
-	int pagescale	= 5;
+	int listscale	= 10;
+	int pagescale	= 10;
 	int currentpage	= 1;
 	int totalcount	= 0;
 	
 	// paging
 	Paging pages;
 	List<Integer> paging;
+	int prepage	= 0;
+	int postpage	= 0;
 
 	public String execute(){
+		
+		if (searchfield.length() > 0 && query.length() == 0) {
+			return "list";
+		}
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
@@ -52,7 +59,8 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		String queryKey = "%" + query + "%";
 		
 		// paing
-		pages	= new Paging(this.pagescale);
+		pages	= new Paging(pagescale, listscale);
+		pages.setCurrentpage(this.currentpage);
 		
 		System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
 
@@ -81,15 +89,16 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 			}
 			c.add(Restrictions.eq("status", statuscode));
 			t.add(Restrictions.eq("status", statuscode));
+				
 		} else if ( searchfield.equals("developerid")) {
 			c.add(Restrictions.like("developer.id", queryKey));
 			t.add(Restrictions.like("developer.id", queryKey));
+		} else {
+			//
 		}
 		
-		c.setFirstResult(this.currentpage * this.pagescale);
-		System.out.println("setFirstResult" + this.currentpage * this.pagescale);
-
-		c.setMaxResults(this.pagescale);
+		c.setFirstResult(pages.getFirstresult());
+		c.setMaxResults(pages.getListscale());
 		c.addOrder( Order.desc("registerDate") );
 		this.gadgets = c.list();
 
@@ -99,11 +108,14 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		System.out.println("total count = " + totalcount);
 
 		// paging
-		pages.setCurrentpage(this.currentpage);
 		pages.setTotalcount(this.totalcount);
-		
 		this.paging	= pages.getPaging();
+		this.prepage	= pages.getPrepage();
+		this.postpage	= pages.getPostpage();
+		
 		System.out.println("list" + paging.toString());
+		System.out.println("prepage" + prepage);
+		System.out.println("postpage" + postpage);
 		
 		if (this.gadgets != null && !this.gadgets.isEmpty()) {
 			System.out.println("searched gadgets.size = " + gadgets.size());
@@ -117,7 +129,7 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		} else if ( searchfield.equals("developerid")) {
 			return "developerid";
 		} else {
-			return "fail";
+			return "list";
 		}
 	}
 
@@ -163,6 +175,30 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
+	}
+
+	public int getPrepage() {
+		return prepage;
+	}
+
+	public void setPrepage(int prepage) {
+		this.prepage = prepage;
+	}
+
+	public int getPostpage() {
+		return postpage;
+	}
+
+	public void setPostpage(int postpage) {
+		this.postpage = postpage;
+	}
+
+	public int getTotalcount() {
+		return totalcount;
+	}
+
+	public void setTotalcount(int totalcount) {
+		this.totalcount = totalcount;
 	}
 
 }

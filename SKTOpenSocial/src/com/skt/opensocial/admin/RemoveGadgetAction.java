@@ -20,6 +20,7 @@ public class RemoveGadgetAction extends AdministratorBaseAction {
 	private static final long serialVersionUID = 1L;
 	private Long gadgetId;
 	private String gadgetName;
+
 	
 	private Map<String, Object> session;
 	
@@ -32,13 +33,9 @@ public class RemoveGadgetAction extends AdministratorBaseAction {
 		hs.delete(gadget);
 		
 		hs.getTransaction().commit();
-		
-		
 		return "SUCCESS";
 	}
 	
-	
-
 	public Long getGadgetId() {
 		return gadgetId;
 	}
@@ -54,6 +51,6 @@ public class RemoveGadgetAction extends AdministratorBaseAction {
 	public void setGadgetName(String gadgetName) {
 		this.gadgetName = gadgetName;
 	}
-	
+
 	
 }

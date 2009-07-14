@@ -53,7 +53,7 @@
 
 
 		<s:form action="SearchGadget" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" 
+	    <s:select label="검색조건" name="searchfield" headerKey="1" 
 	    list="#{'gadgetname':'가젯이름','gadgetstatus':'가젯상태','developerid':'개발자ID'}"/> 
 	    <s:textfield name="query" value="%{query}"/> 
 	    <s:submit value="검색"/>
@@ -65,6 +65,9 @@
 	      
         <tr>
           <td>
+
+<s:if test="%{totalcount != 0}">
+
           
             <!-- bbs -->
             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
@@ -163,7 +166,10 @@
 					</td>
 					<td align="center">
 					<s:url id="removeGadgetUrl" action="RemoveGadget" namespace="/admin">
-						<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
+		    			<s:param name="searchfield" value="%{searchfield}" />
+		    			<s:param name="query" value="%{query}" />
+		    			<s:param name="currentpage" value="%{currentpage}"/>					
+						<s:param name="gadgetId"><s:property value="id"/></s:param>
 					</s:url>
   	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{removeGadgetUrl}");'>
  	    			<input type="button" value="삭제"></s:a>	    
@@ -173,6 +179,17 @@
       			</s:iterator>
 
 				</table>
+</s:if>	<!-- totalcount == 0 -->
+<s:else>
+		        <table cellpadding="0" cellspacing="0" width="100%" height="100" class="subtit_board" summary="게시판">
+		        	<tr>
+		        		<td align="center" valign="middle" style="font-weight:bold">
+		        			'<s:property value="%{query}"/>'로 검색된 결과가 없습니다.
+		        		</td>
+		        	</tr> 
+				</table>
+</s:else>				
+				
             </td>
            </tr>
            <tr>
@@ -180,28 +197,47 @@
             <!-- paging --> 
             
 			<div class="paging"> 
-				<em class="p"><a href="">이전</a></em> 
-				
-[
-
+			
+	<s:if test="%{prepage != 0}">
+   			<s:url var="pagingUrl" namespace="/admin">
+   			<s:param name="searchfield" value="%{searchfield}" />
+   			<s:param name="query" value="%{query}" />
+   			<s:param name="currentpage" value="%{prepage}"/>
+   			</s:url>
+			<em class="p"><s:a href="%{pagingUrl}">이전</s:a></em> 
+	</s:if>
+	
+<s:if test="%{totalcount != 0}">
 <s:iterator value="paging">
     			<s:url var="pagingUrl" namespace="/admin">
     			<s:param name="searchfield" value="%{searchfield}" />
     			<s:param name="query" value="%{query}" />
-    			<s:param name="currentpage"><s:property/></s:param>
+    			<s:param name="currentpage" value="top"/>
     			</s:url>
-    			
-    			<s:a href="%{pagingUrl}"><s:property/></s:a>				
+
+	  			<s:if test="%{currentpage.equals(top)}">
+					<span class="on"><s:property/></span>
+				</s:if>
+				<s:else>
+	    			<s:a href="%{pagingUrl}"><s:property/></s:a>				
+				</s:else>    			
 </s:iterator>
-]
-				<span class="on"><s:property/></span>
+</s:if>
+
+	<s:if test="%{postpage != 0}">
+   			<s:url var="pagingUrl" namespace="/admin">
+   			<s:param name="searchfield" value="%{searchfield}" />
+   			<s:param name="query" value="%{query}" />
+   			<s:param name="currentpage" value="%{postpage}"/>
+   			</s:url>
+			<em class="p"><s:a href="%{pagingUrl}">다음</s:a></em> 
+	</s:if>		
 				
-				<em class="n"><a href="">다음</a></em> 
 			</div>
             </td>
       	</tr>
       </table>
- 	     
+	     
       </div> <!-- east div -->
       
     </td>
