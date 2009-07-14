@@ -65,7 +65,7 @@ public class ActivityDBService implements ActivityService {
 					
 					//*** get the mediaItems and templateParams of the activitiy stored separately ***//
 					activity.setTemplateParams( sqlMap.queryForMap("getTemplateParams", activity, "param_key", "param_value") );
-					activity.setMediaItems( sqlMap.queryForList("getMediaItems", activity) );
+					//activity.setMediaItems( sqlMap.queryForList("getMediaItems", activity) );
 				
 					activityList.add(activity);
 				}
