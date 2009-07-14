@@ -18,30 +18,30 @@
     <welcome-file>main.jsp</welcome-file>
   </welcome-file-list>
   
-  <servlet>
-    <description></description>
-    <display-name>ShindigProxyServlet</display-name>
-    <servlet-name>ShindigProxyServlet</servlet-name>
-    <servlet-class>com.skt.opensocial.servlet.ShindigProxyServlet</servlet-class>
-    <init-param>
-      <param-name>proxyHost</param-name>
-      <param-value>localhost</param-value>
-    </init-param>
-    <init-param>
-      <param-name>proxyPort</param-name>
-      <param-value>8080</param-value>
-    </init-param>
-    <init-param>
-      <param-name>proxyPath</param-name>
-      <param-value>/gadgets/ifr</param-value>
-    </init-param>
-    <init-param>
-      <param-name>maxFileUploadSize</param-name>
-      <param-value></param-value>
-    </init-param>
-  </servlet>
-    <servlet-mapping>
-    <servlet-name>ShindigProxyServlet</servlet-name>
-    <url-pattern>/ifr</url-pattern>
-  </servlet-mapping>
+<!--  <servlet>-->
+<!--    <description></description>-->
+<!--    <display-name>ShindigProxyServlet</display-name>-->
+<!--    <servlet-name>ShindigProxyServlet</servlet-name>-->
+<!--    <servlet-class>com.skt.opensocial.servlet.ShindigProxyServlet</servlet-class>-->
+<!--    <init-param>-->
+<!--      <param-name>proxyHost</param-name>-->
+<!--      <param-value>localhost</param-value>-->
+<!--    </init-param>-->
+<!--    <init-param>-->
+<!--      <param-name>proxyPort</param-name>-->
+<!--      <param-value>8080</param-value>-->
+<!--    </init-param>-->
+<!--    <init-param>-->
+<!--      <param-name>proxyPath</param-name>-->
+<!--      <param-value>/gadgets/ifr</param-value>-->
+<!--    </init-param>-->
+<!--    <init-param>-->
+<!--      <param-name>maxFileUploadSize</param-name>-->
+<!--      <param-value></param-value>-->
+<!--    </init-param>-->
+<!--  </servlet>-->
+<!--    <servlet-mapping>-->
+<!--    <servlet-name>ShindigProxyServlet</servlet-name>-->
+<!--    <url-pattern>/ifr</url-pattern>-->
+<!--  </servlet-mapping>-->
 </web-app>

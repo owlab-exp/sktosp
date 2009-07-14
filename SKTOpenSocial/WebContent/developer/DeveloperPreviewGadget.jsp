@@ -75,15 +75,15 @@
 <style type="text/css">
 
  .gadgets-gadget-chrome {
-    width: 90%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
     float: center;
     margin: auto;
   }
 
   .gadgets-gadget {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
   }
 
 </style>
@@ -91,17 +91,17 @@
 </head>
 
 <body leftmargin="0" topmargin="0"
-	style="background-color: rgb(255, 255, 255);" marginheight="0" 
+	style="background-color: rgb(255, 255, 255);height:100%;" marginheight="0" 
 	marginwidth="0" onLoad="renderGadgets();"><!-- height="567" -->
 <table border="1" cellpadding="0" cellspacing="0" 
-	width="100%">
+	width="100%" height="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
 			<td colspan="3" align="center" valign="top"><%@ include
 				file="/common/north.jsp"%></td><!-- height="10%"  -->
 		</tr>
-		<tr valign="top"><!-- height="80%" -->
+		<tr valign="top" height="80%"><!-- height="80%" -->
 			<!-- west -->
 			<td align="center" valign="top" width="25%"><%@ include
 				file="/common/west_dev.jsp"%></td>
@@ -122,10 +122,10 @@
 						</div>
 						</td>
 					</tr>
-					<tr>
+					<tr height="100%">
 						<td><!-- list of gadgets -->
 						<table class="subtit_board" summary="List of Gadgets"
-							cellpadding="0" cellspacing="0" width="100%">
+							cellpadding="0" cellspacing="0" width="100%" height="390px">
 							<colgroup>
 								<col width="100%">
 							</colgroup>
@@ -134,9 +134,8 @@
 									<td>가젯 이름(ID): <s:property value="gadgetName" /> (<s:property
 										value="gadgetId" />)</td>
 								</tr>
-								<tr>
-									<s:if test="%{registerType.equals('url') || registerType.equals('src')}">
-										<td valign="top">
+								<tr height="100%"><s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
+										<td valign="top" >
 											<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
 										</td>
 									</s:if>
@@ -144,17 +143,15 @@
 										<td valign="top">Gadget Register Type is neither 'url' nor 'src'</td>
 									</s:else>
 								</tr>
-								<tr>
-									<td class="line"></td>
-
-								</tr>
+<!--								<tr >-->
+<!--									<td class="line"></td>-->
+<!--								</tr>-->
 							</tbody>
 						</table>
 						</td>
 					</tr>
 					<tr>
-						<td><!-- buttons -->
-						<div class="paging"><s:url id="finishRegisterUrl"
+						<s:url id="finishRegisterUrl"
 							action="RegisterGadget" method="finishGadgetRegister">
 							<s:param name="gadgetId">
 								<s:property value="gadgetId" />
@@ -182,7 +179,10 @@
 							<s:param name="gadgetId">
 								<s:property value="gadgetId" />
 							</s:param>
-						</s:url> <s:if test="%{gadgetStatus.equals('nr')}">
+						</s:url>
+						<td>
+						<div class="paging"> 
+						<s:if test="%{gadgetStatus.equals('nr')}">
 							<%-- Not registered--%>
 							<em class="p"><s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a
 								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
@@ -199,12 +199,12 @@
 								onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a
 								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
 								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
-						</s:elseif> <s:else>
+						</s:elseif>
 							<%-- Published or Publish requested--%>
-							<em class="p"><a href="#"
-								onclick="javacript:location.href='<%=request.getContextPath()%>/developer/ListGadgets.action'">목록으로
-							돌아가기</a></em>
-						</s:else></div>
+							<em class="p">
+							<s:url id="listGadgetUrl" action="ListGadgets"/>
+							<s:a href="%{listGadgetUrl}">목록으로 돌아가기</s:a></em>
+						</div>
 						</td>
 					</tr>
 				</tbody>

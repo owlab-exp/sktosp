@@ -110,13 +110,10 @@
 								<tr>
 									<td>아이콘:</td>
 									<td>
-										<s:if test="%{gadgetIconUrl != null}">
 										<s:url id="iconUrl" action="ViewIcon">
 											<s:param name="gadgetId" value="%{gadgetId}"></s:param>
 										</s:url>
 										<img:image src="%{iconUrl}" resize="false" height="100" width="100"/>
-										</s:if>
-									
 										<s:file name="icon" label="새 아이콘 파일 위치"/>
 									</td>
 								</tr>
