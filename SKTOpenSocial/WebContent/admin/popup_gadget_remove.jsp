@@ -17,8 +17,11 @@
 		
 	</tr>
 	<tr>
-		<s:url id="removeUrl" action="RemoveGadget">
+		<s:url id="removeUrl" action="RemoveGadget" namespace="/admin">
 			<s:param name="gadgetId"  value="%{gadgetId}"/>
+   			<s:param name="searchfield"><%= request.getParameter("searchfield") %></s:param>
+   			<s:param name="query"><%= request.getParameter("query") %></s:param>
+   			<s:param name="currentpage"><%= request.getParameter("currentpage") %></s:param>		
 		</s:url>
 		<td><s:submit value="삭제" onclick="opener.location.href='%{removeUrl}';window.close()" ></s:submit>
 		</td>		

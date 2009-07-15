@@ -22,11 +22,15 @@
 		</action>
 		-->
 		<action name="PublishGadgetAction" class="com.skt.opensocial.admin.PublishGadgetAction">
-			<result name="SUCCESS" type="redirectAction">GadgetList</result>
+			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
 		</action>	
 
 		<action name="RejectGadgetAction" class="com.skt.opensocial.admin.RejectGadgetAction">
-			<result name="SUCCESS" type="redirectAction">GadgetList</result>
+			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
+		</action>	
+
+		<action name="CancelGadgetAction" class="com.skt.opensocial.admin.CancelGadgetAction">
+			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
 		</action>	
 
 		<action name="SearchGadget" class="com.skt.opensocial.admin.SearchGadgetAction">

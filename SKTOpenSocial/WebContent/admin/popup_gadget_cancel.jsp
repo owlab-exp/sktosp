@@ -17,34 +17,24 @@
               </colgroup>
 
 	<tr>
-		<td colspan="2">가젯의 발행여부 선택</td>
+		<td colspan="2">가젯 발행 취소 하기</td>
 	</tr>
-	<tr>	
 
-		<td colspan="2">
- 	    <s:url id="PublishGadgetUrl" action="PublishGadgetAction" namespace="/admin">
- 			<s:param name="gadgetId"><%= request.getParameter("gadgetId") %></s:param>
- 		</s:url>
-		<s:a onclick="opener.location.href='%{PublishGadgetUrl}';window.close();"><input type="button" value="발행허가"/></s:a>    
-		 	    			
-		</td>
-
-	</tr>
 	<tr>
 		<td colspan="2" style="background-color:#fefefe" height="5">
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-		<s:form action="RejectGadgetAction" id="RejectGadgetForm" theme="simple" method="post" target="GadgetList">
+		<s:form action="CancelGadgetAction" id="CancelGadgetForm" theme="simple" method="post" target="GadgetList">
 			<input type="hidden" name="gadgetId" value="<%= request.getParameter("gadgetId") %>">
-			<s:textarea label="거부사유를 입력하세요" name="rejectreason" cols="30" rows="3" />
+			<s:textarea label="취소사유를 입력하세요" name="rejectreason" cols="30" rows="3" />
 		</s:form>
 		</td>
 	</tr>
 	<tr>
 		<td>
-		<s:submit  type="button" onclick="document.getElementById('RejectGadgetForm').submit();window.close()" theme="simple">발행거부</s:submit>
+		<s:submit  type="button" onclick="document.getElementById('CancelGadgetForm').submit();window.close()" theme="simple">발행취소</s:submit>
 		</td>
 	</tr>
 	

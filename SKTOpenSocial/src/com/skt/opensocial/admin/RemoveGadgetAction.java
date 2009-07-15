@@ -29,6 +29,11 @@ public class RemoveGadgetAction extends AdministratorBaseAction {
 	private static final long serialVersionUID = 1L;
 	private Long gadgetId;
 	private String gadgetName;
+	
+	// 삭제후 폼 전송을 위해
+	private String searchfield;
+	private String query;
+	private int currentpage;	
 
 	private Map<String, Object> session;
 
@@ -73,6 +78,24 @@ public class RemoveGadgetAction extends AdministratorBaseAction {
 
 	public void setGadgetName(String gadgetName) {
 		this.gadgetName = gadgetName;
+	}
+	public String getSearchfield() {
+		return searchfield;
+	}
+	public void setSearchfield(String searchfield) {
+		this.searchfield = searchfield;
+	}
+	public String getQuery() {
+		return query;
+	}
+	public void setQuery(String query) {
+		this.query = query;
+	}
+	public int getCurrentpage() {
+		return currentpage;
+	}
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
 	}
 
 }

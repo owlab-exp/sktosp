@@ -1,10 +1,15 @@
 package com.skt.opensocial.admin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,6 +23,9 @@ import com.skt.opensocial.persistence.HibernateUtil;
 public class GadgetDetail extends ManageGadgetAction{
 	
 	private Gadget gadget;
+	private String disappovalReason;
+	private String categoryListStr;
+	private Integer favoriteUserSize;
 	
 	public String execute() {
 		
@@ -35,21 +43,62 @@ public class GadgetDetail extends ManageGadgetAction{
 		setGadgetIntro(gadget.getIntroduction());
 		setGadgetIconUrl(gadget.getIconUrl());
 		setGadgetStatus(gadget.getStatus());
+		setDisappovalReason(gadget.getGadgetPublish().getRejectReason());
 		
 		
-		/*
-		return Action.SUCCESS;
-		gadget	= new Gadget("가젯3", "오세준");
-		gadget.setCreatedDate("2009-03-01");
-		gadget.setDesc("오세준 가젯3입니다.");
-		gadget.setNumRegUsers("19");
-		gadget.setStatus("발행");
-		gadget.setImagepath("../images/logo.jpg");
+		Set<GadgetCategory> categories = gadget.getCategories();
+		GadgetCategory[] categoryArray = new GadgetCategory[categories.size()];
+		categories.toArray(categoryArray);
+		String[] categoryIdArray = new String[categoryArray.length];
+		for (int i = 0; i < categoryArray.length; i++) {
+			categoryIdArray[i] = categoryArray[i].getId();
+		}
+		setGadgetCategoryIdSelected(categoryIdArray);
 
-		setGadget(gadget);
-		*/	
+		setFavoriteUserSize(gadget.getFavoriteUsers().size());
+
+		hs.getTransaction().commit();
+
 		return "SUCCESS";
 	}
+
+	public String getDisappovalReason() {
+		return disappovalReason;
+	}
+
+	public void setDisappovalReason(String disappovalReason) {
+		this.disappovalReason = disappovalReason;
+	}
+
+	public String getCategoryListStr() {
+		
+		String[] tempStr	= getGadgetCategoryIdSelected();
+		List<String> tempList	= Arrays.asList(tempStr);
+		StringBuffer sb	= new StringBuffer();
+		
+		for (String e: tempList)
+		{
+			sb.append(e);
+			sb.append("\n");
+		}
+		categoryListStr	= sb.toString();
+		return categoryListStr;
+	}
+
+	public void setCategoryListStr(String categoryListStr) {
+		this.categoryListStr = categoryListStr;
+	}
+
+	public Integer getFavoriteUserSize() {
+		return favoriteUserSize;
+	}
+
+	public void setFavoriteUserSize(Integer favoriteUserSize) {
+		this.favoriteUserSize = favoriteUserSize;
+	}
+
+
+
 
 	/*
 	public Gadget getGadget() {

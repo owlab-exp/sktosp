@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/admin.js"></script>
+<script>
+window.name="GadgetList";
+</script>
 <title>관리자 가젯 리스트 보기</title>
 </head>
 
@@ -107,7 +110,7 @@
 					<s:url id="gadgetPreviewUrl" namespace="/developer" action="PreviewGadget">
 						<s:param name="gadgetId"><s:property value="id"/></s:param>
 					</s:url>    			  
-                	<td><s:a href="%{gadgetPreviewUrl}"><s:property value="id"/></s:a></td> 
+                	<td><s:a href="%{gadgetPreviewUrl}" target="_blank"><s:property value="id"/></s:a></td> 
                 	
           				<s:url var="GadgetDetailUrl" namespace="/admin" action="GadgetDetail">
           					<s:param name="gadgetId"><s:property value="id"/></s:param>
@@ -150,14 +153,12 @@
 							</a>
 						</s:elseif>
 						<s:elseif test="%{status.equals('pg')}">
-		 	    			<s:url var="url" action="GadgetController_changeStatus" namespace="/admin">
-		 	    			<s:param name="name" value="%{gadget.name}" />
-		 	    			<s:param name="status" value="%{gadget.status}" /></s:url>
-		 	    			<s:a onclick='return confirmbox("발행취소하시겠습니까?", "%{url}");'>
-		 	    			<input type="button" value="발행취소"/></s:a>    			
+							<a href="#" onclick="javascript:adminpopup('popup_gadget_cancel.jsp?gadgetId=<s:property value="id"/>','GadgetCancel');">
+							<input type="button" value="발행취소">
+							</a>
+ 			
 						</s:elseif>
 						<s:elseif test="%{status.equals('pd')}">
-							
 						</s:elseif>
 						<s:elseif test="%{status.equals('nr')}">
 							

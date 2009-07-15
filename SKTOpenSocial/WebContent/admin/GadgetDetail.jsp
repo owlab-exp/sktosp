@@ -4,6 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="img" uri="/struts-images" %>
+
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -59,7 +61,13 @@
 			</colgroup>
 			
 				<tr>
-          			<td rowspan="14"><img src='<s:url value="../images/logo.jpg"/>'></td> 
+          			<td rowspan="16">
+
+					<s:url id="iconUrl" action="ViewIcon" namespace="/developer">
+						<s:param name="gadgetId" value="%{gadgetId}"></s:param>
+					</s:url>
+					<img:image src="%{iconUrl}" resize="false" height="100" width="100"/>          			
+          			</td> 
       			</tr>
 			           
 				<tr style="background-color:#F5F5F5;" height="25">
@@ -72,15 +80,19 @@
           			<td align="center">가젯이름</td> 
                 	<td><s:property value="gadgetName"/></td> 
       			</tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">카테고리</td> 
+                	<td><pre><s:property value="categoryListStr"/></pre></td> 
+      			</tr>
       			<tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#FFFFFF;" height="25">
+				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="center">개발자</td> 
                 	<td><s:property value="%{developer.id}"/></td> 
       			</tr>
       			<tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="center">선호등록유저수</td> 
-                	<td><s:property value="%{favoriteUsers.size()}"/></td> 
+                	<td><s:property value="favoriteUserSize"/></td> 
       			</tr>
       			<tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
@@ -109,8 +121,23 @@
                 	</td> 
                 	
       			</tr>
+			<s:if test="%{gadgetStatus.equals('pd')}">
+				<tr style="background-color:#F5F5F5;" height="25">
+		
+          			<td align="center">거절사유</td> 
+                	<td><s:property value="disappovalReason"/></td>
+                </tr> 
       			<tr><td class="line" colspan="6"></td></tr>
-      			
+			</s:if>      			
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center" colspan="2">
+					<s:url id="gadgetPreviewUrl" namespace="/developer" action="PreviewGadget">
+						<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
+					</s:url>    			  
+                	<s:a href="%{gadgetPreviewUrl}" target="_blank">미리보기</s:a>
+                	</td> 
+      			  </tr>
+      			<tr><td class="line" colspan="6"></td></tr>
       		</table>
  	     </td>
  	    </tr>

@@ -20,7 +20,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
  * @author Sejoon Oh
  *
  */
-public class RejectGadgetAction extends ManageGadgetAction {
+public class CancelGadgetAction extends ManageGadgetAction {
 	
 	protected String rejectreason;
 
