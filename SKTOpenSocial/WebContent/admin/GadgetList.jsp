@@ -165,14 +165,15 @@
 
 					</td>
 					<td align="center">
-					<s:url id="removeGadgetUrl" action="RemoveGadget" namespace="/admin">
+					<s:url id="removeGadgetUrl" action="RemoveGadget" namespace="/admin" method="requestConfirm">
 		    			<s:param name="searchfield" value="%{searchfield}" />
 		    			<s:param name="query" value="%{query}" />
 		    			<s:param name="currentpage" value="%{currentpage}"/>					
 						<s:param name="gadgetId"><s:property value="id"/></s:param>
 					</s:url>
-  	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{removeGadgetUrl}");'>
- 	    			<input type="button" value="삭제"></s:a>	    
+<!--  	    			<s:a onclick='return confirmbox("삭제하시겠습니까?", "%{removeGadgetUrl}");'>-->
+<!-- 	    			<input type="button" value="삭제"></s:a>	    -->
+					<s:a href="#" onclick="javascript:adminpopup('%{removeGadgetUrl}','RemoveConfirm')"><input type="button" value="삭제"></s:a>
       			    </td> 
       			  </tr>
       			  <tr><td class="line" colspan="10"></td></tr>
