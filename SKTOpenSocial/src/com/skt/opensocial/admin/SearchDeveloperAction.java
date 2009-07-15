@@ -25,17 +25,17 @@ import com.skt.opensocial.persistence.User;
  * @author Sejoon Oh
  *
  */
-public class SearchGadgetAction extends AdministratorBaseAction {
-	private static Logger logger = Logger.getLogger(SearchGadgetAction.class);
+public class SearchDeveloperAction extends AdministratorBaseAction {
+	private static Logger logger = Logger.getLogger(SearchDeveloperAction.class);
 
 	private static final long serialVersionUID = 1L;
 
 	Map<String, Object> session;
-	List<Gadget> gadgets;
+	List<Gadget> developers;
 
 	String searchfield	= "";
 	String query	= "";
-	String sortfield	= "registerDate";
+	String sortfield	= "registeredDate";
 	String sortsc	= "desc";
 	
 	int listscale	= 10;
@@ -67,39 +67,21 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		
 		System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
 
-		Criteria c = hs.createCriteria(Gadget.class);
-		Criteria t = hs.createCriteria(Gadget.class);
+		Criteria c = hs.createCriteria(User.class);
+		Criteria t = hs.createCriteria(User.class);
 
-		if ( searchfield.equals("gadgetname")) {
-			c.add(Restrictions.like("name", queryKey));
-			t.add(Restrictions.like("name", queryKey));
-		} else if ( searchfield.equals("gadgetstatus")) {
-			String statuscode	= "";
-			if (query.equals("등록완료")) {
-				statuscode	= "rg";
-			}
-			else if (query.equals("발행요청")) {
-				statuscode	= "pr";
-			}
-			else if (query.equals("발행완료")) {
-				statuscode	= "pg";
-			}
-			else if (query.equals("발행거절")) {
-				statuscode	= "pd";
-			}
-			else if (query.equals("미등록")) {
-				statuscode	= "nr";
-			}
-			c.add(Restrictions.eq("status", statuscode));
-			t.add(Restrictions.eq("status", statuscode));
-				
+		
+		/*
+		if ( searchfield.equals("developername")) {
+			c.add(Restrictions.like("person.nameFormatted", queryKey));
+			t.add(Restrictions.like("person.nameFormatted", queryKey));
 		} else if ( searchfield.equals("developerid")) {
-			c.add(Restrictions.like("developer.id", queryKey));
-			t.add(Restrictions.like("developer.id", queryKey));
+			c.add(Restrictions.like("id", queryKey));
+			t.add(Restrictions.like("id", queryKey));
 		} else {
 			//
 		}
-		
+
 		c.setFirstResult(pages.getFirstresult());
 		c.setMaxResults(pages.getListscale());
 		if (this.sortsc.equals("desc")) {
@@ -108,7 +90,8 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		else {
 			c.addOrder( Order.asc(this.sortfield) );			
 		}
-		this.gadgets = c.list();
+		*/
+		this.developers = c.list();
 
 		// for total count
 		t.setProjection( Projections.rowCount() );		
@@ -125,8 +108,8 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		System.out.println("prepage" + prepage);
 		System.out.println("postpage" + postpage);
 		
-		if (this.gadgets != null && !this.gadgets.isEmpty()) {
-			System.out.println("searched gadgets.size = " + gadgets.size());
+		if (this.developers != null && !this.developers.isEmpty()) {
+			System.out.println("searched developers.size = " + developers.size());
 		}
 		hs.getTransaction().commit();
 		
@@ -173,12 +156,13 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 		this.query = query;
 	}
 
-	public void setGadgets(List<Gadget> gadgets) {
-		this.gadgets = gadgets;
+
+	public List<Gadget> getDevelopers() {
+		return developers;
 	}
 
-	public List<Gadget> getGadgets() {
-		return gadgets;
+	public void setDevelopers(List<Gadget> developers) {
+		this.developers = developers;
 	}
 
 	public void setSession(Map<String, Object> map) {

@@ -94,10 +94,48 @@ window.name="GadgetList";
           			<td>이름</td> 
                 	<td>설명</td> 
       			    <td align="center">개발자</td> 
-      			    <td align="center">등록일자</td> 
+      			    <td align="center">등록일자
+	<s:if test="%{sortsc == 'desc'}">
+   			<s:url var="sortUrl" namespace="/admin">
+   			<s:param name="searchfield" value="%{searchfield}" />
+   			<s:param name="query" value="%{query}" />
+   			<s:param name="sortfield">registerDate</s:param>
+   			<s:param name="sortsc">asc</s:param>
+   			</s:url>
+			<s:a href="%{sortUrl}">▲</s:a> 
+	</s:if>
+	<s:else>
+   			<s:url var="sortUrl" namespace="/admin">
+   			<s:param name="searchfield" value="%{searchfield}" />
+   			<s:param name="query" value="%{query}" />
+   			<s:param name="sortfield">registerDate</s:param>
+   			<s:param name="sortsc">desc</s:param>
+   			</s:url>
+			<s:a href="%{sortUrl}">▼</s:a> 	
+	</s:else>
+      			    </td> 
       			    <td align="center">발행일자</td> 
       			    <td align="center">선호등록인수</td> 
-      			    <td align="center">상태</td> 
+      			    <td align="center">상태
+	<s:if test="%{sortsc == 'desc'}">
+   			<s:url var="sortUrl" namespace="/admin">
+   			<s:param name="searchfield" value="%{searchfield}" />
+   			<s:param name="query" value="%{query}" />
+   			<s:param name="sortfield">status</s:param>
+   			<s:param name="sortsc">asc</s:param>
+   			</s:url>
+			<s:a href="%{sortUrl}">▲</s:a> 
+	</s:if>
+	<s:else>
+   			<s:url var="sortUrl" namespace="/admin">
+   			<s:param name="searchfield" value="%{searchfield}" />
+   			<s:param name="query" value="%{query}" />
+   			<s:param name="sortfield">status</s:param>
+   			<s:param name="sortsc">desc</s:param>
+   			</s:url>
+			<s:a href="%{sortUrl}">▼</s:a> 	
+	</s:else>
+      			    </td> 
       			    <td align="center">작업</td> 
       			    <td align="center">삭제</td> 
       			  </tr>
@@ -204,7 +242,9 @@ window.name="GadgetList";
    			<s:url var="pagingUrl" namespace="/admin">
    			<s:param name="searchfield" value="%{searchfield}" />
    			<s:param name="query" value="%{query}" />
-   			<s:param name="currentpage" value="%{prepage}"/>
+  			<s:param name="currentpage" value="%{prepage}"/>
+   			<s:param name="sortfield" value="%{sortfield}" />
+   			<s:param name="sortsc" value="%{sortsc}" />	
    			</s:url>
 			<em class="p"><s:a href="%{pagingUrl}">이전</s:a></em> 
 	</s:if>
@@ -215,6 +255,8 @@ window.name="GadgetList";
     			<s:param name="searchfield" value="%{searchfield}" />
     			<s:param name="query" value="%{query}" />
     			<s:param name="currentpage" value="top"/>
+	   			<s:param name="sortfield" value="%{sortfield}" />
+	   			<s:param name="sortsc" value="%{sortsc}" />		
     			</s:url>
 
 	  			<s:if test="%{currentpage.equals(top)}">
@@ -231,6 +273,8 @@ window.name="GadgetList";
    			<s:param name="searchfield" value="%{searchfield}" />
    			<s:param name="query" value="%{query}" />
    			<s:param name="currentpage" value="%{postpage}"/>
+   			<s:param name="sortfield" value="%{sortfield}" />
+   			<s:param name="sortsc" value="%{sortsc}" />	
    			</s:url>
 			<em class="p"><s:a href="%{pagingUrl}">다음</s:a></em> 
 	</s:if>		

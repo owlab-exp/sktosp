@@ -6,7 +6,6 @@
 	<package name="admin" namespace="/admin" extends="default">
 		<action name="GadgetList" class="com.skt.opensocial.admin.GadgetList">
 			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
-<!--			<result name="SUCCESS">/admin/GadgetList.jsp</result>-->
 		</action>
 		<action name="GadgetDetail" class="com.skt.opensocial.admin.GadgetDetail">
 			<result name="SUCCESS">/admin/GadgetDetail.jsp</result>
@@ -16,15 +15,9 @@
 			<result name="remove_confirm_page">/admin/popup_gadget_remove.jsp</result>
 			<result name="success" type="redirectAction">SearchGadget</result>
 		</action>		
-		<!--		
-		<action name="RemoveGadget" class="com.skt.opensocial.developer.RemoveGadgetAction">
-			<result name="success" type="redirectAction">ListGadgets</result>
-		</action>
-		-->
 		<action name="PublishGadgetAction" class="com.skt.opensocial.admin.PublishGadgetAction">
 			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
 		</action>	
-
 		<action name="RejectGadgetAction" class="com.skt.opensocial.admin.RejectGadgetAction">
 			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
 		</action>	
@@ -32,7 +25,6 @@
 		<action name="CancelGadgetAction" class="com.skt.opensocial.admin.CancelGadgetAction">
 			<result name="SUCCESS" type="redirectAction">SearchGadget</result>
 		</action>	
-
 		<action name="SearchGadget" class="com.skt.opensocial.admin.SearchGadgetAction">
 			<result name="gadgetname">/admin/GadgetList.jsp</result>
 			<result name="gadgetstatus">/admin/GadgetList.jsp</result>
@@ -41,12 +33,15 @@
 			<result name="fail">/main.jsp</result>
 		</action>
 
-		<action name="GadgetController_*" method="{1}" class="com.skt.opensocial.admin.GadgetController">
-			<result name="SUCCESS" type="redirectAction">GadgetList</result>			
+		<action name="SearchDeveloper" class="com.skt.opensocial.admin.SearchDeveloperAction">
+			<result name="developername">/admin/DeveloperList.jsp</result>
+			<result name="developerid">/admin/DeveloperList.jsp</result>
+			<result name="list">/admin/GadgetList.jsp</result>
+			<result name="fail">/main.jsp</result>
 		</action>
 		
 		<action name="DeveloperList" class="com.skt.opensocial.admin.DeveloperList">
-			<result name="SUCCESS">/admin/DeveloperList.jsp</result>
+			<result name="SUCCESS" type="redirectAction">SearchDeveloper</result>
 		</action>
 		<action name="DeveloperDetail" class="com.skt.opensocial.admin.DeveloperDetail">
 			<result name="SUCCESS">/admin/DeveloperDetail.jsp</result>
