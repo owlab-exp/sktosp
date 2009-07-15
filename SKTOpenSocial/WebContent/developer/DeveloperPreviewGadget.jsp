@@ -7,26 +7,26 @@
 <%@ page import="com.skt.opensocial.common.*"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
 
 <!--// OpenSocial Gadget Related Setting -->
+<s:set var="shindigServer"><%= request.getServerName() + ":" + request.getServerPort() %></s:set>
 <link rel="stylesheet"
-	href="http://localhost:8080/gadgets/files/container/gadgets.css">
+	href="http://<s:property value="#shindigServer"/>/gadgets/files/container/gadgets.css">
 <script type="text/javascript"
-	src="http://localhost:8080/gadgets/js/rpc.js?c=1&debug=1"></script>
+	src="http://<s:property value="#shindigServer"/>/gadgets/js/rpc.js?c=1&debug=1"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/gadgets/files/container/cookies.js"></script>
+	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/cookies.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/gadgets/files/container/util.js"></script>
+	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/util.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/gadgets/files/container/gadgets.js"></script>
+	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/gadgets.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/gadgets/files/container/cookiebaseduserprefstore.js"></script>
+	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/cookiebaseduserprefstore.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/gadgets/files/container/osapi.js"></script>
+	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/osapi.js"></script>
 
 <!-- //Local Gadget Enabling Function -->
 <script type="text/javascript">
@@ -61,7 +61,7 @@
 			specUrl : gadget0Url
 		});
 
-		gadget0.setServerBase('http://localhost:8080/gadgets/'); //Shindig Server Gadget Handling Endpoint
+		gadget0.setServerBase('http://<s:property value="#shindigServer"/>/gadgets/'); //Shindig Server Gadget Handling Endpoint
 
 		gadget0.secureToken = escape(generateSecureToken()); // Including viewer and owner
 
