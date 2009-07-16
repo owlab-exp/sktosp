@@ -54,4 +54,5 @@
 		<mapping resource="com/skt/opensocial/persistence/User.hbm.xml" />
 		<mapping resource="com/skt/opensocial/persistence/UserVisibility.hbm.xml" />
 	</session-factory>
+
 </hibernate-configuration>
