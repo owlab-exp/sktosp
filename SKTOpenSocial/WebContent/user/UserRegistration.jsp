@@ -60,38 +60,38 @@
       				<table cellpadding="0" cellspacing="0" width="100%" border='0' >
       				<colgroup>
 						<col width="20%">
-						<col width="80%">
+						<col width="70%">
+						<col width="10%">
 					</colgroup>
 					
 					<tbody>
-						<s:form action="Registration" namespace="/user" 
+						<s:form action="RegistrationSubmit" namespace="/user" 
 							id="UserRegistrationForm" theme="simple" method="post" enctype="multipart/form-data">
 														        				
 		  					<tr>
-								<td>사용자아이디</td>
+								<td>*사용자아이디</td>
 								<td>
-									<s:textfield name= "userId" required="true" value="nash2" />										
-									<s:submit align="left" action= "MultiplicationCheck" 
-										value= "중복검사" name= "multicheck"/>
+									<s:textfield name= "userIdWant" required="true" value="nash2" />										
+									
 								</td>
 							</tr>
 							
 							<tr>
-								<td>암호</td>
+								<td>*암호</td>
 								<td>
-									<s:password name= "password" required="true" value="nash2"/>										
+									<s:password name= "passwordWant" required="true" value="nash2"/>										
 								</td>
 							</tr>
 
 							<tr>
-								<td>암호확인</td>
+								<td>*암호확인</td>
 								<td>
 									<s:password name= "passwordConfirm" required="true" value="nash2"/>										
 								</td>
 							</tr>
 							
 							<tr>
-								<td>사용자이름</td>
+								<td>*사용자이름</td>
 								<td>
 									<s:textfield name= "userName" required="true" value="nashbabo"/>										
 								</td>
@@ -114,12 +114,12 @@
 							<tr>
 								<td>생일</td>
 								<td>
-									<s:textfield name= "dataOfBirth" required="false" value="1979-08-24"/>   
+									<s:textfield name= "birthday" required="false" value="1979-08-24"/>   
 								</td>
 							</tr>
 							
 							<tr>
-								<td>이메일</td>
+								<td>*이메일</td>
 								<td>
 									<s:textfield name= "email" required="true" value="skt@nate.com"/> 
 								</td>
@@ -176,6 +176,16 @@
 							    
 						          	<s:textfield label= "추가직업" name= "job2" required="false" /> 
 						    	</td>
+							</tr>
+							
+							<tr>
+								<td>난?</td>
+								<td>
+							    
+							  
+						          	<s:textarea label= "난?" name= "aboutMe" required="false" value="난멋있어!"/> 
+						       		      
+						     	</td>
 							</tr>
 							
 							<tr>
@@ -264,17 +274,10 @@
 								<td>자녀</td>
 								<td>
 							   
-						          	<s:textfield label= "자녀" name= "child" required="false" value="destinychild"/> 
+						          	<s:textfield label= "자녀" name= "children" required="false" value="destinychild"/> 
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>추가자녀</td>
-								<td>
-							   
-						          	<s:textfield label= "추가자녀" name= "child2" required="false" /> 
-						    	</td>
-							</tr>
 							
 							<tr>
 								<td>현재위치</td>
@@ -288,7 +291,7 @@
 								<td>음주</td>
 								<td>
 							    
-						       		<s:select label="음주" name="gender" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		<s:select label="음주" name="drinker" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'HEAVILY':'HEAVILY'
 						       				,'NO':'NO'
 						       				,'OCCASIONALLY':'OCCASIONALLY'
@@ -337,7 +340,7 @@
 								<td>행복한때</td>
 								<td>
 							    
-						          	<s:textfield label="행복한때" name="happiesWhen" required="false" value="프로젝트끝날때"/> 
+						          	<s:textfield label="행복한때" name="happiestWhen" required="false" value="프로젝트끝날때"/> 
 						    	</td>
 							</tr>
 							
@@ -345,7 +348,7 @@
 								<td>좋아하는영웅</td>
 								<td>
 							   
-						          	<s:textfield label="좋아하는영웅" name="heroes" required="false" value="superman"/> 
+						          	<s:textfield label="좋아하는영웅" name="hero" required="false" value="superman"/> 
 						    	</td>
 							</tr>
 							
@@ -353,7 +356,7 @@
 								<td>좋아하는영웅추가</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는영웅추가" name="heroes2" required="false" /> 
+						          	<s:textfield label="좋아하는영웅추가" name="hero2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -425,7 +428,7 @@
 								<td>관심분야</td>
 								<td>
 							    
-						       		<s:select label="관심분야" name="lookingfor" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		<s:select label="관심분야" name="lookingFor" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'ACTIVITY_PARTNERS':'ACTIVITY_PARTNERS'
 						       				,'DATING':'DATING'
 						       				,'FRIENDS':'FRIENDS'
@@ -508,19 +511,12 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>비구조이름</td>
-								<td>
-							    
-						          	<s:textfield label="비구조이름" name="unstructured" required="false" value="nash2"/> 
-						    	</td>
-							</tr>
 							
 							<tr>
-								<td>주소</td>
+								<td>네트워크환경</td>
 								<td>
 							    
-						       		<s:select label="관심분야" name="lookingfor" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		<s:select label="네트워크환경" name="networkPresence" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'AWAY':'AWAY'
 						       				,'CHAT':'CHAT'
 						       				,'DND':'DND'
@@ -543,17 +539,10 @@
 								<td>애완동물</td>
 								<td>
 							    
-						          	<s:textfield label="애완동물" name="pet" required="false" value="백구"/> 
+						          	<s:textfield label="애완동물" name="pets" required="false" value="백구"/> 
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>애완동물추가</td>
-								<td>
-							    
-						          	<s:textfield label="애완동물추가" name="pet2" required="false" /> 
-						    	</td>
-							</tr>
 							
 							<tr>
 								<td>전화번호</td>
@@ -639,7 +628,7 @@
 								<td>프로파일위치종류</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일위치종류" name="profilevideoUrlType" required="false" value="website"/> 
+						          	<s:textfield label="프로파일위치종류" name="profileUrlType" required="false" value="website"/> 
 						    	</td>
 							</tr>
 							
@@ -804,13 +793,6 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>시간대</td>
-								<td>
-							    
-						          	<s:textfield label="시간대" name="timzone" required="false" value="+9"/> 
-						    	</td>
-							</tr>
 							
 							<tr>
 								<td>turnOff</td>
