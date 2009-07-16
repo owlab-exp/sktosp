@@ -114,7 +114,7 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction{
 		
 		userId = user.getUserId();
 		
-		user = (User)hs.load(User.class, userId);
+		//user = (User)hs.load(User.class, userId);
 		otherUser = (User)hs.load(User.class, otherUserId);
 		
 		System.out.println("--------------------------------------A " + otherUser.getId() );

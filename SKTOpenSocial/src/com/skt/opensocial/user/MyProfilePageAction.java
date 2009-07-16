@@ -4,18 +4,19 @@
 package com.skt.opensocial.user;
 
 import java.util.Date;
+
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
-import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.developer.DeveloperBaseAction;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
+import com.skt.opensocial.persistence.Info2AttributeEnum;
+import com.skt.opensocial.persistence.PersonAdditionalInfo2;
 import com.skt.opensocial.persistence.User;
 
 /**
@@ -44,9 +45,7 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 	String name;
 	Date registeredDate;
 	int age;
-	
-	
-	
+	String phoneNumber;
 	
 	public Date getRegisteredDate() {
 		return registeredDate;
@@ -79,6 +78,15 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 	public String execute(){
 		//
@@ -93,12 +101,23 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 				
 		name = user.getPerson().getName();
 		registeredDate = user.getRegisteredDate();
-		System.out.println("--------------------------------------list count " + registeredDate);
+		//System.out.println("--------------------------------------list count " + registeredDate);
 		age = user.getPerson().getAge();
 		
-	
+		Set<PersonAdditionalInfo2> set = user.getPerson().getAdditionalInfo2s();
+		phoneNumber ="";
+		
+		for (PersonAdditionalInfo2 p: set)
+		{
+			if (p.getAttribute().equals(Info2AttributeEnum.phoneNumbers) && p.getPrimary())
+			{
+				phoneNumber = p.getValue();
+				break;
+			}
+		}
+		
 
-		System.out.println("--------------------------------------list count ");
+		//System.out.println("--------------------------------------list count ");
 		session.put(SKTOpenSocialSupportConstants.USER, user);
 		
 		this.gadgets = user.getFavoriteGadgets();
@@ -120,7 +139,7 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
 		*/
 		
-		return Action.SUCCESS;
+		return "success";
 	}
 
 	/* (non-Javadoc)
