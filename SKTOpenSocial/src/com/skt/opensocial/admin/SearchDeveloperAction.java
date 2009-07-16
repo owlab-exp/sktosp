@@ -70,8 +70,9 @@ public class SearchDeveloperAction extends AdministratorBaseAction {
 		Criteria c = hs.createCriteria(User.class);
 		Criteria t = hs.createCriteria(User.class);
 
+		c.add(Restrictions.eq("isDeveloper", true));
+		t.add(Restrictions.eq("isDeveloper", true));
 		
-		/*
 		if ( searchfield.equals("developername")) {
 			c.add(Restrictions.like("person.nameFormatted", queryKey));
 			t.add(Restrictions.like("person.nameFormatted", queryKey));
@@ -90,7 +91,6 @@ public class SearchDeveloperAction extends AdministratorBaseAction {
 		else {
 			c.addOrder( Order.asc(this.sortfield) );			
 		}
-		*/
 		this.developers = c.list();
 
 		// for total count

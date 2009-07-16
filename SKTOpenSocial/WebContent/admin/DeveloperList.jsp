@@ -55,8 +55,8 @@ window.name="DeveloperList";
           <td>
 
 
-		<s:form action="SearchGadget" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'developername':'개발자이름','developerid':'개발자ID'}"/>	     	     
+		<s:form action="SearchDeveloper" theme="simple">
+	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'developerid':'개발자ID','developername':'개발자이름'}"/>	     	     
 	    <s:textfield name="query" value="%{query}"/> 
 	    <s:submit value="검색"/>
 	</s:form>
@@ -74,12 +74,12 @@ window.name="DeveloperList";
             <!-- bbs -->
             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
 			<colgroup> 
+                <col width="15%" /> 
+                <col width="15%" /> 
+                <col width="10%" />
+                <col width="30%" />
                 <col width="20%" /> 
-                <col width="20%" /> 
-                <col width="20%" />
-                <col width="20%" />
-                <col width="20%" /> 
-                <col width="20%" /> 
+                <col width="10%" /> 
               </colgroup>
    			  <tr style="background-color:#F5F5F5;">
            			<td>아이디</td> 
@@ -125,7 +125,7 @@ window.name="DeveloperList";
                		<td align="center"><s:property value="person.aboutme"/></td> 
 					<td align="center"><s:date name="registeredDate" format="yyyy/MM/dd"/></td>
 					<td align="center">
-					     <s:if test="%{isDeveloper.equals('1')}">
+					     <s:if test="%{isDeveloper.equals(true)}">
 							<a href="#" onclick="javascript:adminpopup('popup_developer_cancel.jsp?developerId=<s:property value="id"/>','DeveloperCancel');"><input type="button" value="개발자취소"></a>
 						</s:if>
       			    </td> 
@@ -140,6 +140,8 @@ window.name="DeveloperList";
 		        	<tr>
 		        		<td align="center" valign="middle" style="font-weight:bold">
 		        			'<s:property value="%{query}"/>'로 검색된 결과가 없습니다.
+		        			<br><br><a href="SearchDeveloper">전체보기</a>
+		        			
 		        		</td>
 		        	</tr> 
 				</table>

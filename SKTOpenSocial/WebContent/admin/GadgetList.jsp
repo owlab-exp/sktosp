@@ -225,6 +225,7 @@ window.name="GadgetList";
 		        	<tr>
 		        		<td align="center" valign="middle" style="font-weight:bold">
 		        			'<s:property value="%{query}"/>'로 검색된 결과가 없습니다.
+		        			<br><br><a href="SearchGadget">전체보기</a>
 		        		</td>
 		        	</tr> 
 				</table>

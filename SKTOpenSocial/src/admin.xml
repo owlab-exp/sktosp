@@ -33,19 +33,24 @@
 			<result name="fail">/main.jsp</result>
 		</action>
 
+
 		<action name="SearchDeveloper" class="com.skt.opensocial.admin.SearchDeveloperAction">
 			<result name="developername">/admin/DeveloperList.jsp</result>
 			<result name="developerid">/admin/DeveloperList.jsp</result>
-			<result name="list">/admin/GadgetList.jsp</result>
+			<result name="list">/admin/DeveloperList.jsp</result>
 			<result name="fail">/main.jsp</result>
 		</action>
-		
+		<action name="CancelDeveloperAction" class="com.skt.opensocial.admin.CancelDeveloperAction">
+			<result name="SUCCESS" type="redirectAction">SearchDeveloper</result>
+		</action>	
+		<action name="DeveloperDetail" class="com.skt.opensocial.admin.DeveloperDetail">
+			<result name="SUCCESS">/admin/DeveloperDetail.jsp</result>
+		</action>
+						
 		<action name="DeveloperList" class="com.skt.opensocial.admin.DeveloperList">
 			<result name="SUCCESS" type="redirectAction">SearchDeveloper</result>
 		</action>
-		<action name="DeveloperDetail" class="com.skt.opensocial.admin.DeveloperDetail">
-			<result name="SUCCESS">/admin/DeveloperDetail.jsp</result>
-		</action>		
+		
 		<action name="DeveloperController_*" method="{1}" class="com.skt.opensocial.admin.DeveloperController">
 			<result name="SUCCESS" type="redirectAction">DeveloperList</result>			
 		</action>
