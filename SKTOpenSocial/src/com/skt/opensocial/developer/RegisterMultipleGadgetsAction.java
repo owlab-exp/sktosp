@@ -3,11 +3,14 @@
  */
 package com.skt.opensocial.developer;
 
+import java.net.URL;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
@@ -36,6 +39,8 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String defaultIconFile = null;
+	
 	private String gadgetName1;
 	private String gadgetCategory1;
 	private String gadgetIntro1;
@@ -140,7 +145,7 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 
 	private boolean validateRow(String name, String category, String intro,
 			String url) {
-		if (name != null && name.length() > 0)
+		if (name != null && name.trim().length() > 0)
 			if (category != null && category.length() > 0)
 				if (intro != null && intro.length() > 0)
 					if (url != null && url.length() > 0)
@@ -150,7 +155,7 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 	}
 
 	private void registerGadget(String name, String categoryId, String intro,
-			String url, Session hs) {
+			String url, Session hs) throws Exception {
 		Gadget gadget = new Gadget();
 		gadget.setName(name);
 		gadget.setDeveloper((User) sessionMap
@@ -167,13 +172,23 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 		gadget.setStatus(GadgetStatusConstants.REGISTERED);
 		gadget.setRegisterDate(new Date());
 		// gadget.setSource(url);
-		gadget.setGadgetUrl(url);
+		gadget.setGadgetUrl(url.trim());
 
 		hs.save(gadget);
 
 		GadgetIcon gi = new GadgetIcon();
 		gi.setGadget(gadget);
-
+		gi.setName("default");
+		URL defaultIconUrl = new URL("http://"
+				+ ServletActionContext.getRequest().getServerName()
+				+ ":"
+				+ ServletActionContext.getRequest().getServerPort()
+				+ ServletActionContext.getRequest().getContextPath()
+				+ defaultIconFile);
+		gi.setContentType("image/jpeg");
+		// try {
+		gi.setContent(Hibernate.createBlob(defaultIconUrl
+				.openStream()));
 		hs.saveOrUpdate(gi);
 
 		GadgetPublish gp = new GadgetPublish();
@@ -348,6 +363,14 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getDefaultIconFile() {
+		return defaultIconFile;
+	}
+
+	public void setDefaultIconFile(String defaultIconFile) {
+		this.defaultIconFile = defaultIconFile;
 	}
 
 }

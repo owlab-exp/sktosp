@@ -41,7 +41,7 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String defaultIconFile = "/images/gadget_default_icon.jpg";
+	private String defaultIconFile = null; // from action parameter in struts configuration
 
 	public String getGadgetRegisterPage() throws Exception {
 		prepare();

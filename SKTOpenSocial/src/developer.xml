@@ -5,54 +5,77 @@
 <struts>
 	<package name="developer" namespace="/developer" extends="default">
 		<action name="ListGadgets" class="com.skt.opensocial.developer.ListGadgetsAction">
-			<result name="success">/developer/DeveloperListGadgets.jsp</result>
+			<result name="success">/developer/DeveloperListGadgets.jsp
+			</result>
 		</action>
-		<action name="RegisterGadgetPage" class="com.skt.opensocial.developer.RegisterGadgetAction" method="getGadgetRegisterPage">
-			<result name="input_one">/developer/DeveloperRegisterGadget_One.jsp</result>
-			<result name="input_multiple">/developer/DeveloperRegisterGadget_URL_Multi.jsp</result>
+		<action name="RegisterGadgetPage"
+			class="com.skt.opensocial.developer.RegisterGadgetAction" method="getGadgetRegisterPage">
+			<result name="input_one">/developer/DeveloperRegisterGadget_One.jsp
+			</result>
+			<result name="input_multiple">/developer/DeveloperRegisterGadget_URL_Multi.jsp
+			</result>
 		</action>
-		<action name="RegisterGadget" class="com.skt.opensocial.developer.RegisterGadgetAction">
+		<action name="RegisterGadget"
+			class="com.skt.opensocial.developer.RegisterGadgetAction">
 			<param name="defaultIconFile">/images/gadget_icon.jpg</param>
-			<result name="input" type="redirectAction">RegisterGadgetPage</result>
-			<result name="preview" type="redirectAction">PreviewGadget</result>
-			<result name="gadget_list" type="redirectAction">ListGadgets</result>
+			<result name="input" type="redirectAction">RegisterGadgetPage
+			</result>
+			<result name="preview" type="redirectAction">PreviewGadget
+			</result>
+			<result name="gadget_list" type="redirectAction">ListGadgets
+			</result>
 		</action>
 		<action name="PreviewGadget" class="com.skt.opensocial.developer.PreviewGadgetAction">
-			<result name="success">/developer/DeveloperPreviewGadget.jsp</result>
+			<result name="success">/developer/DeveloperPreviewGadget.jsp
+			</result>
 		</action>
 		<action name="ModifyGadget" class="com.skt.opensocial.developer.ModifyGadgetAction">
-			<result name="input">/developer/DeveloperModifyGadget.jsp</result>
-			<result name="preview" type="redirectAction">PreviewGadget</result>
+			<result name="input">/developer/DeveloperModifyGadget.jsp
+			</result>
+			<result name="preview" type="redirectAction">PreviewGadget
+			</result>
 		</action>
 		<action name="ViewGadgetReview" class="com.skt.opensocial.developer.ViewReviewAction">
-			<result>/developer/DeveloperViewGadgetReview.jsp</result>
+			<result>/developer/DeveloperViewGadgetReview.jsp
+			</result>
 		</action>
-		<action name="ViewDenyReason" class="com.skt.opensocial.developer.ViewDenyReasonAction">
-			<result>/developer/PopupPublishDenyReason.jsp</result>
+		<action name="ViewDenyReason"
+			class="com.skt.opensocial.developer.ViewDenyReasonAction">
+			<result>/developer/PopupPublishDenyReason.jsp
+			</result>
 		</action>
 		<action name="RemoveGadget" class="com.skt.opensocial.developer.RemoveGadgetAction">
-			<result name="remove_confirm_page">/developer/PopupGadgetRemoveConfirm.jsp</result>
+			<result name="remove_confirm_page">/developer/PopupGadgetRemoveConfirm.jsp
+			</result>
 			<result name="success" type="redirectAction">ListGadgets</result>
 		</action>
-		<action name="PublishRequest" class="com.skt.opensocial.developer.PublishRequestAction">
-			<result name="publish_confirm_page">/developer/PopupGadgetPublishRequest.jsp</result>
+		<action name="PublishRequest"
+			class="com.skt.opensocial.developer.PublishRequestAction">
+			<result name="publish_confirm_page">/developer/PopupGadgetPublishRequest.jsp
+			</result>
 			<result name="success" type="redirectAction">ListGadgets</result>
 		</action>
 		<action name="GadgetIconUpload" class="com.skt.opensocial.developer.IconUploadAction">
-			<result name="register_gadget" type="redirectAction">RegisterGadgetPage</result>
-			<result name="input">/developer/PopupGadgetIconUploadInput.jsp</result>
-			<result name="success">/developer/DeveloperRegisterGadget_WithIcon.jsp</result>
+			<result name="register_gadget" type="redirectAction">RegisterGadgetPage
+			</result>
+			<result name="input">/developer/PopupGadgetIconUploadInput.jsp
+			</result>
+			<result name="success">/developer/DeveloperRegisterGadget_WithIcon.jsp
+			</result>
 		</action>
 		<action name="ViewIcon" class="com.skt.opensocial.developer.IconViewAction">
-			<result name="success" type="stream"/>
+			<result name="success" type="stream" />
 			<result name="error">/Error.jsp</result>
 		</action>
 		<action name="GetGadgetUrl" class="com.skt.opensocial.developer.GetGadgetUrlAction">
-			<result name="success" type="stream"/>
+			<result name="success" type="stream" />
 			<result name="error">/Error.jsp</result>
 		</action>
-		<action name="RegisterMultipleGadgets" class="com.skt.opensocial.developer.RegisterMultipleGadgetsAction">
-			<result name="input">/developer/DeveloperRegisterGadget_URL_Multi.jsp</result>
+		<action name="RegisterMultipleGadgets"
+			class="com.skt.opensocial.developer.RegisterMultipleGadgetsAction">
+			<param name="defaultIconFile">/images/gadget_icon.jpg</param>
+			<result name="input">/developer/DeveloperRegisterGadget_URL_Multi.jsp
+			</result>
 			<result name="success" type="redirectAction">ListGadgets</result>
 		</action>
 	</package>
