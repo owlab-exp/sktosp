@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
 import com.opensymphony.xwork2.Action;
@@ -29,12 +30,14 @@ public class LoginAction extends CommonBaseAction {
 	// }
 
 	public String execute() {
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tx = null;
 		try {
 			String userId = getUserId();
 			String password = getPassword();
 
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			hs.getTransaction().begin();
+			
+			tx = hs.beginTransaction();
 
 			User user = (User) hs.get(User.class, userId);
 			PasswordEncryptor pe = PasswordEncryptor.getInstance();
@@ -59,8 +62,7 @@ public class LoginAction extends CommonBaseAction {
 			hs.getTransaction().commit();
 
 		} catch (Exception e) {
-			HibernateUtil.getSessionFactory().getCurrentSession()
-					.getTransaction().rollback();
+			if(tx != null) tx.rollback();
 			e.printStackTrace();
 
 		}

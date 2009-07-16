@@ -48,14 +48,6 @@ public class RemoveGadgetAction extends DeveloperBaseAction {
 
 			if (gadget != null)
 				hs.delete(gadget);
-
-			GadgetIcon icon = null;
-
-			icon = (GadgetIcon) hs.get(GadgetIcon.class, gadgetId);
-
-			if (icon != null)
-				hs.delete(icon);
-
 			hs.getTransaction().commit();
 			return Action.SUCCESS;
 		} catch (Exception e) {

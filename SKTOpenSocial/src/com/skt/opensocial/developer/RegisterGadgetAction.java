@@ -43,7 +43,7 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	private static final long serialVersionUID = 1L;
 	private String defaultIconFile = "/images/gadget_default_icon.jpg";
 
-	public String getGadgetRegisterPage() throws Exception{
+	public String getGadgetRegisterPage() throws Exception {
 		prepare();
 
 		setGadgetStatus(GadgetStatusConstants.NOT_REGISTERED);
@@ -59,7 +59,7 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 
 	}
 
-	public String finishGadgetRegister() throws Exception{
+	public String finishGadgetRegister() throws Exception {
 
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
@@ -80,7 +80,10 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 
 	}
 
-	public String execute() throws Exception{
+	public String execute() throws Exception {
+		
+		prepare();
+		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
@@ -97,7 +100,7 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetStatus="
 					+ getGadgetStatus());
 
-			prepare();
+			
 
 			tx = hs.beginTransaction();
 
@@ -211,7 +214,6 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			tx.commit();
 			return "preview";
 		} catch (Exception e) {
-
 			if (tx != null)
 				tx.rollback();
 			throw e;

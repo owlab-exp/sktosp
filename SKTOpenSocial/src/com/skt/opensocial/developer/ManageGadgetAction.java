@@ -39,21 +39,22 @@ public class ManageGadgetAction extends DeveloperBaseAction implements
 
 	protected Map<String, Object> requestMap;
 
-	public void prepare() throws Exception{
+	public void prepare() throws Exception {
 		if (categoryList == null) {
 			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 			Transaction tx = null;
 			try {
 				tx = hs.beginTransaction();
-			
-			List<GadgetCategory> categories = hs.createQuery(
-					"from GadgetCategory").list();
-			logger.log(Level.INFO, "category size = " + categories.size());
 
-			categoryList = categories;
-			tx.commit();
-			}catch(Exception e) {
-				if(tx != null) tx.rollback();
+				List<GadgetCategory> categories = hs.createQuery(
+						"from GadgetCategory").list();
+				logger.log(Level.INFO, "category size = " + categories.size());
+
+				categoryList = categories;
+				tx.commit();
+			} catch (Exception e) {
+				if (tx != null)
+					tx.rollback();
 				throw e;
 			}
 
