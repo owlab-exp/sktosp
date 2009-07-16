@@ -7,15 +7,18 @@
 		<action name="MyProfilePage" class="com.skt.opensocial.user.MyProfilePageAction">
 			<result>/user/mypage.jsp</result>
 		</action>
+		
 		<action name="Registration">
 			<interceptor-ref name="defaultStack"/>
 			<result>/user/UserRegistration.jsp</result>
 		</action>
-		<action name="RegistrationSubmit">
+		
+		<action name="RegistrationSubmit" class="com.skt.opensocial.user.RegistrationSubmitAction">
 			<interceptor-ref name="defaultStack"/>
 			<result name="success">/main.jsp</result>
 			<result name="fail">/user/UserRegistration.jsp</result>
 		</action>
+		
 		<action name="ResetRegistration">
 			<interceptor-ref name="defaultStack"/>
 			<result >/user/UserRegistration.jsp</result>
@@ -25,24 +28,22 @@
 			<interceptor-ref name="defaultStack"/>
 			<result >/main.jsp</result>
 		</action>
-		
-		<action name="MoveDeveloper" class="com.skt.opensocial.developer.ListGadgetsAction">
-			<result >/developer/DeveloperListGadgets.jsp</result>
+				
+		<action name="Modification" class="com.skt.opensocial.user.ModificationAction">
+			<result name="success">/user/modification.jsp</result>
 		</action>
 		
-		<action name="Modification">
-			<result>/user/modification.jsp</result>
+		<action name="ModificationSubmit" class="com.skt.opensocial.user.ModificationSubmitAction">
+			<result name="success" type="redirectAction">MyProfilePage</result>
+			<result name="fail" type="redirectAction">Modification</result>
 		</action>
-		<action name="ModificationSubmit">
-			<result name="success">/user/mypage.jsp</result>
-			<result name="fail">/user/modification.jsp</result>
-		</action>
+		
 		<action name="ResetModification">
-			<result >/user/mypage.jsp</result>
+			<result type="redirectAction">Modification</result>
 		</action>
 		
-		<action name="CancelRegistration">
-			<result >/user/mypage.jsp</result>
+		<action name="CancelModification">
+			<result type="redirectAction">MyProfilePage</result>
 		</action>
 		
 		<action name="ManageGadget" class="com.skt.opensocial.user.ListGadgetsAction">
@@ -119,6 +120,9 @@
 			
 			<result name="success" type="redirectAction">ManageFriend</result>
 		</action>
-		
+				
+		<action name="MoveDeveloper" class="com.skt.opensocial.developer.ListGadgetsAction">
+			<result>/developer/DeveloperListGadgets.jsp</result>
+		</action>
 	</package>
 </struts>
