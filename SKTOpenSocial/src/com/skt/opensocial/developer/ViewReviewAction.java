@@ -21,99 +21,105 @@ import com.skt.opensocial.persistence.HibernateUtil;
 
 /**
  * @author Ernest Lee
- *
+ * 
  */
-//public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class ViewReviewAction extends ManageGadgetAction implements Pagenation{
+// public class ListGadgetsAction extends ActionSupport implements RequestAware
+// {
+public class ViewReviewAction extends ManageGadgetAction implements Pagenation {
 	Logger logger = Logger.getLogger(ViewReviewAction.class);
-	
+
 	private long totalReviewNumber = 0;
 	private double gradeAverage = 0;
 	private List<GadgetReview> gadgetReviews = new ArrayList<GadgetReview>();
-	
-	
-	//properties for pagenation
+
+	// properties for pagenation
 	private int listSize = 10; // the size of gadget list
 	private int requestedPage = 1;
 	private int maxPage = 1;
-	
+
 	private int startPage = 1;
 	private int pageListSizeMax = 10;
 
 	private List<Integer> pageList = new ArrayList<Integer>();
-	//end for pagenation
-	
+
+	// end for pagenation
+
 	@SuppressWarnings("unchecked")
-	public String execute(){
+	public String execute() throws Exception{
 		logger.info("called");
-		
-		Transaction tran = null;
+
+		Transaction tx = null;
 		try {
 			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			tran = hs.beginTransaction();
-			
-			if(getGadgetId() == null){
-				tran.rollback();
+			tx = hs.beginTransaction();
+
+			if (getGadgetId() == null) {
+				tx.rollback();
 				return Action.ERROR;
 			}
-			
-			Query query = hs.createQuery("select avg(review.reviewGrade), count(*) from GadgetReview review where review.gadget.id = " + getGadgetId());
-			Object[] result = (Object[])query.uniqueResult();
-			
-			gradeAverage = (Double)result[0];
-			totalReviewNumber = (Long)result[1];
-			
+
+			Query query = hs
+					.createQuery("select avg(review.reviewGrade), count(*) from GadgetReview review where review.gadget.id = "
+							+ getGadgetId());
+			Object[] result = (Object[]) query.uniqueResult();
+
+			gradeAverage = (Double) result[0];
+			totalReviewNumber = (Long) result[1];
+
 			Criteria crit = hs.createCriteria(GadgetReview.class);
 			crit.add(Restrictions.eq("gadget.id", getGadgetId()));
-			
+
 			// for pagenation properties
-			if(listSize > 0)
-				maxPage = (int)Math.ceil((double)totalReviewNumber /listSize);
-			
-			startPage = (requestedPage - (requestedPage%pageListSizeMax))+ 1; //1, 11, 21, ...
-			for(int i = startPage, j = 1 ; j <= pageListSizeMax; i++, j++){
-				if(i > maxPage)
+			if (listSize > 0)
+				maxPage = (int) Math
+						.ceil((double) totalReviewNumber / listSize);
+
+			startPage = (requestedPage - (requestedPage % pageListSizeMax)) + 1; // 1,
+																					// 11,
+																					// 21,
+																					// ...
+			for (int i = startPage, j = 1; j <= pageListSizeMax; i++, j++) {
+				if (i > maxPage)
 					break;
 				pageList.add(new Integer(i));
 			}
-			
-			// add order 
+
+			// add order
 			crit.addOrder(Order.desc("reviewDate"));
-			
+
 			// determine result set
-			if (requestedPage > 0){ 
-				crit.setFirstResult((requestedPage - 1)*listSize);
-			} else if (requestedPage <= 0){
+			if (requestedPage > 0) {
+				crit.setFirstResult((requestedPage - 1) * listSize);
+			} else if (requestedPage <= 0) {
 				crit.setFirstResult(0);
 				requestedPage = 1;
-			} else if(requestedPage >= maxPage){
-				crit.setFirstResult((maxPage -1)*listSize);
+			} else if (requestedPage >= maxPage) {
+				crit.setFirstResult((maxPage - 1) * listSize);
 			}
 			crit.setMaxResults(listSize);
-			
+
 			// get review list
-			gadgetReviews = (List<GadgetReview>)crit.list();
-			
+			gadgetReviews = (List<GadgetReview>) crit.list();
+
 			// to fill person data in review
-			for(GadgetReview review: gadgetReviews){
+			for (GadgetReview review : gadgetReviews) {
 				review.getReviewer().getPerson();
 			}
-			
+
 			// to set gadget name and id
-			Gadget gadget = (Gadget)hs.get(Gadget.class, getGadgetId());
-			
+			Gadget gadget = (Gadget) hs.get(Gadget.class, getGadgetId());
+
 			setGadgetName(gadget.getName());
 			setGadgetId(gadget.getId());
-			
-			tran.commit();
-		} catch (Exception e){
-			tran.rollback();
-			e.printStackTrace();
-			return Action.ERROR;
+
+			tx.commit();
+			return Action.SUCCESS;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
-		
-		
-		return Action.SUCCESS;
+
 	}
 
 	public long getTotalReviewNumber() {
@@ -164,6 +170,6 @@ public class ViewReviewAction extends ManageGadgetAction implements Pagenation{
 	public void setPageList(List<Integer> pageList) {
 		this.pageList = pageList;
 	}
-	//end for pagenation
-	
+	// end for pagenation
+
 }

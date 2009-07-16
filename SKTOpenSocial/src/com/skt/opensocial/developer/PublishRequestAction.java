@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.GadgetStatusConstants;
@@ -37,9 +38,12 @@ public class PublishRequestAction extends DeveloperBaseAction {
 		
 		return "publish_confirm_page";
 	}
-	public String execute() {
+	public String execute() throws Exception {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
+		
 
 		Gadget gadget = (Gadget) hs.get(Gadget.class, gadgetId);
 		
@@ -56,6 +60,10 @@ public class PublishRequestAction extends DeveloperBaseAction {
 		hs.getTransaction().commit();
 
 		return Action.SUCCESS;
+		}catch(Exception e){
+			if(tx != null) tx.rollback();
+			throw e;
+		}
 	}
 
 	public Long getGadgetId() {

@@ -10,10 +10,8 @@
 <body>
 <h4>작업 수행 중 예외가 발견되었습니다.</h4>
 <p>아래의 메시지를 관리자에게 보고하여 주시기 바랍니다.</p> 
-		
 		<h4>예외 이름: </h4><s:property value="exception" /> 
-		<h4>Stack Trace:</h4> <s:property value="exceptionStack" /> 
+		<h4>스택 추적:</h4> <s:property value="exceptionStack" /> 
 		
-		<h5></h5>
 </body>
 </html>

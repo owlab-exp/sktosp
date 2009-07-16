@@ -63,65 +63,73 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 
 	private String message;
 
-	public String execute() {
+	public String execute() throws Exception{
 		prepare();
 
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		Transaction tran = hs.beginTransaction();
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
 
-		if (validateName(gadgetName1))
-			if (validateRow(gadgetName1, gadgetCategory1, gadgetIntro1,
-					gadgetUrl1)) {
-				registerGadget(gadgetName1, gadgetCategory1, gadgetIntro1,
-						gadgetUrl1, hs);
-			} else {
-				message = "1번째 행에 빈 값이 있습니다";
-				return Action.INPUT;
-			}
-		if (validateName(gadgetName2))
-			if (validateRow(gadgetName2, gadgetCategory2, gadgetIntro2,
-					gadgetUrl2)) {
-				registerGadget(gadgetName2, gadgetCategory2, gadgetIntro2,
-						gadgetUrl2, hs);
-			} else {
-				message = "2번째 행에 빈 값이 있습니다";
-				tran.rollback();
-				return Action.INPUT;
-			}
-		if (validateName(gadgetName3))
-			if (validateRow(gadgetName3, gadgetCategory3, gadgetIntro3,
-					gadgetUrl3)) {
-				registerGadget(gadgetName3, gadgetCategory3, gadgetIntro3,
-						gadgetUrl3, hs);
-			} else {
-				message = "3번째 행에 빈 값이 있습니다";
-				tran.rollback();
-				return Action.INPUT;
-			}
-		if (validateName(gadgetName4))
-			if (validateRow(gadgetName4, gadgetCategory4, gadgetIntro4,
-					gadgetUrl4)) {
-				registerGadget(gadgetName4, gadgetCategory4, gadgetIntro4,
-						gadgetUrl4, hs);
-			} else {
-				message = "4번째 행에 빈 값이 있습니다";
-				tran.rollback();
-				return Action.INPUT;
-			}
-		if (validateName(gadgetName5))
-			if (validateRow(gadgetName5, gadgetCategory5, gadgetIntro5,
-					gadgetUrl5)) {
-				registerGadget(gadgetName5, gadgetCategory5, gadgetIntro5,
-						gadgetUrl5, hs);
-			} else {
-				message = "5번째 행에 빈 값이 있습니다";
-				tran.rollback();
-				return Action.INPUT;
-			}
+			if (validateName(gadgetName1))
+				if (validateRow(gadgetName1, gadgetCategory1, gadgetIntro1,
+						gadgetUrl1)) {
+					registerGadget(gadgetName1, gadgetCategory1, gadgetIntro1,
+							gadgetUrl1, hs);
+				} else {
+					message = "1번째 행에 빈 값이 있습니다";
+					return Action.INPUT;
+				}
+			if (validateName(gadgetName2))
+				if (validateRow(gadgetName2, gadgetCategory2, gadgetIntro2,
+						gadgetUrl2)) {
+					registerGadget(gadgetName2, gadgetCategory2, gadgetIntro2,
+							gadgetUrl2, hs);
+				} else {
+					message = "2번째 행에 빈 값이 있습니다";
+					tx.rollback();
+					return Action.INPUT;
+				}
+			if (validateName(gadgetName3))
+				if (validateRow(gadgetName3, gadgetCategory3, gadgetIntro3,
+						gadgetUrl3)) {
+					registerGadget(gadgetName3, gadgetCategory3, gadgetIntro3,
+							gadgetUrl3, hs);
+				} else {
+					message = "3번째 행에 빈 값이 있습니다";
+					tx.rollback();
+					return Action.INPUT;
+				}
+			if (validateName(gadgetName4))
+				if (validateRow(gadgetName4, gadgetCategory4, gadgetIntro4,
+						gadgetUrl4)) {
+					registerGadget(gadgetName4, gadgetCategory4, gadgetIntro4,
+							gadgetUrl4, hs);
+				} else {
+					message = "4번째 행에 빈 값이 있습니다";
+					tx.rollback();
+					return Action.INPUT;
+				}
+			if (validateName(gadgetName5))
+				if (validateRow(gadgetName5, gadgetCategory5, gadgetIntro5,
+						gadgetUrl5)) {
+					registerGadget(gadgetName5, gadgetCategory5, gadgetIntro5,
+							gadgetUrl5, hs);
+				} else {
+					message = "5번째 행에 빈 값이 있습니다";
+					tx.rollback();
+					return Action.INPUT;
+				}
 
-		tran.commit();
+			tx.commit();
+			return Action.SUCCESS;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
 
-		return Action.SUCCESS;
+		}
+
 	}
 
 	private boolean validateName(String name) {
@@ -147,7 +155,7 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 		gadget.setName(name);
 		gadget.setDeveloper((User) sessionMap
 				.get(SKTOpenSocialSupportConstants.USER));
-		
+
 		Set<GadgetCategory> categories = new HashSet<GadgetCategory>();
 		GadgetCategory category = (GadgetCategory) hs.get(GadgetCategory.class,
 				categoryId);
@@ -158,7 +166,7 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 		gadget.setRegisterType(GadgetRegisterTypeConstants.URL);
 		gadget.setStatus(GadgetStatusConstants.REGISTERED);
 		gadget.setRegisterDate(new Date());
-		//gadget.setSource(url);
+		// gadget.setSource(url);
 		gadget.setGadgetUrl(url);
 
 		hs.save(gadget);

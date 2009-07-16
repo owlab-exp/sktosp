@@ -37,34 +37,38 @@ public class IconViewAction extends ManageGadgetAction {
 	private int bufferSize = 1024;
 	private boolean allowCaching;
 
-	public String execute() {
+	public String execute() throws Exception{
 
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		Transaction tran = hs.beginTransaction();
-
-		// Get a gadget by id;
-		Gadget gadget = (Gadget) hs.get(Gadget.class, getGadgetId());
-		// if(gadget == null) {
-		// logger.error("No such gadget");
-		// return Action.ERROR;
-		// }
-		logger.info("Gadget ID=" + gadgetId);
-		// GadgetIcon icon = (GadgetIcon)hs.load(GadgetIcon.class, gadgetId);
-		GadgetIcon icon = gadget.getIcon();
-		// if(icon == null){
-		// logger.error("No icon");
-		// return Action.ERROR;
-		// }
-		// if(icon.getContent() == null){ // meaningless code, icon row should
-		// be filled at least for GADGET_ID
-		// logger.error("No icon");
-		// return Action.ERROR;
-		// }
-		if (icon.getContentType() != null)
-			setContentType(icon.getContentType());
-		if (icon.getName() != null)
-			setContentDisposition(icon.getName());
+		Transaction tx = null;
 		try {
+			tx = hs.beginTransaction();
+
+			// Get a gadget by id;
+			Gadget gadget = (Gadget) hs.get(Gadget.class, getGadgetId());
+			// if(gadget == null) {
+			// logger.error("No such gadget");
+			// return Action.ERROR;
+			// }
+			logger.info("Gadget ID=" + gadgetId);
+			// GadgetIcon icon = (GadgetIcon)hs.load(GadgetIcon.class,
+			// gadgetId);
+			GadgetIcon icon = gadget.getIcon();
+			// if(icon == null){
+			// logger.error("No icon");
+			// return Action.ERROR;
+			// }
+			// if(icon.getContent() == null){ // meaningless code, icon row
+			// should
+			// be filled at least for GADGET_ID
+			// logger.error("No icon");
+			// return Action.ERROR;
+			// }
+			if (icon.getContentType() != null)
+				setContentType(icon.getContentType());
+			if (icon.getName() != null)
+				setContentDisposition(icon.getName());
+
 			if (icon.getContent() != null) {
 				Blob iconBlob = icon.getContent();
 				setInputStream(iconBlob.getBinaryStream());
@@ -72,14 +76,16 @@ public class IconViewAction extends ManageGadgetAction {
 			} else {
 				setInputStream(null);
 			}
-			tran.commit();
+			tx.commit();
+			return Action.SUCCESS;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			logger.error("Error occurred getting image bytes from DB");
-			tran.rollback();
-			return Action.ERROR;
+			
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
-		return Action.SUCCESS;
+		
 	}
 
 	public String getContentType() {

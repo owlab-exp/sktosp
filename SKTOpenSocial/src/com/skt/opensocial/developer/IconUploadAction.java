@@ -64,7 +64,7 @@ public class IconUploadAction extends ManageGadgetAction {
 		this.iconFileName = iconFileName;
 	}
 
-	public String execute() {
+	public String execute() throws Exception{
 		if (getGadgetName() == null) {
 			logger.info("No gadget name");
 			// return Action.INPUT;
@@ -79,17 +79,18 @@ public class IconUploadAction extends ManageGadgetAction {
 		logger.info("Icon Content Type=" + getIconContentType());
 		logger.info("Icon File Temporal Path=" + icon.getAbsolutePath());
 
-		
 		prepare();
-		
+
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		Transaction tran = hs.beginTransaction();
+		
+		Transaction tx = null;
 		try {
+			tx = hs.beginTransaction();
 			Gadget newGadget = null;
 			if (getGadgetId() != null) {
 				newGadget = (Gadget) hs.get(Gadget.class, getGadgetId());
-				
-			} 
+
+			}
 			if (newGadget == null) {
 				newGadget = new Gadget();
 			}
@@ -109,19 +110,16 @@ public class IconUploadAction extends ManageGadgetAction {
 						GadgetCategory.class, categoryIdArray[i]);
 				newGadget.addCategory(category);
 			}
-			
-			
-			setGadgetCategoryIdSelected(categoryIdArray);
-			
 
-			if(getGadgetId() != null) {
+			setGadgetCategoryIdSelected(categoryIdArray);
+
+			if (getGadgetId() != null) {
 				hs.saveOrUpdate(newGadget);
 			} else {
 				gadgetId = (Long) hs.save(newGadget);
 				setGadgetId(gadgetId);
 			}
 
-			// if (newGadget != null) {
 			GadgetIcon gadgetIcon = new GadgetIcon();
 			gadgetIcon.setGadget(newGadget);
 			gadgetIcon.setName(getIconFileName());
@@ -130,20 +128,14 @@ public class IconUploadAction extends ManageGadgetAction {
 					.createBlob(new FileInputStream(icon)));
 
 			hs.saveOrUpdate(gadgetIcon);
-			tran.commit();
-			// } else {
-			// logger.error("Requested Gadget does not exist");
-			// }
-		} catch (FileNotFoundException fnfe) {
-			logger.error(fnfe.getMessage());
-			tran.rollback();
-			return Action.INPUT;
-		} catch (IOException ioe) {
+			tx.commit();
+			return Action.SUCCESS;
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			logger.error(ioe.getMessage());
-			tran.rollback();
+			logger.error(e.getMessage());
+			if(tx!= null)tx.rollback();
 			return Action.INPUT;
 		}
-		return Action.SUCCESS;
+		
 	}
 }

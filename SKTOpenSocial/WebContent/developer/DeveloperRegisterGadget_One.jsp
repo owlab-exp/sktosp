@@ -110,7 +110,7 @@
 								
 								<s:if test="%{registerType.equals('src')}">
 								<tr>
-									<td valign="top">가젯 소스:</td>
+									<td valign="top">*가젯 소스:</td>
 									<td>
 										<s:textarea cols="70" rows="10" name="gadgetSource" />
 									</td>
@@ -118,9 +118,10 @@
 								</s:if>
 								<s:elseif test="%{registerType.equals('url')}">
 								<tr>
-									<td valign="top">가젯 URL:</td>
+									<td valign="top">*가젯 URL:</td>
 									<td>
-										<s:textfield name="gadgetUrl" size="50"/>
+										<s:textfield name="gadgetUrl" size="50"/><br>
+										예: http://www.google.com/ig/modules/builtin_gmail.xml
 									</td>
 								</tr>
 								</s:elseif>

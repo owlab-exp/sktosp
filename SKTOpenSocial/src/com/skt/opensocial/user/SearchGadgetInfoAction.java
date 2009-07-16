@@ -85,7 +85,7 @@ public class SearchGadgetInfoAction extends ManageGadgetAction{
 	
 	
 
-	public String execute() {
+	public String execute() throws Exception{
 		prepare();
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -165,7 +165,7 @@ public class SearchGadgetInfoAction extends ManageGadgetAction{
 		this.categoryStringList = categoryStringList;
 	}
 
-	public String getModifyGadgetPage(){
+	public String getModifyGadgetPage()throws Exception{
 		prepare();
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();

@@ -31,12 +31,7 @@
 <!-- //Local Gadget Enabling Function -->
 <script type="text/javascript">
 	// Specify Gadget XML file URL
-	<s:if test="%{registerType.equals('url')}">
-		var gadget0Url = '<s:property value="gadgetUrl"/>';
-	</s:if>
-	<s:elseif test="%{registerType.equals('src')}">
-		var gadget0Url = '<s:property value="gadgetUrl"/>';
-	</s:elseif>
+	var gadget0Url = '<s:property value="gadgetUrl"/>';
 	// Specify Gadget Owner & Viewer
 	var viewerId = '<s:property value="developerId"/>';
 	var ownerId = '<s:property value="developerId"/>';
@@ -73,17 +68,32 @@
 </script>
 <!--// Gadget Style override -->
 <style type="text/css">
+  body {
+    font-family: arial, sans-serif;
+  }
 
- .gadgets-gadget-chrome {
-    width: 95%;
-    height: 95%;
-    float: center;
+  #headerDiv {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #e5ecf9;
+    color: #3366cc;
+    font-size: larger;
+    font-weight: bold;
+  }
+
+  .subTitle {
+    font-size: smaller;
+    float: right;
+  }
+
+  .gadgets-gadget-chrome {
+    width: 60%;
+    float: none;
     margin: auto;
   }
 
   .gadgets-gadget {
-    width: 90%;
-    height: 90%;
+    width: 100%;
   }
 
 </style>
@@ -122,10 +132,10 @@
 						</div>
 						</td>
 					</tr>
-					<tr height="100%">
+					<tr >
 						<td><!-- list of gadgets -->
 						<table class="subtit_board" summary="List of Gadgets"
-							cellpadding="0" cellspacing="0" width="100%" height="390px">
+							cellpadding="0" cellspacing="0" width="100%" >
 							<colgroup>
 								<col width="100%">
 							</colgroup>
@@ -134,7 +144,7 @@
 									<td>가젯 이름(ID): <s:property value="gadgetName" /> (<s:property
 										value="gadgetId" />)</td>
 								</tr>
-								<tr height="100%"><s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
+								<tr><s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
 										<td valign="top" >
 											<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
 										</td>

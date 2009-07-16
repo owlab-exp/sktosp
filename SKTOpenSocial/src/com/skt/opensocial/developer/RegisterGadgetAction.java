@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.activation.MimetypesFileTypeMap;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -40,8 +41,9 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String defaultIconLocation = "http://localhost:8080/SKTOpenSocial/images/gadget_default_icon.jpg";
-	public String getGadgetRegisterPage() {
+	private String defaultIconFile = "/images/gadget_default_icon.jpg";
+
+	public String getGadgetRegisterPage() throws Exception{
 		prepare();
 
 		setGadgetStatus(GadgetStatusConstants.NOT_REGISTERED);
@@ -57,21 +59,30 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 
 	}
 
-	public String finishGadgetRegister() {
-		
+	public String finishGadgetRegister() throws Exception{
+
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
 
-		Gadget gadget = (Gadget) hs.get(Gadget.class, gadgetId);
-		gadget.setStatus(GadgetStatusConstants.REGISTERED);
-		gadget.setRegisterDate(new Date());
-		hs.save(gadget);
-		hs.getTransaction().commit();
+			Gadget gadget = (Gadget) hs.get(Gadget.class, gadgetId);
+			gadget.setStatus(GadgetStatusConstants.REGISTERED);
+			gadget.setRegisterDate(new Date());
+			hs.save(gadget);
+			hs.getTransaction().commit();
+			return "gadget_list";
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
 
-		return "gadget_list";
 	}
 
-	public String execute() {
+	public String execute() throws Exception{
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tx = null;
 		try {
 			logger.info(">>>>>>>>>>>>>>>>>>>> Gadget Registration");
 			logger.info(">>>>>>>>>>>>>>>>>>>> registerType="
@@ -88,19 +99,18 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 
 			prepare();
 
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tx = hs.beginTransaction();
 
 			Gadget newGadget = new Gadget();
 
 			if (getGadgetName() == null || getGadgetName().equals("")) {
-				tran.rollback();
+				tx.rollback();
 				return "input";
 			}
 			newGadget.setName(getGadgetName());
-			
+
 			if (getGadgetIntro() == null || getGadgetIntro().equals("")) {
-				tran.rollback();
+				tx.rollback();
 				return "input";
 			}
 			newGadget.setIconUrl(getGadgetIconUrl());
@@ -108,45 +118,45 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			newGadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
 
 			if (getRegisterType() == null || getRegisterType().equals("")) {
-				tran.rollback();
+				tx.rollback();
 				return Action.INPUT;
 			}
 
-			
 			if (registerType.equals(GadgetRegisterTypeConstants.SRC)) {
-				if(getGadgetSource() == null || getGadgetSource().length() == 0) {
-					tran.rollback();
+				if (getGadgetSource() == null
+						|| getGadgetSource().length() == 0) {
+					tx.rollback();
 					return Action.INPUT;
 				}
 				newGadget.setGadgetSource(getGadgetSource());
 			} else if (registerType.equals(GadgetRegisterTypeConstants.URL)) {
-				if(getGadgetUrl() == null || getGadgetUrl().length() == 0) {
-					tran.rollback();
+				if (getGadgetUrl() == null
+						|| getGadgetUrl().trim().length() == 0) {
+					tx.rollback();
 					return Action.INPUT;
 				}
-				newGadget.setGadgetUrl(getGadgetUrl());
+				newGadget.setGadgetUrl(getGadgetUrl().trim());
 			} else {
-				tran.rollback();
+				tx.rollback();
 				return Action.INPUT;
 			}
 			newGadget.setRegisterType(getRegisterType());
-			
+
 			newGadget.setDeveloper((User) sessionMap
 					.get(SKTOpenSocialSupportConstants.USER));
 
 			gadgetId = (Long) hs.save(newGadget);
-			
-			setGadgetId(gadgetId);//?
+
+			setGadgetId(gadgetId);// ?
 			sessionMap.put("GADGET_ID", gadgetId);// for preview
 			// prepare categories
 			String categoryIds = getGadgetCategory();
-			if(categoryIds == null || categoryIds.length() == 0) {
-				tran.rollback();
+			if (categoryIds == null || categoryIds.length() == 0) {
+				tx.rollback();
 				return "input";
 			}
 			String[] categoryIdArray = categoryIds.replace(" ", "").split(",");
 
-			
 			for (int i = 0; i < categoryIdArray.length; i++) {
 				GadgetCategory category = (GadgetCategory) hs.load(
 						GadgetCategory.class, categoryIdArray[i]);
@@ -173,36 +183,40 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					logger.error(e.getMessage());
-					tran.rollback();
+					tx.rollback();
 					return Action.INPUT;
-				} 
+				}
 				newGadget.setIconUrl("dummy");
 			} else {
 				gadgetIcon.setName("default");
-				URL defaultIconUrl = new URL(defaultIconLocation);
+				URL defaultIconUrl = new URL("http://"
+						+ ServletActionContext.getRequest().getServerName()
+						+ ":"
+						+ ServletActionContext.getRequest().getServerPort()
+						+ ServletActionContext.getRequest().getContextPath()
+						+ defaultIconFile);
 				gadgetIcon.setContentType("image/jpeg");
-				//try {
-					gadgetIcon.setContent(Hibernate.createBlob(defaultIconUrl.openStream()));
-				//} catch(FileNotFoundException e){
-				//	logger.error(e.getMessage());
-				//	tran.rollback();
-				//	return Action.INPUT;
-				//}
+				// try {
+				gadgetIcon.setContent(Hibernate.createBlob(defaultIconUrl
+						.openStream()));
+				// } catch(FileNotFoundException e){
+				// logger.error(e.getMessage());
+				// tran.rollback();
+				// return Action.INPUT;
+				// }
 			}
 
 			hs.saveOrUpdate(gadgetIcon);
 
-			tran.commit();
-			
+			tx.commit();
+			return "preview";
 		} catch (Exception e) {
-			
-			HibernateUtil.getSessionFactory().getCurrentSession()
-					.getTransaction().rollback();
-			e.printStackTrace();
-			return "input";
+
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
 
-		return "preview";
 	}
 
 	// for icon upload
@@ -233,6 +247,16 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	public void setIconFileName(String iconFileName) {
 		this.iconFileName = iconFileName;
 	}
+
 	// end of icon file upload
+
+	// for the static param of default icon location
+	public String getDefaultIconFile() {
+		return this.defaultIconFile;
+	}
+
+	public void setDefaultIconFile(String defaultIconFile) {
+		this.defaultIconFile = defaultIconFile;
+	}
 
 }

@@ -19,7 +19,7 @@
 <html>
 <head>
 <title>Gadget testing container</title>
-<link rel="stylesheet" href="gadgets.css">
+<link rel="stylesheet" href="../container/gadgets.css">
 <style type="text/css">
   body {
     font-family: arial, sans-serif;
@@ -64,7 +64,7 @@
   <div id="headerDiv">
     <div style="float:left">Gadget testing container</div>
     <div class="subTitle">
-      Displaying gadget: <input type="text" size="75" id="gadgetUrl" value=""/>
+      Displaying gadget: <input type="text" size="75" id="gadgetUrl"/>
       <input type="checkbox" id="useCacheCheckbox" checked="true"
        /><label for="useCacheCheckbox">use cache</label>
       <input type="checkbox" id="useCajaCheckbox"
@@ -74,14 +74,14 @@
 
       <br/>
 
-      Using state: <input type="text" size="75" id="stateFileUrl" value="http://localhost:8080/gadgets/files/sampledata/canonicaldb.json"/>
+      Using state: <input type="text" size="75" id="stateFileUrl"/>
       <input type="checkbox" id="doEvilCheckbox"
        /><label for="doEvilCheckbox">do evil</label>
 
       <br/>
       <br/>
-      Viewer id: <input type="text" size="20" id="viewerId" value=""/>
-      Owner id: <input type="text" size="20" id="ownerId" value=""/>
+      Viewer id: <input type="text" size="20" id="viewerId"/>
+      Owner id: <input type="text" size="20" id="ownerId"/>
 
       <br/>
 

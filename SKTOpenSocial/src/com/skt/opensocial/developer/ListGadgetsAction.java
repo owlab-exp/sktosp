@@ -53,14 +53,16 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 	private List<Integer> pageList = new ArrayList<Integer>();
 	// end for pagenation
 	@SuppressWarnings("unchecked")
-	public String execute() {
+	public String execute() throws Exception {
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tx = null;
 		try {
 			User user = (User) session.get(SKTOpenSocialSupportConstants.USER);
 
 			String userId = user.getUserId();
 
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			
+			tx = hs.beginTransaction();
 
 			logger.info("User ID=" + userId);
 			user = (User) hs.load(User.class, userId);
@@ -110,15 +112,16 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 
 			logger.info("Number of gadgets of this page = " + gadgetList.size());
 
-			tran.commit();
-
+			tx.commit();
+			return Action.SUCCESS;
 		} catch (Exception e) {
-			HibernateUtil.getSessionFactory().getCurrentSession()
-					.getTransaction().rollback();
-			e.printStackTrace();
+			if(tx != null){
+				tx.rollback();
+			}
+			throw e;
 		}
 
-		return Action.SUCCESS;
+		
 	}
 
 	/*

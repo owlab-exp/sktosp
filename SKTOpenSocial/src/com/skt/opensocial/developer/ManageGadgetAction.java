@@ -6,13 +6,15 @@ import java.util.Map;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.RequestAware;
+import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
 import com.skt.opensocial.common.GadgetRegisterTypeMap;
 import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.HibernateUtil;
 
-public class ManageGadgetAction extends DeveloperBaseAction implements RequestAware {
+public class ManageGadgetAction extends DeveloperBaseAction implements
+		RequestAware {
 	private Logger logger = Logger.getLogger(RegisterGadgetAction.class);
 	/**
 	 * 
@@ -33,20 +35,27 @@ public class ManageGadgetAction extends DeveloperBaseAction implements RequestAw
 	protected List<GadgetCategory> categoryList;
 
 	protected Map<String, Object> sessionMap;
-	//private GadgetDataList gadgetDataList;
+	// private GadgetDataList gadgetDataList;
 
 	protected Map<String, Object> requestMap;
-	
-	public void prepare() {
+
+	public void prepare() throws Exception{
 		if (categoryList == null) {
 			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			hs.beginTransaction();
+			Transaction tx = null;
+			try {
+				tx = hs.beginTransaction();
+			
 			List<GadgetCategory> categories = hs.createQuery(
 					"from GadgetCategory").list();
 			logger.log(Level.INFO, "category size = " + categories.size());
 
 			categoryList = categories;
-			hs.getTransaction().commit();
+			tx.commit();
+			}catch(Exception e) {
+				if(tx != null) tx.rollback();
+				throw e;
+			}
 
 		}
 		registerTypeMap = new GadgetRegisterTypeMap();
@@ -139,7 +148,7 @@ public class ManageGadgetAction extends DeveloperBaseAction implements RequestAw
 	public void setGadgetId(Long gadgetId) {
 		this.gadgetId = gadgetId;
 	}
-	
+
 	public String[] getGadgetCategoryIdSelected() {
 		return gadgetCategoryIdSelected;
 	}
@@ -157,5 +166,5 @@ public class ManageGadgetAction extends DeveloperBaseAction implements RequestAw
 		// TODO Auto-generated method stub
 		this.requestMap = requestMap;
 	}
-	
+
 }

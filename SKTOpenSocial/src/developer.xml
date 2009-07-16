@@ -12,6 +12,7 @@
 			<result name="input_multiple">/developer/DeveloperRegisterGadget_URL_Multi.jsp</result>
 		</action>
 		<action name="RegisterGadget" class="com.skt.opensocial.developer.RegisterGadgetAction">
+			<param name="defaultIconFile">/images/gadget_icon.jpg</param>
 			<result name="input" type="redirectAction">RegisterGadgetPage</result>
 			<result name="preview" type="redirectAction">PreviewGadget</result>
 			<result name="gadget_list" type="redirectAction">ListGadgets</result>

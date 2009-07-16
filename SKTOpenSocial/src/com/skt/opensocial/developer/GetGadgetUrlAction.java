@@ -38,37 +38,44 @@ public class GetGadgetUrlAction extends ManageGadgetAction {
 	private int bufferSize = 1024;
 	private boolean allowCaching;
 
-	public String execute() {
+	public String execute() throws Exception{
 
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		Transaction tran = hs.beginTransaction();
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
 
-		// Get a gadget by id;
-		Gadget gadget = (Gadget) hs.get(Gadget.class, getGadgetId());
-		
-		logger.info("Gadget ID=" + gadgetId);
-		
-		String gadgetSource = gadget.getGadgetSource(); 
-		String registerType = gadget.getRegisterType();
-		
-		if(registerType.equals(GadgetRegisterTypeConstants.URL)){
-			// the source of the gadget is already the very url
-			//
+			// Get a gadget by id;
+			Gadget gadget = (Gadget) hs.get(Gadget.class, getGadgetId());
+
+			logger.info("Gadget ID=" + gadgetId);
+
+			String gadgetSource = gadget.getGadgetSource();
+			String registerType = gadget.getRegisterType();
+
+			if (registerType.equals(GadgetRegisterTypeConstants.URL)) {
+				// the source of the gadget is already the very url
+				//
+			}
+			if (gadgetSource == null) {
+				// gadget source is null
+			}
+			if (registerType.equals(GadgetRegisterTypeConstants.SRC)) {
+				setContentType("text/xml");
+				setContentDisposition(gadget.getName() + ".xml");
+				byte[] sourceBytes = gadgetSource.getBytes();
+				setInputStream(new ByteArrayInputStream(sourceBytes));
+				setContentLength(new Long(sourceBytes.length));
+			}
+
+			tx.commit();
+			return Action.SUCCESS;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
-		if(gadgetSource == null) {
-			// gadget source is null
-		}
-		if(registerType.equals(GadgetRegisterTypeConstants.SRC)){
-			setContentType("text/xml");
-			setContentDisposition(gadget.getName() + ".xml");
-			byte[] sourceBytes = gadgetSource.getBytes();
-			setInputStream(new ByteArrayInputStream(sourceBytes));
-			setContentLength(new Long(sourceBytes.length));
-		}
-		
-		tran.commit();
-		
-		return Action.SUCCESS;
+	
 	}
 
 	public String getContentType() {
