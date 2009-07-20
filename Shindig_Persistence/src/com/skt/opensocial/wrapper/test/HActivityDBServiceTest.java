@@ -49,7 +49,7 @@ public class HActivityDBServiceTest {
 		    Set<String> activityIds = new HashSet<String>();
 		    activityIds.add("1");
 		    
-	    Future<RestfulCollection<Activity>> result = this.activityDBService.getActivities(new UserId(UserId.Type.userId, "john.doe"), new GroupId(GroupId.Type.self, "@self"), null, null, collectionOptions, null, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
+	    Future<RestfulCollection<Activity>> result = this.activityDBService.getActivities(new UserId(UserId.Type.userId, "john.doe"), new GroupId(GroupId.Type.friends, "@friends"), null, null, collectionOptions, null, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
 //		    Activity activity = result.get();
 //		    SpiTestUtil.assertActivityEquals(activity, testActivity);    
 	  }

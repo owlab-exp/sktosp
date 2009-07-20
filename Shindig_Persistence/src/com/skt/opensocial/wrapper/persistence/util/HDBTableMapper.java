@@ -214,6 +214,10 @@ public class HDBTableMapper {
 			}
 		}
 		
+		person.setEmails(emails);
+		person.setIms(ims);
+		person.setPhoneNumbers(phoneNumbers);
+		person.setPhotos(photos);
 		
 		person.setAddresses( getAddressesFromAddressDBSet( personDB.getAddresses() ) );
 		person.setAge(personDB.getAge());
@@ -452,7 +456,7 @@ public class HDBTableMapper {
 			organization.setStartDate( organizationDB.getStartDate() );
 			organization.setSubField( organizationDB.getSubField() );
 			organization.setTitle( organizationDB.getTitle() );
-			organization.setType( organizationDB.getTitle() );
+			organization.setType( organizationDB.getType() );
 			organization.setWebpage( organizationDB.getWebpage() );
 			
 			// get Address details of the organization

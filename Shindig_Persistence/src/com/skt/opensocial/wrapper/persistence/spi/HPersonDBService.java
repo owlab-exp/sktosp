@@ -101,7 +101,8 @@ public class HPersonDBService implements PersonService {
 			for (String id : idSet) {
 				Person person = this.getPersonFromDB(id, fields, token);
 
-				result.add(person);
+				if (person != null)
+					result.add(person);
 			}
 
 			if (GroupId.Type.self == groupId.getType() && result.isEmpty()) {
@@ -119,9 +120,7 @@ public class HPersonDBService implements PersonService {
 				Collections.reverse(result);
 			}
 
-			// TODO: The samplecontainer doesn't really have the concept of
-			// HAS_APP so
-			// we can't support any filters yet. We should fix this.
+			
 
 			int totalSize = result.size();
 			int last = options.getFirst() + options.getMax();
@@ -147,12 +146,13 @@ public class HPersonDBService implements PersonService {
 
 			Person person = this.getPersonFromDB(userId, fields, token);
 
-			if (person != null) {
+			if (id != null && person != null) {
 				return ImmediateFuture.newInstance(person);
-			} else {
-				throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST,
-						"Person not found");
-			}
+			} 
+			
+			throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST,
+			"Person not found");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ProtocolException(
@@ -166,26 +166,37 @@ public class HPersonDBService implements PersonService {
 		Person person = new PersonImpl();
 //		PersonDB personDB = new PersonDB();
 
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
 			
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			com.skt.opensocial.persistence.Person personDB = (com.skt.opensocial.persistence.Person) hs.get(com.skt.opensocial.persistence.Person.class, userId);
 			
-			person = (PersonImpl) HDBTableMapper
-			.getPersonFromPersonDB(personDB);
+			if( personDB != null ) {
+				person = (PersonImpl) HDBTableMapper
+				.getPersonFromPersonDB(personDB);
+				
+				tran.commit();
+				return person;
+			}
 			
 			tran.commit();
+			return null;			
+			
 			
 		} catch (Exception e) {
+			if ( tran != null )
+				tran.rollback();
+			
 			e.printStackTrace();
 			throw new ProtocolException(
 					HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e
 							.getMessage(), e);
 		}
 
-		return person;
 	}
 
 
@@ -218,6 +229,9 @@ public class HPersonDBService implements PersonService {
 		}
 
 		Set<String> idSet = new HashSet<String>();
+		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
 
 		switch (groupId.getType()) {
 		case all:
@@ -226,9 +240,7 @@ public class HPersonDBService implements PersonService {
 			try {
 				// List<String> allUserIds = sqlMap.queryForList(
 				// "getAllUserIds" );
-				Session hs = HibernateUtil.getSessionFactory()
-						.getCurrentSession();
-				Transaction tran = hs.beginTransaction();
+				tran = hs.beginTransaction();
 
 				// Criteria crit = hs.createCriteria(User.class);
 				Query q = hs.createQuery("select id from User");
@@ -237,6 +249,8 @@ public class HPersonDBService implements PersonService {
 				tran.commit();
 
 			} catch (Exception e) {
+				if (tran != null)
+					tran.rollback();
 				HibernateUtil.getSessionFactory().getCurrentSession()
 						.getTransaction().rollback();
 				e.printStackTrace();
@@ -247,9 +261,7 @@ public class HPersonDBService implements PersonService {
 			}
 			break;
 		case groupId:
-			if(groupId.getGroupId().equals("GUILD")) {
-				System.out.println("Ha");
-			}
+			
 		case friends:
 			try {
 				/**
@@ -271,8 +283,7 @@ public class HPersonDBService implements PersonService {
 				 * </dl>
 				 */
 
-				Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-				Transaction tran = hs.beginTransaction();
+				tran = hs.beginTransaction();
 				
 				//List<String> friendsIds = sqlMap.queryForList("getFriendsIds",user);
 
@@ -305,6 +316,9 @@ public class HPersonDBService implements PersonService {
 
 				tran.commit();
 			} catch (Exception e) {
+				if (tran != null)
+					tran.rollback();
+				
 				HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 				e.printStackTrace();
 			}

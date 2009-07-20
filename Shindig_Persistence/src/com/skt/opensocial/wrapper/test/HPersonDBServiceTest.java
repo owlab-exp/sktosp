@@ -42,16 +42,16 @@ public class HPersonDBServiceTest {
 
   private SecurityToken token = new FakeGadgetToken();
 
+  
   @Test
   public void getCanonicalPerson() throws Exception {
 	  Set<String> fields = new HashSet<String>();
 	  fields.add("id");
 	  
-     Future<Person> person = this.personServiceDb.getPerson(new UserId(Type.userId, "john.doe"), fields, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
+     Future<Person> person = this.personServiceDb.getPerson(new UserId(Type.userId, null), fields, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
      SpiTestUtil.assertPersonEquals(person.get(), canonical.getId());
      System.out.println(canonical.getId());
   }
-
   
   @Test
   public void getCanonicalPeople() throws Exception {
@@ -62,9 +62,13 @@ public class HPersonDBServiceTest {
 	    collectionOptions.setMax(20);
 	    
 	//Get first friend of john.doe
-	  Future<RestfulCollection<Person>> result = this.personServiceDb.getPeople(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.friends, "@friend"), collectionOptions, Person.Field.ALL_FIELDS, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
+	  Future<RestfulCollection<Person>> result = this.personServiceDb.getPeople(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.friends, "@friends"), collectionOptions, Person.Field.ALL_FIELDS, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
   }
   
+
+
+  
+
   @Test
   public void getCanonicalPersonAppData() throws Exception {
 	  Set<String> fields = new HashSet<String>();

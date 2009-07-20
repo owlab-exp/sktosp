@@ -2,6 +2,7 @@
 package com.skt.opensocial.wrapper.persistence.spi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.apache.shindig.auth.SecurityToken;
 import org.apache.shindig.common.util.ImmediateFuture;
 import org.apache.shindig.protocol.ProtocolException;
 import org.apache.shindig.protocol.RestfulCollection;
+import org.apache.shindig.protocol.model.SortOrder;
 import org.apache.shindig.social.core.model.ActivityImpl;
 import org.apache.shindig.social.opensocial.model.Activity;
 import org.apache.shindig.social.opensocial.model.MediaItem;
@@ -54,33 +56,14 @@ public class HActivityDBService implements ActivityService {
 		
 		List<Activity> activityList = Lists.newArrayList();
 		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
-//			List<Activity> result = Lists.newArrayList();
-//			
-//			Set<String> idSet = getIdSet(userIds, groupId, token);
-//			
-//			
-//			// for all users in the idSet, get activities of each user
-//		    for (String userId : idSet) {
-//				result = sqlMap.queryForList("getActivities", userId);
-//				
-//				// get Activities of each user
-//				for (int i=0; i<result.size(); i++) {
-//					Activity activity = new ActivityImpl();
-//					activity = result.get(i); 
-//					
-//					//*** get the mediaItems and templateParams of the activitiy stored separately ***//
-//					activity.setTemplateParams( sqlMap.queryForMap("getTemplateParams", activity, "param_key", "param_value") );
-//					//activity.setMediaItems( sqlMap.queryForList("getMediaItems", activity) );
-//				
-//					activityList.add(activity);
-//				}
-//		    }
-			
+
 			Set<String> idSet = getIdSet(userIds, groupId, options, token);
 			
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			for (String userId : idSet) {			
 				
@@ -132,10 +115,15 @@ public class HActivityDBService implements ActivityService {
 			}
 			
 			tran.commit();
+
 			
 		    return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
 		    
 		} catch (Exception e) {
+			
+			if (tran != null) 
+				tran.rollback();
+			
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 	}
@@ -146,37 +134,15 @@ public class HActivityDBService implements ActivityService {
 		      SecurityToken token) throws ProtocolException {
 		
 		List<Activity> activityList = Lists.newArrayList();
-
 	
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
-			
-//			List<Activity> result = Lists.newArrayList();
-//			Set<String> idSet = getIdSet(userId, groupId, options, token);
-//			
-//			// for all users in the idSet, get activities of each user
-//		    for (String user : idSet) {
-//				result = sqlMap.queryForList("getActivities", user);
-//				
-//				for (int i=0; i<result.size(); i++) {
-//					Activity activity = new ActivityImpl();
-//					activity = result.get(i); 
-//					
-//					for (String activityId : activityIds) {
-//						if ( activity.getId().equals(activityId) ) {
-//							//*** get the mediaItems and templateParams of the activitiy stored separately ***//
-//							activity.setTemplateParams( sqlMap.queryForMap("getTemplateParams", activity, "param_key", "param_value") );
-//							activity.setMediaItems( sqlMap.queryForList("getMediaItems", activity) );
-//							
-//							activityList.add(activity);
-//						}
-//					}
-//				}
-//		    }
-			
+
 			Set<String> idSet = getIdSet(userId, groupId, options, token);
 			
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			for (String user : idSet) {			
 				
@@ -234,10 +200,13 @@ public class HActivityDBService implements ActivityService {
 			}
 			
 			tran.commit();
-		
+
 			return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
 			
 		} catch (Exception e) {
+			if ( tran != null )
+				tran.rollback();
+			
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 		
@@ -247,27 +216,14 @@ public class HActivityDBService implements ActivityService {
 	public Future<Activity> getActivity(UserId userId, GroupId groupId, String appId,
 		      Set<String> fields, String activityId, SecurityToken token) throws ProtocolException {
 		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
-//			List<Activity> result = Lists.newArrayList();
-//			String user = userId.getUserId(token);
-//			result = sqlMap.queryForList("getActivities", user);
-//			
-//			for (int i=0; i<result.size(); i++) {
-//				Activity activity = new ActivityImpl();
-//				activity = result.get(i); 
-//				
-//				if ( activity.getId().equals(activityId) ) {
-//					//*** get the mediaItems and templateParams of the activitiy stored separately ***//
-//					activity.setTemplateParams( sqlMap.queryForMap("getTemplateParams", activity, "param_key", "param_value") );
-//					activity.setMediaItems( sqlMap.queryForList("getMediaItems", activity) );
-//				
-//					return ImmediateFuture.newInstance(activity);
-//				}
-//			}
+
 			Set<String> idSet = getIdSet(userId, groupId, token);
 			
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			for (String user : idSet) {			
 				Person person = (Person) hs.get(Person.class, user);
@@ -322,11 +278,14 @@ public class HActivityDBService implements ActivityService {
 				}
 			}
 
-			tran.commit();
+			tran.rollback();
 			
 			throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Activity not found");
 			
 		} catch (Exception e) {
+			if (tran != null)
+				tran.rollback();
+			
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 	}
@@ -336,26 +295,14 @@ public class HActivityDBService implements ActivityService {
 	public Future<Void> deleteActivities(UserId userId, GroupId groupId, String appId,
 		      Set<String> activityIds, SecurityToken token) throws ProtocolException {
 		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
-//			Activity activity = new ActivityImpl();
-//			List<Activity> result = Lists.newArrayList();
-//			String user = userId.getUserId(token);
-//			result = sqlMap.queryForList("getActivities", user);
-//			
-//			for (int i=0; i<result.size(); i++) {
-//				activity = result.get(i); 
-//				
-//				if ( activityIds.contains(activity.getId() ) ) {
-//					sqlMap.delete("deleteActivities", activity);
-//					sqlMap.delete("deleteActivityMediaParams", activity);
-//					sqlMap.delete("deleteActivityTemplateParams", activity);
-//				}
-//			}
 			
 			Set<String> idSet = getIdSet(userId, groupId, token);
 			
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			for (String user : idSet) {			
 				
@@ -420,6 +367,9 @@ public class HActivityDBService implements ActivityService {
 			
 			return ImmediateFuture.newInstance(null);
 		} catch (Exception e) {
+			if( tran != null)
+				tran.rollback();
+			
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 	}
@@ -428,15 +378,12 @@ public class HActivityDBService implements ActivityService {
 	public Future<Void> createActivity(UserId userId, GroupId groupId, String appId,
 		      Set<String> fields, Activity activity, SecurityToken token) throws ProtocolException {
 		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
 			//**** insert activity with mediaItems and templateParams separately ****//
-//			activity.setUserId(userId.getUserId(token));
-//			sqlMap.insert("insertActivity", activity);
-//			this.insertMediaItem(activity.getId(), activity.getUserId(), activity.getMediaItems());
-//			this.insertTemplateParams(activity.getId(), activity.getUserId(), activity.getTemplateParams());
-
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			// create Activity
 			String user = userId.getUserId(token); 
@@ -460,6 +407,9 @@ public class HActivityDBService implements ActivityService {
 			return ImmediateFuture.newInstance(null);
 		
 		} catch (Exception e) {
+			if ( tran != null )
+				tran.rollback();
+			
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 	}
@@ -557,6 +507,9 @@ public class HActivityDBService implements ActivityService {
 		}
 
 		Set<String> idSet = new HashSet<String>();
+		
+//		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Transaction tran = null;
 
 		switch (groupId.getType()) {
 		case all:
@@ -565,17 +518,16 @@ public class HActivityDBService implements ActivityService {
 			try {
 				// List<String> allUserIds = sqlMap.queryForList(
 				// "getAllUserIds" );
-				Session hs = HibernateUtil.getSessionFactory()
-						.getCurrentSession();
+				Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 				Transaction tran = hs.beginTransaction();
 
 				// Criteria crit = hs.createCriteria(User.class);
 				Query q = hs.createQuery("select id from User");
 				allUserIds = (List<String>) q.list();
 
-				tran.commit();
 
 			} catch (Exception e) {
+				
 				HibernateUtil.getSessionFactory().getCurrentSession()
 						.getTransaction().rollback();
 				e.printStackTrace();
@@ -639,8 +591,8 @@ public class HActivityDBService implements ActivityService {
 				idSet.addAll(friendsIds);
 
 
-				tran.commit();
 			} catch (Exception e) {
+				
 				HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 				e.printStackTrace();
 			}
@@ -681,6 +633,9 @@ public class HActivityDBService implements ActivityService {
 
 		Set<String> idSet = new HashSet<String>();
 
+//		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Transaction tran = null;
+		
 		switch (groupId.getType()) {
 		case all:
 			// idSet.add(user);
@@ -688,17 +643,16 @@ public class HActivityDBService implements ActivityService {
 			try {
 				// List<String> allUserIds = sqlMap.queryForList(
 				// "getAllUserIds" );
-				Session hs = HibernateUtil.getSessionFactory()
-						.getCurrentSession();
+				Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 				Transaction tran = hs.beginTransaction();
 
 				// Criteria crit = hs.createCriteria(User.class);
 				Query q = hs.createQuery("select id from User");
 				allUserIds = (List<String>) q.list();
 
-				tran.commit();
 
 			} catch (Exception e) {
+				
 				HibernateUtil.getSessionFactory().getCurrentSession()
 						.getTransaction().rollback();
 				e.printStackTrace();
@@ -750,8 +704,8 @@ public class HActivityDBService implements ActivityService {
 				idSet.addAll(friendsIds);
 
 
-				tran.commit();
 			} catch (Exception e) {
+				
 				HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 				e.printStackTrace();
 			}

@@ -34,31 +34,41 @@ public class HAppDataDBService implements AppDataService {
 
 	public Future<DataCollection> getPersonData(Set<UserId> userIds, GroupId groupId,
       String appId, Set<String> fields, SecurityToken token) throws ProtocolException {
+		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
 			Map<String, Map<String, String>> idToAppDataMap = Maps.newHashMap();
 			Set<String> idSet = getIdSet(userIds, groupId, token);
 			
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			for (String userId : idSet) {			
 				
 				Person person = (Person) hs.get(Person.class, userId);
 								
-				Set<PersonAppData> appDataDBSet = person.getAppData();
-//				appDataDBList = sqlMap.queryForList("getPersonAppData", userId);
+				if (person == null)
+					continue;
 				
-				for (PersonAppData appDataDB : appDataDBSet) {
+				Set<PersonAppData> appDataDBSet = person.getAppData();
+				
+				if ( appDataDBSet != null ) {
+					Map<String, String> appDataMap = Maps.newHashMap();
 					
-					// if there is a value for "appId", then get data with both userId and appId. Otherwise, just use userId.
-					if (appId != null) {
-						if ( appDataDB.getAppId().equals(appId) ) {
-							continue;
+					for (PersonAppData appDataDB : appDataDBSet) {
+						
+						// if there is a value for "appId", then get data with both userId and appId. Otherwise, just use userId.
+						if (appId != null) {
+							if ( !appDataDB.getAppId().equals(appId) ) {
+								continue;
+							}
 						}
+						
+						if ( fields.contains("*") || fields.contains(appDataDB.getField()) )
+							appDataMap.put( appDataDB.getField(), appDataDB.getData() );
 					}
 					
-					Map<String, String> appDataMap = Maps.newHashMap();
-					appDataMap.put( appDataDB.getField(), appDataDB.getData() );
 					idToAppDataMap.put(userId, appDataMap);
 				}
 			}
@@ -68,6 +78,9 @@ public class HAppDataDBService implements AppDataService {
 			return ImmediateFuture.newInstance( new DataCollection(idToAppDataMap) );
 			
 		} catch(Exception e) {
+			if (tran != null)
+				tran.rollback();
+			
 			e.printStackTrace(); 
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
@@ -75,26 +88,37 @@ public class HAppDataDBService implements AppDataService {
 		 
 	public Future<Void> deletePersonData(UserId userId, GroupId groupId,
       String appId, Set<String> fields, SecurityToken token) throws ProtocolException {
+		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
 			Set<String> idSet = getIdSet(userId, groupId, token);
 
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
+			tran = hs.beginTransaction();
 			
 			for (String user : idSet) {
 				
-				Person person = (Person) hs.load(Person.class, user);
+				Person person = (Person) hs.get(Person.class, user);
+				
+				if (person == null)
+					continue;
+				
+				
 				Set<PersonAppData> appDataDBSet = person.getAppData();
 				
-				for(PersonAppData appDataDB: appDataDBSet) {
-					// if there is a value for "appId", then delete data with both userId and appId. Otherwise, just use userId.
-					if (appId != null) {
-						if ( appDataDB.getAppId().equals(appId) ) {
-							continue;
+				if ( appDataDBSet != null ) {
+					for(PersonAppData appDataDB: appDataDBSet) {
+						
+						if (appId != null) {
+							if ( !appDataDB.getAppId().equals(appId) ) {
+								continue;
+							}
 						}
+						
+						if( fields.contains(appDataDB.getField()) )
+							hs.delete(appDataDB);
 					}
-					
-					hs.delete(appDataDB);
 				}
 					
 			}
@@ -103,6 +127,9 @@ public class HAppDataDBService implements AppDataService {
 			
 			return ImmediateFuture.newInstance(null);
 		} catch (Exception e) {
+			if(tran != null)
+				tran.rollback();
+			
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 	}
@@ -111,46 +138,74 @@ public class HAppDataDBService implements AppDataService {
 	public Future<Void> updatePersonData(UserId userId, GroupId groupId,
       String appId, Set<String> fields, Map<String, String> values, SecurityToken token)
       throws ProtocolException {
+		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tran = null;
+		
 		try {
 			Set<String> idSet = getIdSet(userId, groupId, token);
 			
-			Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction tran = hs.beginTransaction();
-			
-//			List<AppDataDB> appDataDBList = Lists.newArrayList();
+			tran = hs.beginTransaction();
+
 			
 			// find Application Data of users and input the new values into the data
 			for (String user : idSet) {
 				
-//				appDataDBList = sqlMap.queryForList("getPersonAppData", user);
-				Person person = (Person) hs.load(Person.class, user);
+				Person person = (Person) hs.get(Person.class, user);
+				
+				if (person == null)
+					continue;
+				
+				
 				Set<PersonAppData> appDataDBSet = person.getAppData();
 				
-				for (PersonAppData appDataDB : appDataDBSet ) {
-					
-					// if there is AppData with the same appId and keys of the values, then update the data
+				if (!appDataDBSet.isEmpty()) {
 					Set<String> keys = values.keySet();
-					String currentKey = appDataDB.getField();
-					
-					// if there is a value for "appId", then get data with both userId and appId. Otherwise, just use userId.
-					if ( appId != null ) {
-						if ( appDataDB.getAppId().equals(appId) ) {
-							continue;
+					for (String key : keys) {
+						for (PersonAppData appDataDB : appDataDBSet ) {
+							if ( key.equals(appDataDB.getField()) ) {
+								
+								// if there is a value for "appId", then get data with both userId and appId. Otherwise, just use userId.
+								if ( appId != null ) {
+									if ( !appDataDB.getAppId().equals(appId) ) {
+										continue;
+									}
+								}
+								
+								appDataDB.setData( values.get(key) );
+								hs.update(appDataDB);
+								
+								values.remove(key);
+							}
 						}
 					}
-					
-					if ( keys.contains(currentKey) ) {
-						appDataDB.setData( values.get(currentKey) );
-//						sqlMap.delete("updatePersonAppData", appDataDBList.get(i));
-						hs.update(appDataDB);
+				}
+				
+				if (!values.isEmpty()) {
+					Set<String> remainedKeys = values.keySet();
+					for (String key : remainedKeys) {
+						PersonAppData appData = new PersonAppData();
+						appData.setAppId(appId);
+						appData.setPerson(person);
+						appData.setField(key);
+						appData.setData(values.get(key));
+						
+						hs.saveOrUpdate(appData);
+						
+						values.remove(key);
 					}
 				}
+				
+				
 				
 				tran.commit();
 			}
 			
 			return ImmediateFuture.newInstance(null);
 		} catch (Exception e) {
+			if( tran != null)
+				tran.rollback();
+			
 			throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 	}
@@ -183,25 +238,25 @@ public class HAppDataDBService implements AppDataService {
 		}
 
 		Set<String> idSet = new HashSet<String>();
+		
 
 		switch (groupId.getType()) {
 		case all:
 			// idSet.add(user);
 			List<String> allUserIds = null;
+			
 			try {
 				// List<String> allUserIds = sqlMap.queryForList(
 				// "getAllUserIds" );
-				Session hs = HibernateUtil.getSessionFactory()
-						.getCurrentSession();
+				Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 				Transaction tran = hs.beginTransaction();
 
 				// Criteria crit = hs.createCriteria(User.class);
 				Query q = hs.createQuery("select id from User");
 				allUserIds = (List<String>) q.list();
 
-				tran.commit();
-
 			} catch (Exception e) {
+		
 				HibernateUtil.getSessionFactory().getCurrentSession()
 						.getTransaction().rollback();
 				e.printStackTrace();
@@ -253,8 +308,8 @@ public class HAppDataDBService implements AppDataService {
 				idSet.addAll(friendsIds);
 
 
-				tran.commit();
 			} catch (Exception e) {
+				
 				HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 				e.printStackTrace();
 			}
