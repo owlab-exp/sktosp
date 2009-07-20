@@ -10,8 +10,9 @@
 <script type="text/javascript" src="../js/main.js"></script>
 <%@page import="com.skt.opensocial.common.*" %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="img" uri="/struts-images" %>
 
-<title>개발자 신규가젯등록</title>
+<title>가젯 리뷰 보기</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
@@ -58,21 +59,28 @@
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td colspan="2">가젯 이름:</td>
-									<td colspan="2" align="left"><s:property value="gadgetName"/></td>
+									<td colspan="2" rowspan="2" align="center">
+									<s:url id="iconUrl" action="ViewIcon">
+											<s:param name="gadgetId" value="%{gadgetId}"></s:param>
+										</s:url>
+										<img:image src="%{iconUrl}" resize="false" height="100" width="100"/>
+									</td>
+									<td colspan="2">
+									가젯 이름: <s:property value="gadgetName"/><br><br>
+									가젯 ID: <s:property value="gadgetId"/><br><br>
+									리뷰 수: <s:property value="totalReviewNumber"/><br><br>
+									평균 점수: <s:property value="gradeAverage"/>
+									</td>
 								</tr>
-								<tr style="background-color: rgb(245, 245, 245);">
-									<td colspan="2">가젯 ID:</td>
-									<td colspan="2" align="left"><s:property value="gadgetId"/></td>
-								</tr>
+							
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
-								<tr style="background-color: rgb(245, 245, 245);">
-									<td colspan="2">리뷰 수: <s:property value="totalReviewNumber"/> </td>
-									<td colspan="2">평균 점수: <s:property value="gradeAverage"/> </td>
-
-								</tr>
+<!--								<tr style="background-color: rgb(245, 245, 245);">-->
+<!--									<td colspan="2"></td>-->
+<!--									<td colspan="2"></td>-->
+<!---->
+<!--								</tr>-->
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
