@@ -27,7 +27,7 @@ import com.skt.opensocial.persistence.User;
 
 public class PersonTest {
 	Logger logger = Logger.getLogger(PersonTest.class);
-	private static String userId = "usr1";
+	private static String userId = "usr12";
 	//private static String friendId = "friend1";
 	
 

@@ -41,7 +41,8 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String defaultIconFile = null; // from action parameter in struts configuration
+	private String defaultIconFile = null; // from action parameter in struts
+											// configuration
 
 	public String getGadgetRegisterPage() throws Exception {
 		prepare();
@@ -81,9 +82,9 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	}
 
 	public String execute() throws Exception {
-		
+
 		prepare();
-		
+
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
@@ -99,8 +100,6 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			// getGadgetSource());
 			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetStatus="
 					+ getGadgetStatus());
-
-			
 
 			tx = hs.beginTransaction();
 
@@ -145,9 +144,12 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			}
 			newGadget.setRegisterType(getRegisterType());
 
-			newGadget.setDeveloper((User) sessionMap
-					.get(SKTOpenSocialSupportConstants.USER));
+			User developer = (User) sessionMap
+					.get(SKTOpenSocialSupportConstants.USER);
+			developer.setIsDeveloper(true); // for developer
+			newGadget.setDeveloper(developer);
 
+			hs.saveOrUpdate(developer);
 			gadgetId = (Long) hs.save(newGadget);
 
 			setGadgetId(gadgetId);// ?

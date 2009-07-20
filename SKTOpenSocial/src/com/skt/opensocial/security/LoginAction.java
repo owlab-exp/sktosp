@@ -2,8 +2,6 @@ package com.skt.opensocial.security;
 
 import java.util.Map;
 
-import javax.servlet.ServletException;
-
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
