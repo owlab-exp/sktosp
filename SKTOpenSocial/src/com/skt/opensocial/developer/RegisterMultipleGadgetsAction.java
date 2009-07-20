@@ -83,8 +83,14 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 							gadgetUrl1, hs);
 				} else {
 					message = "1번째 행에 빈 값이 있습니다";
+					tx.rollback();
 					return Action.INPUT;
 				}
+			else {
+				message = "1번째 가젯의 이름이 주어지지 않았습니다.";
+				tx.rollback();
+				return Action.INPUT;
+			}
 			if (validateName(gadgetName2))
 				if (validateRow(gadgetName2, gadgetCategory2, gadgetIntro2,
 						gadgetUrl2)) {
@@ -95,6 +101,11 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 					tx.rollback();
 					return Action.INPUT;
 				}
+			else {
+				message = "2번째 가젯의 이름이 주어지지 않았습니다.";
+				tx.rollback();
+				return Action.INPUT;
+			}
 			if (validateName(gadgetName3))
 				if (validateRow(gadgetName3, gadgetCategory3, gadgetIntro3,
 						gadgetUrl3)) {
@@ -105,6 +116,11 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 					tx.rollback();
 					return Action.INPUT;
 				}
+			else {
+				message = "3번째 가젯의 이름이 주어지지 않았습니다.";
+				tx.rollback();
+				return Action.INPUT;
+			}
 			if (validateName(gadgetName4))
 				if (validateRow(gadgetName4, gadgetCategory4, gadgetIntro4,
 						gadgetUrl4)) {
@@ -115,6 +131,11 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 					tx.rollback();
 					return Action.INPUT;
 				}
+			else {
+				message = "4번째 가젯의 이름이 주어지지 않았습니다.";
+				tx.rollback();
+				return Action.INPUT;
+			}
 			if (validateName(gadgetName5))
 				if (validateRow(gadgetName5, gadgetCategory5, gadgetIntro5,
 						gadgetUrl5)) {
@@ -125,6 +146,11 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 					tx.rollback();
 					return Action.INPUT;
 				}
+			else {
+				message = "5번째 가젯의 이름이 주어지지 않았습니다.";
+				tx.rollback();
+				return Action.INPUT;
+			}
 
 			tx.commit();
 			return Action.SUCCESS;
