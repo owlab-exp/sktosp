@@ -50,9 +50,9 @@ public class RemoveGadgetAction extends DeveloperBaseAction {
 
 			if (gadget != null) {
 				Set<User> favoriteUsers = gadget.getFavoriteUsers();
-				for (User u : favoriteUsers) {
-					u.removeFavoriteGadget(gadget);
-					hs.update(u);
+				for (User user : favoriteUsers) {
+					user.removeFavoriteGadget(gadget);
+					hs.update(user);
 				}
 
 				hs.delete(gadget);
