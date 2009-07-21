@@ -27,45 +27,36 @@ public class LoginAction extends CommonBaseAction {
 	//
 	// }
 
-	public String execute() {
+	public String execute() throws Exception {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
 			String userId = getUserId();
 			String password = getPassword();
 
-			
 			tx = hs.beginTransaction();
 
 			User user = (User) hs.get(User.class, userId);
 			PasswordEncryptor pe = PasswordEncryptor.getInstance();
 			String hashedPassword = pe.encrypt(password);
+			
 			logger.log(Level.INFO, "hash=" + hashedPassword);
-			// user.setPassword(hashedPassword);
-			// hs.save(user);
-			// hs.flush();
+			
 			if (user != null) {
 				if (hashedPassword.equals(user.getPassword())) {
-
-					// UserData userData = new UserData();
-					// userData.setUserId(userId);
-					// userData.setUserName(user.getPerson().getName());
-					// userData.setAdministrator(user.isAdministrator());
-					// userData.setDeveloper(user.isDeveloper());
-
 					session.put(SKTOpenSocialSupportConstants.USER, user);
 					return Action.SUCCESS;
 				}
 			}
 			hs.getTransaction().commit();
-
+			return Action.INPUT;
 		} catch (Exception e) {
-			if(tx != null) tx.rollback();
-			e.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+			throw e;
 
 		}
-		
-		return Action.INPUT;
+
 	}
 
 	public void validate() {
