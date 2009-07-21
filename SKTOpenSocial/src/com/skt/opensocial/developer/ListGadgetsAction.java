@@ -43,7 +43,7 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 	
 
 	// properties for pagenation
-	private int listSize = 10; // the size of gadget list
+	private int listSize = 9; // the size of gadget list
 	private int requestedPage = 1;
 	private int maxPage = 1;
 	

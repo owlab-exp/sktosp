@@ -120,38 +120,45 @@
 					<tr>
 						<td><!-- buttons -->
 						<div class="paging">
-							<s:if test="%{requestedPage > 1}">
-								<s:url action="ViewGadgetReview" id="prevPageUrl">
-								<s:param name="requestedPage" value="%{requestedPage - 1}" />
+							<s:if test="%{pageList.size > 0}">
+								<s:if test="%{requestedPage > 1}">
+									<s:url action="ViewGadgetReview" id="prevPageUrl">
+									<s:param name="requestedPage" value="%{requestedPage - 1}" />
+									<s:param name="gadgetId" value="%{gadgetId}"/>
+									</s:url>
+								</s:if>
+								<s:else>
+									<s:url action="ViewGadgetReview" id="prevPageUrl">
+									<s:param name="gadgetId" value="%{gadgetId}"/>
+									<s:param name="requestedPage" value="1" />
+									</s:url>
+								</s:else>
+							 <em class="p"><s:a href="%{prevPageUrl}">이 전</s:a></em> <s:iterator
+								value="pageList">
+								<s:url action="ViewGadgetReview" id="pageUrl">
+									<s:param name="gadgetId" value="%{gadgetId}"/>
+									<s:param name="requestedPage">
+										<s:property />
+									</s:param>
 								</s:url>
-							</s:if>
-							<s:else>
-								<s:url action="ViewGadgetReview" id="prevPageUrl">
-								<s:param name="requestedPage" value="1" />
-								</s:url>
-							</s:else>
-						 <em class="p"><s:a href="%{prevPageUrl}">이 전</s:a></em> <s:iterator
-							value="pageList">
-							<s:url action="ViewGadgetReview" id="pageUrl">
-								<s:param name="requestedPage">
+								<s:a href="%{pageUrl}">
 									<s:property />
-								</s:param>
-							</s:url>
-							<s:a href="%{pageUrl}">
-								<s:property />
-							</s:a>
-						</s:iterator> 
-							<s:if test="%{requestedPage < maxPage}">
-								<s:url action="ViewGadgetReview" id="nextPageUrl">
-								<s:param name="requestedPage" value="%{requestedPage + 1}" />
-								</s:url>
-							</s:if>
-							<s:else>
-								<s:url action="ViewGadgetReview" id="nextPageUrl">
-								<s:param name="requestedPage" value="%{maxPage}" />
-								</s:url>
-							</s:else>
-						 <em class="n"><s:a href="%{nextPageUrl}">다음</s:a></em>
+								</s:a>
+							</s:iterator> 
+								<s:if test="%{requestedPage < maxPage}">
+									<s:url action="ViewGadgetReview" id="nextPageUrl">
+									<s:param name="gadgetId" value="%{gadgetId}"/>
+									<s:param name="requestedPage" value="%{requestedPage + 1}" />
+									</s:url>
+								</s:if>
+								<s:else>
+									<s:url action="ViewGadgetReview" id="nextPageUrl">
+									<s:param name="gadgetId" value="%{gadgetId}"/>
+									<s:param name="requestedPage" value="%{maxPage}" />
+									</s:url>
+								</s:else>
+							 <em class="n"><s:a href="%{nextPageUrl}">다음</s:a></em>
+						 </s:if>
 						</div>
 						</td>
 					</tr>

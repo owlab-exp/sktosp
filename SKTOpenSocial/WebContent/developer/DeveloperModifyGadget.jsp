@@ -81,6 +81,7 @@
 											value="%{gadgetCategoryIdSelected}"
 											
 											multiple="true"
+											size="5"
 											>
 										</s:select>
 									</td>

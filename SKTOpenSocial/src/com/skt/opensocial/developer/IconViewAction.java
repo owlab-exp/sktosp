@@ -3,6 +3,7 @@
  */
 package com.skt.opensocial.developer;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -39,6 +40,7 @@ public class IconViewAction extends ManageGadgetAction {
 
 	public String execute() throws Exception{
 
+		//Session hs = HibernateUtil.getSessionFactory().openSession();
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
@@ -66,15 +68,21 @@ public class IconViewAction extends ManageGadgetAction {
 			// }
 			if (icon.getContentType() != null)
 				setContentType(icon.getContentType());
+			else
+				setContentType("text/plain");
+			
 			if (icon.getName() != null)
 				setContentDisposition(icon.getName());
+			else
+				setContentDisposition("");
 
 			if (icon.getContent() != null) {
 				Blob iconBlob = icon.getContent();
 				setInputStream(iconBlob.getBinaryStream());
 				setContentLength(iconBlob.length());
 			} else {
-				setInputStream(null);
+				String txt = "no icon";
+				setInputStream(new ByteArrayInputStream(txt.getBytes()));
 			}
 			tx.commit();
 			return Action.SUCCESS;
@@ -84,6 +92,8 @@ public class IconViewAction extends ManageGadgetAction {
 			if (tx != null)
 				tx.rollback();
 			throw e;
+		} finally {
+			//hs.close();
 		}
 		
 	}

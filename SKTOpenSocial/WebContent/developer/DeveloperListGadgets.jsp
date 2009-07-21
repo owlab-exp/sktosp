@@ -9,6 +9,8 @@
 <%@page import="org.hibernate.*"%>
 
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="img" uri="/struts-images" %>
+
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <link href="../css/table.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
@@ -55,18 +57,18 @@
 						<table class="subtit_board" summary="List of Gadgets"
 							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
-								<col width="10%">
-								<col width="10%">
-								<col width="10%">
-								<col width="10%">
-								<col width="10%">
+								<col width="5%">
 								<col width="20%">
+								<col width="10%">
+								<col width="10%">
+								<col width="10%">
+								<col width="15%">
 								<col width="30%">
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td>가젯ID</td>
-									<td>가젯이름</td>
+									<td>ID</td>
+									<td>가젯이름/ID</td>
 									<td align="center">등록일자</td>
 									<td align="center">발행일자</td>
 									<td align="center">사용자수</td>
@@ -87,12 +89,22 @@
 												<s:property value="id" />
 											</s:param>
 										</s:url>
+										<td>
+											<s:url id="iUrl" action="ViewIcon">
+												<s:param name="gadgetId" value="%{id}"></s:param>
+											</s:url>
+											<s:a href="%{gadgetPreviewUrl}">
+											<img:image src="%{iUrl}" resize="false" height="30" width="30"/>
+											</s:a>
+										</td>
 										<td><s:a href="%{gadgetPreviewUrl}">
+												<s:property value="name" />
+											</s:a><br>
+											[<s:a href="%{gadgetPreviewUrl}">
 											<s:property value="id" />
-										</s:a></td>
-										<td><s:a href="%{gadgetPreviewUrl}">
-											<s:property value="name" />
-										</s:a></td>
+											</s:a>]
+											
+										</td>
 										<td align="center"><s:date name="registerDate"
 											format="yyyy/MM/dd" /></td>
 										<td align="center"><s:date name="publishDate"
@@ -184,6 +196,7 @@
 					<tr>
 						<td><!-- pagenation start -->
 						<div class="paging">
+						<s:if test="%{pageList.size > 0}">
 							<s:if test="%{requestedPage > 1}">
 								<s:url action="ListGadgets" id="prevPageUrl">
 								<s:param name="requestedPage" value="%{requestedPage - 1}" />
@@ -194,7 +207,8 @@
 								<s:param name="requestedPage" value="1" />
 								</s:url>
 							</s:else>
-						 <em class="p"><s:a href="%{prevPageUrl}">이 전</s:a></em> <s:iterator
+						 <em class="p"><s:a href="%{prevPageUrl}">이 전</s:a></em> 
+						 <s:iterator
 							value="pageList">
 							<s:url action="ListGadgets" id="pageUrl">
 								<s:param name="requestedPage">
@@ -216,6 +230,7 @@
 								</s:url>
 							</s:else>
 						 <em class="n"><s:a href="%{nextPageUrl}">다음</s:a></em>
+						 </s:if>
 						</div><!-- pagenation end -->
 						</td>
 					</tr>

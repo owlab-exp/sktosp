@@ -63,8 +63,11 @@ public class ViewReviewAction extends ManageGadgetAction implements Pagenation {
 							+ getGadgetId());
 			Object[] result = (Object[]) query.uniqueResult();
 
-			gradeAverage = (Double) result[0];
-			totalReviewNumber = (Long) result[1];
+			if(result[0] != null && result[1] != null) {
+				totalReviewNumber = (Long) result[1];
+				gradeAverage = (Double) result[0];
+			}
+			
 
 			Criteria crit = hs.createCriteria(GadgetReview.class);
 			crit.add(Restrictions.eq("gadget.id", getGadgetId()));

@@ -87,13 +87,14 @@
   }
 
   .gadgets-gadget-chrome {
-    width: 60%;
+    width: 80%;
     float: none;
     margin: auto;
+ 	align: center;
   }
 
   .gadgets-gadget {
-    width: 100%;
+    
   }
 
 </style>
