@@ -4,16 +4,11 @@
 package com.skt.opensocial.user;
 
 import java.util.Map;
-import java.util.Set;
-
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
-import com.skt.opensocial.developer.DeveloperBaseAction;
-import com.skt.opensocial.persistence.Gadget;
+
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
@@ -22,8 +17,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class SetFriendAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(SetFriendAction.class);
+public class SetFriendAction extends ActivityBaseManager {
+	//private static Logger logger = Logger.getLogger(SetFriendAction.class);
 	
 	/**
 	 * 
@@ -66,96 +61,53 @@ public class SetFriendAction extends DeveloperBaseAction {
 		this.friend = friend;
 	}
 
-	public String execute(){
-		//
-		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
-		
-		String userId = user.getUserId();
+	public String execute() throws Exception{
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		org.hibernate.Transaction tx = null;
 		
-		user = (User)hs.load(User.class, userId);
-		
-		friend = (User)hs.load(User.class, friendId);
-				
-		//this.gadgets = user.getFavoriteGadgets();
-		
-		// if (gadgets != null && !gadgets.isEmpty())
-		//	System.out.println("Original size of gadgets = " + gadgets.size());
-		
-		user.addFriendsByMe(friend);
+		try
+		{
+			tx = hs.beginTransaction();
+			
+			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+			
+			String userId = user.getUserId();
+			
+			if (userId.equals(friendId))
+			{
+				tx.commit();
+				return Action.SUCCESS;
+			}
+			user = (User)hs.load(User.class, userId);
+			
+			friend = (User)hs.load(User.class, friendId);
+			
+			user.addFriendsByMe(friend);
+					
+			hs.saveOrUpdate(user);
 						
-		hs.saveOrUpdate(user);
+			//session.put(SKTOpenSocialSupportConstants.USER, user);
+						
+			//this.gadgets = this.gadgets.add(gadgetId);
+			//logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+			
+			tx.commit();
+			
+			super.addActivity(ActivityTypeEnum.addFavoriteFriend, userId, friendId, null);
+			
+			return Action.SUCCESS;
 		
-		//this.gadgets = user.getFavoriteGadgets();
-		//if (gadgets != null && !gadgets.isEmpty())
-		//	System.out.println("Added size of gadgets = " + gadgets.size());
-		
-		session.put(SKTOpenSocialSupportConstants.USER, user);
-		
-		
-		//this.gadgets = this.gadgets.add(gadgetId);
-		//logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-		
-		hs.getTransaction().commit();
-		
-		//
-		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
-		if(gadgetDataList == null) {
-			session.put("gadgets", new GadgetDataList());
-			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
-		} else {
-			this.gadgetDataList = gadgetDataListS;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
-		gadgetMap = this.gadgetDataList.getGadgetMap();
-		gadgetList = gadgetMap.values();
-		
-		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
-		*/
-		
-		return Action.SUCCESS;
 	}
-
-	/* (non-Javadoc)
-	 * @see org.apache.struts2.interceptor.RequestAware#setRequest(java.util.Map)
-	 */
-	/*@Override
-	public void setRequest(Map<String, Object> request) {
-		// TODO Auto-generated method stub
-		//this.request = request;
-
-	}*/
-
-	
 	
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
 	}
-
-//	public GadgetDataList getGadgetDataList() {
-//		return gadgetDataList;
-//	}
-//
-//	public void setGadgetDataList(GadgetDataList gadgetDataList) {
-//		this.gadgetDataList = gadgetDataList;
-//	}
-//
-//	public Map<String, GadgetData> getGadgetMap() {
-//		return gadgetMap;
-//	}
-//
-//	public void setGadgetMap(Map<String, GadgetData> gadgetMap) {
-//		this.gadgetMap = gadgetMap;
-//	}
-//
-//	public Collection<GadgetData> getGadgetList() {
-//		return gadgetList;
-//	}
-//
-//	public void setGadgetList(Collection<GadgetData> gadgetList) {
-//		this.gadgetList = gadgetList;
-//	}
 
 	public int getRequestedPage() {
 		return requestedPage;

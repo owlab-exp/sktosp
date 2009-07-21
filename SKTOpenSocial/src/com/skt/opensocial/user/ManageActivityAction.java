@@ -6,12 +6,16 @@ package com.skt.opensocial.user;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
+import com.skt.opensocial.developer.DeveloperBaseAction;
+import com.skt.opensocial.persistence.Activity;
 
-import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
@@ -20,8 +24,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class UserRemoveFriendAction extends ActivityBaseManager {
-	//private static Logger logger = Logger.getLogger(UserRemoveFriendAction.class);
+public class ManageActivityAction extends DeveloperBaseAction {
+	private static Logger logger = Logger.getLogger(ManageFriendAction.class);
 	
 	/**
 	 * 
@@ -33,57 +37,43 @@ public class UserRemoveFriendAction extends ActivityBaseManager {
 	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
-	Set<Gadget> gadgets;
+	Set<Activity> activities = null;
 	
 	int requestedPage = 1;
-	String friendId;
-	User friend;
-	
-	
-	
-	public String getFriendId() {
-		return friendId;
+			
+	public Set<Activity> getActivities() {
+		return activities;
 	}
 
-	public void setFriendId(String friendId) {
-		this.friendId = friendId;
-	}
-
-	public User getFriend() {
-		return friend;
-	}
-
-	public void setFriend(User friend) {
-		this.friend = friend;
+	public void setActivities(Set<Activity> activities) {
+		this.activities = activities;
 	}
 
 	public String execute() throws Exception{
 		//
+		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		org.hibernate.Transaction tx = null;
+		Transaction tx = null;
 		
-		try
-		{
+		try {
 			tx = hs.beginTransaction();
-			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
+			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+			
 			String userId = user.getUserId();
-			
+						
 			user = (User)hs.load(User.class, userId);
-			friend = (User)hs.load(User.class, friendId);
-			
-			user.removeFriendByMe(friend);
-					
-			hs.saveOrUpdate(user);
-			
-			//this.gadgets = user.getFavoriteGadgets();
-			//if (gadgets != null && !gadgets.isEmpty())
-			//	System.out.println("Added size of gadgets = " + gadgets.size());
 			
 			//session.put(SKTOpenSocialSupportConstants.USER, user);
-			tx.commit();
 			
-			super.addActivity(ActivityTypeEnum.removeFavoriteFriend, userId, friendId, null);
+			this.activities = user.getPerson().getActivities();
+			
+			if (activities != null)
+				logger.log(Level.INFO, "Number of activities = " + activities.size());
+			else
+				logger.log(Level.INFO, "set of activities = null" );
+			
+			tx.commit();
 			
 			return Action.SUCCESS;
 		} catch (Exception e) {
@@ -103,14 +93,6 @@ public class UserRemoveFriendAction extends ActivityBaseManager {
 
 	public void setRequestedPage(int requestedPage) {
 		this.requestedPage = requestedPage;
-	}
-
-	public Set<Gadget> getGadgets() {
-		return gadgets;
-	}
-
-	public void setGadgets(Set<Gadget> gadgets) {
-		this.gadgets = gadgets;
 	}
 
 }

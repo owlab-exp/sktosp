@@ -3,23 +3,20 @@
  */
 package com.skt.opensocial.user;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+
 
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
-import com.skt.opensocial.developer.DeveloperBaseAction;
 
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetReview;
 import com.skt.opensocial.persistence.HibernateUtil;
-import com.skt.opensocial.persistence.Person;
+
 import com.skt.opensocial.persistence.User;
 
 /**
@@ -27,8 +24,8 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class RemoveReviewAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(RemoveReviewAction.class);
+public class RemoveReviewAction extends ActivityBaseManager {
+	//private static Logger logger = Logger.getLogger(RemoveReviewAction.class);
 	
 	/**
 	 * 
@@ -128,112 +125,69 @@ public class RemoveReviewAction extends DeveloperBaseAction {
 		this.reviewer = reviewer;
 	}
 
-	public String execute(){
-		
-		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
-							
-		reviewerId = user.getId();
-		
+	public String execute() throws Exception {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
-						
-		gadget = (Gadget)hs.load(Gadget.class, gadgetId);
-		reviewer = (User)hs.load(User.class, reviewerId);
+		org.hibernate.Transaction tx = null;
 		
-		if (gadget != null)
-			System.out.println("gadget Id : " + gadget.getId());
-		else
-			return "fail";
-		
-		if (reviewer != null)
-			System.out.println("reviewer Id : " + reviewer.getId());
-		else
-			return "fail";
-		
-		gadgetReviews = gadget.getReviews();
-					
-		if (gadget.getReviews() !=null)
-			System.out.println("number of reviews at before" + gadgetReviews.size());
-		
-		System.out.println("review Id : " + reviewId);
-		
-		for (GadgetReview gr:gadgetReviews)
+		try
 		{
-			System.out.println("gr Id : " + gr.getId());
-			if (gr.getId().equals(reviewId))
-				review = gr;
-		}
-		
-		if (review !=null)
-			System.out.println("review id for removing " + review.getId());
-		
-		// gadgetReviews.remove(review);
-		
-		session.put(SKTOpenSocialSupportConstants.GADGETID, gadgetId);
-		
-		gadget.setReviews(gadgetReviews);
-		
-		hs.delete(review);
-		hs.saveOrUpdate(gadget);
-				
-		hs.getTransaction().commit();
-		
-		//
-		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
-		if(gadgetDataList == null) {
-			session.put("gadgets", new GadgetDataList());
-			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
-		} else {
-			this.gadgetDataList = gadgetDataListS;
-		}
-		gadgetMap = this.gadgetDataList.getGadgetMap();
-		gadgetList = gadgetMap.values();
-		
-		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
-		*/
+			tx = hs.beginTransaction();
+			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+								
+			reviewerId = user.getId();
+						
+			gadget = (Gadget)hs.load(Gadget.class, gadgetId);
+			reviewer = (User)hs.load(User.class, reviewerId);
+			
+			if (gadget != null)
+				System.out.println("gadget Id : " + gadget.getId());
+			else
+				return "fail";
+			
+			if (reviewer != null)
+				System.out.println("reviewer Id : " + reviewer.getId());
+			else
+				return "fail";
+			
+			gadgetReviews = gadget.getReviews();
+						
+			if (gadget.getReviews() !=null)
+				System.out.println("number of reviews at before" + gadgetReviews.size());
+			
+			System.out.println("review Id : " + reviewId);
+			
+			for (GadgetReview gr:gadgetReviews)
+			{
+				System.out.println("gr Id : " + gr.getId());
+				if (gr.getId().equals(reviewId))
+					review = gr;
+			}
+			
+			if (review !=null)
+				System.out.println("review id for removing " + review.getId());
+									
+			session.put(SKTOpenSocialSupportConstants.GADGETID, gadgetId);
+			
+			gadget.setReviews(gadgetReviews);
+			
+			hs.delete(review);
+			hs.saveOrUpdate(gadget);
+					
+			tx.commit();
+			
+			super.addActivity(ActivityTypeEnum.removeGadgetReview, reviewerId, "", gadgetId);
 
 			return "success" ;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
 	}
-
-	/* (non-Javadoc)
-	 * @see org.apache.struts2.interceptor.RequestAware#setRequest(java.util.Map)
-	 */
-	/*@Override
-	public void setRequest(Map<String, Object> request) {
-		// TODO Auto-generated method stub
-		//this.request = request;
-
-	}*/
-
-	
 	
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
 	}
-
-//	public GadgetDataList getGadgetDataList() {
-//		return gadgetDataList;
-//	}
-//
-//	public void setGadgetDataList(GadgetDataList gadgetDataList) {
-//		this.gadgetDataList = gadgetDataList;
-//	}
-//
-//	public Map<String, GadgetData> getGadgetMap() {
-//		return gadgetMap;
-//	}
-//
-//	public void setGadgetMap(Map<String, GadgetData> gadgetMap) {
-//		this.gadgetMap = gadgetMap;
-//	}
-//
-//	public Collection<GadgetData> getGadgetList() {
-//		return gadgetList;
-//	}
-//
-//	public void setGadgetList(Collection<GadgetData> gadgetList) {
-//		this.gadgetList = gadgetList;
-//	}
 
 	public int getRequestedPage() {
 		return requestedPage;

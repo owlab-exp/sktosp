@@ -4,15 +4,10 @@
 package com.skt.opensocial.user;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import java.util.Map;
+
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
@@ -27,7 +22,7 @@ import com.skt.opensocial.persistence.User;
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class ListGadgetsAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(ListGadgetsAction.class);
+	//private static Logger logger = Logger.getLogger(ListGadgetsAction.class);
 	
 	/**
 	 * 
@@ -43,9 +38,16 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 	Collection<Gadget> gadgets;
 	
 	int requestedPage = 1;
-	
-	
-	
+	String userId;
+		
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public Collection<Gadget> getGadgets() {
 		return gadgets;
 	}
@@ -58,7 +60,7 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		//
 		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 		
-		String userId = user.getUserId();
+		userId = user.getUserId();
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		hs.beginTransaction();
@@ -92,20 +94,7 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		
 		hs.getTransaction().commit();
 		
-		//
-		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
-		if(gadgetDataList == null) {
-			session.put("gadgets", new GadgetDataList());
-			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
-		} else {
-			this.gadgetDataList = gadgetDataListS;
-		}
-		gadgetMap = this.gadgetDataList.getGadgetMap();
-		gadgetList = gadgetMap.values();
-		
-		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
-		*/
-		
+				
 		return Action.SUCCESS;
 	}
 

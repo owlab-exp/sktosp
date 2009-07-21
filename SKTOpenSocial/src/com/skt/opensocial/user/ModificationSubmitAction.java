@@ -11,12 +11,11 @@ import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
 
-import com.opensymphony.xwork2.ActionSupport;
-
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.persistence.Address;
 import com.skt.opensocial.persistence.DrinkerEnum;
 
+import com.skt.opensocial.persistence.GadgetReview;
 import com.skt.opensocial.persistence.GenderEnum;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.Info1AttributeEnum;
@@ -25,12 +24,15 @@ import com.skt.opensocial.persistence.NetworkpresenceEnum;
 import com.skt.opensocial.persistence.Person;
 import com.skt.opensocial.persistence.PersonAdditionalInfo1;
 import com.skt.opensocial.persistence.PersonAdditionalInfo2;
+import com.skt.opensocial.persistence.PersonOrganization;
+import com.skt.opensocial.persistence.PersonUrl;
 import com.skt.opensocial.persistence.SmokerEnum;
 import com.skt.opensocial.persistence.User;
+import com.skt.opensocial.persistence.UserVisibility;
 
 import com.skt.opensocial.security.PasswordEncryptor;
 
-public class ModificationSubmitAction extends ActionSupport implements SessionAware {
+public class ModificationSubmitAction extends ActivityBaseManager implements SessionAware {
 
 	
 //	@Override
@@ -46,6 +48,7 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 	
 	private User user;
 	private String userId;
+	private String password;
 	private String passwordWant;
 	private String passwordConfirm;
 	
@@ -180,9 +183,11 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 	private String tvShow;
 	private String tvShow2;
 	
-	//private UserVisibility userVisibility;
-	//private Set<GadgetReview> reviews;
-
+	private UserVisibility userVisibility;
+	private Set<GadgetReview> reviews;
+	
+	private String personalInfoOpen;
+	private String favoriteGadgetListOpen;
 	
 	Session hsession;
 	Transaction tran;
@@ -346,7 +351,7 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 					languageSpoken2AdditionalInfo1 = p;
 			}
 			
-			if (p.getAttribute().equals(Info1AttributeEnum.lookinFor))
+			if (p.getAttribute().equals(Info1AttributeEnum.lookingFor))
 			{
 				lookingForAdditionalInfo1 = p;
 				
@@ -570,7 +575,7 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 		if (lookingForAdditionalInfo1 == null )
 			lookingForAdditionalInfo1 = new PersonAdditionalInfo1();
 			
-			lookingForAdditionalInfo1.setAttribute(Info1AttributeEnum.lookinFor);
+			lookingForAdditionalInfo1.setAttribute(Info1AttributeEnum.lookingFor);
 			lookingForAdditionalInfo1.setPerson(person);
 			lookingForAdditionalInfo1.setValue(lookingFor);
 			
@@ -994,6 +999,244 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 		hsession.saveOrUpdate(person);
 		tran.commit();
 	}
+	public void updatePersonURL () throws Exception
+	{
+		Session hsession = HibernateUtil.getSessionFactory().getCurrentSession();
+		org.hibernate.Transaction tran = null;
+		
+		try
+		{
+			tran = hsession.beginTransaction();
+			
+			Person person = (Person) hsession.get(Person.class, userId);
+			if(person == null) {
+				person = new Person();
+				person.setUser(user);
+			}
+
+			Set<PersonUrl> personUrls = person.getUrls();
+			
+			if (personUrls == null )
+			{
+				personUrls = new HashSet<PersonUrl>();
+				person.setUrls(personUrls);
+				
+			}
+			//System.out.println("updatePersonAddress, num of addresses -----" + addresses.size());
+			
+			boolean flagSameProfile = false;
+			PersonUrl profilePersonUrl = null;
+			
+			boolean flagSameThumbnail = false;
+			PersonUrl thumbnailPersonUrl = null;
+						
+			for (PersonUrl p : personUrls)
+			{
+				if (profileUrlAddress != null && !profileUrlAddress.isEmpty())
+				{
+					if (p.getType().equals("profile")
+							&& p.getPrimary())
+					{
+						profilePersonUrl = p;
+						flagSameProfile = true;
+					}
+				}
+				if (thumbnailUrlAddress != null && !thumbnailUrlAddress.isEmpty())
+				{
+					if (p.getType().equals("thumbnail")
+							&& p.getPrimary())
+					{
+						thumbnailPersonUrl = p;
+						flagSameThumbnail = true;
+					}
+				}
+			
+			}
+			if (profileUrlAddress != null && !profileUrlAddress.isEmpty())
+			{
+				if (flagSameProfile == false && profilePersonUrl == null)
+					profilePersonUrl = new PersonUrl();
+				
+				profilePersonUrl.setLinkText(profileUrlLinktext);
+				profilePersonUrl.setPerson(person);
+				profilePersonUrl.setPrimary(true);
+				profilePersonUrl.setType("profile");
+				profilePersonUrl.setValue(profileUrlAddress);
+													
+				personUrls.add(profilePersonUrl);
+				person.setUrls(personUrls);
+				hsession.saveOrUpdate(profilePersonUrl);
+			}
+			if (thumbnailUrlAddress != null && !thumbnailUrlAddress.isEmpty())
+			{
+				if (flagSameThumbnail == false && thumbnailPersonUrl == null)
+					thumbnailPersonUrl = new PersonUrl();
+				
+				thumbnailPersonUrl.setLinkText(thumbnailUrlLinktext);
+				thumbnailPersonUrl.setPerson(person);
+				thumbnailPersonUrl.setPrimary(true);
+				thumbnailPersonUrl.setType("thumbnail");
+				thumbnailPersonUrl.setValue(thumbnailUrlAddress);
+													
+				personUrls.add(thumbnailPersonUrl);
+				person.setUrls(personUrls);
+				hsession.saveOrUpdate(thumbnailPersonUrl);
+			}
+				
+			hsession.saveOrUpdate(person);
+			tran.commit();
+			
+		}
+		catch (Exception e) 
+		{
+			if (tran != null)
+				tran.rollback();
+			throw e;
+		}
+	}
+	public void updatePersonOrganization () throws Exception
+	{
+		Session hsession = HibernateUtil.getSessionFactory().getCurrentSession();
+		org.hibernate.Transaction tran = null;
+		
+		try
+		{
+			tran = hsession.beginTransaction();
+			Person person = (Person) hsession.get(Person.class, userId);
+			if(person == null) {
+				person = new Person();
+				person.setUser(user);
+			}
+
+			Set<PersonOrganization> personOrganizations = person.getOrganizations();
+			
+			if (personOrganizations == null )
+			{
+				personOrganizations = new HashSet<PersonOrganization>();
+				person.setOrganizations(personOrganizations);
+				
+			}
+			//System.out.println("updatePersonAddress, num of addresses -----" + addresses.size());
+			
+			boolean flagSameJob = false;
+			PersonOrganization jobPersonOrganization = null;
+			
+			boolean flagSameJob2 = false;
+			PersonOrganization job2PersonOrganization = null;
+			
+			boolean flagSameSchool = false;
+			PersonOrganization schoolPersonOrganization = null;
+			
+			boolean flagSameSchool2 = false;
+			PersonOrganization school2PersonOrganization = null;
+			
+			for (PersonOrganization p : personOrganizations)
+			{
+				if (job != null && !job.isEmpty())
+				{
+					if (p.getType().equals("job")
+							&& p.getPrimary())
+					{
+						jobPersonOrganization = p;
+						flagSameJob = true;
+					}
+				}
+				if (job2 != null && !job2.isEmpty())
+				{
+					if (p.getType().equals("job")
+							&& !p.getPrimary())
+					{
+						job2PersonOrganization = p;
+						flagSameJob2 = true;
+					}
+				}
+				if (school != null && !school.isEmpty())
+				{
+					if (p.getType().equals("school")
+							&& p.getPrimary())
+					{
+						schoolPersonOrganization = p;
+						flagSameSchool = true;
+					}
+				}
+				if (school2 != null && !school2.isEmpty())
+				{
+					if (p.getType().equals("school")
+							&& !p.getPrimary())
+					{
+						school2PersonOrganization = p;
+						flagSameSchool2 = true;
+					}
+				}
+				
+			}
+			if (job != null && !job.isEmpty())
+			{
+				if (flagSameJob == false && jobPersonOrganization == null)
+					jobPersonOrganization = new PersonOrganization();
+				
+				jobPersonOrganization.setName(job);
+				jobPersonOrganization.setPerson(person);
+				jobPersonOrganization.setType("job");
+				jobPersonOrganization.setPrimary(true);
+					
+				personOrganizations.add(jobPersonOrganization);
+				person.setOrganizations(personOrganizations);
+				hsession.saveOrUpdate(jobPersonOrganization);
+			}
+			if (job2 != null && !job2.isEmpty())
+			{
+				if (flagSameJob2 == false && job2PersonOrganization == null)
+					job2PersonOrganization = new PersonOrganization();
+				
+				job2PersonOrganization.setName(job2);
+				job2PersonOrganization.setPerson(person);
+				job2PersonOrganization.setType("job");
+				job2PersonOrganization.setPrimary(false);
+					
+				personOrganizations.add(job2PersonOrganization);
+				person.setOrganizations(personOrganizations);
+				hsession.saveOrUpdate(job2PersonOrganization);
+			}
+			if (school != null && !school.isEmpty())
+			{
+				if (flagSameSchool == false && schoolPersonOrganization == null)
+					schoolPersonOrganization = new PersonOrganization();
+				
+				schoolPersonOrganization.setName(school);
+				schoolPersonOrganization.setPerson(person);
+				schoolPersonOrganization.setType("school");
+				schoolPersonOrganization.setPrimary(true);
+					
+				personOrganizations.add(schoolPersonOrganization);
+				person.setOrganizations(personOrganizations);
+				hsession.saveOrUpdate(schoolPersonOrganization);
+			}
+			if (school2 != null && !school2.isEmpty())
+			{
+				if (flagSameSchool2 == false && school2PersonOrganization == null)
+					school2PersonOrganization = new PersonOrganization();
+				
+				school2PersonOrganization.setName(school2);
+				school2PersonOrganization.setPerson(person);
+				school2PersonOrganization.setType("school");
+				school2PersonOrganization.setPrimary(false);
+					
+				personOrganizations.add(school2PersonOrganization);
+				person.setOrganizations(personOrganizations);
+				hsession.saveOrUpdate(school2PersonOrganization);
+			}		
+			hsession.saveOrUpdate(person);
+			tran.commit();
+			
+		}
+		catch (Exception e) 
+		{
+			if (tran != null)
+				tran.rollback();
+			throw e;
+		}
+	}
 	
 	public void updatePersonBasic()
 	{
@@ -1010,6 +1253,18 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 			person.setUser(user);
 		}
 		person.setNameFormatted(userName);
+		person.setDisplayname(userName);
+		
+		// visibility
+		if (personalInfoOpen != null && !personalInfoOpen.isEmpty())
+			person.setProfileurl(personalInfoOpen);
+		else
+			person.setProfileurl(InfoOpenEnum.ALL);
+		
+		if (favoriteGadgetListOpen != null && !favoriteGadgetListOpen.isEmpty())
+			person.setThumbnailurl(favoriteGadgetListOpen);
+		else
+			person.setThumbnailurl(InfoOpenEnum.ALL);
 		
 		// age
 		if (age != null && !age.isEmpty())
@@ -1018,9 +1273,7 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 			person.setAge(0);
 		
 		// gender
-		if (gender != null && !gender.isEmpty())
-			person.setGender(GenderEnum.bi);
-		else if (gender.equals("male"))
+		if (gender.equals("male"))
 			person.setGender(GenderEnum.male);
 		else if (gender.equals("female"))
 			person.setGender(GenderEnum.female);
@@ -1113,6 +1366,11 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 		else
 			person.setHappiestwhen("");
 		
+		// jobInterest
+		if (jobInterest != null && !jobInterest.isEmpty())
+			person.setJobinterests(jobInterest);
+		else
+			person.setJobinterests("");
 				
 		// humor
 		if (humor != null && !humor.isEmpty())
@@ -1214,13 +1472,7 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 			person.setProfilevideourlType(profilevideoUrlType);
 		else
 			person.setProfilevideourlType("");
-		
-		// profileUrlAddress
-		if (profileUrlAddress != null && !profileUrlAddress.isEmpty())
-			person.setProfileurl(profileUrlAddress);
-		else
-			person.setProfileurl("");
-				
+								
 		// relationshipStatus
 		if (relationshipStatus != null && !relationshipStatus.isEmpty())
 			person.setRelationshipstatus(relationshipStatus);
@@ -1261,66 +1513,135 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 		else
 			person.setStatus("");
 				
-		// thumbnailUrlAddress
-		if (thumbnailUrlAddress != null && !thumbnailUrlAddress.isEmpty())
-			person.setThumbnailurl(thumbnailUrlAddress);
-		else
-			person.setThumbnailurl("");
-		
+				
 		user.setPerson(person);
 		hsession.saveOrUpdate(user);
 		hsession.saveOrUpdate(person);
 		tran.commit();
 	}
 	
-	public String execute() {
+	public String execute() throws Exception
+	{
+		Session hsession = HibernateUtil.getSessionFactory().getCurrentSession();
+		org.hibernate.Transaction tran = null;
 		
-		user = (User)session.get(SKTOpenSocialSupportConstants.USER);
-		userId = user.getId();
-		
-		hsession = HibernateUtil.getSessionFactory().getCurrentSession();
-		tran = hsession.beginTransaction();
-		
-		System.out.println("user registration start -----" );
-		
-		user = (User) hsession.get(User.class, userId);
-		if(user == null) {
-			user = new User();
-			user.setId(userId);
-		}
-		/*
-		else
-		{
-			addFieldError("userIdWant", "use other userId");
-			tran.commit();
-			return "fail";
-		}
-		*/
-		if (passwordWant.isEmpty() || !passwordWant.equals(passwordConfirm))
-		{
-			addFieldError("passwordWant", "password error");
-			tran.commit();
-			return "fail";
-		}
-		
-		
-		PasswordEncryptor pe = PasswordEncryptor.getInstance();
-		String hashedPassword = pe.encrypt(passwordWant);
-		
-		user.setPassword(hashedPassword);
-		user.setIsAdministrator(false);
-		user.setIsDeveloper(false);
-		//user.setRegisteredDate(new Date());
+//		try
+//		{
+			tran = hsession.beginTransaction();
+			
+			user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+			userId = user.getId();
+			
+			//System.out.println("user modification start -----" );
+			
+			user = (User) hsession.get(User.class, userId);
+			//System.out.println("user modification start 2 -----" + user.getId());
+			
+			if(user == null) {
+				user = new User();
+				user.setId(userId);
+			}
+			/*
+			else
+			{
+				addFieldError("userIdWant", "use other userId");
+				tran.commit();
+				return "fail";
+			}
+			*/
+			PasswordEncryptor pe = PasswordEncryptor.getInstance();
+			String hashedPasswordOld = pe.encrypt(password);
+			
+			//System.out.println("user modification start 3-0 -----" 
+			//		+ user.getPassword() + " : " + hashedPasswordOld);
+			
+			if (!user.getPassword().equals(hashedPasswordOld))
+			{
+				System.out.println("user modification start 3 -----" );
 				
-		hsession.saveOrUpdate(user);
-		tran.commit();
-		
-		this.updatePersonBasic();
-		this.updatePersonAddress();
-		this.updatePersonAdditionalInfo1();
-		this.updatePersonAdditionalInfo2();
-		
-		return "success";
+				addFieldError("passwordWant", "password error");
+				tran.commit();
+				return "fail";
+			}
+			//System.out.println("user modification start 4 -----" );
+			
+			if (!passwordWant.isEmpty())
+			{
+				System.out.println("user modification start 5 -----" );
+				if (passwordWant.equals(passwordConfirm))
+				{
+					System.out.println("user modification start 6 -----" );
+					String hashedPassword = pe.encrypt(passwordWant);
+					user.setPassword(hashedPassword);
+				}
+				else
+				{
+					System.out.println("user modification start 7 -----" );
+					addFieldError("passwordWant", "password error");
+					tran.commit();
+					return "fail";
+				}
+			}
+			
+			//System.out.println("user modification start 8 -----" );
+			
+			//userVisibility = user.getUserVisibility();
+			
+			//System.out.println("user modification start 9 -----" + userVisibility.getAddresses());
+			
+//			if (userVisibility == null)
+//				userVisibility = new UserVisibility();
+//			
+//			// visibility
+//			if (personalInfoOpen != null && !personalInfoOpen.isEmpty())
+//				userVisibility.setAddresses(personalInfoOpen);
+//			else
+//				userVisibility.setAddresses(InfoOpenEnum.ALL);
+//			
+//			if (favoriteGadgetListOpen != null && !favoriteGadgetListOpen.isEmpty())
+//				userVisibility.setAge(favoriteGadgetListOpen);
+//			else
+//				userVisibility.setAge(InfoOpenEnum.ALL);
+//			
+//			//System.out.println("user modification start 10 -----" );
+//			
+//			userVisibility.setUser(user);
+			//userVisibility.setUserId(userId);
+			
+			//user.setUserVisibility(userVisibility);
+			
+			//user.setIsAdministrator(false);
+			//user.setIsDeveloper(false);
+			//user.setRegisteredDate(new Date());
+			
+			//hsession.saveOrUpdate(userVisibility);
+			
+			//System.out.println("user modification start 11 -----" );
+			
+			hsession.saveOrUpdate(user);
+			
+			//System.out.println("user modification start 12 -----" );
+			
+			//hsession.saveOrUpdate(userVisibility);	
+			
+			//System.out.println("user modification start 13 -----" );
+			tran.commit();
+			
+			this.updatePersonBasic();
+			this.updatePersonAddress();
+			this.updatePersonAdditionalInfo1();
+			this.updatePersonAdditionalInfo2();
+			this.updatePersonOrganization();
+			this.updatePersonURL();
+			
+			super.addActivity(ActivityTypeEnum.modifyPersonalProfile, userId, "", null);
+			
+			return "success";
+//		} catch (Exception e) {
+//			if (tran != null)
+//				tran.rollback();
+//			throw e;
+//		}
 	}
 		
 	// Properties to receive login request parameters
@@ -2325,6 +2646,46 @@ public class ModificationSubmitAction extends ActionSupport implements SessionAw
 
 	public void setTran(Transaction tran) {
 		this.tran = tran;
+	}
+
+	public UserVisibility getUserVisibility() {
+		return userVisibility;
+	}
+
+	public void setUserVisibility(UserVisibility userVisibility) {
+		this.userVisibility = userVisibility;
+	}
+
+	public Set<GadgetReview> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Set<GadgetReview> reviews) {
+		this.reviews = reviews;
+	}
+
+	public String getPersonalInfoOpen() {
+		return personalInfoOpen;
+	}
+
+	public void setPersonalInfoOpen(String personalInfoOpen) {
+		this.personalInfoOpen = personalInfoOpen;
+	}
+
+	public String getFavoriteGadgetListOpen() {
+		return favoriteGadgetListOpen;
+	}
+
+	public void setFavoriteGadgetListOpen(String favoriteGadgetListOpen) {
+		this.favoriteGadgetListOpen = favoriteGadgetListOpen;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	

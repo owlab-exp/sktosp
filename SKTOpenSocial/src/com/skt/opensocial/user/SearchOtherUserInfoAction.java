@@ -4,19 +4,25 @@
 package com.skt.opensocial.user;
 
 import java.util.Date;
-import java.util.Iterator;
+
+
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
-import com.skt.opensocial.developer.DeveloperBaseAction;
-import com.skt.opensocial.developer.ManageGadgetAction;
+
 import com.skt.opensocial.persistence.Gadget;
-import com.skt.opensocial.persistence.GadgetCategory;
+import com.skt.opensocial.persistence.Info2AttributeEnum;
+import com.skt.opensocial.persistence.Person;
+import com.skt.opensocial.persistence.PersonAdditionalInfo2;
+
+
 import com.skt.opensocial.persistence.HibernateUtil;
+
 import com.skt.opensocial.persistence.User;
 
 /**
@@ -24,7 +30,7 @@ import com.skt.opensocial.persistence.User;
  *
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
-public class SearchOtherUserInfoAction extends DeveloperBaseAction{
+public class SearchOtherUserInfoAction extends ActivityBaseManager{
 	
 	/**
 	 * 
@@ -43,7 +49,63 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction{
 	
 	User otherUser;
 	
+	String phoneNumber;
 	
+	String personalInfoOpen;
+	String favoriteGadgetListOpen;
+	String flagFriend = "false";
+	String flagOtherFriend = "false";
+	String flagMyself = "false";
+
+	
+	public String getFlagOtherFriend() {
+		return flagOtherFriend;
+	}
+
+	public void setFlagOtherFriend(String flagOtherFriend) {
+		this.flagOtherFriend = flagOtherFriend;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getFlagMyself() {
+		return flagMyself;
+	}
+
+	public void setFlagMyself(String flagMyself) {
+		this.flagMyself = flagMyself;
+	}
+
+	public String getPersonalInfoOpen() {
+		return personalInfoOpen;
+	}
+
+	public void setPersonalInfoOpen(String personalInfoOpen) {
+		this.personalInfoOpen = personalInfoOpen;
+	}
+
+	public String getFavoriteGadgetListOpen() {
+		return favoriteGadgetListOpen;
+	}
+
+	public void setFavoriteGadgetListOpen(String favoriteGadgetListOpen) {
+		this.favoriteGadgetListOpen = favoriteGadgetListOpen;
+	}
+
+	public String getFlagFriend() {
+		return flagFriend;
+	}
+
+	public void setFlagFriend(String flagFriend) {
+		this.flagFriend = flagFriend;
+	}
+
 	public Set<Gadget> getOtherUserGadgets() {
 		return otherUserGadgets;
 	}
@@ -104,77 +166,98 @@ public class SearchOtherUserInfoAction extends DeveloperBaseAction{
 		this.session = map;
 	}
 	
-	public String execute() {
+	public String execute() throws Exception {
 	
 		//
-		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
-		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		Transaction tx = null;
 		
-		userId = user.getUserId();
-		
-		//user = (User)hs.load(User.class, userId);
-		otherUser = (User)hs.load(User.class, otherUserId);
-		
-		System.out.println("--------------------------------------A " + otherUser.getId() );
-		
-		name = otherUser.getPerson().getName();
-		registeredDate = otherUser.getRegisteredDate();
-		System.out.println("--------------------------------------B " + registeredDate);
-		age = otherUser.getPerson().getAge();
-		
-		otherUserGadgets = otherUser.getFavoriteGadgets();
-		
-		for (Gadget g: otherUserGadgets)
+		try
 		{
-			g.getId();
-			g.getName();
-			g.getDeveloper().getPerson().getName();
-			g.getPublishDate();
-			g.getFavoriteUsers().size();
-			g.getIntroduction();
+			tx = hs.beginTransaction();
 			
-		}
-		System.out.println("--------------------------------------C" + otherUserGadgets.size());
-		//session.put(SKTOpenSocialSupportConstants.USER, user);
-        
-		//System.out.println("list count = " + categoryStringList);
-		
-		/* 
-		 * 
-
-		gadget.setName(getGadgetName());
-		
-		String categoryIds = getGadgetCategory();
-		
-		System.out.println("list count = " + gadgetId + gadget.getName() + categoryIds);
-		
-		categoryIds = categoryIds.replace(" ", "");
-		String[] categoryIdArray = categoryIds.split(",");
-		if(categoryIdArray.length > 0) {
-			HashSet<GadgetCategory> categorySet = new HashSet<GadgetCategory>();
+			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
 			
-			for(int i = 0; i < categoryIdArray.length; i++) {
-				GadgetCategory gadgetCategory = (GadgetCategory)hs.load(GadgetCategory.class, categoryIdArray[i]);
-				categorySet.add(gadgetCategory);
+			userId = user.getUserId();
+					
+			user = (User)hs.load(User.class, userId);
+						
+			otherUser = (User)hs.load(User.class, otherUserId);
+			Person person = otherUser.getPerson();
+			
+			personalInfoOpen = person.getProfileurl();
+			favoriteGadgetListOpen = person.getThumbnailurl();
+			if (personalInfoOpen == null)
+				personalInfoOpen = InfoOpenEnum.ALL;
+			if (favoriteGadgetListOpen == null)
+				favoriteGadgetListOpen = InfoOpenEnum.ALL;
+			
+			if (otherUser.getFriendsByMe().contains(user))
+				flagOtherFriend = "true";
+			
+			if (user.getFriendsByMe().contains(otherUser))
+				flagFriend = "true";
+			
+			if (otherUserId.equals(userId))
+				flagMyself = "true";
+			
+			if (personalInfoOpen.equals(InfoOpenEnum.ONLYF) && flagOtherFriend.equals("false"))
+				personalInfoOpen = InfoOpenEnum.onlyf;
+			
+			if (favoriteGadgetListOpen.equals(InfoOpenEnum.ONLYF) && flagOtherFriend.equals("false"))
+				favoriteGadgetListOpen = InfoOpenEnum.onlyf;
+			
+			System.out.println("--------A " 
+					+ personalInfoOpen + " : " 
+					+ favoriteGadgetListOpen + " : "
+					+ flagFriend + " : "
+					+ flagMyself);
+			
+			name = person.getName();
+			registeredDate = otherUser.getRegisteredDate();
+			//System.out.println("--------------------------------------B " + registeredDate);
+			age = person.getAge();
+			
+			phoneNumber ="";
+			Set<PersonAdditionalInfo2> set = person.getAdditionalInfo2s();
+			for (PersonAdditionalInfo2 p: set)
+			{
+				if (p.getAttribute().equals(Info2AttributeEnum.phoneNumbers) && p.getPrimary())
+				{
+					phoneNumber = p.getValue();
+					break;
+				}
 			}
+			otherUserGadgets = otherUser.getFavoriteGadgets();
 			
-			gadget.setCategories(categorySet);
-		}
+			for (Gadget g: otherUserGadgets)
+			{
+				g.getId();
+				g.getName();
+				g.getDeveloper().getPerson().getName();
+				g.getPublishDate();
+				g.getFavoriteUsers().size();
+				g.getIntroduction();
+				
+			}
+			//System.out.println("--------------------------------------C");
 
-		gadget.setIconUrl(getGadgetIconUrl());
-		gadget.setIntroduction(getGadgetIntro());
-		gadget.setSource(getGadgetSource());
-		gadget.setRegisterDate(null);
-		gadget.setStatus(GadgetStatusConstants.NOT_REGISTERED);
-		gadget.setRegisterType(getRegisterType());		
-		
-		*/
-		
-		hs.getTransaction().commit();
-		
-		return Action.SUCCESS;
+			tx.commit();
+			//System.out.println("--------------------------------------D");
+			
+			
+			
+			//System.out.println("--------------------------------------E : " + ActivityTypeEnum.otherUserInfo + userId + otherUserId);
+			
+			super.addActivity(ActivityTypeEnum.otherUserInfo, userId, otherUserId, null);
+			
+			//System.out.println("--------------------------------------F");
+			return Action.SUCCESS;
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
 	}
 
 }

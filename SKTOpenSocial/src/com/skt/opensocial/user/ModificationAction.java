@@ -21,6 +21,8 @@ import com.skt.opensocial.persistence.NetworkpresenceEnum;
 import com.skt.opensocial.persistence.Person;
 import com.skt.opensocial.persistence.PersonAdditionalInfo1;
 import com.skt.opensocial.persistence.PersonAdditionalInfo2;
+import com.skt.opensocial.persistence.PersonOrganization;
+import com.skt.opensocial.persistence.PersonUrl;
 import com.skt.opensocial.persistence.SmokerEnum;
 import com.skt.opensocial.persistence.User;
 
@@ -50,6 +52,9 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 	
 	Set<PersonAdditionalInfo2> personAdditionalInfo2;
 	Set<PersonAdditionalInfo1> personAdditionalInfo1;
+	
+	Set<PersonOrganization> personOrganizations;
+	Set<PersonUrl> personUrls;
 	
 	private Person person;
 	
@@ -104,7 +109,6 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 	private String interest2;
 	
 	private String jobInterest;
-	private String jobInterest2;
 	
 	private String languageSpoken;
 	private String languageSpoken2;
@@ -217,6 +221,8 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 		fashion = person.getFashion();
 		happiestWhen = person.getHappiestwhen();
 		humor = person.getHumor();
+		jobInterest = person.getJobinterests();
+		
 		livingArrangement = person.getLivingarrangement();
 		
 		additionalName = person.getNameAdditionalname();
@@ -239,10 +245,6 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 		profilevideoUrlLinktext = person.getProfilevideourlLinkText();
 		profilevideoUrlType = person.getProfilevideourlType();
 		
-		profileUrlAddress = person.getProfileurl();
-		//profileUrlLinktext = person.
-		//profileUrlType = person.
-
 		relationshipStatus = person.getRelationshipstatus();
 		religion = person.getReligion();
 		romance = person.getRomance();
@@ -252,10 +254,43 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 				
 		status = person.getStatus();
 		
-		thumbnailUrlAddress = person.getThumbnailurl();
+		//thumbnailUrlAddress = person.getThumbnailurl();
 		//thumbnailUrlLinktext 
 		//thumbnailUrlType;
-						
+		//profileUrlAddress = person.getProfileurl();
+		//profileUrlLinktext = person.
+		//profileUrlType = person.
+		
+		personOrganizations = person.getOrganizations();
+		personUrls = person.getUrls();
+		
+		for (PersonOrganization p: personOrganizations)
+		{
+			if (p.getType().equals("job") && p.getPrimary())
+				job = p.getName();
+			else if (p.getType().equals("job") && !p.getPrimary())
+				job2 = p.getName();
+			else if (p.getType().equals("school") && p.getPrimary())
+				school = p.getName();
+			else if (p.getType().equals("school") && !p.getPrimary())
+				school2 = p.getName();
+		}
+		
+		for (PersonUrl p: personUrls)
+		{
+			if (p.getType().equals("profile"))
+			{
+				profileUrlLinktext = p.getLinkText();
+				profileUrlAddress = p.getValue();
+			}
+			else if (p.getType().equals("thumbnail"))
+			{
+				thumbnailUrlLinktext = p.getLinkText();
+				thumbnailUrlAddress = p.getValue();
+			}
+				
+		}
+		
 		personAdditionalInfo2 = person.getAdditionalInfo2s();
 		personAdditionalInfo1 = person.getAdditionalInfo1s();
 		
@@ -365,7 +400,7 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 					languageSpoken2 = p.getValue();
 			}
 			
-			if (p.getAttribute().equals(Info1AttributeEnum.lookinFor))
+			if (p.getAttribute().equals(Info1AttributeEnum.lookingFor))
 			{
 				lookingFor = p.getValue();
 			}
@@ -1067,14 +1102,6 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 
 	public void setJobInterest(String jobInterest) {
 		this.jobInterest = jobInterest;
-	}
-
-	public String getJobInterest2() {
-		return jobInterest2;
-	}
-
-	public void setJobInterest2(String jobInterest2) {
-		this.jobInterest2 = jobInterest2;
 	}
 
 	public String getLanguageSpoken() {

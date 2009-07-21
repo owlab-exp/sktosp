@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+
 import org.hibernate.Session;
 
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
@@ -25,7 +25,7 @@ import com.skt.opensocial.persistence.User;
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class MyProfilePageAction extends DeveloperBaseAction {
-	private static Logger logger = Logger.getLogger(MyProfilePageAction.class);
+	//private static Logger logger = Logger.getLogger(MyProfilePageAction.class);
 	
 	/**
 	 * 
@@ -88,58 +88,52 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String execute(){
-		//
-		User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
-		
-		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
-		
-		userId = user.getUserId();
-		
-		user = (User)hs.load(User.class, userId);
-				
-		name = user.getPerson().getName();
-		registeredDate = user.getRegisteredDate();
-		//System.out.println("--------------------------------------list count " + registeredDate);
-		age = user.getPerson().getAge();
-		
-		Set<PersonAdditionalInfo2> set = user.getPerson().getAdditionalInfo2s();
-		phoneNumber ="";
-		
-		for (PersonAdditionalInfo2 p: set)
-		{
-			if (p.getAttribute().equals(Info2AttributeEnum.phoneNumbers) && p.getPrimary())
-			{
-				phoneNumber = p.getValue();
-				break;
-			}
-		}
-		
+	public String execute() throws Exception{
 
-		//System.out.println("--------------------------------------list count ");
-		session.put(SKTOpenSocialSupportConstants.USER, user);
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		org.hibernate.Transaction tx = null;
 		
-		this.gadgets = user.getFavoriteGadgets();
-		// logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-		
-		hs.getTransaction().commit();
-		
-		//
-		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
-		if(gadgetDataList == null) {
-			session.put("gadgets", new GadgetDataList());
-			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
-		} else {
-			this.gadgetDataList = gadgetDataListS;
+		try
+		{
+			tx = hs.beginTransaction();
+			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+							
+			userId = user.getUserId();
+			
+			user = (User)hs.load(User.class, userId);
+					
+			name = user.getPerson().getName();
+			registeredDate = user.getRegisteredDate();
+			//System.out.println("--------------------------------------list count " + registeredDate);
+			age = user.getPerson().getAge();
+			
+			Set<PersonAdditionalInfo2> set = user.getPerson().getAdditionalInfo2s();
+			phoneNumber ="";
+			
+			for (PersonAdditionalInfo2 p: set)
+			{
+				if (p.getAttribute().equals(Info2AttributeEnum.phoneNumbers) && p.getPrimary())
+				{
+					phoneNumber = p.getValue();
+					break;
+				}
+			}
+			
+	
+			//System.out.println("--------------------------------------list count ");
+			//session.put(SKTOpenSocialSupportConstants.USER, user);
+			
+			this.gadgets = user.getFavoriteGadgets();
+			// logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
+			
+			tx.commit();
+			
+			return "success";
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
-		gadgetMap = this.gadgetDataList.getGadgetMap();
-		gadgetList = gadgetMap.values();
-		
-		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
-		*/
-		
-		return "success";
 	}
 
 	/* (non-Javadoc)

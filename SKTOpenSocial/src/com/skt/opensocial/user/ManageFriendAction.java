@@ -13,7 +13,7 @@ import org.hibernate.Session;
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.developer.DeveloperBaseAction;
-import com.skt.opensocial.persistence.Gadget;
+
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
@@ -61,26 +61,14 @@ public class ManageFriendAction extends DeveloperBaseAction {
 		user = (User)hs.load(User.class, userId);
 		
 		
-		session.put(SKTOpenSocialSupportConstants.USER, user);
+		//session.put(SKTOpenSocialSupportConstants.USER, user);
 		
 		this.friends = user.getFriendsByMe();
 		 logger.log(Level.INFO, "Number of gadgets = " + friends.size());
 		
 		hs.getTransaction().commit();
 		
-		//
-		/*GadgetDataList gadgetDataListS = (GadgetDataList)session.get("gadgets");
-		if(gadgetDataList == null) {
-			session.put("gadgets", new GadgetDataList());
-			this.gadgetDataList = (GadgetDataList)session.get("gadgets");
-		} else {
-			this.gadgetDataList = gadgetDataListS;
-		}
-		gadgetMap = this.gadgetDataList.getGadgetMap();
-		gadgetList = gadgetMap.values();
-		
-		System.out.println("list count = " + gadgetDataList.getGadgetMap().size());
-		*/
+
 		
 		return Action.SUCCESS;
 	}
