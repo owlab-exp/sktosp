@@ -86,8 +86,13 @@
 			<result type="redirectAction">ManageFriend</result>
 		</action>
 		
-		<action name="ManageActivity">
+		<action name="ManageActivity" class="com.skt.opensocial.user.ManageActivityAction">
 			<result>/user/UserListActivities.jsp</result>
+		</action>
+		
+		<action name="RemoveActivity" class="com.skt.opensocial.user.RemoveActivityAction">
+			<result name="success" type="redirectAction">ManageActivity</result>
+			<result name="fail" type="redirectAction">ManageActivity</result>
 		</action>
 		
 		<action name="PrepareSearch" >
