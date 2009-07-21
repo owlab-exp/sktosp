@@ -7,8 +7,5 @@ public class GadgetStatusConstants {
 	public static final String PUBLISH_REQUESTED = "pr";
 	public static final String PUBLISHED = "pg";
 	public static final String PUBLISH_DENIED = "pd";
-	
-	
-
 
 }
