@@ -60,11 +60,11 @@
 								<col width="5%">
 								<col width="5%">
 								<col width="20%">
-								<col width="10%">
-								<col width="10%">
+								<col width="12.5%">
+								<col width="12.5%">
 								<col width="10%">
 								<col width="15%">
-								<col width="25%">
+								<col width="20%">
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
@@ -159,38 +159,37 @@
 												<s:property value="id" />
 											</s:param>
 										</s:url>
+										<td align="center">
 										<s:if test="status.equals('nr')">
-											<td align="center"><s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a
+											<s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a
 												href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
 												onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a>
-											</td>
+											
 										</s:if>
 										<s:if test="status.equals('rg')">
-											<td align="center"><s:a href="#"
+											<s:a href="#"
 												onclick="javascript:popup('%{publishRequestUrl}','PublishConfirm')">발행요청</s:a>/<s:a
 												href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
 												onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a>
-											</td>
+											
 										</s:if>
 										<s:elseif test="status.equals('pg')">
-											<td align="center"><s:a href="%{viewReviewUrl}">사용자 리뷰 보기</s:a>
-											</td>
+											<s:a href="%{viewReviewUrl}">사용자 리뷰 보기</s:a>
+											
 										</s:elseif>
 										<s:elseif test="status.equals('pd')">
-											<td align="center"><s:a href="#"
+											<s:a href="#"
 												onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a
 												href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
 												onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a>
-											</td>
 										</s:elseif>
-										<s:else>
-											<td align="center"></td>
+										<s:else>								
 										</s:else>
-
+										</td>
 									</tr>
 								</s:iterator>
 								<tr>
-									<td class="line" colspan="7"></td>
+									<td class="line" colspan="8"></td>
 								</tr>
 							</tbody>
 						</table>

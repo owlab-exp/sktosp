@@ -66,7 +66,7 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 
 			logger.info("User ID=" + userId);
 //			user = (User) hs.load(User.class, userId);
-//
+
 //			session.put(SKTOpenSocialSupportConstants.USER, user);
 			
 			Criteria crit = hs.createCriteria(Gadget.class);

@@ -71,7 +71,7 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			gadget.setStatus(GadgetStatusConstants.REGISTERED);
 			gadget.setRegisterDate(new Date());
 			hs.save(gadget);
-			hs.getTransaction().commit();
+			tx.commit();
 			return "gadget_list";
 		} catch (Exception e) {
 			if (tx != null)
@@ -149,7 +149,7 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			developer.setIsDeveloper(true); // for developer
 			newGadget.setDeveloper(developer);
 
-			hs.saveOrUpdate(developer);
+			hs.update(developer);
 			gadgetId = (Long) hs.save(newGadget);
 
 			setGadgetId(gadgetId);// ?

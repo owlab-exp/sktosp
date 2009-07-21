@@ -86,15 +86,15 @@
     float: right;
   }
 
+
   .gadgets-gadget-chrome {
-    width: 80%;
+    width: 90%;
     float: none;
     margin: auto;
- 	align: center;
   }
 
   .gadgets-gadget {
-    
+    width: 100%;
   }
 
 </style>
