@@ -36,8 +36,13 @@
 	params[opensocial.DataRequest.PeopleRequestFields.MAX] = 50;
 	params[opensocial.DataRequest.PeopleRequestFields.FILTER] = opensocial.DataRequest.FilterType.HAS_APP;
 	req.add(req.newFetchPeopleRequest(opensocial.DataRequest.Group.OWNER_FRIENDS, params), 'ownerFriends');
+	
 	req.send(onLoadFriends);
   };
+  
+  function getIdSpec() {
+    return new opensocial.IdSpec({userId : 'VIEWER', groupId : 'FRIENDS'});
+  }
 
  /**
   * Parses the response to the friend information request and generates
@@ -54,6 +59,20 @@
       html += '<li>' + person.getDisplayName() + '</li>';
     });
     html += '</ul>';
+    
+    
+    
+    html += 'Friends of ' + owner.getDisplayName(); 
+    html += ':<br><ul>';
+    var viewerFriends = dataResponse.get('viewerFriends').getData();
+    html += viewerFriends.size();
+    viewerFriends.each(function(person) {
+      html += '<li>' + person.getDisplayName() + '</li>';
+    });
+    html += '</ul>';
+    
+    html += '<br><br>';
+    
     document.getElementById('message').innerHTML = html;
   };
 

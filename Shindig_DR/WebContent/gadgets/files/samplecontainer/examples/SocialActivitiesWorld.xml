@@ -127,6 +127,8 @@ function refreshActivities() {
   }
   req.add(req.newFetchActivitiesRequest('VIEWER'), 'viewerActivities');
   req.add(req.newFetchActivitiesRequest('VIEWER_FRIENDS'), 'activities');
+ 
+  	
   req.send(handleActivities);
 }
 
@@ -151,6 +153,7 @@ function handleActivities(dataResponse) {
   document.getElementById('stream').style.display = 'block';
 
   var html = '';
+
   if (!activities || activities.length == 0) {
     document.getElementById('stream').innerHTML = 'You do not have any activities yet';
     return;

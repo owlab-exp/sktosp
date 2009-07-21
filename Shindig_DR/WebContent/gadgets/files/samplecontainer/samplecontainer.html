@@ -58,6 +58,9 @@
 <script type="text/javascript" src="../container/osapi.js"></script>
 <script type="text/javascript" src="samplecontainer.js"></script>
 
+<script type="text/javascript" src="samplejs/samplehandler.js"></script>
+<script type="text/javascript" src="samplejs/grouphandler.js"></script>
+
 </head>
 <body onLoad="shindig.samplecontainer.initSampleContainer();
     shindig.samplecontainer.unpackFormState(); shindig.samplecontainer.initGadget();">
@@ -86,7 +89,7 @@
       <br/>
 
       <input type="button" value="reset all" onclick="shindig.samplecontainer.changeGadgetUrl();"/>
-      <input type="button" value="dump state" onclick="shindig.samplecontainer.dumpStateFile();"/>
+      <input type="button" value="dump state" onclick="sktopensocial.grouphandler.sample();"/>
     </div>
     <div style="clear:both; height: 1px;">&nbsp;</div>
   </div>

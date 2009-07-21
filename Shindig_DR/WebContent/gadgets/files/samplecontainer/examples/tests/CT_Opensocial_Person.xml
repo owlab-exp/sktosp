@@ -34,20 +34,14 @@
   */
   function onViewerData(dataResponse) {
     var owner = dataResponse.get('owner').getData();
+    
     var html = '<br>Display Name : ' + owner.getDisplayName(); 
     
     html += '<br>Application Data key[count] : ' + owner.getAppData('count');
-
+    
     html += '<br>ID : ' + owner.getId() + '</li>';
     html += '<li>' + owner.getField(opensocial.Person.Field.ABOUT_ME) + '</li>';
 
-	html += '<li>' + 'Activities:<br><ul>' +'</li>';
-    var activities = owner.getField(opensocial.Person.Field.ACTIVITIES);
-    for (var i = 0; i < activities.length; i++) {
-    	html += '<li>' + activities[i] + '</li>';
-    }
-    html += '</ul>';
-    
 	html += '<li>' + 'Addresses:<br><ul>' +'</li>';
     var addresses = owner.getField(opensocial.Person.Field.ADDRESSES);
     for (var i = 0; i < addresses.length; i++) {
@@ -65,7 +59,16 @@
     	html += '<br>';
     }
     html += '</ul>';
-
+    
+	html += '<li>' + 'Activities:<br><ul>' +'</li>';
+    var activities = owner.getField(opensocial.Person.Field.ACTIVITIES);
+    for (var i = 0; i < activities.length; i++) {
+    	html += '<li>' + activities[i] + '</li>';
+    }
+    html += '</ul>';
+    
+	
+    
     html += '<li>' + owner.getField(opensocial.Person.Field.AGE) + '</li>';
   
     html += '<li>' + 'BodyType:<br><ul>' +'</li>';
@@ -115,8 +118,9 @@
     
     html += '<li>' + 'Emails:<br><ul>' +'</li>';
     var emails = owner.getField(opensocial.Person.Field.EMAILS);
+
     for (var i = 0; i < emails.length; i++) {
-    	html += '<li>' + + emails[i].getField(opensocial.Email.Field.ADDRESS) + '</li>';
+    	html += '<li>' + emails[i].getField('address') + '</li>';
     	html += '<li>' + emails[i].getField(opensocial.Email.Field.TYPE) + '</li>';
     	html += '<br>';
     }
@@ -308,9 +312,12 @@
     }
     html += '</ul>';
     
+    
     document.getElementById('message').innerHTML = html;
     
     gadgets.window.adjustHeight();
+    
+    SktOpensocial.samplehandler.dumpStateFile();
   };
 
   gadgets.util.registerOnLoadHandler(getData);
