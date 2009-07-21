@@ -71,7 +71,7 @@
 								<s:iterator value="friends">
 								<tr style="background-color: rgb(300, 300, 300);">
 									<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
-										<s:param name="userId"><s:property value="id"/></s:param>
+										<s:param name="otherUserId"><s:property value="id"/></s:param>
 									</s:url>
 									<s:url id="userRemoveFriendUrl" action="UserRemoveFriend">
 										<s:param name="friendId"><s:property value="id"/></s:param>

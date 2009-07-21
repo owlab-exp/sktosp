@@ -48,7 +48,7 @@
           <td>
 
 	<s:form action="Search" namespace="/user" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'username':'사용자이름','gadget':'가젯이름'}"/> 
+	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'username':'사용자이름','gadget':'가젯이름','tag':'사용자태그'}"/> 
 	    <s:textfield name="query"/> 
 	    <s:submit value="검색"/>
 	    

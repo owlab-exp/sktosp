@@ -76,16 +76,17 @@
 								<tr style="background-color: rgb(300, 300, 300);">
 									<s:url id="gadgetInfoUrl" action="GadgetInfo">
 										<s:param name="gadgetId"><s:property value="id"/></s:param>
+										<s:param name="ownerId"><s:property value="userId"/></s:param>
 									</s:url>
-									<s:url id="userInfoUrl" action="UserInfo">
-										<s:param name="developername"><s:property value="developer.person.nameFormatted"/></s:param>
+									<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
+										<s:param name="otherUserId"><s:property value="developer.id"/></s:param>
 									</s:url>
 									<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
 										<s:param name="gadgetId"><s:property value="id"/></s:param>
 									</s:url>
 									<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
 									<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
-									<td align="center"><s:a href="%{userInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
+									<td align="center"><s:a href="%{userOtherUserInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
 									<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
 									<td align="center"><s:property value="favoriteUsers.size"/></td>
 									<td align="center"><s:property value="introduction"/></td>

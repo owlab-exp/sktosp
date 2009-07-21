@@ -96,7 +96,26 @@
 									<s:textfield name= "userName" required="true" value="nashbabo"/>										
 								</td>
 							</tr>
-			  		      
+							
+<!--							<tr>-->
+<!--								<td>이미지위치</td>-->
+<!--								<td>-->
+<!--							    	<s:url id="iconUrl" action="ViewIcon">-->
+<!--										<s:param name="userId" value="%{userId}"></s:param>-->
+<!--									</s:url>-->
+<!--									<img:image src="%{iconUrl}" resize="false" height="23" width="23"/>-->
+<!--									<s:file name="thumbnailUrlAddress" label="아이콘 파일위치"/>-->
+<!--						    	</td>-->
+<!--							</tr>-->
+<!--							-->
+<!--							<tr>-->
+<!--								<td>이미지내용</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="이미지내용" name="thumbnailUrlLinktext" required="false" value="애국가"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
+										  		      
 			  		      ` <tr>
 								<td>나이</td>
 								<td>
@@ -133,6 +152,28 @@
 							</tr>
 							
 							<tr>
+								<td>상세개인정보공개</td>
+								<td>
+							    	<s:select label="상세개인정보공개" name="personalInfoOpen" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		list="#{'ALL':'모든사용자에게 상세개인정보를 모두 공개'
+						       				,'ONLYF':'친구에게만 상세개인정보를 공개'
+						       				,'NOOP':'비공개'
+						       				}"/> 
+					   	     	</td>
+							</tr>
+
+							<tr>
+								<td>선호가젯모음공개</td>
+								<td>
+							    	<s:select label="선호가젯모음공개" name="favoriteGadgetListOpen" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		list="#{'ALL':'모든사용자에게 선호가젯모음을 모두 공개'
+						       				,'ONLYF':'친구에게만 선호가젯모음을 공개'
+						       				,'NOOP':'비공개'
+						       				}"/> 
+					   	     	</td>
+							</tr>
+							
+							<tr>
 								<td>주소</td>
 								<td>
 									<s:textfield name= "address" required="false" value="서울"/> 
@@ -164,8 +205,7 @@
 							<tr>
 								<td>직업</td>
 								<td>
-							    
-						      		      
+							        
 						          	<s:textfield label= "직업" name= "job" required="false" value="student"/> 
 						    	</td>
 							</tr>
@@ -182,7 +222,6 @@
 								<td>난?</td>
 								<td>
 							    
-							  
 						          	<s:textarea label= "난?" name= "aboutMe" required="false" value="난멋있어!"/> 
 						       		      
 						     	</td>
@@ -219,8 +258,6 @@
 								<td>키</td>
 								<td>
 							   
-						      
-						      
 						          	<s:textfield label= "키" name= "bodytypeHeight" required="false" value="180"/> 
 						     	</td>
 							</tr>
@@ -391,15 +428,7 @@
 						          	<s:textfield label="관심직업" name="jobInterest" required="false" value="대통령"/> 
 						    	</td>
 							</tr>
-							
-							<tr>
-								<td>관심직업추가</td>
-								<td>
-							    
-						          	<s:textfield label="관심직업추가" name="jobInterest2" required="false" /> 
-						    	</td>
-							</tr>
-							
+														
 							<tr>
 								<td>사용언어</td>
 								<td>
@@ -624,13 +653,13 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>프로파일위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="프로파일위치종류" name="profileUrlType" required="false" value="website"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>프로파일위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="프로파일위치종류" name="profileUrlType" required="false" value="website"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							<tr>
 								<td>프로파일비디오위치</td>
@@ -769,29 +798,14 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>이미지위치</td>
-								<td>
-							    
-						          	<s:textfield label="이미지위치" name="thumbnailUrlAddress" required="false" value="http://nate.com"/> 
-						    	</td>
-							</tr>
 							
-							<tr>
-								<td>이미지내용</td>
-								<td>
-							    
-						          	<s:textfield label="이미지내용" name="thumbnailUrlLinktext" required="false" value="애국가"/> 
-						    	</td>
-							</tr>
-							
-							<tr>
-								<td>이미지위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="이미지위치종류" name="thumbnailUrlType" required="false" value="website"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>이미지위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="이미지위치종류" name="thumbnailUrlType" required="false" value="website"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							
 							<tr>

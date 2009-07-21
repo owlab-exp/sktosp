@@ -48,7 +48,7 @@
           <td>
 
 	<s:form action="Search" namespace="/user" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'username':'사용자이름','gadget':'가젯이름'}"/> 
+	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'username':'사용자이름','gadget':'가젯이름','tag':'사용자태그'}"/> 
 	    <s:textfield name="query"/> 
 	    <s:submit value="검색"/>
 	    
@@ -87,15 +87,16 @@
 								<tr style="background-color: rgb(300, 300, 300);">
 									<s:url id="gadgetInfoUrl" action="SearchGadgetInfo">
 										<s:param name="gadgetId"><s:property value="id"/></s:param>
+										<s:param name="ownerId"><s:property value="userId"/></s:param>
 									</s:url>
-									<s:url id="userInfoUrl" action="SearchUserInfo">
-										<s:param name="developername"><s:property value="developer.person.nameFormatted"/></s:param>
+									<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
+										<s:param name="otherUserId"><s:property value="developer.id"/></s:param>
 									</s:url>
 
 									<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
 									<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
 									
-									<td align="center"><s:a href="%{userInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
+									<td align="center"><s:a href="%{userOtherUserInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
 									
 									 
 									<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>

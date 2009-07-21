@@ -71,25 +71,76 @@
                 	<td align="center"><s:property value="name"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#F5F5F5;" height="25">
+				<tr style="background-color:#FFFFFF;" height="25">
           			<td align="left">아이디</td> 
                 	<td align="center"><s:property value="otherUserId"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#FFFFFF;" height="25">
-          			<td align="left">전화번호</td> 
-                	<td align="center"><s:property value="otherUserId"/></td> 
-      			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="left">나이</td> 
-                	<td align="center"><s:property value="age"/></td> 
-      			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="left">가입일</td> 
-                	<td align="center"><s:property value="registeredDate"/></td> 
-      			  </tr>
+      			<s:if test="%{flagMyself.equals('true')}"> 
+					<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">전화번호</td> 
+	                	<td align="center"><s:property value="phoneNumber"/></td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#FFFFFF;" height="25">
+	          			<td align="left">나이</td> 
+	                	<td align="center"><s:property value="age"/></td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">가입일</td> 
+	                	<td align="center"><s:property value="registeredDate"/></td> 
+	      			  </tr>
+	      		</s:if>	
+	      		<s:elseif test="%{personalInfoOpen.equals('ALL')}">
+	      			<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">전화번호</td> 
+	                	<td align="center"><s:property value="phoneNumber"/></td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#FFFFFF;" height="25">
+	          			<td align="left">나이</td> 
+	                	<td align="center"><s:property value="age"/></td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">가입일</td> 
+	                	<td align="center"><s:property value="registeredDate"/></td> 
+	      			  </tr>
+	      		</s:elseif>
+	      		<s:elseif test="%{personalInfoOpen.equals('ONLYF')}">
+	      			<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">전화번호</td> 
+	                	<td align="center"><s:property value="phoneNumber"/></td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#FFFFFF;" height="25">
+	          			<td align="left">나이</td> 
+	                	<td align="center"><s:property value="age"/></td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">가입일</td> 
+	                	<td align="center"><s:property value="registeredDate"/></td> 
+	      			  </tr>
+	      		</s:elseif>	      		
+	      		<s:else>
+	      			<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">전화번호</td> 
+	                	<td align="center">비공개입니다</td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#FFFFFF;" height="25">
+	          			<td align="left">나이</td> 
+	                	<td align="center">비공개입니다</td> 
+	      			  </tr>
+	      			  <tr><td class="line" colspan="6"></td></tr>
+					<tr style="background-color:#F5F5F5;" height="25">
+	          			<td align="left">가입일</td> 
+	                	<td align="center">비공개입니다</td> 
+	      			  </tr>
+	      		</s:else>
+	      		  
       			<tr><td class="line" colspan="6"></td></tr>
   
       		</table>
@@ -101,16 +152,16 @@
 		                <col width="60%" /> 
 					</colgroup>
 				
-
-	  			<tr>
-	   				<td width='100%' bgcolor='#FFFFFF' align="center">
-		      			<s:form action="SetFriend" namespace="/user" >
-
-		        		<s:submit align="left" value= "친구등록" name= "SetFriend" />
-						<s:hidden name="friendId" value="%{userId}"/>
-		     			</s:form>    			
-		     		</td>
-		     	</tr>
+				<s:if test="%{flagFriend.equals('false') && flagMyself.equals('false')}">
+		  			<tr>
+		   				<td width='100%' bgcolor='#FFFFFF' align="center">
+			      			<s:form action="SetFriend" namespace="/user" >
+			        		<s:submit align="left" value= "친구등록" name= "SetFriend" />
+							<s:hidden name="friendId" value="%{otherUserId}"/>
+			     			</s:form>    			
+			     		</td>
+			     	</tr>
+			     </s:if>
       		  </table>
       		        		  
 				<table class="subtit_board" summary="List of Gadgets"
@@ -133,30 +184,90 @@
 							<td align="center">발행일자</td>
 							<td align="center">사용자수</td>
 							<td align="center">가젯설명</td>
-							<td align="center">삭제요청</td>
+							<td align="center"></td>
 
 						</tr>
-						<s:iterator value="otherUserGadgets">
-						<tr style="background-color: rgb(300, 300, 300);">
-							<s:url id="gadgetInfoUrl" action="GadgetInfo">
-								<s:param name="gadgetId"><s:property value="id"/></s:param>
-							</s:url>
-							<s:url id="userInfoUrl" action="UserInfo">
-								<s:param name="developername"><s:property value="developer.person.nameFormatted"/></s:param>
-							</s:url>
-							<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
-								<s:param name="gadgetId"><s:property value="id"/></s:param>
-							</s:url>
-							<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
-							<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
-							<td align="center"><s:a href="%{userInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
-							<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
-							<td align="center"><s:property value="favoriteUsers.size"/></td>
-							<td align="center"><s:property value="introduction"/></td>
-							<td align="center"><s:a href="%{userRemoveGadgetUrl}">삭제</s:a></td>
-									
-						</tr>
-						</s:iterator>
+						<s:if test="%{flagMyself.equals('true')}"> 	
+							<s:iterator value="otherUserGadgets">
+							<tr style="background-color: rgb(300, 300, 300);">
+								<s:url id="gadgetInfoUrl" action="SearchGadgetInfo">
+									<s:param name="gadgetId"><s:property value="id"/></s:param>
+									<s:param name="ownerId"><s:property value="otherUserId"/></s:param>
+								</s:url>
+								<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
+										<s:param name="otherUserId"><s:property value="developer.id"/></s:param>
+								</s:url>
+								<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
+									<s:param name="gadgetId"><s:property value="id"/></s:param>
+								</s:url>
+								<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
+								<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
+								<td align="center"><s:a href="%{userOtherUserInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
+								<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
+								<td align="center"><s:property value="favoriteUsers.size"/></td>
+								<td align="center"><s:property value="introduction"/></td>
+								<td align="center"></td>
+							</tr>
+							</s:iterator>
+						</s:if>	
+						<s:elseif test="%{personalInfoOpen.equals('ALL')}">
+							<s:iterator value="otherUserGadgets">
+							<tr style="background-color: rgb(300, 300, 300);">
+								<s:url id="gadgetInfoUrl" action="SearchGadgetInfo">
+									<s:param name="gadgetId"><s:property value="id"/></s:param>
+									<s:param name="ownerId"><s:property value="otherUserId"/></s:param>
+								</s:url>
+								<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
+									<s:param name="otherUserId"><s:property value="developer.id"/></s:param>
+								</s:url>
+								<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
+									<s:param name="gadgetId"><s:property value="id"/></s:param>
+								</s:url>
+								<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
+								<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
+								<td align="center"><s:a href="%{userOtherUserInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
+								<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
+								<td align="center"><s:property value="favoriteUsers.size"/></td>
+								<td align="center"><s:property value="introduction"/></td>
+								<td align="center"></td>
+							</tr>
+							</s:iterator>
+						</s:elseif>
+						<s:elseif test="%{personalInfoOpen.equals('ONLYF')}">
+							<s:iterator value="otherUserGadgets">
+							<tr style="background-color: rgb(300, 300, 300);">
+								<s:url id="gadgetInfoUrl" action="SearchGadgetInfo">
+									<s:param name="gadgetId"><s:property value="id"/></s:param>
+									<s:param name="ownerId"><s:property value="otherUserId"/></s:param>
+								</s:url>
+								<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
+										<s:param name="otherUserId"><s:property value="developer.id"/></s:param>
+								</s:url>
+								<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
+									<s:param name="gadgetId"><s:property value="id"/></s:param>
+								</s:url>
+								<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
+								<td><s:a href="%{gadgetInfoUrl}"><s:property value="name"/></s:a></td>
+								<td align="center"><s:a href="%{userOtherUserInfoUrl}"><s:property value="developer.person.nameFormatted" /></s:a></td>
+								<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
+								<td align="center"><s:property value="favoriteUsers.size"/></td>
+								<td align="center"><s:property value="introduction"/></td>
+								<td align="center"></td>
+							</tr>
+							</s:iterator>
+						</s:elseif>
+						<s:else>
+							<tr style="background-color: rgb(300, 300, 300);">
+								<td></td>
+								<td></td>
+								<td align="center"></td>
+								<td align="center"></td>
+								<td align="center">비공개입니다</td>
+								<td align="center"></td>
+								<td align="center"></td>
+							</tr>
+						</s:else>
+						
 						<tr>
 							<td class="line" colspan="7"></td>
 						</tr>

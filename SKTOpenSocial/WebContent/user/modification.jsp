@@ -78,14 +78,21 @@
 							</tr>
 							
 							<tr>
-								<td>*암호</td>
+								<td>*기존암호</td>
+								<td>
+									<s:password name= "password" required="true" />										
+								</td>
+							</tr>
+							
+							<tr>
+								<td>*새암호</td>
 								<td>
 									<s:password name= "passwordWant" required="true" />										
 								</td>
 							</tr>
 
 							<tr>
-								<td>*암호확인</td>
+								<td>*새암호확인</td>
 								<td>
 									<s:password name= "passwordConfirm" required="true" />										
 								</td>
@@ -108,7 +115,7 @@
 							<tr>
 								<td>성별</td>
 								<td>
-									<s:select label="성별" name="gender" headerKey="1" headerValue="-- 선택하세요 --" list="#{'male':'남성','female':'여성'}" value="%{gender}"/>  										
+									<s:select label="성별" name="gender" headerKey="1" list="#{'male':'남성','female':'여성'}" value="%{gender}"/>  										
 								</td>
 							</tr>
 							
@@ -131,6 +138,28 @@
 								<td>
 									<s:textfield name= "email2" required="false" value="%{email2}"/> 
 								</td>
+							</tr>
+							
+							<tr>
+								<td>상세개인정보공개</td>
+								<td>
+							    	<s:select label="상세개인정보공개" name="personalInfoOpen" headerKey="1" value="%{personalInfoOpen}" 
+						       		list="#{'ALL':'모든사용자에게 상세개인정보를 모두 공개'
+						       				,'ONLYF':'친구에게만 상세개인정보를 공개'
+						       				,'NOOP':'비공개'
+						       				}"/> 
+					   	     	</td>
+							</tr>
+
+							<tr>
+								<td>선호가젯모음공개</td>
+								<td>
+							    	<s:select label="선호가젯모음공개" name="favoriteGadgetListOpen" headerKey="1" value="%{favoriteGadgetListOpen}"
+						       		list="#{'ALL':'모든사용자에게 선호가젯모음을 모두 공개'
+						       				,'ONLYF':'친구에게만 선호가젯모음을 공개'
+						       				,'NOOP':'비공개'
+						       				}"/> 
+					   	     	</td>
 							</tr>
 							
 							<tr>
@@ -292,7 +321,7 @@
 								<td>음주</td>
 								<td>
 							    
-						       		<s:select label="음주" name="drinker" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		<s:select label="음주" name="drinker" headerKey="1"  
 						       		list="#{'HEAVILY':'HEAVILY'
 						       				,'NO':'NO'
 						       				,'OCCASIONALLY':'OCCASIONALLY'
@@ -394,14 +423,7 @@
 						          	<s:textfield label="관심직업" name="jobInterest" required="false" value="%{jobInterest}"/> 
 						    	</td>
 							</tr>
-							
-							<tr>
-								<td>관심직업추가</td>
-								<td>
-							    
-						          	<s:textfield label="관심직업추가" name="jobInterest2" required="false" value="%{jobInterest2}"/> 
-						    	</td>
-							</tr>
+										
 							
 							<tr>
 								<td>사용언어</td>
@@ -431,7 +453,7 @@
 								<td>관심분야</td>
 								<td>
 							    
-						       		<s:select label="관심분야" name="lookingFor" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		<s:select label="관심분야" name="lookingFor" headerKey="1"  
 						       		list="#{'ACTIVITY_PARTNERS':'ACTIVITY_PARTNERS'
 						       				,'DATING':'DATING'
 						       				,'FRIENDS':'FRIENDS'
@@ -519,7 +541,7 @@
 								<td>네트워크환경</td>
 								<td>
 							    
-						       		<s:select label="네트워크환경" name="networkPresence" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		<s:select label="네트워크환경" name="networkPresence" headerKey="1" 
 						       		list="#{'AWAY':'AWAY'
 						       				,'CHAT':'CHAT'
 						       				,'DND':'DND'
@@ -604,13 +626,13 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>프로파일송위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" value="%{profilesongUrlType}"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>프로파일송위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" value="%{profilesongUrlType}"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							<tr>
 								<td>프로파일위치</td>
@@ -720,7 +742,7 @@
 								<td>흡연</td>
 								<td>
 							    
-						       		<s:select label="흡연" name="smoker" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		<s:select label="흡연" name="smoker" headerKey="1" 
 						       		list="#{'HEAVILY':'HEAVILY'
 						       				,'NO':'NO'
 						       				,'OCCASIONALLY':'OCCASIONALLY'
@@ -790,13 +812,13 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>이미지위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="이미지위치종류" name="thumbnailUrlType" required="false" value="%{thumbnailUrlType}"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>이미지위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="이미지위치종류" name="thumbnailUrlType" required="false" value="%{thumbnailUrlType}"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							
 							<tr>
