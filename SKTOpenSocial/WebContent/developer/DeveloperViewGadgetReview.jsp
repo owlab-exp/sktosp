@@ -141,9 +141,12 @@
 										<s:property />
 									</s:param>
 								</s:url>
-								<s:a href="%{pageUrl}">
-									<s:property />
-								</s:a>
+								<s:if test="%{requestedPage == top}">
+								<s:property />
+								</s:if>
+								<s:else>
+								<s:a href="%{pageUrl}"><s:property /></s:a>
+								</s:else>
 							</s:iterator> 
 								<s:if test="%{requestedPage < maxPage}">
 									<s:url action="ViewGadgetReview" id="nextPageUrl">

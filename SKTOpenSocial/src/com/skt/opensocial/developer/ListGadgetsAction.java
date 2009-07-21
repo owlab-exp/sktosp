@@ -43,7 +43,7 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 	
 
 	// properties for pagenation
-	private int listSize = 9; // the size of gadget list
+	private int listSize = 8; // the size of gadget list
 	private int requestedPage = 1;
 	private int maxPage = 1;
 	
@@ -104,11 +104,12 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 			gadgetList = (List<Gadget>)crit.list();
 			
 			
-//			for(Gadget gadget : gadgetList){
-//				//?? to fill data
-//				//gadget.getDeveloper().getPerson();
-//				logger.info(gadget.getFavoriteUsers());
-//			}
+			for(Gadget gadget : gadgetList){
+				//?? to fill data
+				//gadget.getDeveloper().getPerson();
+				gadget.getReviews();
+				//logger.info(gadget.getFavoriteUsers());
+			}
 
 			logger.info("Number of gadgets of this page = " + gadgetList.size());
 

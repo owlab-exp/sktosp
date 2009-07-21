@@ -174,7 +174,7 @@
 											
 										</s:if>
 										<s:elseif test="status.equals('pg')">
-											<s:a href="%{viewReviewUrl}">사용자 리뷰 보기</s:a>
+											<s:a href="%{viewReviewUrl}">사용자 리뷰 보기 </s:a>
 											
 										</s:elseif>
 										<s:elseif test="status.equals('pd')">
@@ -217,9 +217,12 @@
 									<s:property />
 								</s:param>
 							</s:url>
-							<s:a href="%{pageUrl}">
-								<s:property />
-							</s:a>
+							<s:if test="%{requestedPage == top}">
+							<s:property value="top"/>
+							</s:if>
+							<s:else>
+							<s:a href="%{pageUrl}"><s:property value="top"/></s:a>
+							</s:else>
 						</s:iterator> 
 							<s:if test="%{requestedPage < maxPage}">
 								<s:url action="ListGadgets" id="nextPageUrl">
