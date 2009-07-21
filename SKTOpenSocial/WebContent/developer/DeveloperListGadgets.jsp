@@ -58,17 +58,19 @@
 							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
 								<col width="5%">
+								<col width="5%">
 								<col width="20%">
 								<col width="10%">
 								<col width="10%">
 								<col width="10%">
 								<col width="15%">
-								<col width="30%">
+								<col width="25%">
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td>ID</td>
-									<td>가젯이름/ID</td>
+									<td>아이콘</td>
+									<td align="center">ID</td>
+									<td>가젯이름</td>
 									<td align="center">등록일자</td>
 									<td align="center">발행일자</td>
 									<td align="center">사용자수</td>
@@ -97,13 +99,14 @@
 											<img:image src="%{iUrl}" resize="false" height="30" width="30"/>
 											</s:a>
 										</td>
+										<td align="center">
+											<s:a href="%{gadgetPreviewUrl}">
+											<s:property value="id" />
+											</s:a>
+										</td>
 										<td><s:a href="%{gadgetPreviewUrl}">
 												<s:property value="name" />
-											</s:a><br>
-											[<s:a href="%{gadgetPreviewUrl}">
-											<s:property value="id" />
-											</s:a>]
-											
+											</s:a>	
 										</td>
 										<td align="center"><s:date name="registerDate"
 											format="yyyy/MM/dd" /></td>
