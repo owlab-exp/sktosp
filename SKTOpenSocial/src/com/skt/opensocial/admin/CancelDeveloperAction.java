@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.GadgetStatusConstants;
@@ -27,22 +28,30 @@ public class CancelDeveloperAction extends DeveloperBaseAction {
 	private String developerId;
 	private User developer;
 
-	public String execute(){
+	public String execute() throws Exception{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
-		
-		developer = (User)hs.load(User.class, developerId);
-
-	    System.out.println("developerId--->" + developerId);
-
-	    developer.setIsDeveloper(false);
-
-		hs.saveOrUpdate(developer);
-		hs.getTransaction().commit();
-
-		System.out.println("Update successfully!");
-
-		return "SUCCESS";
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
+			
+			developer = (User)hs.load(User.class, developerId);
+	
+		    System.out.println("developerId--->" + developerId);
+	
+		    developer.setIsDeveloper(false);
+	
+			hs.saveOrUpdate(developer);
+			hs.getTransaction().commit();
+	
+			System.out.println("Update successfully!");
+	
+			return "SUCCESS";
+			
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
 	}
 
 	public String getDeveloperId() {

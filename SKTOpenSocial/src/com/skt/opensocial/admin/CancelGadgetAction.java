@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.common.GadgetStatusConstants;
@@ -24,26 +25,35 @@ public class CancelGadgetAction extends ManageGadgetAction {
 	
 	protected String rejectreason;
 
-	public String execute(){
+	public String execute() throws Exception{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
+			
+				
+			Gadget gadget = (Gadget) hs.load(Gadget.class, gadgetId);
+		    System.out.println("gadgetID--->" + gadgetId);
+	
+			gadget.setStatus(GadgetStatusConstants.PUBLISH_DENIED);
+	
+			// input rejectReason
+			System.out.println("rejectreason" + rejectreason);
+			gadget.getGadgetPublish().setRejectReason(rejectreason);
+			gadget.getGadgetPublish().setApprove(false);
+			
+			hs.saveOrUpdate(gadget);
+			hs.getTransaction().commit();
+	
+			System.out.println("Update successfully!");
+	
+			return "SUCCESS";
 		
-		Gadget gadget = (Gadget) hs.load(Gadget.class, gadgetId);
-	    System.out.println("gadgetID--->" + gadgetId);
-
-		gadget.setStatus(GadgetStatusConstants.PUBLISH_DENIED);
-
-		// input rejectReason
-		System.out.println("rejectreason" + rejectreason);
-		gadget.getGadgetPublish().setRejectReason(rejectreason);
-		gadget.getGadgetPublish().setApprove(false);
-		
-		hs.saveOrUpdate(gadget);
-		hs.getTransaction().commit();
-
-		System.out.println("Update successfully!");
-
-		return "SUCCESS";
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
 	}
 
 	public String getRejectreason() {

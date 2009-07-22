@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.util.IteratorGenerator.Converter;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -50,77 +51,84 @@ public class SearchDeveloperAction extends AdministratorBaseAction {
 	int prepage	= 0;
 	int postpage	= 0;
 
-	public String execute(){
+	public String execute() throws Exception{
 		
 		if (searchfield.length() > 0 && query.length() == 0) {
 			return "list";
 		}
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
 		
-		String queryKey = "%" + query + "%";
-		
-		// paing
-		pages	= new Paging(pagescale, listscale);
-		pages.setCurrentpage(this.currentpage);
-		
-		System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
-
-		Criteria c = hs.createCriteria(User.class);
-		Criteria t = hs.createCriteria(User.class);
-
-		c.add(Restrictions.eq("isDeveloper", true));
-		t.add(Restrictions.eq("isDeveloper", true));
-		
-		if ( searchfield.equals("developername")) {
-			c.add(Restrictions.like("person.nameFormatted", queryKey));
-			t.add(Restrictions.like("person.nameFormatted", queryKey));
-		} else if ( searchfield.equals("developerid")) {
-			c.add(Restrictions.like("id", queryKey));
-			t.add(Restrictions.like("id", queryKey));
-		} else {
-			//
-		}
-
-		c.setFirstResult(pages.getFirstresult());
-		c.setMaxResults(pages.getListscale());
-		if (this.sortsc.equals("desc")) {
-			c.addOrder( Order.desc(this.sortfield) );
-		}
-		else {
-			c.addOrder( Order.asc(this.sortfield) );			
-		}
-		this.developers = c.list();
-
-		// for total count
-		t.setProjection( Projections.rowCount() );		
-		this.totalcount	=  ((Integer)t.list().get(0)).intValue();
-		System.out.println("total count = " + totalcount);
-
-		// paging
-		pages.setTotalcount(this.totalcount);
-		this.paging	= pages.getPaging();
-		this.prepage	= pages.getPrepage();
-		this.postpage	= pages.getPostpage();
-		
-		System.out.println("list" + paging.toString());
-		System.out.println("prepage" + prepage);
-		System.out.println("postpage" + postpage);
-		
-		if (this.developers != null && !this.developers.isEmpty()) {
-			System.out.println("searched developers.size = " + developers.size());
-		}
-		hs.getTransaction().commit();
-		
-		if ( searchfield.equals("gadgetname")) {
-			return "gadgetname";
-		} else if ( searchfield.equals("gadgetstatus")) {
-			return "gadgetstatus";
-		} else if ( searchfield.equals("developerid")) {
-			return "developerid";
-		} else {
-			return "list";
+			String queryKey = "%" + query + "%";
+			
+			// paing
+			pages	= new Paging(pagescale, listscale);
+			pages.setCurrentpage(this.currentpage);
+			
+			System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
+	
+			Criteria c = hs.createCriteria(User.class);
+			Criteria t = hs.createCriteria(User.class);
+	
+			c.add(Restrictions.eq("isDeveloper", true));
+			t.add(Restrictions.eq("isDeveloper", true));
+			
+			if ( searchfield.equals("developername")) {
+				c.add(Restrictions.like("person.nameFormatted", queryKey));
+				t.add(Restrictions.like("person.nameFormatted", queryKey));
+			} else if ( searchfield.equals("developerid")) {
+				c.add(Restrictions.like("id", queryKey));
+				t.add(Restrictions.like("id", queryKey));
+			} else {
+				//
+			}
+	
+			c.setFirstResult(pages.getFirstresult());
+			c.setMaxResults(pages.getListscale());
+			if (this.sortsc.equals("desc")) {
+				c.addOrder( Order.desc(this.sortfield) );
+			}
+			else {
+				c.addOrder( Order.asc(this.sortfield) );			
+			}
+			this.developers = c.list();
+	
+			// for total count
+			t.setProjection( Projections.rowCount() );		
+			this.totalcount	=  ((Integer)t.list().get(0)).intValue();
+			System.out.println("total count = " + totalcount);
+	
+			// paging
+			pages.setTotalcount(this.totalcount);
+			this.paging	= pages.getPaging();
+			this.prepage	= pages.getPrepage();
+			this.postpage	= pages.getPostpage();
+			
+			System.out.println("list" + paging.toString());
+			System.out.println("prepage" + prepage);
+			System.out.println("postpage" + postpage);
+			
+			if (this.developers != null && !this.developers.isEmpty()) {
+				System.out.println("searched developers.size = " + developers.size());
+			}
+			hs.getTransaction().commit();
+			
+			if ( searchfield.equals("gadgetname")) {
+				return "gadgetname";
+			} else if ( searchfield.equals("gadgetstatus")) {
+				return "gadgetstatus";
+			} else if ( searchfield.equals("developerid")) {
+				return "developerid";
+			} else {
+				return "list";
+			}
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
 	}
 

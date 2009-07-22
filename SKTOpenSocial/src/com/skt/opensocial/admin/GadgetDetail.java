@@ -27,39 +27,49 @@ public class GadgetDetail extends ManageGadgetAction{
 	private String categoryListStr;
 	private Integer favoriteUserSize;
 	
-	public String execute() {
+	public String execute() throws Exception{
 		
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-		hs.beginTransaction();
+		Transaction tx = null;
+		try {
+			tx = hs.beginTransaction();
+			
+			
+			Gadget gadget = (Gadget)hs.load(Gadget.class, gadgetId);
+	
+			setGadgetId(gadget.getId());
+			setGadgetStatus(gadget.getStatus());
+			setGadgetName(gadget.getName());
+			setRegisterType(gadget.getRegisterType());
+			setGadgetSource(gadget.getSource());
+			setGadgetIntro(gadget.getIntroduction());
+			setGadgetIconUrl(gadget.getIconUrl());
+			setGadgetStatus(gadget.getStatus());
+			setDisappovalReason(gadget.getGadgetPublish().getRejectReason());
+			
+			
+			Set<GadgetCategory> categories = gadget.getCategories();
+			GadgetCategory[] categoryArray = new GadgetCategory[categories.size()];
+			categories.toArray(categoryArray);
+			String[] categoryIdArray = new String[categoryArray.length];
+			for (int i = 0; i < categoryArray.length; i++) {
+				categoryIdArray[i] = categoryArray[i].getId();
+			}
+			setGadgetCategoryIdSelected(categoryIdArray);
+	
+			setFavoriteUserSize(gadget.getFavoriteUsers().size());
+	
+			hs.getTransaction().commit();
+	
+			return "SUCCESS";
 		
-		Gadget gadget = (Gadget)hs.load(Gadget.class, gadgetId);
-
-		setGadgetId(gadget.getId());
-		setGadgetStatus(gadget.getStatus());
-		setGadgetName(gadget.getName());
-		setRegisterType(gadget.getRegisterType());
-		setGadgetSource(gadget.getSource());
-		setGadgetIntro(gadget.getIntroduction());
-		setGadgetIconUrl(gadget.getIconUrl());
-		setGadgetStatus(gadget.getStatus());
-		setDisappovalReason(gadget.getGadgetPublish().getRejectReason());
 		
-		
-		Set<GadgetCategory> categories = gadget.getCategories();
-		GadgetCategory[] categoryArray = new GadgetCategory[categories.size()];
-		categories.toArray(categoryArray);
-		String[] categoryIdArray = new String[categoryArray.length];
-		for (int i = 0; i < categoryArray.length; i++) {
-			categoryIdArray[i] = categoryArray[i].getId();
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
 		}
-		setGadgetCategoryIdSelected(categoryIdArray);
-
-		setFavoriteUserSize(gadget.getFavoriteUsers().size());
-
-		hs.getTransaction().commit();
-
-		return "SUCCESS";
 	}
 
 	public String getDisappovalReason() {
