@@ -25,7 +25,7 @@ public class GetFriendsTest {
 							.add(Restrictions
 									.or(Restrictions.eq("fm.id", sampleUserName),Restrictions.eq("fo.id", sampleUserName)));
 		// add order
-		crit.addOrder(Order.desc("user.id")); // or just "id"
+		crit.addOrder(Order.desc("user.id")); // or just "id" instead of "user.id"
 		
 		
 		List<User> friends = (List<User>) crit.list();
