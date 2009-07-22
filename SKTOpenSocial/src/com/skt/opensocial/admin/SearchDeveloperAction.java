@@ -70,15 +70,15 @@ public class SearchDeveloperAction extends AdministratorBaseAction {
 			
 			System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
 	
-			Criteria c = hs.createCriteria(User.class);
-			Criteria t = hs.createCriteria(User.class);
+			Criteria c = hs.createCriteria(User.class).createAlias("person",  "p");
+			Criteria t = hs.createCriteria(User.class).createAlias("person",  "p");
 	
 			c.add(Restrictions.eq("isDeveloper", true));
 			t.add(Restrictions.eq("isDeveloper", true));
 			
 			if ( searchfield.equals("developername")) {
-				c.add(Restrictions.like("person.nameFormatted", queryKey));
-				t.add(Restrictions.like("person.nameFormatted", queryKey));
+				c.add(Restrictions.like("p.nameFormatted", queryKey));
+				t.add(Restrictions.like("p.nameFormatted", queryKey));
 			} else if ( searchfield.equals("developerid")) {
 				c.add(Restrictions.like("id", queryKey));
 				t.add(Restrictions.like("id", queryKey));
