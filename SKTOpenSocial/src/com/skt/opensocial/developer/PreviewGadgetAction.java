@@ -26,6 +26,7 @@ public class PreviewGadgetAction extends ManageGadgetAction {
 	private Logger logger = Logger.getLogger(PreviewGadgetAction.class);
 
 	private String developerId;
+	
 
 	public String execute() throws Exception{
 
@@ -68,12 +69,16 @@ public class PreviewGadgetAction extends ManageGadgetAction {
 
 				String realDirPath = ServletActionContext.getServletContext()
 						.getRealPath("/gadget");
+				
 				String gadgetXmlFileName = developerId + "-" + gadgetId
 						+ ".xml";
 
 				File gadgetXmlFile = new File(realDirPath + "/"
 						+ gadgetXmlFileName);
 				logger.info(gadgetXmlFile.getAbsolutePath());
+				
+				//Delete the file when JVM exits
+				gadgetXmlFile.deleteOnExit();
 
 				FileWriter fw = new FileWriter(gadgetXmlFile);
 				fw.write(gadget.getGadgetSource());
