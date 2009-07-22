@@ -4,7 +4,7 @@
  */
 
 /**
- * Public Shindig namespace with samplecontainer object
+ * Public sktopensocial namespace with samplecontainer object
  */
 
 var sktopensocial = sktopensocial || {};

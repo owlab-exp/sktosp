@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>A very simple OpenSocial Gadget testing container</title>
+<link rel="stylesheet" href="../container/gadgets.css">
+<style type="text/css">
+  body {
+    font-family: arial, sans-serif;
+  }
+
+  #headerDiv {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #B5EDBC;
+    color: #006633;
+    font-size: larger;
+    font-weight: bold;
+  }
+
+  .subTitle {
+    font-size: smaller;
+    float: center;
+  }
+
+
+  .formElements {
+    padding: 20px;
+    font-size: smaller;
+    float: center;
+  }
+
+
+  .gadgets-gadget-chrome {
+    width: 60%;
+    float: none;
+    margin: auto;
+  }
+
+  .gadgets-gadget {
+    width: 100%;
+  }
+</style>
+<script type="text/javascript" src="../../js/rpc.js?c=1&debug=1"></script>
+<script type="text/javascript" src="../container/cookies.js"></script> 
+<script type="text/javascript" src="../container/util.js"></script> 
+<script type="text/javascript" src="../container/gadgets.js"></script>
+<script type="text/javascript" src="../container/cookiebaseduserprefstore.js"></script>
+
+<script type="text/javascript" src="samplejs/group.js"></script>
+
+</head>
+<body>
+  <div id="headerDiv">
+    <div >A Really Simple Group Testing Container</div>
+     <hr/>
+
+	
+	<div class="formElements">
+    <div >Group Name: <input type="text" size="75" id="groupName"/> </div> 
+
+<br/>
+<br/>
+	 <input type="button" value="New Group" onClick="sktopensocial.group.create();"/>
+    </div>
+  
+     <hr/>
+ 
+</body>
+</html>

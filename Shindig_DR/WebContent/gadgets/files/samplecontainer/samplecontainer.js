@@ -44,10 +44,11 @@ shindig.samplecontainer = {};
     + "/social/rest/samplecontainer/";
 
   var gadgetUrlMatches = /[?&]url=((?:[^#&]+|&amp;)+)/.exec(parentUrl);
-  var gadgetUrl = (gadgetUrlMatches)
-      ? gadgetUrlMatches[1]
-      : baseUrl + 'examples/SocialHelloWorld.xml';
+//  var gadgetUrl = (gadgetUrlMatches)
+//      ? gadgetUrlMatches[1]
+//      : baseUrl + 'examples/SocialHelloWorld.xml';
 
+  var gadgetUrl = "http://opensocial-resources.googlecode.com/svn/tests/trunk/suites/0.8/compliance/reference.xml";
   var gadgetUrlCookie = 'sampleContainerGadgetUrl';
 
   var stateFileUrl = baseUrl + '../sampledata/canonicaldb.json';
@@ -59,8 +60,8 @@ shindig.samplecontainer = {};
   var doEvil;
   var gadget;
 
-  var viewerId = "john.doe";
-  var ownerId = "john.doe";
+  var viewerId = "nash2";
+  var ownerId = "nash2";
 
   var viewMatches = /[?&]view=((?:[^#&]+|&amp;)+)/.exec(parentUrl);
   var current_view = (viewMatches)
