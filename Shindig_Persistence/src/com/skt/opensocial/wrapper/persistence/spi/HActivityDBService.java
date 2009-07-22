@@ -3,10 +3,12 @@ package com.skt.opensocial.wrapper.persistence.spi;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
 import java.util.concurrent.Future;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import org.json.JSONException;
+import org.hibernate.HibernateException;
 
 
 import com.google.common.collect.ImmutableSortedSet;
@@ -69,8 +71,10 @@ public class HActivityDBService implements ActivityService {
 				
 				Person person = (Person) hs.get(Person.class, userId);
 								
+				if (person == null)
+					continue;
+				
 				Set<com.skt.opensocial.persistence.Activity> activityDBSet = person.getActivities();
-//				appDataDBList = sqlMap.queryForList("getPersonAppData", userId);
 				
 				for (com.skt.opensocial.persistence.Activity activityDB : activityDBSet) {
 					if(appId != null) {
@@ -86,12 +90,8 @@ public class HActivityDBService implements ActivityService {
 					Criteria crit = hs.createCriteria(ActivityMediaItem.class);
 					crit.setMaxResults(30);		
 					
-					// filer by an userId and an activityId
 					crit = hs.createCriteria(ActivityMediaItem.class);
 					List<ActivityMediaItem> items = crit.add(Restrictions.eq("userId", userId)).list();
-//					Query q = hs.createQuery("select * from ActivityMediaItem where userId = userId");
-//					List<ActivityMediaItem> items = (List<ActivityMediaItem>) q.list();
-//					
 					if (items.size() > 0) {
 						List<MediaItem> mediaItemList = HDBTableMapper.getMediaItemListFromMediaItemDBList( items );
 						activity.setMediaItems(mediaItemList);
@@ -102,7 +102,6 @@ public class HActivityDBService implements ActivityService {
 					Criteria crit2 = hs.createCriteria(ActivityMediaItem.class);
 					crit2.setMaxResults(30);
 					
-					// filer by an userId and an activityId
 					crit2 = hs.createCriteria(ActivityTemplateParam.class);
 					List<ActivityTemplateParam> params = crit2.add(Restrictions.eq("userId", userId)).list();
 					if (params.size() > 0) {
@@ -119,7 +118,7 @@ public class HActivityDBService implements ActivityService {
 			
 		    return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
 		    
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			
 			if (tran != null) 
 				tran.rollback();
@@ -147,9 +146,12 @@ public class HActivityDBService implements ActivityService {
 			for (String user : idSet) {			
 				
 				Person person = (Person) hs.get(Person.class, user);
-								
+	
+				if (person == null)
+					continue;
+				
+				
 				Set<com.skt.opensocial.persistence.Activity> activityDBSet = person.getActivities();
-//				appDataDBList = sqlMap.queryForList("getPersonAppData", userId);
 				
 				for (com.skt.opensocial.persistence.Activity activityDB : activityDBSet) {
 					if(appId != null) {
@@ -203,7 +205,7 @@ public class HActivityDBService implements ActivityService {
 
 			return ImmediateFuture.newInstance(new RestfulCollection<Activity>(activityList));
 			
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			if ( tran != null )
 				tran.rollback();
 			
@@ -228,8 +230,12 @@ public class HActivityDBService implements ActivityService {
 			for (String user : idSet) {			
 				Person person = (Person) hs.get(Person.class, user);
 				
+				if (person == null)
+					continue;
+				
+				
 				Set<com.skt.opensocial.persistence.Activity> activityDBSet = person.getActivities();
-//				appDataDBList = sqlMap.queryForList("getPersonAppData", userId);
+				
 				
 				for (com.skt.opensocial.persistence.Activity activityDB : activityDBSet) {
 					if(appId != null) {
@@ -282,7 +288,7 @@ public class HActivityDBService implements ActivityService {
 			
 			throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST, "Activity not found");
 			
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			if (tran != null)
 				tran.rollback();
 			
@@ -308,8 +314,11 @@ public class HActivityDBService implements ActivityService {
 				
 				Person person = (Person) hs.get(Person.class, user);
 								
+				if (person == null)
+					continue;
+				
+				
 				Set<com.skt.opensocial.persistence.Activity> activityDBSet = person.getActivities();
-//				appDataDBList = sqlMap.queryForList("getPersonAppData", userId);
 				
 				for (com.skt.opensocial.persistence.Activity activityDB : activityDBSet) {
 					if(appId != null) {
@@ -366,7 +375,7 @@ public class HActivityDBService implements ActivityService {
 			tran.commit();
 			
 			return ImmediateFuture.newInstance(null);
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			if( tran != null)
 				tran.rollback();
 			
@@ -382,31 +391,61 @@ public class HActivityDBService implements ActivityService {
 		Transaction tran = null;
 		
 		try {
-			//**** insert activity with mediaItems and templateParams separately ****//
+			Long startTime = new Date().getTime();
+			
 			tran = hs.beginTransaction();
 			
-			// create Activity
+			// check if the person exists
 			String user = userId.getUserId(token); 
-			hs.saveOrUpdate( this.setActivityDBFromActivity(user, appId, activity) );
+			Person person = (Person) hs.get(Person.class, user);
 			
+			if (person == null)
+				throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST,
+				"Person does not exist");
+			
+
+			// create Activity
+			com.skt.opensocial.persistence.Activity activityDB = this.setActivityDBFromActivity(user, appId, activity);
+			activityDB.setPerson(person);
+
+			// auto increment "id" is the activity id
+			Integer newId = (Integer)hs.save(activityDB);
+			activityDB.setActivityId(newId.toString());
+			
+			// set up the posted time
+			Long endTime = new Date().getTime();
+			activityDB.setPostedTime( new Double(endTime - startTime) );
+			
+			hs.saveOrUpdate(activityDB);
+			
+
+			//**** insert activity with mediaItems and templateParams separately ****//
 			// create MediaItems of the Activity
 			List<MediaItem> items = activity.getMediaItems();
-			for(MediaItem item : items) {
-				hs.saveOrUpdate( this.setMediaItemDBFromMediaItem(user, activity.getId(), item) );
+			
+			if (items != null) {
+				for(MediaItem item : items) {
+					com.skt.opensocial.persistence.ActivityMediaItem mediaItemDB = this.setMediaItemDBFromMediaItem(user, activityDB.getActivityId(), item);
+					hs.saveOrUpdate( mediaItemDB );
+				}
 			}
 			
 			// create TemplateParams of the activity
 			Map<String, String> params = activity.getTemplateParams();
-			Set<String> keys = params.keySet();
-			for(String key : keys) {
-				hs.saveOrUpdate( this.setTemplateParamDBFromTemplateParma(user, activity.getId(), key, params.get(key)) );
+			
+			if (params != null) {
+				Set<String> keys = params.keySet();
+				for(String key : keys) {
+					com.skt.opensocial.persistence.ActivityTemplateParam templateParamDB = this.setTemplateParamDBFromTemplateParma(user, activityDB.getActivityId(), key, params.get(key));
+					hs.saveOrUpdate( templateParamDB );
+				}
 			}
 			
 			tran.commit();
 			
 			return ImmediateFuture.newInstance(null);
 		
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			if ( tran != null )
 				tran.rollback();
 			
@@ -429,24 +468,29 @@ public class HActivityDBService implements ActivityService {
 	private com.skt.opensocial.persistence.Activity setActivityDBFromActivity(String userId, String appId, Activity activity) {
 		com.skt.opensocial.persistence.Activity activityDB = new com.skt.opensocial.persistence.Activity();
 		
-		activityDB.setActivityId( activity.getId() );
-		
-		if( appId != null )
-			activityDB.setAppId(appId);
-		else
-			activityDB.setAppId( activity.getAppId() );
+
+		activityDB.setAppId(appId);
 		
 		activityDB.setBody( activity.getBody() );
 		activityDB.setBodyId( activity.getBodyId() );
 		activityDB.setExternalId( activity.getExternalId() );
-		activityDB.setPostedTime( new Double(activity.getPostedTime()) );
-		activityDB.setPriority( new Double(activity.getPriority()) );
+	
+		
+		if ( activity.getPriority() != null )
+			activityDB.setPriority( new Double(activity.getPriority()) );
+		else
+			activityDB.setPriority( new Double(0) );
+		
 		activityDB.setStreamFaviconUrl( activity.getStreamFaviconUrl() );
 		activityDB.setStreamSourceUrl( activity.getStreamSourceUrl() );
 		activityDB.setStreamTitle( activity.getStreamTitle() );
 		activityDB.setStreamUrl( activity.getStreamUrl() );
 		activityDB.setTitle( activity.getTitle() );
-		activityDB.setTitleId( activity.getTitleId() );
+		
+		// there should one of Title or TitleId
+		if (activityDB.getTitle() == null)
+			activityDB.setTitleId( activity.getTitleId() );
+		
 		activityDB.setUpdated( activity.getUpdated() );
 		activityDB.setUrl( activity.getUrl() );
 		activityDB.setUserId( userId );
@@ -464,11 +508,11 @@ public class HActivityDBService implements ActivityService {
 		mediaItemDB.setThumbnailUrl( mediaItem.getThumbnailUrl() );
 		
 		if ( mediaItem.getType().equals(MediaItem.Type.AUDIO ) )
-			mediaItemDB.setType( ItemTypeEnum.AUDIO );
+			mediaItemDB.setType( ItemTypeEnum.audio );
 		else if ( mediaItem.getType().equals(MediaItem.Type.IMAGE ) )
-			mediaItemDB.setType( ItemTypeEnum.IMAGE );
+			mediaItemDB.setType( ItemTypeEnum.image );
 		else if ( mediaItem.getType().equals(MediaItem.Type.VIDEO ) )
-			mediaItemDB.setType( ItemTypeEnum.VIDEO );
+			mediaItemDB.setType( ItemTypeEnum.video );
 		
 		mediaItemDB.setUrl( mediaItem.getUrl() );
 		mediaItemDB.setUserId( userId );
@@ -483,7 +527,7 @@ public class HActivityDBService implements ActivityService {
 	 */
 	private Set<String> getIdSet(Set<UserId> users, GroupId group,
 			CollectionOptions options, SecurityToken token)
-			throws JSONException {
+			throws HibernateException {
 		Set<String> ids = new HashSet<String>();
 		for (UserId user : users) {
 			ids.addAll(getIdSet(user, group, options, token));
@@ -498,7 +542,7 @@ public class HActivityDBService implements ActivityService {
 	@SuppressWarnings("unchecked")
 	private Set<String> getIdSet(UserId userId, GroupId groupId,
 			CollectionOptions options, SecurityToken token)
-			throws JSONException {
+			throws HibernateException {
 
 		String user = userId.getUserId(token);
 
@@ -526,7 +570,7 @@ public class HActivityDBService implements ActivityService {
 				allUserIds = (List<String>) q.list();
 
 
-			} catch (Exception e) {
+			} catch (HibernateException e) {
 				
 				HibernateUtil.getSessionFactory().getCurrentSession()
 						.getTransaction().rollback();
@@ -591,7 +635,7 @@ public class HActivityDBService implements ActivityService {
 				idSet.addAll(friendsIds);
 
 
-			} catch (Exception e) {
+			} catch (HibernateException e) {
 				
 				HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 				e.printStackTrace();
@@ -609,7 +653,7 @@ public class HActivityDBService implements ActivityService {
 	 * Get the set of user id's for a set of users and a group
 	 */
 	private Set<String> getIdSet(Set<UserId> users, GroupId group, SecurityToken token)
-			throws JSONException {
+			throws HibernateException {
 		Set<String> ids = new HashSet<String>();
 		for (UserId user : users) {
 			ids.addAll(getIdSet(user, group, token));
@@ -623,7 +667,7 @@ public class HActivityDBService implements ActivityService {
 	 */
 	@SuppressWarnings("unchecked")
 	private Set<String> getIdSet(UserId userId, GroupId groupId, SecurityToken token)
-			throws JSONException {
+			throws HibernateException {
 
 		String user = userId.getUserId(token);
 
@@ -651,7 +695,7 @@ public class HActivityDBService implements ActivityService {
 				allUserIds = (List<String>) q.list();
 
 
-			} catch (Exception e) {
+			} catch (HibernateException e) {
 				
 				HibernateUtil.getSessionFactory().getCurrentSession()
 						.getTransaction().rollback();
@@ -704,7 +748,7 @@ public class HActivityDBService implements ActivityService {
 				idSet.addAll(friendsIds);
 
 
-			} catch (Exception e) {
+			} catch (HibernateException e) {
 				
 				HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
 				e.printStackTrace();

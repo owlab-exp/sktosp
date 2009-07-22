@@ -123,9 +123,17 @@ public class HPersonDBService implements PersonService {
 			
 
 			int totalSize = result.size();
-			int last = options.getFirst() + options.getMax();
-			result = result.subList(options.getFirst(), Math.min(last,
-					totalSize));
+			
+			int max = options.getMax();
+			if (options.getMax() < 0)
+				max = 20;
+			
+			int last = options.getFirst() + max;
+			
+			if (options.getFirst() <= totalSize) {
+				result = result.subList(options.getFirst(), Math.min(last,
+						totalSize));
+			}
 
 			return ImmediateFuture.newInstance(new RestfulCollection<Person>(
 					result, options.getFirst(), totalSize));

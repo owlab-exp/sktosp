@@ -230,8 +230,17 @@ public class HDBTableMapper {
 		bodyType.setBuild(personDB.getBodytypeBuild());
 		bodyType.setEyeColor(personDB.getBodytypeEyecolor());
 		bodyType.setHairColor(personDB.getBodytypeHaircolor());
-		bodyType.setHeight( new Float(personDB.getBodytypeHeight()) );
-		bodyType.setWeight( new Float(personDB.getBodytypeWeight()) );
+		
+		if ( personDB.getBodytypeHeight() != null )
+			bodyType.setHeight( new Float(personDB.getBodytypeHeight()) );
+		else
+			bodyType.setHeight( new Float(0) );
+		
+		if ( personDB.getBodytypeWeight() != null )
+			bodyType.setWeight( new Float(personDB.getBodytypeWeight()) );
+		else
+			bodyType.setWeight( new Float(0) );
+		
 		person.setBodyType(bodyType);
 		
 		person.setChildren(personDB.getChildren());
@@ -240,9 +249,19 @@ public class HDBTableMapper {
 		AddressImpl currentLocation = new AddressImpl();
 		currentLocation.setCountry(personDB.getCurrentlocationCountry());
 		currentLocation.setFormatted(personDB.getCurrentlocationFormatted());
-		currentLocation.setLatitude( new Float(personDB.getCurrentlocationLatitude()) );
+		
+		if ( personDB.getCurrentlocationLatitude() != null )
+			currentLocation.setLatitude( new Float(personDB.getCurrentlocationLatitude()) );
+		else 
+			currentLocation.setLatitude( new Float(0) );
+		
 		currentLocation.setLocality(personDB.getCurrentlocationLocality());
-		currentLocation.setLongitude( new Float(personDB.getCurrentlocationLongitude()) );
+		
+		if ( personDB.getCurrentlocationLongitude() != null )
+			currentLocation.setLongitude( new Float(personDB.getCurrentlocationLongitude()) );
+		else
+			currentLocation.setLongitude( new Float(0) );
+		
 		currentLocation.setPostalCode(personDB.getCurrentlocationPostalcode());
 		currentLocation.setPrimary(personDB.getCurrentlocationPrimary());
 		currentLocation.setRegion(personDB.getCurrentlocationRegion());
@@ -426,9 +445,19 @@ public class HDBTableMapper {
 			
 			address.setCountry( addressDB.getCountry() );
 			address.setFormatted( addressDB.getFormatted() );
-			address.setLatitude( new Float( addressDB.getLatitude() ) );
+			
+			if ( addressDB.getLatitude() != null )
+				address.setLatitude( new Float( addressDB.getLatitude() ) );
+			else 
+				address.setLatitude( new Float(0) );
+			
 			address.setLocality( addressDB.getLocality() );
-			address.setLongitude( new Float( addressDB.getLongitude() ) );
+			
+			if ( addressDB.getLongitude() != null)
+				address.setLongitude( new Float( addressDB.getLongitude() ) );
+			else
+				address.setLongitude( new Float(0) );
+			
 			address.setPostalCode( addressDB.getPostalCode() );
 			address.setPrimary( addressDB.getPrimary() );
 			address.setRegion( addressDB.getRegion() );
@@ -463,9 +492,19 @@ public class HDBTableMapper {
 			AddressImpl address = new AddressImpl();
 			address.setCountry( organizationDB.getAddressCountry() );
 			address.setFormatted( organizationDB.getAddressFormatted() );
-			address.setLatitude( new Float(organizationDB.getAddressLatitude()) ); 
+			
+			if ( organizationDB.getAddressLatitude() != null )
+				address.setLatitude( new Float(organizationDB.getAddressLatitude()) );
+			else
+				address.setLatitude( new Float(0) );
+			
 			address.setLocality( organizationDB.getAddressLocality() );
-			address.setLongitude( new Float(organizationDB.getAddressLongitude()) );
+			
+			if ( organizationDB.getAddressLongitude() != null )
+				address.setLongitude( new Float(organizationDB.getAddressLongitude()) );
+			else
+				address.setLongitude( new Float(0) );
+			
 			address.setPostalCode( organizationDB.getAddressPostalCode() );
 			address.setPrimary( organizationDB.getAddressPrimary() );
 			address.setRegion( organizationDB.getAddressRegion() );
@@ -514,7 +553,12 @@ public class HDBTableMapper {
 		activity.setExternalId( activityDB.getExternalId() );
 		activity.setId( activityDB.getActivityId() );
 		activity.setPostedTime( activity.getPostedTime() );
-		activity.setPriority( new Float(activityDB.getPriority()) );
+		
+		if (activityDB.getPriority() != null)
+			activity.setPriority( new Float(activityDB.getPriority()) );
+		else 
+			activity.setPriority( new Float(0) );
+		
 		activity.setStreamFaviconUrl( activityDB.getStreamFaviconUrl() );
 		activity.setStreamSourceUrl( activityDB.getStreamSourceUrl() );
 		activity.setStreamTitle( activityDB.getStreamTitle() );

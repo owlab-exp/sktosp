@@ -57,12 +57,14 @@ public class HPersonDBServiceTest {
   public void getCanonicalPeople() throws Exception {
 	// Set collection options
 	    CollectionOptions collectionOptions = new CollectionOptions();
-	    collectionOptions.setSortBy("name");
+	    collectionOptions.setSortBy("topFriends");
+	    collectionOptions.setFilter("all");
 	    collectionOptions.setSortOrder(SortOrder.ascending);
-	    collectionOptions.setMax(20);
+	    collectionOptions.setFirst(3);
+	    collectionOptions.setMax(2);
 	    
 	//Get first friend of john.doe
-	  Future<RestfulCollection<Person>> result = this.personServiceDb.getPeople(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.friends, "@friends"), collectionOptions, Person.Field.ALL_FIELDS, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
+	  Future<RestfulCollection<Person>> result = this.personServiceDb.getPeople(SpiTestUtil.buildUserIds("nash2"), new GroupId(GroupId.Type.friends, "@friends"), collectionOptions, Person.Field.ALL_FIELDS, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
   }
   
 
@@ -74,7 +76,7 @@ public class HPersonDBServiceTest {
 	  Set<String> fields = new HashSet<String>();
 	  fields.add("id");
 	  
-     Future<DataCollection> appData = this.appDataServiceDb.getPersonData(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.self, "@self"), null, fields, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
+     Future<DataCollection> appData = this.appDataServiceDb.getPersonData(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.friends, "@friends"), null, fields, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
      System.out.println(appData.toString());
   }
  

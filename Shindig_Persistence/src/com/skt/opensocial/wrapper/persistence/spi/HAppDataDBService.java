@@ -159,7 +159,7 @@ public class HAppDataDBService implements AppDataService {
 				
 				Set<PersonAppData> appDataDBSet = person.getAppData();
 				
-				if (!appDataDBSet.isEmpty()) {
+				if (!appDataDBSet.isEmpty() && values.size() > 0) {
 					Set<String> keys = values.keySet();
 					for (String key : keys) {
 						for (PersonAppData appDataDB : appDataDBSet ) {
@@ -181,7 +181,7 @@ public class HAppDataDBService implements AppDataService {
 					}
 				}
 				
-				if (!values.isEmpty()) {
+				if (!values.isEmpty() && values.size() > 0) {
 					Set<String> remainedKeys = values.keySet();
 					for (String key : remainedKeys) {
 						PersonAppData appData = new PersonAppData();

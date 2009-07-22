@@ -42,9 +42,9 @@ public class HAppDataDBServiceTest {
 	  @Test
 	  public void getAppDAta() throws Exception {
 		 Set<String> fields = Sets.newHashSet();
-		 fields.add("*");
+		 fields.add("viewerKey_app800");
 		 
-		 appDataDBService.getPersonData(SpiTestUtil.buildUserIds("john.doe"), null, null, 
+		 appDataDBService.getPersonData(SpiTestUtil.buildUserIds("nash2"), null, null, 
 				 fields, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
 	
 //		    Activity activity = result.get();

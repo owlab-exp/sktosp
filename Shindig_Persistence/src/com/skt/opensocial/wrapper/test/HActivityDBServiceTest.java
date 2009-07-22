@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.apache.shindig.protocol.RestfulCollection;
 import org.apache.shindig.protocol.model.SortOrder;
+import org.apache.shindig.social.core.model.ActivityImpl;
 import org.apache.shindig.social.opensocial.model.Activity;
 import org.apache.shindig.social.opensocial.model.EnumUtil;
 import org.apache.shindig.social.opensocial.spi.CollectionOptions;
@@ -15,7 +16,9 @@ import org.apache.shindig.social.opensocial.spi.UserId.Type;
 
 import com.skt.opensocial.wrapper.persistence.spi.HActivityDBService;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
@@ -76,5 +79,18 @@ public class HActivityDBServiceTest {
 		 activityIds.add("2");
 		 
 	    this.activityDBService.deleteActivities(new UserId(Type.userId, "john.doe"), new GroupId(GroupId.Type.self, "@self"), null, activityIds, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
+	  }
+	 
+	 
+	 @Test
+	  public void createJohnDoeActivity() throws Exception {
+		// create TemplateParams of the activity
+		Map<String, String> templateParams = new HashMap<String, String>();
+		templateParams.put("key", "value");
+		
+		Activity activity = new ActivityImpl();
+		activity.setUserId("aaa");
+		 
+	    this.activityDBService.createActivity(new UserId(Type.userId, "john.doe"), new GroupId(GroupId.Type.self, "@self"), null, null, activity, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
 	  }
 }
