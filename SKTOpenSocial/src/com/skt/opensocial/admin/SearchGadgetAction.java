@@ -17,6 +17,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.opensymphony.xwork2.Action;
 import com.skt.opensocial.admin.AdministratorBaseAction;
+import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
@@ -53,6 +54,11 @@ public class SearchGadgetAction extends AdministratorBaseAction {
 	int postpage	= 0;
 
 	public String execute() throws Exception{
+		
+		User user = (User) session.get(SKTOpenSocialSupportConstants.USER);
+		if (!user.isIsAdministrator()) {
+			return "authfail";
+		}
 		
 		if (searchfield.length() > 0 && query.length() == 0) {
 			return "list";

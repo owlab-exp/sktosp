@@ -30,6 +30,7 @@
 			<result name="gadgetstatus">/admin/GadgetList.jsp</result>
 			<result name="developerid">/admin/GadgetList.jsp</result>
 			<result name="list">/admin/GadgetList.jsp</result>
+			<result name="authfail">/admin/authfail.jsp</result>
 			<result name="fail">/main.jsp</result>
 		</action>
 
