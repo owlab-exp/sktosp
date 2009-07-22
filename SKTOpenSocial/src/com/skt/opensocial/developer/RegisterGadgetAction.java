@@ -146,11 +146,20 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 
 			User developer = (User) sessionMap
 					.get(SKTOpenSocialSupportConstants.USER);
-			developer.setIsDeveloper(true); // for developer
+//			User developer = (User)hs.load(User.class, developerInSession.getId());
+//			//hs.refresh(developer);
+//			developer.setIsDeveloper(true); // for developer
 			newGadget.setDeveloper(developer);
+			
 
-			hs.update(developer);
+			
 			gadgetId = (Long) hs.save(newGadget);
+			
+			developer = newGadget.getDeveloper();
+			developer.setIsDeveloper(true);
+			
+			hs.saveOrUpdate(developer);
+			
 
 			setGadgetId(gadgetId);// ?
 			sessionMap.put("GADGET_ID", gadgetId);// for preview
