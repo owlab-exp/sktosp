@@ -86,7 +86,7 @@
 										<s:set name="trClass" value="%{'even'}"/>
 									</s:else>
 										<tr class="<s:property value='#trClass'/>">
-										<s:url id="gadgetPreviewUrl" action="PreviewGadget">
+										<s:url id="gadgetPreviewUrl" action="PreviewGadget" >
 											<s:param name="gadgetId">
 												<s:property value="id" />
 											</s:param>
@@ -95,16 +95,16 @@
 											<s:url id="iUrl" action="ViewIcon">
 												<s:param name="gadgetId" value="%{id}"></s:param>
 											</s:url>
-											<s:a href="%{gadgetPreviewUrl}">
+											<s:a href="%{gadgetPreviewUrl}" title="가젯 미리보기">
 											<img:image src="%{iUrl}" resize="false" height="30" width="30"/>
 											</s:a>
 										</td>
 										<td align="center">
-											<s:a href="%{gadgetPreviewUrl}">
+											<s:a href="%{gadgetPreviewUrl}" title="가젯 미리보기">
 											<s:property value="id" />
 											</s:a>
 										</td>
-										<td><s:a href="%{gadgetPreviewUrl}">
+										<td><s:a href="%{gadgetPreviewUrl}" title="가젯 미리보기">
 												<s:property value="name" />
 											</s:a>	
 										</td>
