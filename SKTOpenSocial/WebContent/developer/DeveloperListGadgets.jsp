@@ -174,7 +174,10 @@
 											
 										</s:if>
 										<s:elseif test="status.equals('pg')">
-											<s:a href="%{viewReviewUrl}">사용자 리뷰 보기 </s:a>
+											<s:if test="%{reviews.size > 0}">
+											<s:a href="%{viewReviewUrl}">사용자 리뷰 보기 (<s:property value="reviews.size"/> 건)</s:a>
+											</s:if>
+											<s:else>사용자 리뷰 보기 (<s:property value="reviews.size"/> 건)</s:else>
 											
 										</s:elseif>
 										<s:elseif test="status.equals('pd')">

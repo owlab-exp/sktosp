@@ -107,7 +107,7 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 			for(Gadget gadget : gadgetList){
 				//?? to fill data
 				//gadget.getDeveloper().getPerson();
-				gadget.getReviews();
+				gadget.getReviews().size();
 				//logger.info(gadget.getFavoriteUsers());
 			}
 

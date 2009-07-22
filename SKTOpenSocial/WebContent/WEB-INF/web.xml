@@ -11,6 +11,9 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+	<listener>
+		<listener-class>com.skt.opensocial.persistence.HibernateListener</listener-class>
+	</listener>
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
