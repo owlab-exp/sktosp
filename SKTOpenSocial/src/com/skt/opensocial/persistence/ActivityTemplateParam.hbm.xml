@@ -11,8 +11,8 @@
         <property name="paramKey" type="string">
             <column name="PARAM_KEY" length="1000" />
         </property>
-        <property name="paramValue" type="string">
-            <column name="PARAM_VALUE" length="1000" />
+        <property name="paramValue" type="text">
+            <column name="PARAM_VALUE"/>
         </property>
         <property name="activityId" type="string">
             <column name="ACTIVITY_ID" not-null="true" />
