@@ -18,36 +18,30 @@
 
 package com.skt.opensocial.wrapper.persistence.service;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.methods.GetMethod;
+import java.util.List;
+import java.util.concurrent.Future;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.shindig.common.util.ImmediateFuture;
 import org.apache.shindig.protocol.Operation;
 import org.apache.shindig.protocol.ProtocolException;
 import org.apache.shindig.protocol.RequestItem;
 import org.apache.shindig.protocol.Service;
-import org.apache.shindig.social.opensocial.model.MediaItem;
-import org.apache.shindig.social.sample.spi.JsonDbOpensocialService;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.Future;
-
-import javax.servlet.http.HttpServletResponse;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.Type;
 
 import com.google.inject.Inject;
+import com.skt.opensocial.persistence.ActivityMediaItem;
 import com.skt.opensocial.persistence.GroupCategory;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.Person;
 
-@Service(name = "group", path = "/{GroupName}")
+@Service(name = "group", path = "/{userId}/{groupName}")
 public class GroupHandler {
 
   @Inject
@@ -58,77 +52,79 @@ public class GroupHandler {
   /**
    * We don't distinguish between put and post for these urls.
    */
-  @Operation(httpMethods = "PUT")
-  public Future<?> update(RequestItem request) throws ProtocolException {
-	  String field = request.getParameter("field");
+  @Operation(httpMethods = "DELETE")
+  public Future<?> delete(RequestItem request) throws ProtocolException {
+	  String groupName = request.getParameter("groupName");
+	  String userId = request.getParameter("userId");
 	  
-	  if (field.equals("groupname")) {
-		  return ImmediateFuture.newInstance("GroupName");
-	  }
+	  Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+	  Transaction tran = null;
 	  
-	  return null;
+	  tran = hs.beginTransaction();
+	  
+	  Query q = hs.createQuery("delete GroupCategory gc where gc.userId = :userId and gc.groupName = :groupName");
+	  q.setString("userId", userId)
+	  .setString("groupName", groupName);
+	  q.executeUpdate();
+	  
+	  tran.commit();
+	  
+	  
+	  return ImmediateFuture.newInstance(groupName);
   }
 
-  /**
-   * Handles /group/..... TODO(doll): 
-   */
-  @Operation(httpMethods = "POST")
-  public Future<?> create(RequestItem request) throws ProtocolException {
-	  
-	  String field = request.getParameter("field");
-	  
-	  if (field.equals("groupname")) {
-		  return ImmediateFuture.newInstance("GroupName");
-	  }
-	  
-	  return null;
-	  
-//    String groupName = request.getParameter("GroupName");
-//    
-//    Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
-//	Transaction tran = null;
-//	
-//	System.out.println(
-//    "-------------------------------------------- Test Succeed : /group/groupName --------------------------------------");
-//	
-//	try {
-//		Long startTime = new Date().getTime();
-//		
-//		tran = hs.beginTransaction();
-//		
-//		
-//		// create Group Categry
-//		GroupCategory groupCategory = new GroupCategory(groupName);
-//
-//		hs.saveOrUpdate(groupCategory);
-//		
-//		
-//		tran.commit();
-//		
-//		throw new ProtocolException(HttpServletResponse.SC_NOT_IMPLEMENTED,
-//        "-------------------------------------------- Test Succeed : /group/groupName --------------------------------------");
-////		return ImmediateFuture.newInstance(null);
-//	
-//	} catch (Exception e) {
-//		if ( tran != null )
-//			tran.rollback();
-//		
-//		throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
-//	}
-  }
 
   /**
    * Handles /group/
    */
   @Operation(httpMethods = "GET")
-  public Future<?> get(RequestItem request) {
-	  String field = request.getParameter("field");
-	  
-	  if (field.equals("groupname")) {
-		  return ImmediateFuture.newInstance("GroupName");
+  public Future<?> get(RequestItem request) throws ProtocolException {
+	  String userId = request.getParameter("userId");
+	  String groupName = request.getParameter("groupName");
+	    
+	  Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+	  Transaction tran = null;
+
+	  try {
+
+		  tran = hs.beginTransaction();
+
+		  // check whether the person exists or not
+		  Person person = (Person) hs.get(Person.class, userId);
+			
+		  if (person == null)
+			  throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST,
+				"Person not found");
+		  
+		  // check if the same name of a group category for the same person already exists 
+		  Criteria crit = hs.createCriteria(GroupCategory.class);
+		  List<GroupCategory> gCategories = (List<GroupCategory>) crit
+		  .add(Restrictions.eq("userId", userId))
+		  .add(Restrictions.eq("groupName", groupName))
+		  .list();
+
+		  if (gCategories.size() == 0) {
+			  
+			  // create Group Categry
+			  GroupCategory groupCategory = new GroupCategory();
+			  groupCategory.setGroupName(groupName);
+			  groupCategory.setUserId(userId);
+	
+			  hs.saveOrUpdate(groupCategory);
+		  }
+
+		  tran.commit();
+
+		  return ImmediateFuture.newInstance(null);
+
+	  } catch (Exception e) {
+		  if ( tran != null )
+			  tran.rollback();
+
+		  throw new ProtocolException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage(), e);
 	  }
+
 	  
-	  return null;
   }
 
 

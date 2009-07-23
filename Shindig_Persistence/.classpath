@@ -2,71 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/c3p0-0.9.1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/caja-r3375.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-beanutils-1.7.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-beanutils-core-1.7.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-betwixt-0.8.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-codec-1.3.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-digester-1.7.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-fileupload-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-fileupload-1.2.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-httpclient-3.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-lang-2.4.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/ehcache-1.6.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/ezmorph-1.0.4.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/google-collections-1.0-rc2.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/guice-2.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/hibernate3.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/htmlparser-1.0.7.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/httpclient-4.0-beta2.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/httpcore-4.0-beta3.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/ibatis-2.3.4.726.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/icu4j-3.8.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/javassist-3.4.GA.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/jdom-1.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/joda-time-1.6.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/jsecurity-0.9.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/json-20070829.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/json_simple-r1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/json-lib-2.2.2-jdk15.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/juel-impl-2.1.0.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/junit-3.8.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/mysql-connector-java-5.1.7-bin.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/nekohtml-1.9.12.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/oauth-20090531.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/oauth-consumer-20090531.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/oauth-core-20090531.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/oauth-httpclient3-20090531.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/oauth-httpclient4-20090531.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/oauth-provider-20090531.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/rome-0.9.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/sanselan-0.97-incubator.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/shindig-common-1.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/shindig-common-1.1-SNAPSHOT-tests.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/shindig-features-1.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/shindig-gadgets-1.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/shindig-social-api-1.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/slf4j-api-1.5.6.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/slf4j-simple-1.5.6.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/xercesImpl-2.9.1.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/xml-apis-1.3.04.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/xpp3_min-1.1.4c.jar"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/xstream-1.3.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/Resources of Classes/ICU-CMU/2009_Summer/Temperary Eclipse Workspace/Shindig_Persistence/Libraries/javax.servlet-5.1.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container/Shindig_DR"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

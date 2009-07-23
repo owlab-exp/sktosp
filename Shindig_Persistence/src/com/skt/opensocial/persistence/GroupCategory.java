@@ -7,20 +7,21 @@ package com.skt.opensocial.persistence;
  */
 public class GroupCategory implements java.io.Serializable {
 
-	private Integer id;
+	private int id;
 	private String groupName;
+	private String userId;
 
 	
-	public GroupCategory(String groupName) {
-		this.groupName = groupName;
+	public GroupCategory() {
+
 	}
 
 
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	private void setId(Integer id) {
+	private void setId(int id) {
 		this.id = id;
 	}
 
@@ -30,6 +31,14 @@ public class GroupCategory implements java.io.Serializable {
 
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
+	}
+	
+	public String getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 }
