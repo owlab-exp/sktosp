@@ -3,6 +3,7 @@
  */
 package com.skt.opensocial.admin;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -37,6 +38,7 @@ public class PublishGadgetAction extends ManageGadgetAction {
 			//gadget.setName(getGadgetName());
 			
 			gadget.setStatus(GadgetStatusConstants.PUBLISHED);
+			gadget.setPublishDate(new Date());
 			
 			hs.update(gadget);
 			hs.getTransaction().commit();
