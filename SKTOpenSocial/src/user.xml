@@ -16,17 +16,17 @@
 		<action name="RegistrationSubmit" class="com.skt.opensocial.user.RegistrationSubmitAction">
 			<interceptor-ref name="defaultStack"/>
 			<result name="success">/main.jsp</result>
-			<result name="fail">/user/UserRegistration.jsp</result>
+			<result name="fail" type="redirectAction">Registration</result>
 		</action>
 		
 		<action name="ResetRegistration">
 			<interceptor-ref name="defaultStack"/>
-			<result >/user/UserRegistration.jsp</result>
+			<result>/user/UserRegistration.jsp</result>
 		</action>
 		
 		<action name="CancelRegistration">
 			<interceptor-ref name="defaultStack"/>
-			<result >/main.jsp</result>
+			<result>/main.jsp</result>
 		</action>
 				
 		<action name="Modification" class="com.skt.opensocial.user.ModificationAction">
