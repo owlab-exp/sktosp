@@ -89,7 +89,7 @@
   }
 
   .gadgets-gadget-chrome {
-    width: 60%;
+    width: 90%;
     float: none;
     margin: auto;
   }
@@ -185,7 +185,7 @@
 								<tr>
 									<td valign="top">가젯 URL:</td>
 									<td>
-										<s:property value="gadgetSource" />
+										<s:property value="gadgetUrl" />
 									</td>
 								</tr>
 								</s:elseif>
@@ -196,7 +196,7 @@
 									<td valign="top">가젯 실행</td>
 									<s:if test="%{status.equals('pg')}">
 										<s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
-											<td valign="top">
+											<td valign="top" width="70%">
 												<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
 											</td>
 										</s:if>
@@ -211,8 +211,8 @@
 								<tr>
 									<td valign="top">가젯 리뷰</td>
 										
-									<td valign="top">
-										<iframe id="gadgetReview" src="<s:url value="%{'http://localhost:8080/SKTOpenSocial/user/Review.action?gadgetId='+gadgetId}"/>" width="100%" height="300"></iframe>
+									<td valign="top" align="center">
+										<iframe id="gadgetReview" src="<s:url value="%{'/user/Review.action?gadgetId='+gadgetId}"/>" width="90%" height="100"></iframe>
 									</td>
 									
 								</tr>

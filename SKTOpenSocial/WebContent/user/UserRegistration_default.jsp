@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
-<title>SKT OpenSocial Pilot - My Profile Modification</title>
+<title>SKT OpenSocial Pilot - New Registration</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
@@ -21,14 +21,14 @@
   <!-- north -->
   <tr valign="top" height="15%">
     <td colspan="3" align="center" valign="top">
-<%@ include file="/common/north.jsp"%>
+<%@ include file="/common/north_no_login.jsp"%>
     </td>
   </tr>
   <tr valign="top" height="80%">
   <!-- west -->
     <td width="25%" align="center" valign="top">
 
-<%@ include file="/user/west_user.jsp"%>
+<%@ include file="/common/login.jsp"%>
 
     </td>
 
@@ -45,8 +45,7 @@
 	            <div class="subject subject_char"> 
 	            <ul class="subject_sub">
 	            <li>홈</li>
-	            <li>사용자메뉴</li>
-	            <li><strong>개인정보수정</strong></li> 
+	            <li><strong>회원가입</strong></li> 
 	            </ul>
 	            </div>
 	          </td>
@@ -66,87 +65,98 @@
 					</colgroup>
 					
 					<tbody>
-						<s:form action="ModificationSubmit" namespace="/user" 
+						<s:form action="RegistrationSubmit" namespace="/user" 
 							id="UserRegistrationForm" theme="simple" method="post" enctype="multipart/form-data">
 														        				
 		  					<tr>
 								<td>*사용자아이디</td>
 								<td>
-									<s:property value="%{userId}" />										
+									<s:textfield name= "userIdWant" required="true" value="nash2" />										
 									
 								</td>
 							</tr>
 							
 							<tr>
-								<td>*기존암호</td>
+								<td>*암호</td>
 								<td>
-									<s:password name= "password" required="true" />										
-								</td>
-							</tr>
-							
-							<tr>
-								<td>*새암호</td>
-								<td>
-									<s:password name= "passwordWant" required="true" />										
+									<s:password name= "passwordWant" required="true" value="nash2"/>										
 								</td>
 							</tr>
 
 							<tr>
-								<td>*새암호확인</td>
+								<td>*암호확인</td>
 								<td>
-									<s:password name= "passwordConfirm" required="true" />										
+									<s:password name= "passwordConfirm" required="true" value="nash2"/>										
 								</td>
 							</tr>
 							
 							<tr>
 								<td>*사용자이름</td>
 								<td>
-									<s:textfield name= "userName" required="true" value="%{userName}"/>										
+									<s:textfield name= "userName" required="true" value="nashbabo"/>										
 								</td>
 							</tr>
-			  		      
+							
+<!--							<tr>-->
+<!--								<td>이미지위치</td>-->
+<!--								<td>-->
+<!--							    	<s:url id="iconUrl" action="ViewIcon">-->
+<!--										<s:param name="userId" value="%{userId}"></s:param>-->
+<!--									</s:url>-->
+<!--									<img:image src="%{iconUrl}" resize="false" height="23" width="23"/>-->
+<!--									<s:file name="thumbnailUrlAddress" label="아이콘 파일위치"/>-->
+<!--						    	</td>-->
+<!--							</tr>-->
+<!--							-->
+<!--							<tr>-->
+<!--								<td>이미지내용</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="이미지내용" name="thumbnailUrlLinktext" required="false" value="애국가"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
+										  		      
 			  		      ` <tr>
 								<td>나이</td>
 								<td>
-									<s:textfield name= "age" required="false" value="%{age}"/> 										
+									<s:textfield name= "age" required="false" value="30"/> 										
 								</td>
 							</tr>
 							
 							<tr>
 								<td>성별</td>
 								<td>
-									<s:select label="성별" name="gender" headerKey="1" headerValue="-- 선택하세요 --" list="#{'male':'남성','female':'여성'}" value="%{gender}"/>  										
+									<s:select label="성별" name="gender" headerKey="1" headerValue="-- 선택하세요 --" list="#{'male':'남성','female':'여성'}"/>  										
 								</td>
 							</tr>
 							
 							<tr>
 								<td>생일</td>
 								<td>
-									<s:textfield name= "birthday" required="false" value="%{birthday}"/>   
+									<s:textfield name= "birthday" required="false" value="1979-08-24"/>   
 								</td>
 							</tr>
 							
 							<tr>
 								<td>*이메일</td>
 								<td>
-									<s:textfield name= "email" required="true" value="%{email}"/> 
+									<s:textfield name= "email" required="true" value="skt@nate.com"/> 
 								</td>
 							</tr>
 						      		
 						    <tr>
 								<td>추가이메일</td>
 								<td>
-									<s:textfield name= "email2" required="false" value="%{email2}"/> 
+									<s:textfield name= "email2" required="false" /> 
 								</td>
 							</tr>
 							
 							<tr>
 								<td>상세개인정보공개</td>
 								<td>
-							    	<s:select label="상세개인정보공개" name="personalInfoOpen" 
-							    	headerKey="1" value="%{favoriteGadgetListOpen}" headerValue="-- 선택하세요 --"
-						       		list="#{'ALL':'모든사용자에게 선호가젯모음을 모두 공개'
-						       				,'ONLYF':'친구에게만 선호가젯모음을 공개'
+							    	<s:select label="상세개인정보공개" name="personalInfoOpen" headerKey="1" headerValue="-- 선택하세요 --" 
+						       		list="#{'ALL':'모든사용자에게 상세개인정보를 모두 공개'
+						       				,'ONLYF':'친구에게만 상세개인정보를 공개'
 						       				,'NOOP':'비공개'
 						       				}"/> 
 					   	     	</td>
@@ -155,8 +165,7 @@
 							<tr>
 								<td>선호가젯모음공개</td>
 								<td>
-							    	<s:select label="선호가젯모음공개" name="favoriteGadgetListOpen" 
-							    	headerKey="1" value="%{favoriteGadgetListOpen}" headerValue="-- 선택하세요 --"
+							    	<s:select label="선호가젯모음공개" name="favoriteGadgetListOpen" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'ALL':'모든사용자에게 선호가젯모음을 모두 공개'
 						       				,'ONLYF':'친구에게만 선호가젯모음을 공개'
 						       				,'NOOP':'비공개'
@@ -167,21 +176,21 @@
 							<tr>
 								<td>주소</td>
 								<td>
-									<s:textfield name= "address" required="false" value="%{address}"/> 
+									<s:textfield name= "address" required="false" value="서울"/> 
 								</td>
 							</tr>
 				
 		      				<tr>
 								<td>추가주소</td>
 								<td>
-							      	<s:textfield name= "address2" required="false" value="%{address2}"/> 
+							      	<s:textfield name= "address2" required="false" /> 
 						    	</td>
 							</tr>
 							
 							<tr>
 								<td>학교</td>
 								<td>
-								   	<s:textfield label= "학교" name= "school" required="false" value="%{school}"/> 
+								   	<s:textfield label= "학교" name= "school" required="false" value="KAIST"/> 
 						    	</td>
 							</tr>
 							
@@ -189,16 +198,15 @@
 								<td>추가학교</td>
 								<td>
 							    	
-						          	<s:textfield label= "추가학교" name= "school2" required="false" value="%{school2}"/> 
+						          	<s:textfield label= "추가학교" name= "school2" required="false" /> 
 						    	</td>
 							</tr>
 							
 							<tr>
 								<td>직업</td>
 								<td>
-							    
-						      		      
-						          	<s:textfield label= "직업" name= "job" required="false" value="%{job}"/> 
+							        
+						          	<s:textfield label= "직업" name= "job" required="false" value="student"/> 
 						    	</td>
 							</tr>
 							
@@ -206,16 +214,15 @@
 								<td>추가직업</td>
 								<td>
 							    
-						          	<s:textfield label= "추가직업" name= "job2" required="false" value="%{job2}"/> 
+						          	<s:textfield label= "추가직업" name= "job2" required="false" /> 
 						    	</td>
 							</tr>
 							
 							<tr>
 								<td>난?</td>
-								<td width="100%">
+								<td>
 							    
-							  
-						          	<s:textfield label= "난?" name= "aboutMe" required="false" value="%{aboutMe}"/> 
+						          	<s:textarea label= "난?" name= "aboutMe" required="false" value="난멋있어!"/> 
 						       		      
 						     	</td>
 							</tr>
@@ -225,7 +232,7 @@
 								<td>
 							    
 							  
-						          	<s:textfield label= "체격" name= "bodytypeBuild" required="false" value="%{bodytypeBuild}"/> 
+						          	<s:textfield label= "체격" name= "bodytypeBuild" required="false" value="호리호리"/> 
 						       		      
 						     	</td>
 							</tr>
@@ -234,7 +241,7 @@
 								<td>눈동자색상</td>
 								<td>
 							 
-						          	<s:textfield label= "눈동자색상" name= "bodytypeEyecolor" required="false" value="%{bodytypeEyecolor}"/> 
+						          	<s:textfield label= "눈동자색상" name= "bodytypeEyecolor" required="false" value="black"/> 
 						     	</td>
 							</tr>
 							
@@ -243,7 +250,7 @@
 								<td>
 							   
 						     
-						          	<s:textfield label= "머리색상" name= "bodytypeHaircolor" required="false" value="%{bodytypeHaircolor}"/> 
+						          	<s:textfield label= "머리색상" name= "bodytypeHaircolor" required="false" value="black"/> 
 						     	</td>
 							</tr>
 							
@@ -251,9 +258,7 @@
 								<td>키</td>
 								<td>
 							   
-						      
-						      
-						          	<s:textfield label= "키" name= "bodytypeHeight" required="false" value="%{bodytypeHeight}"/> 
+						          	<s:textfield label= "키" name= "bodytypeHeight" required="false" value="180"/> 
 						     	</td>
 							</tr>
 							
@@ -262,7 +267,7 @@
 								<td>
 							   
 						     
-						          	<s:textfield label= "몸무게" name= "bodytypeWeight" required="false" value="%{bodytypeWeight}"/> 
+						          	<s:textfield label= "몸무게" name= "bodytypeWeight" required="false" value="80"/> 
 						     	</td>
 							</tr>
 							
@@ -271,7 +276,7 @@
 								<td>
 							  		      
 						      
-						          	<s:textfield label= "좋아하는 책" name= "book" required="false" value="%{book}"/> 
+						          	<s:textfield label= "좋아하는 책" name= "book" required="false" value="Architecture"/> 
 						       
 						     	</td>
 							</tr>
@@ -281,7 +286,7 @@
 								<td>
 							 
 						     
-						          	<s:textfield label= "좋아하는 책 추가" name= "book2" required="false" value="%{book2}"/> 
+						          	<s:textfield label= "좋아하는 책 추가" name= "book2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -290,7 +295,7 @@
 								<td>
 							        
 						      
-						          	<s:textfield label= "좋아하는 자동차" name= "car" required="false" value="%{car}"/> 
+						          	<s:textfield label= "좋아하는 자동차" name= "car" required="false" value="아반떼"/> 
 						    	</td>
 							</tr>
 							
@@ -298,7 +303,7 @@
 								<td>좋아하는 자동차추가</td>
 								<td>
 							  
-						          	<s:textfield label= "좋아하는 자동차추가" name= "car2" required="false" value="%{car2}"/> 
+						          	<s:textfield label= "좋아하는 자동차추가" name= "car2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -306,7 +311,7 @@
 								<td>자녀</td>
 								<td>
 							   
-						          	<s:textfield label= "자녀" name= "children" required="false" value="%{children}"/> 
+						          	<s:textfield label= "자녀" name= "children" required="false" value="destinychild"/> 
 						    	</td>
 							</tr>
 							
@@ -315,7 +320,7 @@
 								<td>현재위치</td>
 								<td>
 							   
-						          	<s:textfield label= "현재위치" name= "currentLocation" required="false" value="%{currentLocation}"/> 
+						          	<s:textfield label= "현재위치" name= "currentLocation" required="false" value="대전"/> 
 						    	</td>
 							</tr>
 							
@@ -323,7 +328,7 @@
 								<td>음주</td>
 								<td>
 							    
-						       		<s:select label="음주" name="drinker" headerKey="1"  headerValue="-- 선택하세요 --"
+						       		<s:select label="음주" name="drinker" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'HEAVILY':'HEAVILY'
 						       				,'NO':'NO'
 						       				,'OCCASIONALLY':'OCCASIONALLY'
@@ -332,10 +337,7 @@
 						       				,'REGULARLY':'REGULARLY'
 						       				,'SOCIALLY':'SOCIALLY'
 						       				,'YES':'YES'
-						       				}"
-						       				value="%{drinker}"/> 
-						       				
-						       				
+						       				}"/> 
 					   	     	</td>
 							</tr>
 							
@@ -343,7 +345,7 @@
 								<td>민족</td>
 								<td>
 							   
-						          	<s:textfield label="민족" name="ethnicity" required="false" value="%{ethnicity}"/> 
+						          	<s:textfield label="민족" name="ethnicity" required="false" value="한국인"/> 
 						     	</td>
 							</tr>
 							
@@ -351,7 +353,7 @@
 								<td>패션</td>
 								<td>
 							   
-						          	<s:textfield label="패션" name="fashion" required="false" value="%{fashion}"/> 
+						          	<s:textfield label="패션" name="fashion" required="false" value="밀리터리룩"/> 
 						    	</td>
 							</tr>
 							
@@ -359,7 +361,7 @@
 								<td>좋아하는음식</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는음식" name="food" required="false" value="%{food}"/> 
+						          	<s:textfield label="좋아하는음식" name="food" required="false" value="김치찌개"/> 
 						    	</td>
 							</tr>
 							
@@ -367,7 +369,7 @@
 								<td>좋아하는음식추가</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는음식추가" name="food2" required="false" value="%{food2}"/> 
+						          	<s:textfield label="좋아하는음식추가" name="food2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -375,7 +377,7 @@
 								<td>행복한때</td>
 								<td>
 							    
-						          	<s:textfield label="행복한때" name="happiestWhen" required="false" value="%{happiestWhen}"/> 
+						          	<s:textfield label="행복한때" name="happiestWhen" required="false" value="프로젝트끝날때"/> 
 						    	</td>
 							</tr>
 							
@@ -383,7 +385,7 @@
 								<td>좋아하는영웅</td>
 								<td>
 							   
-						          	<s:textfield label="좋아하는영웅" name="hero" required="false" value="%{hero}"/> 
+						          	<s:textfield label="좋아하는영웅" name="hero" required="false" value="superman"/> 
 						    	</td>
 							</tr>
 							
@@ -391,7 +393,7 @@
 								<td>좋아하는영웅추가</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는영웅추가" name="hero2" required="false" value="%{hero2}"/> 
+						          	<s:textfield label="좋아하는영웅추가" name="hero2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -399,7 +401,7 @@
 								<td>유머에대한생각</td>
 								<td>
 							    
-						          	<s:textfield label="유머에대한생각" name="humor" required="false" value="%{humor}"/> 
+						          	<s:textfield label="유머에대한생각" name="humor" required="false" value="글쎄"/> 
 						    	</td>
 							</tr>
 							
@@ -407,7 +409,7 @@
 								<td>취미,특기</td>
 								<td>
 							    
-						          	<s:textfield label="취미,특기" name="interest" required="false" value="%{interest}"/> 
+						          	<s:textfield label="취미,특기" name="interest" required="false" value="공부"/> 
 						    	</td>
 							</tr>
 							
@@ -415,7 +417,7 @@
 								<td>취미,특기추가</td>
 								<td>
 							    
-						          	<s:textfield label="취미,특기추가" name="interest2" required="false" value="%{interest2}"/> 
+						          	<s:textfield label="취미,특기추가" name="interest2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -423,16 +425,15 @@
 								<td>관심직업</td>
 								<td>
 							    
-						          	<s:textfield label="관심직업" name="jobInterest" required="false" value="%{jobInterest}"/> 
+						          	<s:textfield label="관심직업" name="jobInterest" required="false" value="대통령"/> 
 						    	</td>
 							</tr>
-										
-							
+														
 							<tr>
 								<td>사용언어</td>
 								<td>
 							    
-						          	<s:textfield label="사용언어" name="languageSpoken" required="false" value="%{languageSpoken}"/> 
+						          	<s:textfield label="사용언어" name="languageSpoken" required="false" value="한국어"/> 
 						    	</td>
 							</tr>
 							
@@ -440,7 +441,7 @@
 								<td>사용언어추가</td>
 								<td>
 							    
-						          	<s:textfield label="사용언어추가" name="languageSpoken2" required="false" value="%{languageSpoken2}"/> 
+						          	<s:textfield label="사용언어추가" name="languageSpoken2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -448,7 +449,7 @@
 								<td>주거형태</td>
 								<td>
 							    
-						          	<s:textfield label="주거형태" name="livingArrangement" required="false" value="%{livingArrangement}"/> 
+						          	<s:textfield label="주거형태" name="livingArrangement" required="false" value="아파트"/> 
 						    	</td>
 							</tr>
 							
@@ -456,15 +457,14 @@
 								<td>관심분야</td>
 								<td>
 							    
-						       		<s:select label="관심분야" name="lookingFor" headerKey="1"  headerValue="-- 선택하세요 --"
+						       		<s:select label="관심분야" name="lookingFor" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'ACTIVITY_PARTNERS':'ACTIVITY_PARTNERS'
 						       				,'DATING':'DATING'
 						       				,'FRIENDS':'FRIENDS'
 						       				,'NETWORKING':'NETWORKING'
 						       				,'RANDOM':'RANDOM'
 						       				,'RELATIONSHIP':'RELATIONSHIP'
-						       				}"
-						       				value="%{lookingFor}"/> 
+						       				}"/> 
 					   	    	</td>
 							</tr>
 							
@@ -472,7 +472,7 @@
 								<td>좋아하는영화</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는영화" name="movie" required="false" value="%{movie}"/> 
+						          	<s:textfield label="좋아하는영화" name="movie" required="false" value="동해물과"/> 
 						    	</td>
 							</tr>
 							
@@ -480,7 +480,7 @@
 								<td>영화추가</td>
 								<td>
 							    
-						          	<s:textfield label="영화추가" name="movie2" required="false" value="%{movie2}"/> 
+						          	<s:textfield label="영화추가" name="movie2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -488,7 +488,7 @@
 								<td>좋아하는음악</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는음악" name="music" required="false" value="%{music}"/> 
+						          	<s:textfield label="좋아하는음악" name="music" required="false" value="백두산이"/> 
 						   	</td>
 							</tr>
 							
@@ -496,7 +496,7 @@
 								<td>음악추가</td>
 								<td>
 							     
-						          	<s:textfield label="음악추가" name="music2" required="false" value="%{music2}"/> 
+						          	<s:textfield label="음악추가" name="music2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -504,7 +504,7 @@
 								<td>추가이름</td>
 								<td>
 							   
-						          	<s:textfield label="추가이름" name="additionalName" required="false" value="%{additionalName}"/> 
+						          	<s:textfield label="추가이름" name="additionalName" required="false" value="없어"/> 
 						    	</td>
 							</tr>
 							
@@ -512,7 +512,7 @@
 								<td>성</td>
 								<td>
 							    
-						          	<s:textfield label="성" name="familyName" required="false" value="%{familyName}"/> 
+						          	<s:textfield label="성" name="familyName" required="false" value="na"/> 
 						   	</td>
 							</tr>
 							
@@ -520,7 +520,7 @@
 								<td>이름</td>
 								<td>
 							     
-						          	<s:textfield label="이름" name="givenName" required="false" value="%{givenName}"/> 
+						          	<s:textfield label="이름" name="givenName" required="false" value="sh2"/> 
 						    	</td>
 							</tr>
 							
@@ -528,7 +528,7 @@
 								<td>호</td>
 								<td>
 							    
-						          	<s:textfield label="호" name="honorificPrefix" required="false" value="%{honorificPrefix}"/> 
+						          	<s:textfield label="호" name="honorificPrefix" required="false" value="Dr."/> 
 						    	</td>
 							</tr>
 							
@@ -536,7 +536,7 @@
 								<td>접미호</td>
 								<td>
 							    
-						          	<s:textfield label="접미호" name="honorificSuffix" required="false" value="%{honorificSuffix}"/> 
+						          	<s:textfield label="접미호" name="honorificSuffix" required="false" value="great"/> 
 						    	</td>
 							</tr>
 							
@@ -545,15 +545,14 @@
 								<td>네트워크환경</td>
 								<td>
 							    
-						       		<s:select label="네트워크환경" name="networkPresence" headerKey="1" headerValue="-- 선택하세요 --"
+						       		<s:select label="네트워크환경" name="networkPresence" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'AWAY':'AWAY'
 						       				,'CHAT':'CHAT'
 						       				,'DND':'DND'
 						       				,'OFFLINE':'OFFLINE'
 						       				,'ONLINE':'ONLINE'
 						       				,'XA':'XA'
-						       				}"
-						       				value="%{networkPresence}"/> 
+						       				}"/> 
 					   	    	</td>
 							</tr>
 							
@@ -561,7 +560,7 @@
 								<td>별명</td>
 								<td>
 							    
-						          	<s:textfield label="별명" name="nickname" required="false" value="%{nickname}"/> 
+						          	<s:textfield label="별명" name="nickname" required="false" value="Dr. nash"/> 
 						   	</td>
 							</tr>
 							
@@ -569,7 +568,7 @@
 								<td>애완동물</td>
 								<td>
 							    
-						          	<s:textfield label="애완동물" name="pets" required="false" value="%{pets}"/> 
+						          	<s:textfield label="애완동물" name="pets" required="false" value="백구"/> 
 						    	</td>
 							</tr>
 							
@@ -578,7 +577,7 @@
 								<td>전화번호</td>
 								<td>
 							    
-						          	<s:textfield label="전화번호" name="phoneNumber" required="false" value="%{phoneNumber}"/> 
+						          	<s:textfield label="전화번호" name="phoneNumber" required="false" value="042-869-6114"/> 
 						    	</td>
 							</tr>
 							
@@ -586,7 +585,7 @@
 								<td>전화번호종류</td>
 								<td>
 							    
-						          	<s:textfield label="전화번호종류" name="phoneType" required="false" value="%{phoneType}"/> 
+						          	<s:textfield label="전화번호종류" name="phoneType" required="false" value="유선전화"/> 
 						    	</td>
 							</tr>
 							
@@ -594,7 +593,7 @@
 								<td>추가전화번호</td>
 								<td>
 							    
-						          	<s:textfield label="추가전화번호" name="phoneNumber2" required="false" value="%{phoneNumber2}"/> 
+						          	<s:textfield label="추가전화번호" name="phoneNumber2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -602,7 +601,7 @@
 								<td>추가전화번호종류</td>
 								<td>
 							    
-						          	<s:textfield label="추가전화번호종류" name="phoneType2" required="false" value="%{phoneType2}"/> 
+						          	<s:textfield label="추가전화번호종류" name="phoneType2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -610,7 +609,7 @@
 								<td>정치적관점</td>
 								<td>
 							    
-						          	<s:textfield label="정치적관점" name="politicalViews" required="false" value="%{politicalViews}"/> 
+						          	<s:textfield label="정치적관점" name="politicalViews" required="false" value="보수"/> 
 						    	</td>
 							</tr>
 							
@@ -618,7 +617,7 @@
 								<td>프로파일송위치</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일송위치" name="profilesongUrlAddress" required="false" value="%{profilesongUrlAddress}"/> 
+						          	<s:textfield label="프로파일송위치" name="profilesongUrlAddress" required="false" value="http://nate.com"/> 
 						    	</td>
 							</tr>
 							
@@ -626,23 +625,23 @@
 								<td>프로파일송내용</td>
 								<td>
 							   
-						          	<s:textfield label="프로파일송내용" name="profilesongUrlLinktext" required="false" value="%{profilesongUrlLinktext}"/> 
+						          	<s:textfield label="프로파일송내용" name="profilesongUrlLinktext" required="false" value="애국가"/> 
 						    	</td>
 							</tr>
 							
-<!--							<tr>-->
-<!--								<td>프로파일송위치종류</td>-->
-<!--								<td>-->
-<!--							    -->
-<!--						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" value="%{profilesongUrlType}"/> -->
-<!--						    	</td>-->
-<!--							</tr>-->
+							<tr>
+								<td>프로파일송위치종류</td>
+								<td>
+							    
+						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" value="website"/> 
+						    	</td>
+							</tr>
 							
 							<tr>
 								<td>프로파일위치</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일위치" name="profileUrlAddress" required="false" value="%{profileUrlAddress}"/> 
+						          	<s:textfield label="프로파일위치" name="profileUrlAddress" required="false" value="http://nate.com"/> 
 						    	</td>
 							</tr>
 							
@@ -650,23 +649,23 @@
 								<td>프로파일내용</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일내용" name="profileUrlLinktext" required="false" value="%{profileUrlLinktext}"/> 
+						          	<s:textfield label="프로파일내용" name="profileUrlLinktext" required="false" value="애국가"/> 
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>프로파일위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="프로파일위치종류" name="profileUrlType" required="false" value="%{profileUrlType}"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>프로파일위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="프로파일위치종류" name="profileUrlType" required="false" value="website"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							<tr>
 								<td>프로파일비디오위치</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일비디오위치" name="profilevideoUrlAddress" required="false" value="%{profilevideoUrlAddress}"/> 
+						          	<s:textfield label="프로파일비디오위치" name="profilevideoUrlAddress" required="false" value="http://nate.com"/> 
 						    	</td>
 							</tr>
 							
@@ -674,7 +673,7 @@
 								<td>프로파일비디오내용</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일비디오내용" name="profilevideoUrlLinktext" required="false" value="%{profilevideoUrlLinktext}"/> 
+						          	<s:textfield label="프로파일비디오내용" name="profilevideoUrlLinktext" required="false" value="애국가"/> 
 						    	</td>
 							</tr>
 							
@@ -682,7 +681,7 @@
 								<td>프로파일비디오위치종류</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" value="%{profilevideoUrlType}"/> 
+						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" value="website"/> 
 						    	</td>
 							</tr>
 							
@@ -690,7 +689,7 @@
 								<td>좋아하는인용문</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는인용문" name="quote" required="false" value="%{quote}"/> 
+						          	<s:textfield label="좋아하는인용문" name="quote" required="false" value="산은산이오"/> 
 						    	</td>
 							</tr>
 							
@@ -698,7 +697,7 @@
 								<td>인용문추가</td>
 								<td>
 							    
-						          	<s:textfield label="인용문추가" name="quote2" required="false" value="%{quote2}"/> 
+						          	<s:textfield label="인용문추가" name="quote2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -706,7 +705,7 @@
 								<td>관계상태</td>
 								<td>
 							   
-						          	<s:textfield label="관계상태" name="relationshipStatus" required="false" value="%{relationshipStatus}"/> 
+						          	<s:textfield label="관계상태" name="relationshipStatus" required="false" value="좋음"/> 
 						    	</td>
 							</tr>
 							
@@ -714,7 +713,7 @@
 								<td>종교</td>
 								<td>
 							    
-						          	<s:textfield label="종교" name="religion" required="false" value="%{religion}"/> 
+						          	<s:textfield label="종교" name="religion" required="false" value="무교"/> 
 						    	</td>
 							</tr>
 							
@@ -722,7 +721,7 @@
 								<td>로맨스에대한</td>
 								<td>
 							    
-						          	<s:textfield label="로맨스에대한" name="romance" required="false" value="%{romance}"/> 
+						          	<s:textfield label="로맨스에대한" name="romance" required="false" value="내가하면로맨스"/> 
 						    	</td>
 							</tr>
 							
@@ -730,7 +729,7 @@
 								<td>무서운것</td>
 								<td>
 							    
-						          	<s:textfield label="무서운것" name="scaredOf" required="false" value="%{scaredOf}"/> 
+						          	<s:textfield label="무서운것" name="scaredOf" required="false" value="벌레"/> 
 						    	</td>
 							</tr>
 							
@@ -738,7 +737,7 @@
 								<td>성적방향</td>
 								<td>
 							    
-						          	<s:textfield label="성적방향" name="sexualOrientation" required="false" value="%{sexualOrientation}"/> 
+						          	<s:textfield label="성적방향" name="sexualOrientation" required="false" value="이성"/> 
 						    	</td>
 							</tr>
 							
@@ -746,7 +745,7 @@
 								<td>흡연</td>
 								<td>
 							    
-						       		<s:select label="흡연" name="smoker" headerKey="1" headerValue="-- 선택하세요 --"
+						       		<s:select label="흡연" name="smoker" headerKey="1" headerValue="-- 선택하세요 --" 
 						       		list="#{'HEAVILY':'HEAVILY'
 						       				,'NO':'NO'
 						       				,'OCCASIONALLY':'OCCASIONALLY'
@@ -755,8 +754,7 @@
 						       				,'REGULARLY':'REGULARLY'
 						       				,'SOCIALLY':'SOCIALLY'
 						       				,'YES':'YES'
-						       				}"
-						       				value="%{smoker}"/> 
+						       				}"/> 
 					   	     	</td>
 							</tr>
 							
@@ -764,7 +762,7 @@
 								<td>좋아하는스포츠</td>
 								<td>
 							   
-						          	<s:textfield label="좋아하는스포츠" name="sport" required="false" value="%{sport}"/> 
+						          	<s:textfield label="좋아하는스포츠" name="sport" required="false" value="숨쉬기"/> 
 						    	</td>
 							</tr>
 							
@@ -772,7 +770,7 @@
 								<td>스포츠추가</td>
 								<td>
 							    
-						          	<s:textfield label="스포츠추가" name="sport2" required="false" value="%{sport2}"/> 
+						          	<s:textfield label="스포츠추가" name="sport2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -780,7 +778,7 @@
 								<td>상태</td>
 								<td>
 							    
-						          	<s:textfield label="상태" name="status" required="false" value="%{status}"/> 
+						          	<s:textfield label="상태" name="status" required="false" value="건들지마세요"/> 
 						    	</td>
 							</tr>
 							
@@ -788,7 +786,7 @@
 								<td>태그</td>
 								<td>
 							    
-						          	<s:textfield label="태그" name="tag" required="false" value="%{tag}"/> 
+						          	<s:textfield label="태그" name="tag" required="false" value="숨쉬기"/> 
 						    	</td>
 							</tr>
 							
@@ -796,31 +794,16 @@
 								<td>태그추가</td>
 								<td>
 							    
-						          	<s:textfield label="태그추가" name="tag2" required="false" value="%{tag2}"/> 
+						          	<s:textfield label="태그추가" name="tag2" required="false" /> 
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>이미지위치</td>
-								<td>
-							    
-						          	<s:textfield label="이미지위치" name="thumbnailUrlAddress" required="false" value="%{thumbnailUrlAddress}"/> 
-						    	</td>
-							</tr>
-							
-							<tr>
-								<td>이미지내용</td>
-								<td>
-							    
-						          	<s:textfield label="이미지내용" name="thumbnailUrlLinktext" required="false" value="%{thumbnailUrlLinktext}"/> 
-						    	</td>
-							</tr>
 							
 <!--							<tr>-->
 <!--								<td>이미지위치종류</td>-->
 <!--								<td>-->
 <!--							    -->
-<!--						          	<s:textfield label="이미지위치종류" name="thumbnailUrlType" required="false" value="%{thumbnailUrlType}"/> -->
+<!--						          	<s:textfield label="이미지위치종류" name="thumbnailUrlType" required="false" value="website"/> -->
 <!--						    	</td>-->
 <!--							</tr>-->
 							
@@ -829,7 +812,7 @@
 								<td>turnOff</td>
 								<td>
 							   
-						          	<s:textfield label="turnOff" name="turnOff" required="false" value="%{turnOff}"/> 
+						          	<s:textfield label="turnOff" name="turnOff" required="false" value=""/> 
 						    	</td>
 							</tr>
 							
@@ -837,7 +820,7 @@
 								<td>turnOff추가</td>
 								<td>
 							    
-						          	<s:textfield label="turnOff추가" name="turnOff2" required="false" value="%{turnOff2}"/> 
+						          	<s:textfield label="turnOff추가" name="turnOff2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -845,7 +828,7 @@
 								<td>turnOn</td>
 								<td>
 							    
-						          	<s:textfield label="turnOn" name="turnOn" required="false" value="%{turnOn}"/> 
+						          	<s:textfield label="turnOn" name="turnOn" required="false" value=""/> 
 						    	</td>
 							</tr>
 							
@@ -853,7 +836,7 @@
 								<td>turnOn추가</td>
 								<td>
 							    
-						          	<s:textfield label="turnOn추가" name="turnOn2" required="false" value="%{turnOn2}"/> 
+						          	<s:textfield label="turnOn추가" name="turnOn2" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -861,7 +844,7 @@
 								<td>tvShow</td>
 								<td>
 							    
-						          	<s:textfield label="tvShow" name="tvShow" required="false" value="%{tvShow}"/> 
+						          	<s:textfield label="tvShow" name="tvShow" required="false" value="무한도전"/> 
 						    	</td>
 							</tr>
 							
@@ -869,21 +852,21 @@
 								<td>tvShow추가</td>
 								<td>
 							    
-						          	<s:textfield label="tvShow추가" name="tvShow2" required="false" value="%{tvShow2}"/> 
+						          	<s:textfield label="tvShow추가" name="tvShow2" required="false" /> 
 						    	</td>
 							</tr>
 							<tr>
 							    <td>
-							   		<s:submit align="center" action= "ModificationSubmit" 
-							   			value= "개인정보수정" name= "ModificationSubmit"/>
+							   		<s:submit align="center" action= "RegistrationSubmit" 
+							   			value= "회원가입" name= "RegistrationSubmit"/>
 						        </td>
 						        <td>
-						        	<s:submit align="center" action= "ResetModification" 
-						        		value= "다시입력" name= "ResetModification"/>
+						        	<s:submit align="center" action= "ResetRegistration" 
+						        		value= "다시입력" name= "ResetRegistration"/>
 						        </td>	  
 						        <td>
-						        	<s:submit align="center" action= "CancelModification" 
-						        		value= "취소" name= "CancelModification"/>
+						        	<s:submit align="center" action= "CancelRegistration" 
+						        		value= "취소" name= "CancelRegistration"/>
 					            </td>      
 							</tr>
 
@@ -894,10 +877,7 @@
 			</tr>
 		</tbody>
 	</table>
-     
-      
-      
-      </div> <!-- east div -->
+	</div> <!-- east div -->
       
     </td>
   </tr>
@@ -909,9 +889,6 @@
 	</td>
   </tr> 
 
-
 </table>
-
-
 </body>
 </html>

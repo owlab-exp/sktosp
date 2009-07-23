@@ -71,7 +71,7 @@
 		  					<tr>
 								<td>*사용자아이디</td>
 								<td>
-									<s:textfield name= "userIdWant" required="true" value="nash2" />										
+									<s:textfield name= "userIdWant" required="true" />										
 									
 								</td>
 							</tr>
@@ -79,21 +79,21 @@
 							<tr>
 								<td>*암호</td>
 								<td>
-									<s:password name= "passwordWant" required="true" value="nash2"/>										
+									<s:password name= "passwordWant" required="true" />										
 								</td>
 							</tr>
 
 							<tr>
 								<td>*암호확인</td>
 								<td>
-									<s:password name= "passwordConfirm" required="true" value="nash2"/>										
+									<s:password name= "passwordConfirm" required="true" />										
 								</td>
 							</tr>
 							
 							<tr>
 								<td>*사용자이름</td>
 								<td>
-									<s:textfield name= "userName" required="true" value="nashbabo"/>										
+									<s:textfield name= "userName" required="true" />										
 								</td>
 							</tr>
 							
@@ -119,7 +119,7 @@
 			  		      ` <tr>
 								<td>나이</td>
 								<td>
-									<s:textfield name= "age" required="false" value="30"/> 										
+									<s:textfield name= "age" required="false" /> 										
 								</td>
 							</tr>
 							
@@ -133,14 +133,14 @@
 							<tr>
 								<td>생일</td>
 								<td>
-									<s:textfield name= "birthday" required="false" value="1979-08-24"/>   
+									<s:textfield name= "birthday" required="false" />   
 								</td>
 							</tr>
 							
 							<tr>
 								<td>*이메일</td>
 								<td>
-									<s:textfield name= "email" required="true" value="skt@nate.com"/> 
+									<s:textfield name= "email" required="true" /> 
 								</td>
 							</tr>
 						      		
@@ -154,7 +154,7 @@
 							<tr>
 								<td>상세개인정보공개</td>
 								<td>
-							    	<s:select label="상세개인정보공개" name="personalInfoOpen" headerKey="1" headerValue="-- 선택하세요 --" 
+							    	<s:select label="상세개인정보공개" name="personalInfoOpen" headerKey="1"  
 						       		list="#{'ALL':'모든사용자에게 상세개인정보를 모두 공개'
 						       				,'ONLYF':'친구에게만 상세개인정보를 공개'
 						       				,'NOOP':'비공개'
@@ -165,7 +165,7 @@
 							<tr>
 								<td>선호가젯모음공개</td>
 								<td>
-							    	<s:select label="선호가젯모음공개" name="favoriteGadgetListOpen" headerKey="1" headerValue="-- 선택하세요 --" 
+							    	<s:select label="선호가젯모음공개" name="favoriteGadgetListOpen" headerKey="1"  
 						       		list="#{'ALL':'모든사용자에게 선호가젯모음을 모두 공개'
 						       				,'ONLYF':'친구에게만 선호가젯모음을 공개'
 						       				,'NOOP':'비공개'
@@ -176,7 +176,7 @@
 							<tr>
 								<td>주소</td>
 								<td>
-									<s:textfield name= "address" required="false" value="서울"/> 
+									<s:textfield name= "address" required="false" /> 
 								</td>
 							</tr>
 				
@@ -190,7 +190,7 @@
 							<tr>
 								<td>학교</td>
 								<td>
-								   	<s:textfield label= "학교" name= "school" required="false" value="KAIST"/> 
+								   	<s:textfield label= "학교" name= "school" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -206,7 +206,7 @@
 								<td>직업</td>
 								<td>
 							        
-						          	<s:textfield label= "직업" name= "job" required="false" value="student"/> 
+						          	<s:textfield label= "직업" name= "job" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -222,7 +222,7 @@
 								<td>난?</td>
 								<td>
 							    
-						          	<s:textarea label= "난?" name= "aboutMe" required="false" value="난멋있어!"/> 
+						          	<s:textarea label= "난?" name= "aboutMe" required="false" /> 
 						       		      
 						     	</td>
 							</tr>
@@ -232,7 +232,7 @@
 								<td>
 							    
 							  
-						          	<s:textfield label= "체격" name= "bodytypeBuild" required="false" value="호리호리"/> 
+						          	<s:textfield label= "체격" name= "bodytypeBuild" required="false" /> 
 						       		      
 						     	</td>
 							</tr>
@@ -241,7 +241,7 @@
 								<td>눈동자색상</td>
 								<td>
 							 
-						          	<s:textfield label= "눈동자색상" name= "bodytypeEyecolor" required="false" value="black"/> 
+						          	<s:textfield label= "눈동자색상" name= "bodytypeEyecolor" required="false" /> 
 						     	</td>
 							</tr>
 							
@@ -250,7 +250,7 @@
 								<td>
 							   
 						     
-						          	<s:textfield label= "머리색상" name= "bodytypeHaircolor" required="false" value="black"/> 
+						          	<s:textfield label= "머리색상" name= "bodytypeHaircolor" required="false" /> 
 						     	</td>
 							</tr>
 							
@@ -258,7 +258,7 @@
 								<td>키</td>
 								<td>
 							   
-						          	<s:textfield label= "키" name= "bodytypeHeight" required="false" value="180"/> 
+						          	<s:textfield label= "키" name= "bodytypeHeight" required="false" /> 
 						     	</td>
 							</tr>
 							
@@ -267,7 +267,7 @@
 								<td>
 							   
 						     
-						          	<s:textfield label= "몸무게" name= "bodytypeWeight" required="false" value="80"/> 
+						          	<s:textfield label= "몸무게" name= "bodytypeWeight" required="false" /> 
 						     	</td>
 							</tr>
 							
@@ -276,7 +276,7 @@
 								<td>
 							  		      
 						      
-						          	<s:textfield label= "좋아하는 책" name= "book" required="false" value="Architecture"/> 
+						          	<s:textfield label= "좋아하는 책" name= "book" required="false" /> 
 						       
 						     	</td>
 							</tr>
@@ -295,7 +295,7 @@
 								<td>
 							        
 						      
-						          	<s:textfield label= "좋아하는 자동차" name= "car" required="false" value="아반떼"/> 
+						          	<s:textfield label= "좋아하는 자동차" name= "car" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -311,7 +311,7 @@
 								<td>자녀</td>
 								<td>
 							   
-						          	<s:textfield label= "자녀" name= "children" required="false" value="destinychild"/> 
+						          	<s:textfield label= "자녀" name= "children" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -320,7 +320,7 @@
 								<td>현재위치</td>
 								<td>
 							   
-						          	<s:textfield label= "현재위치" name= "currentLocation" required="false" value="대전"/> 
+						          	<s:textfield label= "현재위치" name= "currentLocation" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -345,7 +345,7 @@
 								<td>민족</td>
 								<td>
 							   
-						          	<s:textfield label="민족" name="ethnicity" required="false" value="한국인"/> 
+						          	<s:textfield label="민족" name="ethnicity" required="false" /> 
 						     	</td>
 							</tr>
 							
@@ -353,7 +353,7 @@
 								<td>패션</td>
 								<td>
 							   
-						          	<s:textfield label="패션" name="fashion" required="false" value="밀리터리룩"/> 
+						          	<s:textfield label="패션" name="fashion" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -361,7 +361,7 @@
 								<td>좋아하는음식</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는음식" name="food" required="false" value="김치찌개"/> 
+						          	<s:textfield label="좋아하는음식" name="food" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -377,7 +377,7 @@
 								<td>행복한때</td>
 								<td>
 							    
-						          	<s:textfield label="행복한때" name="happiestWhen" required="false" value="프로젝트끝날때"/> 
+						          	<s:textfield label="행복한때" name="happiestWhen" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -385,7 +385,7 @@
 								<td>좋아하는영웅</td>
 								<td>
 							   
-						          	<s:textfield label="좋아하는영웅" name="hero" required="false" value="superman"/> 
+						          	<s:textfield label="좋아하는영웅" name="hero" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -401,7 +401,7 @@
 								<td>유머에대한생각</td>
 								<td>
 							    
-						          	<s:textfield label="유머에대한생각" name="humor" required="false" value="글쎄"/> 
+						          	<s:textfield label="유머에대한생각" name="humor" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -409,7 +409,7 @@
 								<td>취미,특기</td>
 								<td>
 							    
-						          	<s:textfield label="취미,특기" name="interest" required="false" value="공부"/> 
+						          	<s:textfield label="취미,특기" name="interest" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -425,7 +425,7 @@
 								<td>관심직업</td>
 								<td>
 							    
-						          	<s:textfield label="관심직업" name="jobInterest" required="false" value="대통령"/> 
+						          	<s:textfield label="관심직업" name="jobInterest" required="false" /> 
 						    	</td>
 							</tr>
 														
@@ -433,7 +433,7 @@
 								<td>사용언어</td>
 								<td>
 							    
-						          	<s:textfield label="사용언어" name="languageSpoken" required="false" value="한국어"/> 
+						          	<s:textfield label="사용언어" name="languageSpoken" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -449,7 +449,7 @@
 								<td>주거형태</td>
 								<td>
 							    
-						          	<s:textfield label="주거형태" name="livingArrangement" required="false" value="아파트"/> 
+						          	<s:textfield label="주거형태" name="livingArrangement" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -472,7 +472,7 @@
 								<td>좋아하는영화</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는영화" name="movie" required="false" value="동해물과"/> 
+						          	<s:textfield label="좋아하는영화" name="movie" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -488,7 +488,7 @@
 								<td>좋아하는음악</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는음악" name="music" required="false" value="백두산이"/> 
+						          	<s:textfield label="좋아하는음악" name="music" required="false" /> 
 						   	</td>
 							</tr>
 							
@@ -504,7 +504,7 @@
 								<td>추가이름</td>
 								<td>
 							   
-						          	<s:textfield label="추가이름" name="additionalName" required="false" value="없어"/> 
+						          	<s:textfield label="추가이름" name="additionalName" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -512,7 +512,7 @@
 								<td>성</td>
 								<td>
 							    
-						          	<s:textfield label="성" name="familyName" required="false" value="na"/> 
+						          	<s:textfield label="성" name="familyName" required="false" /> 
 						   	</td>
 							</tr>
 							
@@ -520,7 +520,7 @@
 								<td>이름</td>
 								<td>
 							     
-						          	<s:textfield label="이름" name="givenName" required="false" value="sh2"/> 
+						          	<s:textfield label="이름" name="givenName" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -528,7 +528,7 @@
 								<td>호</td>
 								<td>
 							    
-						          	<s:textfield label="호" name="honorificPrefix" required="false" value="Dr."/> 
+						          	<s:textfield label="호" name="honorificPrefix" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -536,7 +536,7 @@
 								<td>접미호</td>
 								<td>
 							    
-						          	<s:textfield label="접미호" name="honorificSuffix" required="false" value="great"/> 
+						          	<s:textfield label="접미호" name="honorificSuffix" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -560,7 +560,7 @@
 								<td>별명</td>
 								<td>
 							    
-						          	<s:textfield label="별명" name="nickname" required="false" value="Dr. nash"/> 
+						          	<s:textfield label="별명" name="nickname" required="false" /> 
 						   	</td>
 							</tr>
 							
@@ -568,7 +568,7 @@
 								<td>애완동물</td>
 								<td>
 							    
-						          	<s:textfield label="애완동물" name="pets" required="false" value="백구"/> 
+						          	<s:textfield label="애완동물" name="pets" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -577,7 +577,7 @@
 								<td>전화번호</td>
 								<td>
 							    
-						          	<s:textfield label="전화번호" name="phoneNumber" required="false" value="042-869-6114"/> 
+						          	<s:textfield label="전화번호" name="phoneNumber" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -585,7 +585,7 @@
 								<td>전화번호종류</td>
 								<td>
 							    
-						          	<s:textfield label="전화번호종류" name="phoneType" required="false" value="유선전화"/> 
+						          	<s:textfield label="전화번호종류" name="phoneType" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -609,7 +609,7 @@
 								<td>정치적관점</td>
 								<td>
 							    
-						          	<s:textfield label="정치적관점" name="politicalViews" required="false" value="보수"/> 
+						          	<s:textfield label="정치적관점" name="politicalViews" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -617,7 +617,7 @@
 								<td>프로파일송위치</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일송위치" name="profilesongUrlAddress" required="false" value="http://nate.com"/> 
+						          	<s:textfield label="프로파일송위치" name="profilesongUrlAddress" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -625,7 +625,7 @@
 								<td>프로파일송내용</td>
 								<td>
 							   
-						          	<s:textfield label="프로파일송내용" name="profilesongUrlLinktext" required="false" value="애국가"/> 
+						          	<s:textfield label="프로파일송내용" name="profilesongUrlLinktext" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -633,7 +633,7 @@
 								<td>프로파일송위치종류</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" value="website"/> 
+						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -641,7 +641,7 @@
 								<td>프로파일위치</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일위치" name="profileUrlAddress" required="false" value="http://nate.com"/> 
+						          	<s:textfield label="프로파일위치" name="profileUrlAddress" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -649,7 +649,7 @@
 								<td>프로파일내용</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일내용" name="profileUrlLinktext" required="false" value="애국가"/> 
+						          	<s:textfield label="프로파일내용" name="profileUrlLinktext" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -665,7 +665,7 @@
 								<td>프로파일비디오위치</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일비디오위치" name="profilevideoUrlAddress" required="false" value="http://nate.com"/> 
+						          	<s:textfield label="프로파일비디오위치" name="profilevideoUrlAddress" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -673,7 +673,7 @@
 								<td>프로파일비디오내용</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일비디오내용" name="profilevideoUrlLinktext" required="false" value="애국가"/> 
+						          	<s:textfield label="프로파일비디오내용" name="profilevideoUrlLinktext" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -681,7 +681,7 @@
 								<td>프로파일비디오위치종류</td>
 								<td>
 							    
-						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" value="website"/> 
+						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -689,7 +689,7 @@
 								<td>좋아하는인용문</td>
 								<td>
 							    
-						          	<s:textfield label="좋아하는인용문" name="quote" required="false" value="산은산이오"/> 
+						          	<s:textfield label="좋아하는인용문" name="quote" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -705,7 +705,7 @@
 								<td>관계상태</td>
 								<td>
 							   
-						          	<s:textfield label="관계상태" name="relationshipStatus" required="false" value="좋음"/> 
+						          	<s:textfield label="관계상태" name="relationshipStatus" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -713,7 +713,7 @@
 								<td>종교</td>
 								<td>
 							    
-						          	<s:textfield label="종교" name="religion" required="false" value="무교"/> 
+						          	<s:textfield label="종교" name="religion" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -721,7 +721,7 @@
 								<td>로맨스에대한</td>
 								<td>
 							    
-						          	<s:textfield label="로맨스에대한" name="romance" required="false" value="내가하면로맨스"/> 
+						          	<s:textfield label="로맨스에대한" name="romance" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -729,7 +729,7 @@
 								<td>무서운것</td>
 								<td>
 							    
-						          	<s:textfield label="무서운것" name="scaredOf" required="false" value="벌레"/> 
+						          	<s:textfield label="무서운것" name="scaredOf" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -737,7 +737,7 @@
 								<td>성적방향</td>
 								<td>
 							    
-						          	<s:textfield label="성적방향" name="sexualOrientation" required="false" value="이성"/> 
+						          	<s:textfield label="성적방향" name="sexualOrientation" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -762,7 +762,7 @@
 								<td>좋아하는스포츠</td>
 								<td>
 							   
-						          	<s:textfield label="좋아하는스포츠" name="sport" required="false" value="숨쉬기"/> 
+						          	<s:textfield label="좋아하는스포츠" name="sport" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -778,7 +778,7 @@
 								<td>상태</td>
 								<td>
 							    
-						          	<s:textfield label="상태" name="status" required="false" value="건들지마세요"/> 
+						          	<s:textfield label="상태" name="status" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -786,7 +786,7 @@
 								<td>태그</td>
 								<td>
 							    
-						          	<s:textfield label="태그" name="tag" required="false" value="숨쉬기"/> 
+						          	<s:textfield label="태그" name="tag" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -812,7 +812,7 @@
 								<td>turnOff</td>
 								<td>
 							   
-						          	<s:textfield label="turnOff" name="turnOff" required="false" value=""/> 
+						          	<s:textfield label="turnOff" name="turnOff" required="false" /> 
 						    	</td>
 							</tr>
 							
@@ -828,7 +828,7 @@
 								<td>turnOn</td>
 								<td>
 							    
-						          	<s:textfield label="turnOn" name="turnOn" required="false" value=""/> 
+						          	<s:textfield label="turnOn" name="turnOn" required="false"/> 
 						    	</td>
 							</tr>
 							
@@ -844,7 +844,7 @@
 								<td>tvShow</td>
 								<td>
 							    
-						          	<s:textfield label="tvShow" name="tvShow" required="false" value="무한도전"/> 
+						          	<s:textfield label="tvShow" name="tvShow" required="false" /> 
 						    	</td>
 							</tr>
 							

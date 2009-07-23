@@ -75,9 +75,47 @@
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td>가젯ID</td>
-									<td>가젯이름</td>
+									<td>가젯이름
+										<s:if test="%{sortsc == 'desc'}">
+								   			<s:url id="sortUrl" action="Search" >
+								   			<s:param name="searchfield" value="%{searchfield}" />
+								   			<s:param name="query" value="%{query}" />
+								   			<s:param name="sortfield">name</s:param>
+								   			<s:param name="sortsc">asc</s:param>
+								   			</s:url>
+											<s:a href="%{sortUrl}">▲</s:a> 
+										</s:if>
+										<s:else>
+											<s:url id="sortUrl" action="Search" >
+								   			<s:param name="searchfield" value="%{searchfield}" />
+								   			<s:param name="query" value="%{query}" />
+								   			<s:param name="sortfield">name</s:param>
+								   			<s:param name="sortsc">desc</s:param>
+								   			</s:url>
+											<s:a href="%{sortUrl}">▼</s:a> 	
+										</s:else>
+									</td>
 									<td align="center">개발자</td>
-									<td align="center">발행일자</td>
+									<td align="center">발행일자
+										<s:if test="%{sortsc == 'desc'}">
+								   			<s:url id="sortUrl" action="Search" >
+								   			<s:param name="searchfield" value="%{searchfield}" />
+								   			<s:param name="query" value="%{query}" />
+								   			<s:param name="sortfield">publishDate</s:param>
+								   			<s:param name="sortsc">asc</s:param>
+								   			</s:url>
+											<s:a href="%{sortUrl}">▲</s:a> 
+										</s:if>
+										<s:else>
+								   			<s:url id="sortUrl" action="Search" >
+								   			<s:param name="searchfield" value="%{searchfield}" />
+								   			<s:param name="query" value="%{query}" />
+								   			<s:param name="sortfield">publishDate</s:param>
+								   			<s:param name="sortsc">desc</s:param>
+								   			</s:url>
+											<s:a href="%{sortUrl}">▼</s:a> 	
+										</s:else>
+									</td>
 									<td align="center">사용자수</td>
 									<td align="center">가젯설명</td>
 
@@ -115,8 +153,50 @@
 					</tr>
 					<tr>
 						<td><!-- paging -->
-						<div class="paging"><em class="p"><a href="ListGadgets.action">이 전</a></em><a href="ListGadgets.action">1</a> <a href="ListGadgets.action">2</a> <a href="ListGadgets.action">3</a> <em
-							class="n"><a href="ListGadgets.action">다음</a></em></div>
+							<div class="paging"> 
+			
+							<s:if test="%{prepage != 0}">
+						   			<s:url id="pagingUrl" action="Search" >
+								   	<s:param name="searchfield" value="%{searchfield}" />
+								   	<s:param name="query" value="%{query}" />
+						  			<s:param name="currentpage" value="%{prepage}"/>
+						   			<s:param name="sortfield" value="%{sortfield}" />
+						   			<s:param name="sortsc" value="%{sortsc}" />	
+						   			</s:url>
+									<em class="p"><s:a href="%{pagingUrl}">이전</s:a></em> 
+							</s:if>
+	
+							<s:if test="%{totalcount != 0}">
+								<s:iterator value="paging">
+					    			<s:url id="pagingUrl" action="Search" >
+								   	<s:param name="searchfield" value="%{searchfield}" />
+								   	<s:param name="query" value="%{query}" />
+						  			<s:param name="currentpage" value="top"/>
+							   			<s:param name="sortfield" value="%{sortfield}" />
+							   			<s:param name="sortsc" value="%{sortsc}" />		
+					    			</s:url>
+					
+						  			<s:if test="%{currentpage.equals(top)}">
+										<span class="on"><s:property/></span>
+									</s:if>
+									<s:else>
+						    			<s:a href="%{pagingUrl}"><s:property/></s:a>				
+									</s:else>    			
+								</s:iterator>
+							</s:if>
+
+							<s:if test="%{postpage != 0}">
+						   			<s:url id="pagingUrl" action="Search" >
+								   	<s:param name="searchfield" value="%{searchfield}" />
+								   	<s:param name="query" value="%{query}" />
+						  			<s:param name="currentpage" value="%{postpage}"/>
+						   			<s:param name="sortfield" value="%{sortfield}" />
+						   			<s:param name="sortsc" value="%{sortsc}" />	
+						   			</s:url>
+									<em class="p"><s:a href="%{pagingUrl}">다음</s:a></em> 
+							</s:if>		
+				
+							</div>
 						</td>
 					</tr>
       </table>

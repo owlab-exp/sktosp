@@ -72,17 +72,17 @@
                 	<td align="center"><s:property value="name"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#F5F5F5;" height="25">
+				<tr style="background-color:#FFFFFF;" height="25">
           			<td align="left">아이디</td> 
                 	<td align="center"><s:property value="userId"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#FFFFFF;" height="25">
+				<tr style="background-color:#F5F5F5;" height="25">
           			<td align="left">전화번호</td> 
                 	<td align="center"><s:property value="phoneNumber"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#F5F5F5;" height="25">
+				<tr style="background-color:#FFFFFF;" height="25">
           			<td align="left">나이</td> 
                 	<td align="center"><s:property value="age"/></td> 
       			  </tr>
