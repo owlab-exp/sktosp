@@ -98,7 +98,7 @@
   }
 </style>
 
-<script type="text/javascript" src="../../samplejs/group.js"></script>
+<script type="text/javascript" src="http://nash.owlab.com:8080/gadgets/files/samplecontainer/samplejs/group.js"></script>
 
 
 <script type="text/javascript">
