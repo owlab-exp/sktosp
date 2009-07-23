@@ -60,8 +60,8 @@ shindig.samplecontainer = {};
   var doEvil;
   var gadget;
 
-  var viewerId = "nash2";
-  var ownerId = "nash2";
+  var viewerId = "nash4";
+  var ownerId = "nash4";
 
   var viewMatches = /[?&]view=((?:[^#&]+|&amp;)+)/.exec(parentUrl);
   var current_view = (viewMatches)
