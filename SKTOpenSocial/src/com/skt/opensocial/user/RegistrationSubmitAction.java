@@ -1629,6 +1629,12 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				user = new User();
 				user.setId(userIdWant);
 			}
+			else
+			{
+				addFieldError("userIdWant", "use other userId");
+				tran.rollback();
+				return "fail";
+			}
 			
 			Person person = (Person) hsession.get(Person.class, userIdWant);
 			//user = (User) hsession.get(User.class, userIdWant);
@@ -1636,23 +1642,30 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 			if(person == null) {
 				person = new Person();
 				person.setUser(user);
-			}
-						
-			/*
-			else
-			{
-				addFieldError("userIdWant", "use other userId");
-				tran.commit();
-				return "fail";
-			}
+			}					
+			
 			
 			if (passwordWant.isEmpty() || !passwordWant.equals(passwordConfirm))
 			{
 				addFieldError("passwordWant", "password error");
-				tran.commit();
+				tran.rollback();
 				return "fail";
 			}
-			*/
+			
+			if (userName.isEmpty())
+			{
+				addFieldError("userName", "userName error");
+				tran.rollback();
+				return "fail";
+			}
+			if (email.isEmpty())
+			{
+				addFieldError("email", "email error");
+				tran.rollback();
+				return "fail";
+				
+			}
+			
 			
 			PasswordEncryptor pe = PasswordEncryptor.getInstance();
 			String hashedPassword = pe.encrypt(passwordWant);
@@ -1682,7 +1695,7 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 			user.setRegisteredDate(new Date());
 			
 			hsession.saveOrUpdate(user);
-			hsession.saveOrUpdate(userVisibility);
+			//hsession.saveOrUpdate(userVisibility);
 			hsession.saveOrUpdate(person);
 			
 			//hsession.saveOrUpdate(userVisibility);

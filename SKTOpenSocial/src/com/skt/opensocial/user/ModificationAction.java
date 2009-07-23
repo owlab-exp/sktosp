@@ -181,6 +181,8 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 	private String tvShow;
 	private String tvShow2;
 	
+	private String personalInfoOpen;
+	private String favoriteGadgetListOpen;
 	//private UserVisibility userVisibility;
 	//private Set<GadgetReview> reviews;
 	
@@ -253,6 +255,9 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 		smoker = person.getSmoker();
 				
 		status = person.getStatus();
+		
+		personalInfoOpen = person.getProfileurl();
+		favoriteGadgetListOpen = person.getThumbnailurl();
 		
 		//thumbnailUrlAddress = person.getThumbnailurl();
 		//thumbnailUrlLinktext 
@@ -1286,6 +1291,22 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 
 	public void setTvShow2(String tvShow2) {
 		this.tvShow2 = tvShow2;
+	}
+
+	public String getPersonalInfoOpen() {
+		return personalInfoOpen;
+	}
+
+	public void setPersonalInfoOpen(String personalInfoOpen) {
+		this.personalInfoOpen = personalInfoOpen;
+	}
+
+	public String getFavoriteGadgetListOpen() {
+		return favoriteGadgetListOpen;
+	}
+
+	public void setFavoriteGadgetListOpen(String favoriteGadgetListOpen) {
+		this.favoriteGadgetListOpen = favoriteGadgetListOpen;
 	}
 	
 	

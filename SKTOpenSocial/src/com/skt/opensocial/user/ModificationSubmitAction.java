@@ -1347,6 +1347,7 @@ public class ModificationSubmitAction extends ActivityBaseManager implements Ses
 		// drinker
 		if (!drinker.equals("1"))
 			person.setDrinker(DrinkerEnum.valueOf(drinker));
+		System.out.println("new drinker : " + drinker);
 
 		// ethnicity
 		if (ethnicity != null && !ethnicity.isEmpty())
@@ -1557,30 +1558,44 @@ public class ModificationSubmitAction extends ActivityBaseManager implements Ses
 			
 			if (!user.getPassword().equals(hashedPasswordOld))
 			{
-				System.out.println("user modification start 3 -----" );
+				//System.out.println("user modification start 3 -----" );
 				
 				addFieldError("passwordWant", "password error");
-				tran.commit();
+				tran.rollback();
 				return "fail";
 			}
 			//System.out.println("user modification start 4 -----" );
 			
 			if (!passwordWant.isEmpty())
 			{
-				System.out.println("user modification start 5 -----" );
+				//System.out.println("user modification start 5 -----" );
 				if (passwordWant.equals(passwordConfirm))
 				{
-					System.out.println("user modification start 6 -----" );
+					//System.out.println("user modification start 6 -----" );
 					String hashedPassword = pe.encrypt(passwordWant);
 					user.setPassword(hashedPassword);
 				}
 				else
 				{
-					System.out.println("user modification start 7 -----" );
+					//System.out.println("user modification start 7 -----" );
 					addFieldError("passwordWant", "password error");
-					tran.commit();
+					tran.rollback();
 					return "fail";
 				}
+			}
+			
+			if (userName.isEmpty())
+			{
+				addFieldError("userName", "userName error");
+				tran.rollback();
+				return "fail";
+			}
+			if (email.isEmpty())
+			{
+				addFieldError("email", "email error");
+				tran.rollback();
+				return "fail";
+				
 			}
 			
 			//System.out.println("user modification start 8 -----" );

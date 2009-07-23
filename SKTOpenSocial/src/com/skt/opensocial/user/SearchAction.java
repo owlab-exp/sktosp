@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import com.skt.opensocial.admin.Paging;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.developer.DeveloperBaseAction;
 
@@ -48,8 +52,78 @@ public class SearchAction extends DeveloperBaseAction {
 	//User user;
 	String userId;
 	
+	// paging
+	Paging pages;
+	List<Integer> paging;
+	int prepage	= 0;
+	int postpage	= 0;
+	int listscale	= 10;
+	int pagescale	= 10;
+	int currentpage	= 1;
+	int totalcount	= 0;
+	
+	// sorting
+	String sortfield	= null;
+	String sortsc	= "desc";
+	
 	int requestedPage = 1;
 	
+	public List<Integer> getPaging() {
+		return paging;
+	}
+
+	public void setPaging(List<Integer> paging) {
+		this.paging = paging;
+	}
+
+	public int getPrepage() {
+		return prepage;
+	}
+
+	public void setPrepage(int prepage) {
+		this.prepage = prepage;
+	}
+
+	public int getPostpage() {
+		return postpage;
+	}
+
+	public void setPostpage(int postpage) {
+		this.postpage = postpage;
+	}
+
+	public int getCurrentpage() {
+		return currentpage;
+	}
+
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
+
+	public int getTotalcount() {
+		return totalcount;
+	}
+
+	public void setTotalcount(int totalcount) {
+		this.totalcount = totalcount;
+	}
+
+	public String getSortfield() {
+		return sortfield;
+	}
+
+	public void setSortfield(String sortfield) {
+		this.sortfield = sortfield;
+	}
+
+	public String getSortsc() {
+		return sortsc;
+	}
+
+	public void setSortsc(String sortsc) {
+		this.sortsc = sortsc;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -131,22 +205,79 @@ public class SearchAction extends DeveloperBaseAction {
 			
 			System.out.println("searchfield, query, queryKey = " + searchfield + query + queryKey);
 			
+			// paing
+			pages	= new Paging(pagescale, listscale);
+			pages.setCurrentpage(this.currentpage);
+			
+			Criteria c, t;
+			
 			if ( searchfield.equals("gadget"))
-				this.gadgets = (List<Gadget>) hs.createCriteria(Gadget.class)
+			{
+				c = hs.createCriteria(Gadget.class)
 					.add(Restrictions.like("name", queryKey))
-					.add(Restrictions.eq("status", "pg"))
-					.list();
+					.add(Restrictions.eq("status", "pg"));
+				 t = hs.createCriteria(Gadget.class)
+					.add(Restrictions.like("name", queryKey))
+					.add(Restrictions.eq("status", "pg"));
+							
+				c.setFirstResult(pages.getFirstresult());
+				c.setMaxResults(pages.getListscale());
+				
+				if (sortfield == null)
+					sortfield = "name";
+				if (this.sortsc.equals("desc")) {
+					c.addOrder( Order.desc(this.sortfield) );
+				}
+				else {
+					c.addOrder( Order.asc(this.sortfield) );			
+				}
+				this.gadgets = (List<Gadget>) c.list();
+				
+			}
 			else if ( searchfield.equals("username"))
-				this.persons = (List<Person>) hs.createCriteria(Person.class)
-					.add(Restrictions.like("nameFormatted", queryKey))
-					.list();
+			{
+				c = hs.createCriteria(Person.class)
+					.add(Restrictions.like("nameFormatted", queryKey));
+				t = hs.createCriteria(Person.class)
+					.add(Restrictions.like("nameFormatted", queryKey));
+							
+				c.setFirstResult(pages.getFirstresult());
+				c.setMaxResults(pages.getListscale());
+				
+				if (sortfield == null)
+					sortfield = "nameFormatted";
+				if (this.sortsc.equals("desc")) {
+					c.addOrder( Order.desc(this.sortfield) );
+				}
+				else {
+					c.addOrder( Order.asc(this.sortfield) );			
+				}
+				this.persons = (List<Person>) c.list();
+			}
 			else if ( searchfield.equals("tag"))
 			{
-				this.personalAdditionalInfo1 = 
-					(List<PersonAdditionalInfo1>)hs.createCriteria(PersonAdditionalInfo1.class)
+				c = hs.createCriteria(PersonAdditionalInfo1.class)
 					.add(Restrictions.eq("attribute", Info1AttributeEnum.tags))
-					.add(Restrictions.like("value", queryKey))
-					.list();
+					.add(Restrictions.like("value", queryKey));
+				t = hs.createCriteria(PersonAdditionalInfo1.class)
+					.add(Restrictions.eq("attribute", Info1AttributeEnum.tags))
+					.add(Restrictions.like("value", queryKey));
+							
+				c.setFirstResult(pages.getFirstresult());
+				c.setMaxResults(pages.getListscale());
+				
+				if (sortfield == null)
+					sortfield = "registeredDate";
+				
+				if (this.sortsc.equals("desc")) {
+					c.addOrder( Order.desc(this.sortfield) );
+				}
+				else {
+					c.addOrder( Order.asc(this.sortfield) );			
+				}
+				
+				this.personalAdditionalInfo1 = 
+					(List<PersonAdditionalInfo1>) c.list();
 				
 				for (PersonAdditionalInfo1 p : personalAdditionalInfo1)
 				{
@@ -155,11 +286,40 @@ public class SearchAction extends DeveloperBaseAction {
 			}
 			else 
 			{
-				this.persons = (List<Person>) hs.createCriteria(Person.class)
-					.add(Restrictions.like("nameFormatted", queryKey))
-					.list();
+				c = hs.createCriteria(Person.class)
+					.add(Restrictions.like("nameFormatted", queryKey));
+				t = hs.createCriteria(Person.class)
+					.add(Restrictions.like("nameFormatted", queryKey));
+							
+				c.setFirstResult(pages.getFirstresult());
+				c.setMaxResults(pages.getListscale());
+				
+				if (sortfield == null)
+					sortfield = "registeredDate";
+				
+				if (this.sortsc.equals("desc")) {
+					c.addOrder( Order.desc(this.sortfield) );
+				}
+				else {
+					c.addOrder( Order.asc(this.sortfield) );			
+				}
+				this.persons = (List<Person>) c.list();
+				
 			}
-
+			
+			t.setProjection( Projections.rowCount() );	
+			this.totalcount	=  ((Integer)t.list().get(0)).intValue();
+	
+			// paging
+			pages.setTotalcount(this.totalcount);
+			this.paging		= pages.getPaging();
+			this.prepage	= pages.getPrepage();
+			this.postpage	= pages.getPostpage();
+			
+			System.out.println("list" + paging.toString());
+			System.out.println("prepage" + prepage);
+			System.out.println("postpage" + postpage);
+			
 			if (this.gadgets != null && !this.gadgets.isEmpty())
 				System.out.println("searched gadgets.size = " + gadgets.size());
 			if (this.persons != null && !this.persons.isEmpty())

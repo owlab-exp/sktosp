@@ -96,15 +96,15 @@ public class ActivityBaseManager extends ManageGadgetAction {
 			else if (activityEnum.equals(ActivityTypeEnum.removeFavoriteFriend))
 				activityNew.setTitle(userId + " removes " + otherUserId + " from his favorite friends list");
 			else if (activityEnum.equals(ActivityTypeEnum.addFavoriteGadget))
-				activityNew.setTitle(userId + " adds " + gadgetId + " to his favorite gadgets list");
+				activityNew.setTitle(userId + " adds gadgetId:" + gadgetId + " to his favorite gadgets list");
 			else if (activityEnum.equals(ActivityTypeEnum.removeFavoriteGadget))
-				activityNew.setTitle(userId + " removes " + gadgetId + " from his favorite gadgets list");
+				activityNew.setTitle(userId + " removes gadgetId:" + gadgetId + " from his favorite gadgets list");
 			else if (activityEnum.equals(ActivityTypeEnum.addGadgetReview))
-				activityNew.setTitle(userId + " adds a gadget review to " + gadgetId + "'s review list");
+				activityNew.setTitle(userId + " adds a gadget review to gadgetId:" + gadgetId + "'s review list");
 			else if (activityEnum.equals(ActivityTypeEnum.removeGadgetReview))
-				activityNew.setTitle(userId + " removes a gadget review from " + gadgetId + "'s review list");
+				activityNew.setTitle(userId + " removes a gadget review from gadgetId:" + gadgetId + "'s review list");
 			else if (activityEnum.equals(ActivityTypeEnum.executeGadget))
-				activityNew.setTitle(userId + " executes " + gadgetId + "");
+				activityNew.setTitle(userId + " executes gadgetId:" + gadgetId + "");
 			else if (activityEnum.equals(ActivityTypeEnum.otherUserInfo))
 				activityNew.setTitle(userId + " views " + otherUserId + "'s info");
 			else if (activityEnum.equals(ActivityTypeEnum.modifyPersonalProfile))
