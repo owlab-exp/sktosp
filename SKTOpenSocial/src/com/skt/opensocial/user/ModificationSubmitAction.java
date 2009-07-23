@@ -79,8 +79,8 @@ public class ModificationSubmitAction extends ActivityBaseManager implements Ses
 	private String bodytypeBuild;
 	private String bodytypeEyecolor;
 	private String bodytypeHaircolor;
-	private double bodytypeHeight;
-	private double bodytypeWeight;
+	private Double bodytypeHeight;
+	private Double bodytypeWeight;
 	
 	private String book; 
 	private String book2; 
@@ -1321,7 +1321,7 @@ public class ModificationSubmitAction extends ActivityBaseManager implements Ses
 			person.setBodytypeHaircolor(bodytypeHaircolor);
 		else
 			person.setBodytypeHaircolor("");
-		
+		System.out.println("bodyTypeHeight --- :" + bodytypeHeight);
 		if (bodytypeHeight > 0)
 			person.setBodytypeHeight(bodytypeHeight);
 		else

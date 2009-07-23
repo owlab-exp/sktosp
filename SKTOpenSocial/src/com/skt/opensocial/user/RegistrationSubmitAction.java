@@ -984,8 +984,8 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				jobPersonOrganization.setType("job");
 				jobPersonOrganization.setPrimary(true);
 				
-				jobPersonOrganization.setAddressLatitude(Double.valueOf(0));	
-				jobPersonOrganization.setAddressLongitude(Double.valueOf(0));
+				jobPersonOrganization.setAddressLatitude(Double.valueOf(1));	
+				jobPersonOrganization.setAddressLongitude(Double.valueOf(1));
 				jobPersonOrganization.setAddressPrimary(true);
 				
 				personOrganizations.add(jobPersonOrganization);
@@ -1002,8 +1002,8 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				job2PersonOrganization.setType("job");
 				job2PersonOrganization.setPrimary(false);
 				
-				job2PersonOrganization.setAddressLatitude(Double.valueOf(0));	
-				job2PersonOrganization.setAddressLongitude(Double.valueOf(0));
+				job2PersonOrganization.setAddressLatitude(Double.valueOf(1));	
+				job2PersonOrganization.setAddressLongitude(Double.valueOf(1));
 				job2PersonOrganization.setAddressPrimary(true);
 				
 				personOrganizations.add(job2PersonOrganization);
@@ -1020,8 +1020,8 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				schoolPersonOrganization.setType("school");
 				schoolPersonOrganization.setPrimary(true);
 					
-				schoolPersonOrganization.setAddressLatitude(Double.valueOf(0));	
-				schoolPersonOrganization.setAddressLongitude(Double.valueOf(0));
+				schoolPersonOrganization.setAddressLatitude(Double.valueOf(1));	
+				schoolPersonOrganization.setAddressLongitude(Double.valueOf(1));
 				schoolPersonOrganization.setAddressPrimary(true);
 				
 				
@@ -1039,8 +1039,8 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				school2PersonOrganization.setType("school");
 				school2PersonOrganization.setPrimary(false);
 				
-				school2PersonOrganization.setAddressLatitude(Double.valueOf(0));	
-				school2PersonOrganization.setAddressLongitude(Double.valueOf(0));
+				school2PersonOrganization.setAddressLatitude(Double.valueOf(1));	
+				school2PersonOrganization.setAddressLongitude(Double.valueOf(1));
 				school2PersonOrganization.setAddressPrimary(true);
 				
 				personOrganizations.add(school2PersonOrganization);
@@ -1101,8 +1101,8 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				tmpAddress.setPerson(person);
 				tmpAddress.setType("first");
 				tmpAddress.setPrimary(true);
-				tmpAddress.setLatitude(Double.valueOf(0));
-				tmpAddress.setLongitude(Double.valueOf(0));
+				tmpAddress.setLatitude(Double.valueOf(1));
+				tmpAddress.setLongitude(Double.valueOf(1));
 				
 				addresses.add(tmpAddress);
 				person.setAddresses(addresses);
@@ -1128,8 +1128,8 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				tmpAddress2.setPerson(person);
 				tmpAddress2.setType("second");
 				tmpAddress2.setPrimary(false);
-				tmpAddress2.setLatitude(Double.valueOf(0));
-				tmpAddress2.setLongitude(Double.valueOf(0));
+				tmpAddress2.setLatitude(Double.valueOf(1));
+				tmpAddress2.setLongitude(Double.valueOf(1));
 				
 				addresses.add(tmpAddress2);
 				person.setAddresses(addresses);
@@ -1325,7 +1325,7 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 			if (age != null && !age.isEmpty())
 				person.setAge(Integer.parseInt(age));
 			else
-				person.setAge(0);
+				person.setAge(1);
 			
 			// gender
 			if (gender.equals("male"))
@@ -1380,11 +1380,11 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 			if (bodytypeHeight > 0)
 				person.setBodytypeHeight(bodytypeHeight);
 			else
-				person.setBodytypeHeight(Double.valueOf("0"));
+				person.setBodytypeHeight(Double.valueOf("1"));
 			if (bodytypeWeight > 0)
 				person.setBodytypeWeight(bodytypeWeight);
 			else
-				person.setBodytypeWeight(Double.valueOf("0"));
+				person.setBodytypeWeight(Double.valueOf("1"));
 					
 					
 			// children
@@ -1597,11 +1597,11 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 				person = new Person();
 				person.setUser(user);
 			}
-			person.setCurrentlocationLatitude(Double.valueOf("0"));
-			person.setCurrentlocationLongitude(Double.valueOf("0"));
+			person.setCurrentlocationLatitude(Double.valueOf("1"));
+			person.setCurrentlocationLongitude(Double.valueOf("1"));
 			person.setCurrentlocationPrimary(true);
 			person.setHasapp(false);
-			person.setUtcoffset(Double.valueOf("0"));
+			person.setUtcoffset(Double.valueOf("1"));
 			
 			hsession.saveOrUpdate(person);
 			
