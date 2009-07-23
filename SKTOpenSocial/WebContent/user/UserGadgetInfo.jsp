@@ -9,6 +9,7 @@
 <script type="text/javascript" src="../js/main.js"></script>
 <%@page import="com.skt.opensocial.common.*" %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="img" uri="/struts-images" %>
 
 <script type="text/javascript" src="../js/developer.js"></script>
 
@@ -172,7 +173,10 @@
 								<tr style="background-color: rgb(245, 245, 245);">
 									<td>아이콘:</td>
 									<td>
-										<s:property value="gadgetIconUrl"/>	
+										<s:url id="iUrl" action="../developer/ViewIcon">
+											<s:param name="gadgetId" value="%{gadgetId}"></s:param>
+										</s:url>
+										<img:image src="%{iUrl}" resize="false" height="50" width="50"/>
 									</td>
 								</tr>
 								<s:if test="%{registerType.equals('src')}">

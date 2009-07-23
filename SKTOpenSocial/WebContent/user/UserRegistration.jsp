@@ -629,13 +629,13 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>프로파일송위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" /> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>프로파일송위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="프로파일송위치종류" name="profilesongUrlType" required="false" /> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							<tr>
 								<td>프로파일위치</td>
@@ -677,13 +677,13 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>프로파일비디오위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" /> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>프로파일비디오위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" /> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							<tr>
 								<td>좋아하는인용문</td>

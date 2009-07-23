@@ -144,7 +144,7 @@
 								<td>상세개인정보공개</td>
 								<td>
 							    	<s:select label="상세개인정보공개" name="personalInfoOpen" 
-							    	headerKey="1" value="%{favoriteGadgetListOpen}" headerValue="-- 선택하세요 --"
+							    	headerKey="1" value="%{personalInfoOpen}" headerValue="-- 선택하세요 --"
 						       		list="#{'ALL':'모든사용자에게 선호가젯모음을 모두 공개'
 						       				,'ONLYF':'친구에게만 선호가젯모음을 공개'
 						       				,'NOOP':'비공개'
@@ -654,13 +654,13 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>프로파일위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="프로파일위치종류" name="profileUrlType" required="false" value="%{profileUrlType}"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>프로파일위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="프로파일위치종류" name="profileUrlType" required="false" value="%{profileUrlType}"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							<tr>
 								<td>프로파일비디오위치</td>
@@ -678,13 +678,13 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>프로파일비디오위치종류</td>
-								<td>
-							    
-						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" value="%{profilevideoUrlType}"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>프로파일비디오위치종류</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="프로파일비디오위치종류" name="profilevideoUrlType" required="false" value="%{profilevideoUrlType}"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 							<tr>
 								<td>좋아하는인용문</td>
@@ -800,21 +800,21 @@
 						    	</td>
 							</tr>
 							
-							<tr>
-								<td>이미지위치</td>
-								<td>
-							    
-						          	<s:textfield label="이미지위치" name="thumbnailUrlAddress" required="false" value="%{thumbnailUrlAddress}"/> 
-						    	</td>
-							</tr>
-							
-							<tr>
-								<td>이미지내용</td>
-								<td>
-							    
-						          	<s:textfield label="이미지내용" name="thumbnailUrlLinktext" required="false" value="%{thumbnailUrlLinktext}"/> 
-						    	</td>
-							</tr>
+<!--							<tr>-->
+<!--								<td>이미지위치</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="이미지위치" name="thumbnailUrlAddress" required="false" value="%{thumbnailUrlAddress}"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
+<!--							-->
+<!--							<tr>-->
+<!--								<td>이미지내용</td>-->
+<!--								<td>-->
+<!--							    -->
+<!--						          	<s:textfield label="이미지내용" name="thumbnailUrlLinktext" required="false" value="%{thumbnailUrlLinktext}"/> -->
+<!--						    	</td>-->
+<!--							</tr>-->
 							
 <!--							<tr>-->
 <!--								<td>이미지위치종류</td>-->
