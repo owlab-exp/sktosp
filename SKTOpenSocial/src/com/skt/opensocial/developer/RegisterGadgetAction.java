@@ -36,7 +36,7 @@ import com.skt.opensocial.persistence.User;
 // public class ListGadgetsAction extends ActionSupport implements RequestAware
 // {
 public class RegisterGadgetAction extends ManageGadgetAction {
-	private Logger logger = Logger.getLogger(RegisterGadgetAction.class);
+	private static Logger logger = Logger.getLogger(RegisterGadgetAction.class);
 	/**
 	 * 
 	 */
@@ -47,6 +47,8 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 	public String getGadgetRegisterPage() throws Exception {
 		prepare();
 
+		logger.info("RegisterType=" + getRegisterType());
+		
 		setGadgetStatus(GadgetStatusConstants.NOT_REGISTERED);
 		if (registerType == null) {
 			// registerType = GadgetRegisterTypeConstants.SRC;
@@ -96,11 +98,12 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetCategory="
 					+ getGadgetCategory());
 			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetIntro=" + getGadgetIntro());
-			// logger.info(">>>>>>>>>>>>>>>>>>>> gadgetSource=" +
+			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetUrl=" + getGadgetUrl());
 			// getGadgetSource());
 			logger.info(">>>>>>>>>>>>>>>>>>>> gadgetStatus="
 					+ getGadgetStatus());
-
+			
+			
 			tx = hs.beginTransaction();
 
 			Gadget newGadget = new Gadget();
@@ -124,6 +127,7 @@ public class RegisterGadgetAction extends ManageGadgetAction {
 				return Action.INPUT;
 			}
 
+			setRegisterType(getRegisterType());
 			if (registerType.equals(GadgetRegisterTypeConstants.SRC)) {
 				if (getGadgetSource() == null
 						|| getGadgetSource().length() == 0) {

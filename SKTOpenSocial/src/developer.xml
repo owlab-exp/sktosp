@@ -18,7 +18,7 @@
 		<action name="RegisterGadget"
 			class="com.skt.opensocial.developer.RegisterGadgetAction">
 			<param name="defaultIconFile">/images/gadget_icon.jpg</param>
-			<result name="input" type="redirectAction">RegisterGadgetPage
+			<result name="input" type="chain">RegisterGadgetPage
 			</result>
 			<result name="preview" type="redirectAction">PreviewGadget
 			</result>
@@ -77,6 +77,9 @@
 			<result name="input">/developer/DeveloperRegisterGadget_URL_Multi.jsp
 			</result>
 			<result name="success" type="redirectAction">ListGadgets</result>
+		</action>
+		<action name="ValidateGadgetXML" class="com.skt.opensocial.developer.ValidateGadgetXMLAction">
+			<result type="customJSON">validationMessage</result>
 		</action>
 	</package>
 </struts>

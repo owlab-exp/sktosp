@@ -11,7 +11,6 @@
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
 
-
 <title>개발자 신규가젯등록</title>
 </head>
 
@@ -79,7 +78,7 @@
 								</tr>
 								--%>
 								<s:form action="RegisterGadget" id="registerGadgetForm" theme="simple" method="post" enctype="multipart/form-data">
-								<s:hidden name="registerType" value="%{registerType}"/>
+								<s:hidden name="registerType" value="%{registerType}" id="registerTypeTxt"/>
 								<s:hidden name="gadgetStatus" value="nr"/>
 								<tr>
 									<td>*가젯 이름:</td>
@@ -108,11 +107,14 @@
 									</td>
 								</tr>
 								
+								<s:url id="urlForGadgetValidation" action="ValidateGadgetXML" ></s:url>
 								<s:if test="%{registerType.equals('src')}">
 								<tr>
 									<td valign="top">*가젯 소스:</td>
 									<td>
-										<s:textarea cols="70" rows="10" name="gadgetSource" />
+										<s:textarea id="gadgetSrcTxt" cols="70" rows="10" name="gadgetSource" /><br>
+										<input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크"><br>
+										<div id="validationResult"></div>
 									</td>
 								</tr>
 								</s:if>
@@ -120,8 +122,8 @@
 								<tr>
 									<td valign="top">*가젯 URL:</td>
 									<td>
-										<s:textfield name="gadgetUrl" size="50"/><br>
-										예: http://www.google.com/ig/modules/builtin_gmail.xml
+										<s:textfield id="gadgetUrlTxt" name="gadgetUrl" size="50"/> <input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크"><br>
+										<div id="validationResult">예: http://www.google.com/ig/modules/builtin_gmail.xml</div>
 									</td>
 								</tr>
 								</s:elseif>
@@ -149,7 +151,12 @@
 						</s:url>
 						<em class="n"><s:a href="%{registerGadgetUrl}">미리보기</s:a></em>
 						--%>
-						<s:submit theme="simple" type="button" value="미리보기" onclick="document.getElementById('registerGadgetForm').submit()"/>
+						<s:if test="%{registerType.equals('url')}">
+						<s:submit theme="simple" type="button" value="미리보기" onclick="document.getElementById('registerGadgetForm').submit()" disabled="true" id="previewButton"/>
+						</s:if>
+						<s:else>
+						<s:submit theme="simple" type="button" value="미리보기" onclick="document.getElementById('registerGadgetForm').submit()" disabled="true" id="previewButton"/>
+						</s:else>
 						</div>
 						</td>
 					</tr>

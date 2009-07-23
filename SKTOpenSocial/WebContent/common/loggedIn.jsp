@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- for use of struts tags -->
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page import="com.skt.opensocial.common.UserData" %>
+
 <%@ page import="com.skt.opensocial.persistence.*" %>
 <%@ page session="true" %>
 <br>

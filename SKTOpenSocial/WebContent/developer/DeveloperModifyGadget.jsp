@@ -7,6 +7,7 @@
 
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/developer.js"></script>
 <%@ page import="com.skt.opensocial.common.*" %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="img" uri="/struts-images" %>
@@ -62,7 +63,7 @@
 								</tr>
 								<s:form action="ModifyGadget" id="modifyGadgetForm" theme="simple" method="post" enctype="multipart/form-data">
 								<s:hidden name="gadgetId" value="%{gadgetId}"/>
-								<s:hidden name="registerType" value="%{registerType}"/>
+								<s:hidden name="registerType" value="%{registerType}" id="registerTypeTxt"/>
 								<s:hidden name="gadgetStatus" value="nr"/>
 								<s:hidden name="gadgetIconUrl" value="%{gadgetIconUrl}"/>
 								<tr>
@@ -92,11 +93,14 @@
 											<s:textarea rows="2" cols="20" name="gadgetIntro"/>
 									</td>
 								</tr>
+								<s:url id="urlForGadgetValidation" action="ValidateGadgetXML" ></s:url>
 								<s:if test="%{registerType.equals('src')}">
 								<tr>
 									<td valign="top">가젯 소스:</td>
 									<td>
-										<s:textarea cols="70" rows="10" name="gadgetSource" />
+										<s:textarea id="gadgetSrcTxt" cols="70" rows="10" name="gadgetSource" /><br>
+										<input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크"><br>
+										<div id="validationResult"></div>
 									</td>
 								</tr>
 								</s:if>
@@ -104,7 +108,8 @@
 								<tr>
 									<td valign="top">가젯 URL:</td>
 									<td>
-										<s:textfield name="gadgetUrl" size="50"/>
+										<s:textfield id="gadgetUrlTxt" name="gadgetUrl" size="50"/> <input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크"><br>
+										<div id="validationResult">예: http://www.google.com/ig/modules/builtin_gmail.xml</div>
 									</td>
 								</tr>
 								</s:elseif>
@@ -132,7 +137,7 @@
 <!--						<s:url id="modifyGadgetUrl" action="ModifyGadget">-->
 <!--							<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>-->
 <!--						</s:url>-->
-						<em class="n"><s:submit  type="button" onclick="document.getElementById('modifyGadgetForm').submit()" theme="simple">수정확인</s:submit></em>
+						<em class="n"><s:submit  type="button" onclick="document.getElementById('modifyGadgetForm').submit()" theme="simple" id="previewButton">수정확인</s:submit></em>
 						</div></td>
 					</tr>
 				</tbody>
