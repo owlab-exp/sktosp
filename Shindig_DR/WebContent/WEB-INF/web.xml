@@ -110,6 +110,10 @@
     <url-pattern>/gadgets/api/rest/*</url-pattern>
   </filter-mapping>
 
+
+	<listener>
+		<listener-class>com.skt.opensocial.persistence.HibernateListener</listener-class>
+	</listener>
   <listener>
     <listener-class>org.apache.shindig.common.servlet.GuiceServletContextListener</listener-class>
   </listener>
