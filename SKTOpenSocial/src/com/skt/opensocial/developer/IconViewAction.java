@@ -38,24 +38,27 @@ public class IconViewAction extends ManageGadgetAction {
 	private int bufferSize = 1024;
 	private boolean allowCaching;
 
-	public String execute() throws Exception{
+	public String execute() throws Exception {
 
-		//Session hs = HibernateUtil.getSessionFactory().openSession();
+		// Session hs = HibernateUtil.getSessionFactory().openSession();
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
 			tx = hs.beginTransaction();
 
+			GadgetIcon icon = null;
 			// Get a gadget by id;
 			Gadget gadget = (Gadget) hs.get(Gadget.class, getGadgetId());
-			// if(gadget == null) {
-			// logger.error("No such gadget");
-			// return Action.ERROR;
-			// }
-			logger.info("Gadget ID=" + gadgetId);
+			if (gadget == null) {
+				logger.warn("No such gadget");
+				icon = new GadgetIcon();
+			}
+			// logger.info("Gadget ID=" + gadgetId);
 			// GadgetIcon icon = (GadgetIcon)hs.load(GadgetIcon.class,
 			// gadgetId);
-			GadgetIcon icon = gadget.getIcon();
+			else {
+				icon = gadget.getIcon();
+			}
 			// if(icon == null){
 			// logger.error("No icon");
 			// return Action.ERROR;
@@ -70,7 +73,7 @@ public class IconViewAction extends ManageGadgetAction {
 				setContentType(icon.getContentType());
 			else
 				setContentType("text/plain");
-			
+
 			if (icon.getName() != null)
 				setContentDisposition(icon.getName());
 			else
@@ -88,14 +91,14 @@ public class IconViewAction extends ManageGadgetAction {
 			return Action.SUCCESS;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+
 			if (tx != null)
 				tx.rollback();
 			throw e;
 		} finally {
-			//hs.close();
+			// hs.close();
 		}
-		
+
 	}
 
 	public String getContentType() {
