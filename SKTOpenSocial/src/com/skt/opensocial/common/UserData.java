@@ -4,7 +4,6 @@ public class UserData {
 	private String userId;
 	private String userName;
 	private boolean isAdministrator = false;
-	private boolean isDeveloper = false;
 	
 	public String getUserId() {
 		return userId;
@@ -24,11 +23,4 @@ public class UserData {
 	public void setAdministrator(boolean isAdministrator) {
 		this.isAdministrator = isAdministrator;
 	}
-	public boolean isDeveloper() {
-		return isDeveloper;
-	}
-	public void setDeveloper(boolean isDeveloper) {
-		this.isDeveloper = isDeveloper;
-	}
-	
 }

@@ -6,11 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link href="../css/main.css" type="text/css" rel="stylesheet">
-<link href="../css/table.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
-<%@page import="com.skt.opensocial.common.*" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="img" uri="/struts-images" %>
+
 
 <title>가젯 리뷰 보기</title>
 </head>
@@ -19,7 +16,7 @@
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
 <table border="1" cellpadding="0" cellspacing="0" position: height="567"
-	width="100%">
+	width="1000">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -53,34 +50,27 @@
 							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
 								<col width="10%">
-								<col width="20%">
-								<col width="50%">
+								<col width="10%">
+								<col width="60%">
 								<col width="20%">
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td colspan="2" rowspan="2" align="center">
-									<s:url id="iconUrl" action="ViewIcon">
-											<s:param name="gadgetId" value="%{gadgetId}"></s:param>
-										</s:url>
-										<img:image src="%{iconUrl}" resize="false" height="100" width="100"/>
-									</td>
-									<td colspan="2">
-									가젯 이름: <s:property value="gadgetName"/><br><br>
-									가젯 ID: <s:property value="gadgetId"/><br><br>
-									리뷰 수: <s:property value="totalReviewNumber"/><br><br>
-									평균 점수: <s:property value="gradeAverage"/>
-									</td>
+									<td colspan="2">가젯 이름:</td>
+									<td colspan="2" align="left">iLikeGadget</td>
 								</tr>
-							
+								<tr style="background-color: rgb(245, 245, 245);">
+									<td colspan="2">가젯 ID:</td>
+									<td colspan="2" align="left">ilike</td>
+								</tr>
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
-<!--								<tr style="background-color: rgb(245, 245, 245);">-->
-<!--									<td colspan="2"></td>-->
-<!--									<td colspan="2"></td>-->
-<!---->
-<!--								</tr>-->
+								<tr style="background-color: rgb(245, 245, 245);">
+									<td colspan="2">등록사용자 수: 1</td>
+									<td colspan="2">평균 점수: 9</td>
+
+								</tr>
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
@@ -96,20 +86,12 @@
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
-								<s:iterator value="gadgetReviews"status="rowStatus">
-									<s:if test="#rowStatus.odd == true">
-										<s:set name="trClass" value="%{'odd'}"/>
-									</s:if>
-									<s:else>
-										<s:set name="trClass" value="%{'even'}"/>
-									</s:else>
-									<tr class="<s:property value='#trClass'/>">
-									<td valign="middle"><s:property value="reviewer.id"/> </td>
-									<td valign="middle"><s:property value="reviewer.person.nameFormatted"/> </td>
-									<td valign="middle" align="center"><s:property value="reviewText"/></td>
-									<td valign="middle"><s:property value="reviewGrade"/></td>
+								<tr>
+									<td valign="middle">emart</td>
+									<td valign="middle">이마트맨</td>
+									<td valign="middle" align="center">아주 좋음</td>
+									<td valign="middle">9</td>
 								</tr>
-								</s:iterator>
 								<tr>
 									<td class="line" colspan="4"></td>
 								</tr>
@@ -119,50 +101,12 @@
 					</tr>
 					<tr>
 						<td><!-- buttons -->
-						<div class="paging">
-							<s:if test="%{pageList.size > 0}">
-								<s:if test="%{requestedPage > 1}">
-									<s:url action="ViewGadgetReview" id="prevPageUrl">
-									<s:param name="requestedPage" value="%{requestedPage - 1}" />
-									<s:param name="gadgetId" value="%{gadgetId}"/>
-									</s:url>
-								</s:if>
-								<s:else>
-									<s:url action="ViewGadgetReview" id="prevPageUrl">
-									<s:param name="gadgetId" value="%{gadgetId}"/>
-									<s:param name="requestedPage" value="1" />
-									</s:url>
-								</s:else>
-							 <em class="p"><s:a href="%{prevPageUrl}">이 전</s:a></em> <s:iterator
-								value="pageList">
-								<s:url action="ViewGadgetReview" id="pageUrl">
-									<s:param name="gadgetId" value="%{gadgetId}"/>
-									<s:param name="requestedPage">
-										<s:property />
-									</s:param>
-								</s:url>
-								<s:if test="%{requestedPage == top}">
-								<s:property />
-								</s:if>
-								<s:else>
-								<s:a href="%{pageUrl}"><s:property /></s:a>
-								</s:else>
-							</s:iterator> 
-								<s:if test="%{requestedPage < maxPage}">
-									<s:url action="ViewGadgetReview" id="nextPageUrl">
-									<s:param name="gadgetId" value="%{gadgetId}"/>
-									<s:param name="requestedPage" value="%{requestedPage + 1}" />
-									</s:url>
-								</s:if>
-								<s:else>
-									<s:url action="ViewGadgetReview" id="nextPageUrl">
-									<s:param name="gadgetId" value="%{gadgetId}"/>
-									<s:param name="requestedPage" value="%{maxPage}" />
-									</s:url>
-								</s:else>
-							 <em class="n"><s:a href="%{nextPageUrl}">다음</s:a></em>
-						 </s:if>
-						</div>
+						<div class="paging"><em class="p"><a
+							href="ViewGadgetReview.action">이 전</a></em><a
+							href="ViewGadgetReview.action">1</a> <a
+							href="ViewGadgetReview.action">2</a> <a
+							href="ViewGadgetReview.action">3</a> <em class="n"><a
+							href="ViewGadgetReview.action">다음</a></em></div>
 						</td>
 					</tr>
 				</tbody>
@@ -170,22 +114,12 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-		<!-- south -->
-		<tr valign="top" height="5%">
-			<td colspan="3" align="center" height="10%" valign="middle">
-			<div id="footer">
-			<table border="1" height="100%" width="100%">
-				<tbody>
-					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights
-						reserved.</strong></td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-			</td>
-		</tr>
-	</tbody>
+  <!-- south -->
+  <tr>
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
 </table>
 </body>
 </html>

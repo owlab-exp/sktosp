@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@page import="com.skt.opensocial.common.*" %>
-<%@page import="com.skt.opensocial.persistence.*" %>
-<%@page import="org.hibernate.*" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <head>
@@ -68,63 +65,44 @@
       			</tr>
 			           
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="left">이름</td> 
-                	<td align="center"><s:property value="name"/></td> 
-      			  </tr>
-      			  <tr><td class="line" colspan="6"></td></tr>
-				<tr style="background-color:#FFFFFF;" height="25">
-          			<td align="left">아이디</td> 
-                	<td align="center"><s:property value="userId"/></td> 
+          			<td align="center">이름</td> 
+                	<td><s:text name="%{user.name}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="left">전화번호</td> 
-                	<td align="center"><s:property value="phoneNumber"/></td> 
+          			<td align="center">아이디</td> 
+                	<td><s:text name="%{user.id}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#FFFFFF;" height="25">
-          			<td align="left">나이</td> 
-                	<td align="center"><s:property value="age"/></td> 
+          			<td align="center">전화번호</td> 
+                	<td><s:text name="%{user.phone}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="left">가입일</td> 
-                	<td align="center"><s:property value="registeredDate"/></td> 
+          			<td align="center">주소</td> 
+                	<td><s:text name="%{user.address}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">가입일</td> 
+                	<td><s:text name="%{user.regDate}"/></td> 
       			  </tr>
       			<tr><td class="line" colspan="6"></td></tr>
       			
 
+		  			<tr>
+		   				<td width='100%' bgcolor='#FFFFFF' align="center">
+      			<s:form action="Modification" namespace="/user" >
 
+		          		          	<s:submit align="left" value= "개인정보수정" name= "modification" />
+
+		     	</s:form>    			
+		     			</td>
+		     		</tr>
+      			
+      			
       		  </table>
-      		  
-      		  <table cellpadding="0" cellspacing="0" width="100%" border="1"> 
-					<colgroup> 
-		                <col width="20%" /> 
-		                <col width="20%" /> 
-		                <col width="60%" /> 
-					</colgroup>
-				
-
-	  			<tr>
-	   				<td width='100%' bgcolor='#FFFFFF' align="center">
-		      			<s:form action="Modification" namespace="/user" >
-
-		        		<s:submit align="left" value= "개인정보수정" name= "modification" />
-
-		     			</s:form>    			
-		     		</td>
-		     	</tr>
-      		  </table>
-      		  
-      		  <!-- east -->
-
-			
-						
-			
-			
-			<!-- east div -->
-
-      		  
  			</td>
 		  </tr>
 		  

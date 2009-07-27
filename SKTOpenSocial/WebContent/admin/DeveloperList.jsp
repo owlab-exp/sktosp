@@ -9,11 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin.js"></script>
-<script>
-window.name="DeveloperList";
-</script>
-<title>관리자  개발자리스트 보기</title>
+<title>관리자 가젯 리스트 보기</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
@@ -55,10 +51,11 @@ window.name="DeveloperList";
           <td>
 
 
-		<s:form action="SearchDeveloper" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'developerid':'개발자ID','developername':'개발자이름'}"/>	     	     
-	    <s:textfield name="query" value="%{query}"/> 
+	<s:form action="DeveloperList" theme="simple">
+	    <s:select label="검색조건" name="searchfield" headerKey="1" headerValue="-- 선택하세요 --" list="#{'name':'이름','id':'아이디'}"/> 
+	    <s:textfield name="query"/> 
 	    <s:submit value="검색"/>
+	    
 	</s:form>
 
 		      </td>
@@ -67,86 +64,48 @@ window.name="DeveloperList";
 	      
         <tr>
           <td>
-
-<s:if test="%{totalcount != 0}">
-
           
             <!-- bbs -->
             <table cellpadding="0" cellspacing="0" width="100%" class="subtit_board" summary="게시판"> 
 			<colgroup> 
-                <col width="15%" /> 
-                <col width="15%" /> 
-                <col width="10%" />
-                <col width="30%" />
                 <col width="20%" /> 
-                <col width="10%" /> 
+                <col width="20%" /> 
+                <col width="20%" />
+                <col width="20%" />
+                <col width="20%" /> 
+                <col width="20%" /> 
               </colgroup>
-   			  <tr style="background-color:#F5F5F5;">
-           			<td>아이디</td> 
-                	<td>이름</td> 
-      			    <td align="center">생일</td> 
-      			    <td align="center">소개</td> 
-      			    <td align="center">등록일
-	<s:if test="%{sortsc == 'desc'}">
-   			<s:url var="sortUrl" namespace="/admin">
-   			<s:param name="searchfield" value="%{searchfield}" />
-   			<s:param name="query" value="%{query}" />
-   			<s:param name="sortfield">registeredDate</s:param>
-   			<s:param name="sortsc">asc</s:param>
-   			</s:url>
-			<s:a href="%{sortUrl}">▲</s:a> 
-	</s:if>
-	<s:else>
-   			<s:url var="sortUrl" namespace="/admin">
-   			<s:param name="searchfield" value="%{searchfield}" />
-   			<s:param name="query" value="%{query}" />
-   			<s:param name="sortfield">registeredDate</s:param>
-   			<s:param name="sortsc">desc</s:param>
-   			</s:url>
-			<s:a href="%{sortUrl}">▼</s:a> 	
-	</s:else>
-      			    </td> 
-      			    <td align="center">비활성</td> 
+              
+<!--  <s:property value="gadgetlistStr"/>	-->
+
+    			  <tr style="background-color:#F5F5F5;">
+          			<td>이름</td> 
+                	<td>아이디</td> 
+      			    <td align="center">이메일</td> 
+      			    <td align="center">전화번호</td> 
+      			    <td align="center">등록일</td> 
+      			    <td align="center">상태</td> 
       			  </tr>
-      			  <tr><td class="line" colspan="10"></td></tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
 
-
-    			<s:iterator value="developers">
+    			<s:iterator value="developerlist">
     			  <tr> 
-    			  
+          			<td><span class="num"><s:url var="url" namespace="/admin" action="DeveloperDetail"/><s:a href="%{url}"><s:property value="name"/></s:a></span></td> 
                 	<td><s:property value="id"/></td> 
-                	
-          				<s:url var="DeveloperDetailUrl" namespace="/admin" action="DeveloperDetail">
-          					<s:param name="developerId"><s:property value="id"/></s:param>
-          				</s:url>
-          			<td><span class="num"><s:a href="%{DeveloperDetailUrl}"><s:property value="person.nameFormatted"/></s:a></span></td> 
-          			
-                	<td align="center"><s:property value="person.birthday"/></td> 
-               		<td align="center"><s:property value="person.aboutme"/></td> 
-					<td align="center"><s:date name="registeredDate" format="yyyy/MM/dd"/></td>
-					<td align="center">
-					     <s:if test="%{isDeveloper.equals(true)}">
-							<a href="#" onclick="javascript:adminpopup('popup_developer_cancel.jsp?developerId=<s:property value="id"/>','DeveloperCancel');"><input type="button" value="개발자취소"></a>
-						</s:if>
-      			    </td> 
+      			    <td align="center"><s:property value="email"/></td> 
+      			    <td align="center"><s:property value="phone"/></td> 
+      			    <td align="center"><s:property value="regDate"/></td> 
+      			    <td align="center">					
+ 	    			<s:url var="url" action="DeveloperController_changeStatus" namespace="/admin">
+ 	    			<s:param name="name" value="%{developer.name}" />
+ 	    			<s:param name="status" value="%{developer.status}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="<s:property value="status"/>"></s:a> 	    			
+					</td>					 
       			  </tr>
-      			  <tr><td class="line" colspan="10"></td></tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
       			</s:iterator>
-
 				</table>
-</s:if>	<!-- totalcount == 0 -->
-<s:else>
-		        <table cellpadding="0" cellspacing="0" width="100%" height="100" class="subtit_board" summary="게시판">
-		        	<tr>
-		        		<td align="center" valign="middle" style="font-weight:bold">
-		        			'<s:property value="%{query}"/>'로 검색된 결과가 없습니다.
-		        			<br><br><a href="SearchDeveloper">전체보기</a>
-		        			
-		        		</td>
-		        	</tr> 
-				</table>
-</s:else>				
-				
             </td>
            </tr>
            <tr>
@@ -154,53 +113,16 @@ window.name="DeveloperList";
             <!-- paging --> 
             
 			<div class="paging"> 
-			
-	<s:if test="%{prepage != 0}">
-   			<s:url var="pagingUrl" namespace="/admin">
-   			<s:param name="searchfield" value="%{searchfield}" />
-   			<s:param name="query" value="%{query}" />
-  			<s:param name="currentpage" value="%{prepage}"/>
-   			<s:param name="sortfield" value="%{sortfield}" />
-   			<s:param name="sortsc" value="%{sortsc}" />	
-   			</s:url>
-			<em class="p"><s:a href="%{pagingUrl}">이전</s:a></em> 
-	</s:if>
-	
-<s:if test="%{totalcount != 0}">
-<s:iterator value="paging">
-    			<s:url var="pagingUrl" namespace="/admin">
-    			<s:param name="searchfield" value="%{searchfield}" />
-    			<s:param name="query" value="%{query}" />
-    			<s:param name="currentpage" value="top"/>
-	   			<s:param name="sortfield" value="%{sortfield}" />
-	   			<s:param name="sortsc" value="%{sortsc}" />		
-    			</s:url>
-
-	  			<s:if test="%{currentpage.equals(top)}">
-					<span class="on"><s:property/></span>
-				</s:if>
-				<s:else>
-	    			<s:a href="%{pagingUrl}"><s:property/></s:a>				
-				</s:else>    			
-</s:iterator>
-</s:if>
-
-	<s:if test="%{postpage != 0}">
-   			<s:url var="pagingUrl" namespace="/admin">
-   			<s:param name="searchfield" value="%{searchfield}" />
-   			<s:param name="query" value="%{query}" />
-   			<s:param name="currentpage" value="%{postpage}"/>
-   			<s:param name="sortfield" value="%{sortfield}" />
-   			<s:param name="sortsc" value="%{sortsc}" />	
-   			</s:url>
-			<em class="p"><s:a href="%{pagingUrl}">다음</s:a></em> 
-	</s:if>		
-				
+				<em class="p"><a href="">이전</a></em> 
+				<span class="on">1</span>
+				<a href="">2</a>
+				<a href="">3</a>
+				<em class="n"><a href="">다음</a></em> 
 			</div>
             </td>
       	</tr>
       </table>
-	     
+ 	     
       </div> <!-- east div -->
       
     </td>

@@ -4,118 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="com.skt.opensocial.common.*"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-
+<%@ page import="com.skt.opensocial.common.*" %>
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
 
-<!--// OpenSocial Gadget Related Setting -->
-<s:set var="shindigServer"><%= request.getServerName() + ":" + request.getServerPort() %></s:set>
-<link rel="stylesheet"
-	href="http://<s:property value="#shindigServer"/>/gadgets/files/container/gadgets.css">
-<script type="text/javascript"
-	src="http://<s:property value="#shindigServer"/>/gadgets/js/rpc.js?c=1&debug=1"></script>
-<script type="text/javascript"
-	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/cookies.js"></script>
-<script type="text/javascript"
-	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/util.js"></script>
-<script type="text/javascript"
-	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/gadgets.js"></script>
-<script type="text/javascript"
-	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/cookiebaseduserprefstore.js"></script>
-<script type="text/javascript"
-	src="http://<s:property value="#shindigServer"/>/gadgets/files/container/osapi.js"></script>
 
-<!-- //Local Gadget Enabling Function -->
-<script type="text/javascript">
-	// Specify Gadget XML file URL
-	var gadget0Url = '<s:property value="gadgetUrl"/>';
-	// Specify Gadget Owner & Viewer
-	var viewerId = '<s:property value="developerId"/>';
-	var ownerId = '<s:property value="developerId"/>';
-	var appId = '<s:property value="gadgetId"/>';
-	
-	function generateSecureToken() {
-	    // TODO: Use a less silly mechanism of mapping a gadget URL to an appid
-	    //var appId = 0;
-	    //for (var i = 0; i < gadget0Url.length; i++) {
-	    //  appId += gadget0Url.charCodeAt(i);
-	    //}
-	    var fields = [ownerId, viewerId, appId, "shindig", gadget0Url, "0", "default"];
-	    for (var i = 0; i < fields.length; i++) {
-	      // escape each field individually, for metachars in URL
-	      fields[i] = escape(fields[i]);
-	    }
-	    return fields.join(":");
-	  }
-	  
-	function renderGadgets() {
-		var gadget0 = gadgets.container.createGadget( {
-			specUrl : gadget0Url
-		});
-
-		gadget0.setServerBase('http://<s:property value="#shindigServer"/>/gadgets/'); //Shindig Server Gadget Handling Endpoint
-
-		gadget0.secureToken = escape(generateSecureToken()); // Including viewer and owner
-
-		gadgets.container.addGadget(gadget0);
-		gadgets.container.layoutManager
-				.setGadgetChromeIds( [ 'gadget-chrome' ]);
-		gadgets.container.renderGadget(gadget0);
-	};
-</script>
-<!--// Gadget Style override -->
-<style type="text/css">
-  body {
-    font-family: arial, sans-serif;
-  }
-
-  #headerDiv {
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #e5ecf9;
-    color: #3366cc;
-    font-size: larger;
-    font-weight: bold;
-  }
-
-  .subTitle {
-    font-size: smaller;
-    float: right;
-  }
-
-
-  .gadgets-gadget-chrome {
-    width: 90%;
-    float: none;
-    margin: auto;
-  }
-
-  .gadgets-gadget {
-    width: 100%;
-  }
-
-</style>
 <title>가젯 미리보기</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
-	style="background-color: rgb(255, 255, 255);height:100%;" marginheight="0" 
-	marginwidth="0" onLoad="renderGadgets();"><!-- height="567" -->
-<table border="1" cellpadding="0" cellspacing="0" 
-	width="100%" height="100%">
+	style="background-color: rgb(255, 255, 255);" marginheight="0"
+	marginwidth="0">
+<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="1000">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
-			<td colspan="3" align="center" valign="top"><%@ include
-				file="/common/north.jsp"%></td><!-- height="10%"  -->
+			<td colspan="3" align="center" height="10%" valign="top">
+			<%@ include file="/common/north.jsp"%>
+			</td>
 		</tr>
-		<tr valign="top" height="80%"><!-- height="80%" -->
+		<tr valign="top" height="80%">
 			<!-- west -->
-			<td align="center" valign="top" width="25%"><%@ include
-				file="/common/west_dev.jsp"%></td>
+			<td align="center" valign="top" width="25%">
+			<%@ include file="/common/west_dev.jsp"%>
+			</td>
 			<!-- east -->
 			<td align="left" valign="top" width="75%">
 			<div id="east">
@@ -133,88 +46,42 @@
 						</div>
 						</td>
 					</tr>
-					<tr >
+					<tr>
 						<td><!-- list of gadgets -->
 						<table class="subtit_board" summary="List of Gadgets"
-							cellpadding="0" cellspacing="0" width="100%" >
+							cellpadding="0" cellspacing="0" width="100%">
 							<colgroup>
 								<col width="100%">
 							</colgroup>
 							<tbody>
 								<tr style="background-color: rgb(245, 245, 245);">
-									<td>가젯 이름(ID): <s:property value="gadgetName" /> (<s:property
-										value="gadgetId" />)</td>
+									<td>가젯 이름(ID): iLike (ilike)</td>
 								</tr>
-								<tr><s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
-										<td valign="top" >
-											<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
-										</td>
-									</s:if>
-									<s:else>
-										<td valign="top">Gadget Register Type is neither 'url' nor 'src'</td>
-									</s:else>
+								<tr>
+									<td valign="top"><img src="ilike.png" height="70%" width="70%"> </td>
 								</tr>
-<!--								<tr >-->
-<!--									<td class="line"></td>-->
-<!--								</tr>-->
+								<tr>
+									<td class="line" colspan="2"></td>
+								</tr>
 							</tbody>
 						</table>
 						</td>
 					</tr>
 					<tr>
-						<s:url id="finishRegisterUrl"
-							action="RegisterGadget" method="finishGadgetRegister">
-							<s:param name="gadgetId">
-								<s:property value="gadgetId" />
-							</s:param>
-						</s:url> <s:url id="viewReviewUrl" action="ViewGadgetReview">
-							<s:param name="gadgetId">
-								<s:property value="gadgetId" />
-							</s:param>
-						</s:url> <s:url id="modifyGadgetUrl" action="ModifyGadget"
-							method="getModifyGadgetPage">
-							<s:param name="gadgetId">
-								<s:property value="gadgetId" />
-							</s:param>
-						</s:url> <s:url id="publishRequestUrl" action="PublishRequest"
-							method="publishConfirm">
-							<s:param name="gadgetId">
-								<s:property value="gadgetId" />
-							</s:param>
-						</s:url> <s:url id="removeGadgetUrl" action="RemoveGadget"
-							method="requestConfirm">
-							<s:param name="gadgetId">
-								<s:property value="gadgetId" />
-							</s:param>
-						</s:url> <s:url id="viewDenyReasonUrl" action="ViewDenyReason">
-							<s:param name="gadgetId">
-								<s:property value="gadgetId" />
-							</s:param>
-						</s:url>
-						<td>
-						<div class="paging"> 
-						<s:if test="%{gadgetStatus.equals('nr')}">
-							<%-- Not registered--%>
-							<em class="p"><s:a href="%{finishRegisterUrl}">등록완료</s:a>/<s:a
-								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
-								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
-						</s:if> <s:elseif test="%{gadgetStatus.equals('rg')}">
-							<%-- Registered--%>
-							<em class="p"><s:a href="#"
-								onclick="javascript:popup('%{publishRequestUrl}','PublishConfirm')">발행요청</s:a>/<s:a
-								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
-								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
-						</s:elseif> <s:elseif test="%{gadgetStatus.equals('pd')}">
-							<%-- Publish Denied--%>
-							<em class="p"><s:a href="#"
-								onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a
-								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
-								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+						<td><!-- buttons -->
+						<div class="paging">
+						<s:if test="%{gadgetStatus.equals('nr')}"> <%-- Not registered--%>
+							<em class="p"><a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">등록완료</a> <a href="javascript: history.go(-1)">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+						</s:if>
+						<s:elseif test="%{gadgetStatus.equals('rg')}"><%-- Registered--%>
+							<em class="p"><a href="#" onclick="javascript:popup('popup_gadget_publish_request.jsp','IDCheck')">발행요청</a> <a href="<%= request.getContextPath() %>/developer/ModifyGadget.action">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
 						</s:elseif>
-							<%-- Published or Publish requested--%>
-							<em class="p">
-							<s:url id="listGadgetUrl" action="ListGadgets"/>
-							<s:a href="%{listGadgetUrl}">목록으로 돌아가기</s:a></em>
+						<s:elseif test="%{gadgetStatus.equals('pd')}"><%-- Publish Denied--%>
+							<em class="p"><a href="<%= request.getContextPath() %>/developer/ModifyGadget.action">수정</a> <a href="#" onclick="javascript:popup('popup_gadget_remove.jsp','IDCheck')">삭제</a></em>
+						</s:elseif>
+						<s:else>	<%-- Published or Publish requested--%>
+							<em class="p"><a href="#" onclick="javacript:location.href='<%= request.getContextPath() %>/developer/ListGadgets.action'">목록으로 돌아가기</a></em>
+						</s:else>
 						</div>
 						</td>
 					</tr>
@@ -223,22 +90,12 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-		<!-- south -->
-		<tr valign="top" height="5%">
-			<td colspan="3" align="center" height="10%" valign="middle">
-			<div id="footer">
-			<table border="1" height="100%" width="100%">
-				<tbody>
-					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights
-						reserved.</strong></td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-			</td>
-		</tr>
-	</tbody>
+  <!-- south -->
+  <tr>
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
 </table>
 </body>
 </html>

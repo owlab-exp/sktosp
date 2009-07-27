@@ -12,7 +12,7 @@
 			<td align="left" style="font-size:13px"><img src="../images/blu_rank_subject.gif"> 
 			</td>
 			<td>
-			관리자 메뉴
+			개발자 메뉴
 			</td>
 		</tr>
 		<tr>
@@ -24,7 +24,7 @@
 <!--				<s:param name="registerType">source</s:param>-->
 <!--			</s:url>-->
 			<td></td>
-			<td align="left" onclick="location.href='<%= request.getContextPath() %>/admin/SearchDeveloper.action'" style="cursor:hand">개발자 관리
+			<td align="left" onclick="location.href='<%= request.getContextPath() %>/admin/DeveloperList.action?registerType=source'" style="cursor:hand">개발자 관리
 			</td>
 		</tr>	
 	</table>

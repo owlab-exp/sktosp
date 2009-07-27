@@ -9,13 +9,13 @@
 <script type="text/javascript" src="../js/main.js"></script>
 
 
-<title>개발자 신규가젯등록</title>
+<title>가젯 수정</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" position: height="567" width="1000">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -132,22 +132,11 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-		<!-- south -->
-		<tr valign="top" height="5%">
-			<td colspan="3" align="center" height="10%" valign="middle">
-			<div id="footer">
-			<table border="1" height="100%" width="100%">
-				<tbody>
-					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights
-						reserved.</strong></td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</body>
+  <!-- south -->
+  <tr>
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
+</table></body>
 </html>

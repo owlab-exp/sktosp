@@ -28,8 +28,8 @@ strong { font-style:normal; font-weight:bold; }
 .subject .subject_sub li{font:normal 13px Dotum,����; float:left;padding: 1px 12px 0 12px; letter-spacing: -1px; background:url(../images/blu_rank_subject.gif) left 4px no-repeat;vertical-align:top;}
 .right_basic .posting_ctrl { padding:3px 0 4px 0; }
 .right_basic .posting_ctrl label { color:#343434; margin:0 0 0 2px; }
-.paging{clear:both;font:bold 12px dotum;text-align:center;padding:3px 0 0; padding:0;}
-.paging a,.paging span{border:1px solid #ECECEA;margin:0 2px;padding:3px 5px 1px; padding-bottom:0 !important;text-decoration:none;}
+.paging{clear:both;font:bold 12px dotum;text-align:center;padding:3px 0 0;*padding:0;}
+.paging a,.paging span{border:1px solid #ECECEA;margin:0 2px;padding:3px 5px 1px;*padding-bottom:0 !important;text-decoration:none;zoom:1;}
 .paging a:hover,.paging span{border:1px solid #FFD5BF;color:#FC6514;text-decoration:none !important}
 .paging a:visited{color:#0F37AF;}
 .paging .p a,.paging .n a{color:#000;margin:0 5px;}

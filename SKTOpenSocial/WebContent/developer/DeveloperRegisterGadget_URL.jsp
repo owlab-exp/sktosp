@@ -7,20 +7,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="com.skt.opensocial.common.GadgetStatusConstants"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+
 <link href="../css/main.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
 
 
-<title>개발자 신규가젯등록</title>
+<title>새 가젯 등록</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
-<table border="1" cellpadding="0" cellspacing="0" height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" height="567" width="1000">
 	<tbody valign="top">
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -45,7 +44,7 @@
 						<ul class="subject_sub">
 							<li>홈</li>
 							<li>개발자 메뉴</li>
-							<li><strong>신규 가젯 등록</strong></li>
+							<li><strong>새 가젯 등록</strong></li>
 						</ul>
 						</div>
 						</td>
@@ -153,22 +152,12 @@
 			</div>
 			<!-- east div --></td>
 		</tr>
-		<!-- south -->
-		<tr height="5%">
-			<td colspan="3" align="center" height="10%" valign="middle">
-			<div id="footer">
-			<table border="1" height="100%" width="100%">
-				<tbody>
-					<tr>
-						<td><strong>Copyright &copy; SK Telecom. All rights
-						reserved.</strong></td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-			</td>
-		</tr>
-	</tbody>
+  <!-- south -->
+  <tr>
+    <td colspan="3" align="center" valign="middle" style="background-color:#F5F5F5;" height="30px" >
+<%@ include file="/common/south.jsp"%>
+	</td>
+  </tr> 
 </table>
 </body>
 </html>

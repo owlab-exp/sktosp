@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin.js"></script>
 <title>관리자 개발자 상세 보기</title>
 </head>
 
@@ -54,16 +53,49 @@
             <table cellpadding="0" cellspacing="0" width="100%" border="1"> 
 			<colgroup> 
                 <col width="20%" /> 
-                <col width="80%" /> 
+                <col width="20%" /> 
+                <col width="60%" /> 
 			</colgroup>
-
-    		<s:iterator value="displayList" status="stat">
+			
+				<tr>
+          			<td rowspan="14"><img src='<s:url value="../images/logo.jpg"/>'></td> 
+      			</tr>
+			           
 				<tr style="background-color:#F5F5F5;" height="25">
-          			<td align="left"><s:property/></td>
-                	<td align="center"><s:text name="%{top}"/></td>
+          			<td align="center">이름</td> 
+                	<td><s:text name="%{gadget.name}"/></td> 
       			  </tr>
       			  <tr><td class="line" colspan="6"></td></tr>
-    		</s:iterator>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">아이디</td> 
+                	<td><s:text name="%{gadget.id}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#FFFFFF;" height="25">
+          			<td align="center">전화번호</td> 
+                	<td><s:text name="%{gadget.phone}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">주소</td> 
+                	<td><s:text name="%{gadget.address}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">등록일</td> 
+                	<td><s:text name="%{gadget.regDate}"/></td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">마지막 가젯 등록일</td> 
+                	<td>2009-06-05</td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
+				<tr style="background-color:#F5F5F5;" height="25">
+          			<td align="center">등록 가젯 수</td> 
+                	<td>22</td> 
+      			  </tr>
+      			  <tr><td class="line" colspan="6"></td></tr>
      		 </table>
  	     </td>
  	    </tr>
@@ -72,7 +104,11 @@
  	    	<table width="80%">
  	    		<tr>
  	    			<td style="font-size=13px">
-						<a href="#" onclick="javascript:adminpopup('popup_developer_cancel.jsp?developerId=<s:property value="%{user_id}"/>','DeveloperCancel');"><input type="button" value="개발자취소"></a>
+ 	    			<s:url var="url" action="DeveloperController_changeStatus" namespace="/admin">
+ 	    			<s:param name="name" value="%{developer.name}" />
+ 	    			<s:param name="status" value="%{developer.status}" /></s:url>
+ 	    			<s:a onclick='return confirmbox("비활성화하시겠습니까?", "%{url}");'>
+ 	    			<input type="button" value="비활성화"></s:a>
  	    			</td>
  	    		</tr>
  	    	</table>

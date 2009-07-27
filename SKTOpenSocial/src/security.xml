@@ -5,13 +5,12 @@
 <struts>
 	<package name="security" namespace="/security" extends="default">
 
-		<action name="UserLogin" class="com.skt.opensocial.security.LoginAction">
+		<action name="UserLogin" class="com.skt.opensocial.security.UserLogin">
 			<interceptor-ref name="defaultStack"/>
 			<result name="input">/main.jsp</result>
-			<result name="success" type="redirectAction">../user/MyProfilePage</result>
+			<result name="success" >/user/mypage.jsp</result>
 		</action>
 		<action name="UserLogout" class="com.skt.opensocial.security.LogoutAction">
-			<interceptor-ref name="defaultStack"/>
 			<result name="success">/main.jsp</result>
 		</action>
 	</package>

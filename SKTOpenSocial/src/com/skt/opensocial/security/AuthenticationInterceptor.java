@@ -6,7 +6,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
-import com.skt.opensocial.persistence.User;
+import com.skt.opensocial.common.UserData;
 
 public class AuthenticationInterceptor implements Interceptor {
 
@@ -34,13 +34,14 @@ public class AuthenticationInterceptor implements Interceptor {
 		
 		
 		Map<String, Object> session = actionInvocation.getInvocationContext().getSession();
-		User user = (User) session.get(SKTOpenSocialSupportConstants.USER);
-		if(user == null) {
+		
+		UserData userData = (UserData) session.get(SKTOpenSocialSupportConstants.USER);
+		if(userData == null) {
 			System.out.println("Not logged in");
 			return Action.LOGIN;
 		} else {
 			//Action action = (Action) actionInvocation.getAction();
-			System.out.println("Logged in as " + user.getUserId());
+			System.out.println("Already logged in: " + userData.getUserId());
 			return actionInvocation.invoke();
 			
 		}
