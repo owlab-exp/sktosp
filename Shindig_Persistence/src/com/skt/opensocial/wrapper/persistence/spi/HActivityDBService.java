@@ -403,6 +403,10 @@ public class HActivityDBService implements ActivityService {
 				throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST,
 				"Person does not exist");
 			
+			if( activity.getStreamFaviconUrl() != null || activity.getStreamSourceUrl() != null 
+					|| activity.getStreamTitle() != null || activity.getStreamUrl() != null )
+				throw new ProtocolException(HttpServletResponse.SC_BAD_REQUEST,
+				"Creating activity with stream params");
 
 			// create Activity
 			com.skt.opensocial.persistence.Activity activityDB = this.setActivityDBFromActivity(user, appId, activity);
