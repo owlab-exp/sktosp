@@ -125,7 +125,7 @@ public class HPersonDBService implements PersonService {
 			int totalSize = result.size();
 			
 			int max = options.getMax();
-			if (options.getMax() < 0)
+			if (options.getMax() <= 0)
 				max = 20;
 			
 			int last = options.getFirst() + max;
