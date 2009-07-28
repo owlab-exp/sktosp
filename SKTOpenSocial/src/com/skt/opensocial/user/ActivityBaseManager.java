@@ -113,6 +113,7 @@ public class ActivityBaseManager extends ManageGadgetAction {
 			//System.out.println("add activity - 8" );
 			activityNew.setPostedTime(Double.valueOf(0));
 			activityNew.setPriority(Double.valueOf(0));
+			activityNew.setActivityId(String.valueOf(activityNew.getId()));
 			
 			if (activityNew != null)
 				setActivity.add(activityNew);
