@@ -266,8 +266,8 @@ public class SearchAction extends DeveloperBaseAction {
 				c.setFirstResult(pages.getFirstresult());
 				c.setMaxResults(pages.getListscale());
 				
-				if (sortfield == null)
-					sortfield = "registeredDate";
+				//if (sortfield == null)
+					sortfield = "userId";
 				
 				if (this.sortsc.equals("desc")) {
 					c.addOrder( Order.desc(this.sortfield) );

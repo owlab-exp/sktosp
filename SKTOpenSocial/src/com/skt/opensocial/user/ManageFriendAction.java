@@ -152,13 +152,15 @@ public class ManageFriendAction extends DeveloperBaseAction {
 			//session.put(SKTOpenSocialSupportConstants.USER, user);
 			
 			Criteria crit = hs.createCriteria(User.class, "user")
-				.createAlias("user.friendsByMe", "fm",CriteriaSpecification.LEFT_JOIN)
+				//.createAlias("user.friendsByMe", "fm",CriteriaSpecification.LEFT_JOIN)
 				.createAlias("user.friendsByOther", "fo",CriteriaSpecification.LEFT_JOIN)
-				.add(Restrictions.or(Restrictions.eq("fm.id", userId),Restrictions.eq("fo.id", userId)));
+				//.add(Restrictions.or(Restrictions.eq("fm.id", userId),Restrictions.eq("fo.id", userId)));
+				.add(Restrictions.eq("fo.id", userId));
 			Criteria crit2 = hs.createCriteria(User.class, "user")
-				.createAlias("user.friendsByMe", "fm",CriteriaSpecification.LEFT_JOIN)
+				//.createAlias("user.friendsByMe", "fm",CriteriaSpecification.LEFT_JOIN)
 				.createAlias("user.friendsByOther", "fo",CriteriaSpecification.LEFT_JOIN)
-				.add(Restrictions.or(Restrictions.eq("fm.id", userId),Restrictions.eq("fo.id", userId)));
+				//.add(Restrictions.or(Restrictions.eq("fm.id", userId),Restrictions.eq("fo.id", userId)));
+				.add(Restrictions.eq("fo.id", userId));
 			// add order
 			//crit.addOrder(Order.desc("user.id")); // or just "id" instead of "user.id"
 
