@@ -46,7 +46,7 @@
             <ul class="subject_sub">
             <li>홈</li>
             <li>사용자 메뉴</li>
-            <li><strong>친구찾기</strong></li> 
+            <li><strong>가젯검색</strong></li> 
             </ul>
             </div>
           </td>
@@ -57,7 +57,7 @@
           <td>
 
 	<s:form action="Search" namespace="/user" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'username':'사용자이름', 'tag':'사용자태그'}"/> 
+	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'gadget':'가젯이름'}"/> 
 	    <s:textfield name="query"/> 
 	    <s:submit value="검색"/>
 	    

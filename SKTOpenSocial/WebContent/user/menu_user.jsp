@@ -26,8 +26,14 @@
 		<tr><td class="line"></td></tr>
 		
 		<tr>
-			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/PrepareSearch.action'" style="cursor:hand">가젯사용자검색</td>
+			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/PrepareGadgetSearch.action'" style="cursor:hand">가젯검색</td>
 		</tr>
+		<tr><td class="line"></td></tr>
+		<tr>
+			<td align="left" onclick="javacript:location.href='<%= request.getContextPath() %>/user/PrepareUserSearch.action'" style="cursor:hand">친구찾기</td>
+		</tr>
+		<tr><td class="line"></td></tr>
+		
 	</table>
 
 	</div>
