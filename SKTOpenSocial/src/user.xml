@@ -95,7 +95,11 @@
 			<result name="fail" type="redirectAction">ManageActivity</result>
 		</action>
 		
-		<action name="PrepareSearch" >
+		<action name="PrepareGadgetSearch" >
+			<result >/user/GadgetSearch.jsp</result>
+		</action>
+		
+		<action name="PrepareUserSearch" >
 			<result >/user/UserSearch.jsp</result>
 		</action>
 		
