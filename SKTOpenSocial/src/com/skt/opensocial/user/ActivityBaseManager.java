@@ -126,7 +126,7 @@ public class ActivityBaseManager extends ManageGadgetAction {
 			//hs.saveOrUpdate(user);
 			tx.commit();
 			
-			//System.out.println("add activity - 10" );
+			System.out.println("add activity - 10" );
 			return true;
 			
 		} catch (Exception e) {

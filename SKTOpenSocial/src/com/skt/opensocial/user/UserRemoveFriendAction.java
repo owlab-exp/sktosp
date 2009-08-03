@@ -57,6 +57,41 @@ public class UserRemoveFriendAction extends ActivityBaseManager {
 		this.friend = friend;
 	}
 
+	public String requestConfirm() throws Exception{
+		//
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		org.hibernate.Transaction tx = null;
+		
+		try
+		{
+			tx = hs.beginTransaction();
+			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+		
+			String userId = user.getUserId();
+			
+			user = (User)hs.load(User.class, userId);
+			friend = (User)hs.load(User.class, friendId);
+			
+			//user.removeFriendByMe(friend);
+					
+			//hs.saveOrUpdate(user);
+			
+			//this.gadgets = user.getFavoriteGadgets();
+			//if (gadgets != null && !gadgets.isEmpty())
+			//	System.out.println("Added size of gadgets = " + gadgets.size());
+			
+			//session.put(SKTOpenSocialSupportConstants.USER, user);
+			tx.commit();
+			
+			//super.addActivity(ActivityTypeEnum.removeFavoriteFriend, userId, friendId, null);
+			
+			return "remove_confirm_page";
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
+	}
 	public String execute() throws Exception{
 		//
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();

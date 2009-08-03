@@ -40,7 +40,16 @@ public class RemoveActivityAction extends ActivityBaseManager {
 	int activityId;
 	Set<Activity> activities = null;
 	String userId;
+	Activity targetActivity = null;
 	
+	public Activity getTargetActivity() {
+		return targetActivity;
+	}
+
+	public void setTargetActivity(Activity targetActivity) {
+		this.targetActivity = targetActivity;
+	}
+
 	public Set<Activity> getActivities() {
 		return activities;
 	}
@@ -55,6 +64,58 @@ public class RemoveActivityAction extends ActivityBaseManager {
 
 	public void setActivityId(int activityId) {
 		this.activityId = activityId;
+	}
+
+	public String requestConfirm() throws Exception 
+	{
+		
+		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tx =null;
+		
+		try
+		{
+			tx = hs.beginTransaction();
+		
+			User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+			
+			userId = user.getId();
+						
+			user = (User)hs.load(User.class, userId);
+			Person person = user.getPerson();
+			
+			activities = person.getActivities();
+			
+			if (activities == null)
+			{
+				if (tx != null)
+					tx.rollback();
+				return "fail";
+			}
+						
+			for (Activity a : activities)
+			{
+				if (a.getId().equals(activityId))
+					targetActivity = a;
+				
+			}
+			//System.out.println("review Id : " + reviewId);
+			
+			if (targetActivity != null)
+			{
+		
+			}
+					
+			tx.commit();
+			
+			//super.addActivity(ActivityTypeEnum.removeActivity, userId, "", null);
+			
+			return "remove_confirm_page";
+			
+		} catch (Exception e) {
+			if (tx != null)
+				tx.rollback();
+			throw e;
+		}
 	}
 
 	public String execute() throws Exception {
@@ -102,7 +163,7 @@ public class RemoveActivityAction extends ActivityBaseManager {
 					
 			tx.commit();
 			
-			super.addActivity(ActivityTypeEnum.removeActivity, userId, "", null);
+			//super.addActivity(ActivityTypeEnum.removeActivity, userId, "", null);
 			
 			return "success" ;
 		} catch (Exception e) {

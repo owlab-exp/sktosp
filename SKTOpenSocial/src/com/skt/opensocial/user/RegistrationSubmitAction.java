@@ -14,6 +14,7 @@ import org.hibernate.classic.Session;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
+import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.persistence.Address;
 import com.skt.opensocial.persistence.DrinkerEnum;
 
@@ -190,7 +191,13 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 	
 	Session hsession;
 	Transaction tran;
-
+	
+	String userIdDuplicationError = "false";
+	String userIdAbsenceError = "false";
+	String passwordError = "false";
+	String userNameAbsenceError = "false";
+	String emailAbsenceError ="false";
+	
 	public void updatePersonAdditionalInfo1() throws Exception
 	{
 		Session hsession = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -1623,17 +1630,32 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 			tran = hsession.beginTransaction();
 		
 			System.out.println("user registration start -----" );
+			boolean flagInputValidation = false;
+			
+			if (userIdWant.equals(""))
+			{
+
+				//User user = (User)session.get(SKTOpenSocialSupportConstants.USER);
+				session.put(SKTOpenSocialSupportConstants.USERIDABSENCEERROR, "true");
+				addFieldError("userIdWant", "use other userId");
+				flagInputValidation = true;
+			}
+			else
+				session.put(SKTOpenSocialSupportConstants.USERIDABSENCEERROR, "false");
+			
 			
 			User user = (User) hsession.get(User.class, userIdWant);
 			if(user == null) {
 				user = new User();
 				user.setId(userIdWant);
+				session.put(SKTOpenSocialSupportConstants.USERIDDUPLICATIONERROR, "false");
 			}
 			else
 			{
+
+				session.put(SKTOpenSocialSupportConstants.USERIDDUPLICATIONERROR, "true");
 				addFieldError("userIdWant", "use other userId");
-				tran.rollback();
-				return "fail";
+				flagInputValidation = true;
 			}
 			
 			Person person = (Person) hsession.get(Person.class, userIdWant);
@@ -1647,25 +1669,37 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 			
 			if (passwordWant.isEmpty() || !passwordWant.equals(passwordConfirm))
 			{
+
+				session.put(SKTOpenSocialSupportConstants.PASSWORDERROR, "true");
 				addFieldError("passwordWant", "password error");
-				tran.rollback();
-				return "fail";
+				flagInputValidation = true;
 			}
+			else
+				session.put(SKTOpenSocialSupportConstants.PASSWORDERROR, "false");
 			
 			if (userName.isEmpty())
 			{
+				session.put(SKTOpenSocialSupportConstants.USERNAMEABSENCEERROR, "true");
 				addFieldError("userName", "userName error");
-				tran.rollback();
-				return "fail";
+				flagInputValidation = true;
 			}
+			else
+				session.put(SKTOpenSocialSupportConstants.USERNAMEABSENCEERROR, "false");
+			
 			if (email.isEmpty())
 			{
+				session.put(SKTOpenSocialSupportConstants.EMAILABSENCEERROR, "true");
 				addFieldError("email", "email error");
-				tran.rollback();
-				return "fail";
-				
+				flagInputValidation = true;
 			}
+			else
+				session.put(SKTOpenSocialSupportConstants.EMAILABSENCEERROR, "false");
 			
+			if (flagInputValidation == true)
+			{
+				tran.rollback();
+				return "fail";				
+			}
 			
 			PasswordEncryptor pe = PasswordEncryptor.getInstance();
 			String hashedPassword = pe.encrypt(passwordWant);
@@ -1709,6 +1743,12 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 			this.updatePersonAdditionalInfo2();
 			this.updatePersonOrganization();
 			this.updatePersonURL();
+			
+			session.remove(SKTOpenSocialSupportConstants.USERIDABSENCEERROR);
+			session.remove(SKTOpenSocialSupportConstants.USERIDDUPLICATIONERROR);
+			session.remove(SKTOpenSocialSupportConstants.USERNAMEABSENCEERROR);
+			session.remove(SKTOpenSocialSupportConstants.PASSWORDERROR);
+			session.remove(SKTOpenSocialSupportConstants.EMAILABSENCEERROR);
 			
 			return Action.SUCCESS;
 //		} catch (Exception e) {
@@ -2756,6 +2796,46 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 
 	public void setFavoriteGadgetListOpen(String favoriteGadgetListOpen) {
 		this.favoriteGadgetListOpen = favoriteGadgetListOpen;
+	}
+
+	public String getUserIdDuplicationError() {
+		return userIdDuplicationError;
+	}
+
+	public void setUserIdDuplicationError(String userIdDuplicationError) {
+		this.userIdDuplicationError = userIdDuplicationError;
+	}
+
+	public String getUserIdAbsenceError() {
+		return userIdAbsenceError;
+	}
+
+	public void setUserIdAbsenceError(String userIdAbsenceError) {
+		this.userIdAbsenceError = userIdAbsenceError;
+	}
+
+	public String getPasswordError() {
+		return passwordError;
+	}
+
+	public void setPasswordError(String passwordError) {
+		this.passwordError = passwordError;
+	}
+
+	public String getUserNameAbsenceError() {
+		return userNameAbsenceError;
+	}
+
+	public void setUserNameAbsenceError(String userNameAbsenceError) {
+		this.userNameAbsenceError = userNameAbsenceError;
+	}
+
+	public String getEmailAbsenceError() {
+		return emailAbsenceError;
+	}
+
+	public void setEmailAbsenceError(String emailAbsenceError) {
+		this.emailAbsenceError = emailAbsenceError;
 	}
 
 	
