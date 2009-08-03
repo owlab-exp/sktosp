@@ -11,12 +11,18 @@
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/developer.js"></script>
 
+
 <title>개발자 신규가젯등록</title>
 </head>
 
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
+<!--  for Help Balloon -->
+<script type="text/javascript" src="../js/wz_tooltip.js"></script>
+<script type="text/javascript" src="../js/tip_balloon.js"></script>
+<script type="text/javascript" src="../js/skt_tooltip.js"></script>
+
 <table border="1" cellpadding="0" cellspacing="0" height="567" width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
@@ -63,7 +69,7 @@
 									<td>등록 유형:</td>
 									
 									<td>
-										<s:radio name="registerType" list="registerTypeMap" value="%{registerType}" onclick="document.getElementById('changeRegisterTypeForm').submit()"/>
+										<s:radio name="registerType" list="registerTypeMap" value="%{registerType}" onclick="document.getElementById('changeRegisterTypeForm').submit()" onmouseover="MyTip('등록할 가젯의 형식을 선택하십시오.<br> 다중 URL 등록은 여러개의 URL타입 가젯을 등록할 때 사용됩니다.')" onmouseout="MyUnTip()"/>
 									</td>
 									
 								</tr>
@@ -83,7 +89,7 @@
 								<tr>
 									<td>*가젯 이름:</td>
 									<td>
-									<s:textfield name="gadgetName"></s:textfield>
+									<s:textfield name="gadgetName" onmouseover="MyTip('가젯의 이름을 입력해주십시오')" onmouseout="MyUnTip()"></s:textfield>
 									</td>
 								</tr>
 								<tr>
@@ -96,6 +102,8 @@
 											value="gadgetCategory"
 											multiple="true"
 											size="5"
+											onmouseover="MyTip('하나 이상의 유형을 선택하십시오')"
+											onmouseout="MyUnTip()"
 											>
 										</s:select>
 									</td>
@@ -103,7 +111,8 @@
 								<tr>
 									<td valign="top">*가젯 소개:</td>
 									<td valign="top">
-											<s:textarea rows="2" cols="20" name="gadgetIntro"/>
+											<s:textarea rows="2" cols="20" name="gadgetIntro" onmouseover="MyTip('사용자들에게 보여질<br> 가젯 소개 글을 입력해주십시오')" onmouseout="MyUnTip()"
+											/>
 									</td>
 								</tr>
 								
@@ -112,8 +121,9 @@
 								<tr>
 									<td valign="top">*가젯 소스:</td>
 									<td>
-										<s:textarea id="gadgetSrcTxt" cols="70" rows="10" name="gadgetSource" /><br>
-										<input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크"><br>
+										<s:textarea id="gadgetSrcTxt" cols="70" rows="10" name="gadgetSource" onmouseover="MyTip('가젯의 XML 텍스트를 입력해주십시오.')" onmouseout="MyUnTip()"
+											/><br>
+										<input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크" onmouseover="MyTip('가젯 XML 문법을 체크합니다.<br> 문법체크를 통과하여야만 아래의 미리보기 버튼이 활성화됩니다')" onmouseout="MyUnTip()"><br>
 										<div id="validationResult"></div>
 									</td>
 								</tr>
@@ -122,13 +132,15 @@
 								<tr>
 									<td valign="top">*가젯 URL:</td>
 									<td>
-										<s:textfield id="gadgetUrlTxt" name="gadgetUrl" size="50"/> <input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크"><br>
-										<div id="validationResult">예: http://www.google.com/ig/modules/builtin_gmail.xml</div>
+										<s:textfield id="gadgetUrlTxt" name="gadgetUrl" size="50" onmouseover="MyTip('가젯의 URL을 입력해주십시오.<br> 예)http://lovemygadget.com/hotmail/hotmail.xml')" onmouseout="MyUnTip()"
+											/> <input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크" onmouseover="MyTip('가젯 XML 문법을 체크합니다.<br> 문법체크를 통과하여야만 아래의 미리보기 버튼이 활성화됩니다')" onmouseout="MyUnTip()"
+											><br>
+										<div id="validationResult"></div><!-- 예: http://www.google.com/ig/modules/builtin_gmail.xml -->
 									</td>
 								</tr>
 								</s:elseif>
 								<tr>
-									<td>아이콘:</td>
+									<td>아이콘 파일:</td>
 									<td>
 									<s:file name="icon" label="파일 위치"/>
 									</td>
