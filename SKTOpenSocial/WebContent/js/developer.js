@@ -10,6 +10,17 @@ function popup(mylink, windowname) {
 	return false;
 }
 
+function popup2(mylink, windowname) {
+	if (!window.focus)
+		return true;
+	var href;
+	if (typeof (mylink) == 'string')
+		href = mylink;
+	else
+		href = mylink.href;
+	window.open(href, windowname, 'width=300,height=200,scrollbars=yes');
+	return false;
+}
 /*
  * From Struts 2 in Action  
  */
