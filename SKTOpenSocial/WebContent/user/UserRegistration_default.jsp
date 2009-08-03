@@ -75,7 +75,12 @@
 									
 								</td>
 							</tr>
-							
+							<s:if test="%{userIdDuplicationError.equals('true')}">
+								<tr>
+									<td valign="top"></td>
+									<td ><font color=#0066cc> -- 사용자 아이디가 중복되었습니다. 다른 아이디를 사용해 주세요.--</font></td>
+								</tr>
+							</s:if>
 							<tr>
 								<td>*암호</td>
 								<td>

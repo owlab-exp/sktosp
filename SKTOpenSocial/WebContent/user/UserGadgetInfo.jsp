@@ -92,8 +92,11 @@
 
   .gadgets-gadget-chrome {
     width: 90%;
+    height: 100%;
     float: none;
     margin: auto;
+    overflow: scroll;
+    
   }
 
   .gadgets-gadget {
@@ -109,7 +112,7 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0" onLoad="renderGadgets();">
-<table border="1" cellpadding="0" cellspacing="0" height="567" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" height="800" width="100%">
 	<tbody>
 		<tr valign="top" height="15%">
 			<!-- north -->
@@ -142,7 +145,7 @@
 					<tr>
 						<td><!-- list of gadgets -->
 						<table class="subtit_board" summary="List of Gadgets"
-							cellpadding="0" cellspacing="0" width="100%" height="300px">
+							cellpadding="0" cellspacing="0" width="100%" height="600px">
 							<colgroup>
 								<col width="10%">
 								<col width="90%">
@@ -199,7 +202,7 @@
 									<td class="line" colspan="2"></td>
 								</tr>
 								
-								<tr >
+								<tr height="600px">
 									<td valign="top">가젯 실행</td>
 									<s:if test="%{status.equals('pg')}">
 										<s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
@@ -221,7 +224,7 @@
 									
 								</tr>
 
-								<tr>
+								<tr  >
 									<td valign="top">가젯 리뷰</td>
 										
 									<td valign="top" align="center">

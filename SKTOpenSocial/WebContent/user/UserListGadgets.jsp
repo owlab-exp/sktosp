@@ -111,7 +111,7 @@
 									<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
 										<s:param name="otherUserId"><s:property value="developer.id"/></s:param>
 									</s:url>
-									<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget">
+									<s:url id="userRemoveGadgetUrl" action="UserRemoveGadget" method="requestConfirm">
 										<s:param name="gadgetId"><s:property value="id"/></s:param>
 									</s:url>
 									<td><s:a href="%{gadgetInfoUrl}"><s:property value="id"/></s:a></td>
@@ -120,7 +120,7 @@
 									<td align="center"><s:date name="publishDate" format="yyyy/MM/dd"/></td>
 									<td align="center"><s:property value="favoriteUsers.size"/></td>
 									<td align="center"><s:property value="introduction"/></td>
-									<td align="center"><s:a href="%{userRemoveGadgetUrl}">삭제</s:a></td>
+									<td align="center"><s:a href="#" onclick="javascript:popup2('%{userRemoveGadgetUrl}','RemoveConfirm')">삭제</s:a></td>
 									
 								</tr>
 								</s:iterator>

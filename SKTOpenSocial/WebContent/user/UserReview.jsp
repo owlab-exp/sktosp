@@ -35,8 +35,8 @@
 			
 			<s:iterator value="gadgetReviews">
 				<tr style="background-color: rgb(300, 300, 300);">
-					<s:url id="userInfoUrl" action="UserInfo">
-						<s:param name="developername"><s:property value="developer.person.nameFormatted"/></s:param>
+					<s:url id="userInfoUrl" action="SearchOtherUserInfo">
+						<s:param name="otherUserId"><s:property value="reviewer.id"/></s:param>
 					</s:url>
 					<s:url id="removeReviewUrl" action="RemoveReview">
 						<s:param name="gadgetId"><s:property value="gadgetId"/></s:param>
@@ -44,7 +44,7 @@
 					</s:url>
 					<td align="left"><s:property value="reviewText"/></td>
 					<td align="center"><s:property value="reviewGrade"/></td>
-					<td align="center"><s:a href="%{userInfoUrl}"><s:property value="reviewer.person.nameFormatted"/></s:a></td>
+					<td align="center"><s:property value="reviewer.person.nameFormatted"/></td>
 					<td align="center">
 						<s:if test="%{userId.equals(reviewer.id)}">
 							<s:a href="%{removeReviewUrl}">삭제</s:a>

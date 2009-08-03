@@ -88,7 +88,7 @@
 									<s:url id="userOtherUserInfoUrl" action="SearchOtherUserInfo">
 										<s:param name="otherUserId"><s:property value="id"/></s:param>
 									</s:url>
-									<s:url id="userRemoveFriendUrl" action="UserRemoveFriend">
+									<s:url id="userRemoveFriendUrl" action="UserRemoveFriend" method="requestConfirm">
 										<s:param name="friendId"><s:property value="id"/></s:param>
 									</s:url>
 									<td><s:a href="%{userOtherUserInfoUrl}"><s:property value="id"/></s:a></td>
@@ -96,7 +96,7 @@
 									<td align="center"><s:date name="registeredDate" format="yyyy/MM/dd"/></td>
 									<td align="center"><s:property value="person.aboutme" /></td>
 									<td align="center"><s:property value="person.age" /></td>
-									<td align="center"><s:a href="%{userRemoveFriendUrl}">삭제</s:a></td>
+									<td align="center"><s:a href="#" onclick="javascript:popup2('%{userRemoveFriendUrl}','RemoveConfirm')">삭제</s:a></td>
 								</tr>
 								</s:iterator>
 								<tr>

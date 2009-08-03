@@ -84,12 +84,14 @@
 								</tr>
 								<s:iterator value="activities">
 								<tr style="background-color: rgb(300, 300, 300);">
-									<s:url id="removeActivityUrl" action="RemoveActivity">
+									<s:url id="removeActivityUrl" action="RemoveActivity" method="requestConfirm">
 										<s:param name="activityId"><s:property value="id"/></s:param>
 									</s:url>
 									<td><s:property value="title"/></td>
 									<td align="center"><s:property value="updated"/></td>
-									<td align="center"><s:a href="%{removeActivityUrl}">삭제</s:a></td>
+									<td align="center"><s:a href="#" onclick="javascript:popup2('%{removeActivityUrl}','RemoveConfirm')">삭제</s:a></td>
+									
+									
 								</tr>
 								</s:iterator>
 								<tr>

@@ -85,26 +85,57 @@
 							</tr>
 							
 							<tr>
-								<td>*새암호</td>
-								<td>
-									<s:password name= "passwordWant" required="true" />										
-								</td>
-							</tr>
-
-							<tr>
-								<td>*새암호확인</td>
-								<td>
-									<s:password name= "passwordConfirm" required="true" />										
-								</td>
-							</tr>
-							
-							<tr>
 								<td>*사용자이름</td>
 								<td>
 									<s:textfield name= "userName" required="true" value="%{userName}"/>										
 								</td>
 							</tr>
-			  		      
+							
+							<tr>
+								<td>*이메일</td>
+								<td>
+									<s:textfield name= "email" required="true" value="%{email}"/> 
+								</td>
+							</tr>
+			  		      	
+			  		      	<tr>
+								<td>새암호</td>
+								<td>
+									<s:password name= "passwordWant" required="true" />										
+								</td>
+							</tr>
+							
+							<tr>
+								<td></td>
+								<td>-- 암호변경시에만 입력하세요. 변경하시고자 하는 암호는 '새암호'와 '새암호확인' 칸에 같이 넣어 주세요-- </td>
+							</tr>
+							
+
+							<tr>
+								<td>새암호확인</td>
+								<td>
+									<s:password name= "passwordConfirm" required="true" />										
+								</td>
+							</tr>
+							<tr>
+							    <td>
+							   		<s:submit align="center" action= "ModificationSubmit" 
+							   			value= "개인정보수정" name= "ModificationSubmit"/>
+						        </td>
+						        <td>
+						        	<s:submit align="center" action= "ResetModification" 
+						        		value= "다시입력" name= "ResetModification"/>
+						        </td>	  
+						        <td>
+						        	<s:submit align="center" action= "CancelModification" 
+						        		value= "취소" name= "CancelModification"/>
+					            </td>      
+							</tr>
+			  		      	<tr>
+								<td></td>
+								<td> -- 추가정보 입력 -- </td>
+							</tr>
+							
 			  		      ` <tr>
 								<td>나이</td>
 								<td>
@@ -125,13 +156,11 @@
 									<s:textfield name= "birthday" required="false" value="%{birthday}"/>   
 								</td>
 							</tr>
-							
 							<tr>
-								<td>*이메일</td>
-								<td>
-									<s:textfield name= "email" required="true" value="%{email}"/> 
-								</td>
+								<td></td>
+								<td> -- 생일정보는 년도-생월-생일 (yyyy-MM-dd) 형태로 넣어주세요. -- </td>
 							</tr>
+
 						      		
 						    <tr>
 								<td>추가이메일</td>
@@ -151,7 +180,10 @@
 						       				}"/> 
 					   	     	</td>
 							</tr>
-
+							<tr>
+								<td></td>
+								<td> -- 상세개인정보 공개는 회원님의 정보를 공개할 대상을 지정합니다. 모두에게 공개, 친구들에게만 공개, 비공개로 설정하실 수 있습니다.  -- </td>
+							</tr>
 							<tr>
 								<td>선호가젯모음공개</td>
 								<td>
@@ -163,7 +195,10 @@
 						       				}"/> 
 					   	     	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 선호가젯모음공개는 회원님의 선호가젯목록을 공개할 대상을 지정합니다. 모두에게 공개, 친구들에게만 공개, 비공개로 설정하실 수 있습니다.  -- </td>
+							</tr>
 							<tr>
 								<td>주소</td>
 								<td>
@@ -219,15 +254,20 @@
 						       		      
 						     	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님 본인에 대한 소개를 적어주세요.  -- </td>
+							</tr>
 							<tr>
 								<td>체격</td>
 								<td>
-							    
-							  
 						          	<s:textfield label= "체격" name= "bodytypeBuild" required="false" value="%{bodytypeBuild}"/> 
 						       		      
 						     	</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td> -- 회원님의 체격에 대한 설명을 적어주세요. 예: 호리호리, 뚱뚱, S라인 -- </td>
 							</tr>
 							
 							<tr>
@@ -269,11 +309,13 @@
 							<tr>
 								<td>좋아하는 책</td>
 								<td>
-							  		      
-						      
 						          	<s:textfield label= "좋아하는 책" name= "book" required="false" value="%{book}"/> 
 						       
 						     	</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시는 책의 제목을 넣어주세요. 예: 해리포터와 죽음의성물(판타지) -- </td>
 							</tr>
 							
 							<tr>
@@ -288,17 +330,17 @@
 							<tr>
 								<td>좋아하는 자동차</td>
 								<td>
-							        
-						      
-						          	<s:textfield label= "좋아하는 자동차" name= "car" required="false" value="%{car}"/> 
+							      	<s:textfield label= "좋아하는 자동차" name= "car" required="false" value="%{car}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시는 자동차의 이름을 넣어주세요. 예: 페라리(스포츠카) -- </td>
+							</tr>
 							<tr>
 								<td>좋아하는 자동차추가</td>
 								<td>
-							  
-						          	<s:textfield label= "좋아하는 자동차추가" name= "car2" required="false" value="%{car2}"/> 
+							      	<s:textfield label= "좋아하는 자동차추가" name= "car2" required="false" value="%{car2}"/> 
 						    	</td>
 							</tr>
 							
@@ -309,16 +351,21 @@
 						          	<s:textfield label= "자녀" name= "children" required="false" value="%{children}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 자녀가 있으시다면 자녀에 대한 설명을 적어 주세요. 예: 1남 2녀 -- </td>
+							</tr>
 							
 							<tr>
 								<td>현재위치</td>
 								<td>
-							   
-						          	<s:textfield label= "현재위치" name= "currentLocation" required="false" value="%{currentLocation}"/> 
+							      	<s:textfield label= "현재위치" name= "currentLocation" required="false" value="%{currentLocation}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 현재 계시는 위치를 설명해 주세요. 예: 역삼동 근무중 -- </td>
+							</tr>
 							<tr>
 								<td>음주</td>
 								<td>
@@ -334,11 +381,12 @@
 						       				,'YES':'YES'
 						       				}"
 						       				value="%{drinker}"/> 
-						       				
-						       				
-					   	     	</td>
+						     	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님의 음주 습관을 선택해 주세요. -- </td>
+							</tr>
 							<tr>
 								<td>민족</td>
 								<td>
@@ -350,11 +398,13 @@
 							<tr>
 								<td>패션</td>
 								<td>
-							   
-						          	<s:textfield label="패션" name="fashion" required="false" value="%{fashion}"/> 
+							      	<s:textfield label="패션" name="fashion" required="false" value="%{fashion}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 현재 패션 경향에 대한 생각을 적어주세요. 예: 구멍뚫린 타이즈는 너무 싫어-- </td>
+							</tr>
 							<tr>
 								<td>좋아하는음식</td>
 								<td>
@@ -362,7 +412,10 @@
 						          	<s:textfield label="좋아하는음식" name="food" required="false" value="%{food}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시거나 즐겨하시는 음식의 이름 혹은 음식점을 소개해 주세요. 예: 목동 SBS 앞 김치찌개 좋아요 -- </td>
+							</tr>
 							<tr>
 								<td>좋아하는음식추가</td>
 								<td>
@@ -378,7 +431,10 @@
 						          	<s:textfield label="행복한때" name="happiestWhen" required="false" value="%{happiestWhen}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 행복하게 느끼시는 순간을 소개해 주세요. 예: 세끼 밥 먹을 때는 언제나 행복 -- </td>
+							</tr>
 							<tr>
 								<td>좋아하는영웅</td>
 								<td>
@@ -386,7 +442,10 @@
 						          	<s:textfield label="좋아하는영웅" name="hero" required="false" value="%{hero}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시는 영웅이 있으시면 소개해 주세요. 예: 다크나이트 -- </td>
+							</tr>
 							<tr>
 								<td>좋아하는영웅추가</td>
 								<td>
@@ -402,7 +461,10 @@
 						          	<s:textfield label="유머에대한생각" name="humor" required="false" value="%{humor}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시는 유머 종류 혹은 유행어를 소개해 주세요.  예: 선배님, 선배님 -- </td>
+							</tr>
 							<tr>
 								<td>취미,특기</td>
 								<td>
@@ -426,7 +488,10 @@
 						          	<s:textfield label="관심직업" name="jobInterest" required="false" value="%{jobInterest}"/> 
 						    	</td>
 							</tr>
-										
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 직업을 찾고 계시거나 이직을 고려하고 계시면 관심있는 직종을 적어주세요. 예: 공무원 -- </td>
+							</tr>				
 							
 							<tr>
 								<td>사용언어</td>
@@ -435,7 +500,10 @@
 						          	<s:textfield label="사용언어" name="languageSpoken" required="false" value="%{languageSpoken}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 주로 사용하시는 언어를 적어주세요. 예: 국어 -- </td>
+							</tr>
 							<tr>
 								<td>사용언어추가</td>
 								<td>
@@ -451,7 +519,10 @@
 						          	<s:textfield label="주거형태" name="livingArrangement" required="false" value="%{livingArrangement}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 현재 사시는 곳의 주거 형태를 적어주세요. 예: 아파트, 전셋방, 혹은 지하원룸  -- </td>
+							</tr>
 							<tr>
 								<td>관심분야</td>
 								<td>
@@ -475,7 +546,10 @@
 						          	<s:textfield label="좋아하는영화" name="movie" required="false" value="%{movie}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시거나 추천하고 싶은 영화를 소개해 주세요. 예: 해운대 -- </td>
+							</tr>
 							<tr>
 								<td>영화추가</td>
 								<td>
@@ -489,9 +563,12 @@
 								<td>
 							    
 						          	<s:textfield label="좋아하는음악" name="music" required="false" value="%{music}"/> 
-						   	</td>
+						   		</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시거나 추천하고 싶은 음악 혹은 음악인을 소개해 주세요. 예: Nirvana -- </td>
+							</tr>
 							<tr>
 								<td>음악추가</td>
 								<td>
@@ -539,7 +616,10 @@
 						          	<s:textfield label="접미호" name="honorificSuffix" required="false" value="%{honorificSuffix}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님의 전체 이름을 규격에 맞게 넣어 주세요. 예: 백범(호) 김(성) 구(이름) </td>
+							</tr>
 							
 							<tr>
 								<td>네트워크환경</td>
@@ -572,7 +652,10 @@
 						          	<s:textfield label="애완동물" name="pets" required="false" value="%{pets}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 기르고 계신 애완동물에 대한 소개를 해 주세요. -- </td>
+							</tr>
 							
 							<tr>
 								<td>전화번호</td>
@@ -588,6 +671,10 @@
 							    
 						          	<s:textfield label="전화번호종류" name="phoneType" required="false" value="%{phoneType}"/> 
 						    	</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 사용하고 계시는 전화의 번호를 적어주세요. 전화번호종류는 유선전화, 이동전화와 같은 전화 번호의 종류를 의미합니다. -- </td>
 							</tr>
 							
 							<tr>
@@ -613,6 +700,10 @@
 						          	<s:textfield label="정치적관점" name="politicalViews" required="false" value="%{politicalViews}"/> 
 						    	</td>
 							</tr>
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 정치적인 관점, 견해를 소개해 주세요. 예: 난 공산당이 싫어요. -- </td>
+							</tr>
 							
 							<tr>
 								<td>프로파일송위치</td>
@@ -629,7 +720,10 @@
 						          	<s:textfield label="프로파일송내용" name="profilesongUrlLinktext" required="false" value="%{profilesongUrlLinktext}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시는 프로파일음악의 위치(URL)와 내용을 소개해 주세요.  -- </td>
+							</tr>
 <!--							<tr>-->
 <!--								<td>프로파일송위치종류</td>-->
 <!--								<td>-->
@@ -653,7 +747,10 @@
 						          	<s:textfield label="프로파일내용" name="profileUrlLinktext" required="false" value="%{profileUrlLinktext}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님을 소개하는 프로파일의 위치(URL)와 내용을 소개해 주세요.  -- </td>
+							</tr>
 <!--							<tr>-->
 <!--								<td>프로파일위치종류</td>-->
 <!--								<td>-->
@@ -677,7 +774,10 @@
 						          	<s:textfield label="프로파일비디오내용" name="profilevideoUrlLinktext" required="false" value="%{profilevideoUrlLinktext}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님을 소개하는 영상의 위치(URL)와 내용을 소개해 주세요.  -- </td>
+							</tr>
 <!--							<tr>-->
 <!--								<td>프로파일비디오위치종류</td>-->
 <!--								<td>-->
@@ -693,7 +793,10 @@
 						          	<s:textfield label="좋아하는인용문" name="quote" required="false" value="%{quote}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시는 유명한 문구를 소개해 주세요. 예: 왔노라, 싸웠노라, 이겼노라-- </td>
+							</tr>
 							<tr>
 								<td>인용문추가</td>
 								<td>
@@ -725,7 +828,10 @@
 						          	<s:textfield label="로맨스에대한" name="romance" required="false" value="%{romance}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 기억하시는아름다운 로맨스 순간을 소개해주세요.-- </td>
+							</tr>
 							<tr>
 								<td>무서운것</td>
 								<td>
@@ -733,7 +839,10 @@
 						          	<s:textfield label="무서운것" name="scaredOf" required="false" value="%{scaredOf}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 무서워 하시는 것을 소개해 주세요. -- </td>
+							</tr>
 							<tr>
 								<td>성적방향</td>
 								<td>
@@ -741,7 +850,10 @@
 						          	<s:textfield label="성적방향" name="sexualOrientation" required="false" value="%{sexualOrientation}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 예: 이성애, 동성애, 양성애-- </td>
+							</tr>
 							<tr>
 								<td>흡연</td>
 								<td>
@@ -759,7 +871,10 @@
 						       				value="%{smoker}"/> 
 					   	     	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님의 흡연 습관을 선택해 주세요. -- </td>
+							</tr>
 							<tr>
 								<td>좋아하는스포츠</td>
 								<td>
@@ -767,7 +882,10 @@
 						          	<s:textfield label="좋아하는스포츠" name="sport" required="false" value="%{sport}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님께서 좋아하시는 스포츠를 소개해 주세요.  -- </td>
+							</tr>
 							<tr>
 								<td>스포츠추가</td>
 								<td>
@@ -791,7 +909,10 @@
 						          	<s:textfield label="태그" name="tag" required="false" value="%{tag}"/> 
 						    	</td>
 							</tr>
-							
+							<tr>
+								<td></td>
+								<td> -- 회원님을 설명하는 간략한 단어, 태그를 소개해주세요. 예: 김별명, 엔지니어 -- </td>
+							</tr>
 							<tr>
 								<td>태그추가</td>
 								<td>

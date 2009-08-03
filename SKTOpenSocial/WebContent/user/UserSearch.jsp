@@ -55,17 +55,23 @@
  	    <!-- search -->
         <tr>
           <td>
-
-	<s:form action="Search" namespace="/user" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'username':'사용자이름', 'tag':'사용자태그'}"/> 
-	    <s:textfield name="query"/> 
-	    <s:submit value="검색"/>
-	    
-	</s:form>
+		
+			<s:form action="Search" namespace="/user" theme="simple">
+			    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'username':'사용자이름', 'tag':'사용자태그'}"/> 
+			    <s:textfield name="query"/> 
+			    <s:submit value="검색"/>
+			    
+			</s:form>
 	
 		      </td>
 	      </tr>
-
+ 		  <tr>
+	    	<td> -- 검색어의 종류를 사용자 이름 혹은 사용자 태그를 먼저 선택하세요. -- </td> 
+	      </tr>	
+	      <tr>
+	    	<td> -- 입력된 검색어를 포함한 사용자 이름 혹은 사용자태그를 가진 사용자들을 목록으로 보여 드립니다. --</td> 
+	      </tr>	
+	      
       </table>
       
      </div> <!-- east div -->

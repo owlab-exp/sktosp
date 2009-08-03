@@ -56,15 +56,18 @@
         <tr>
           <td>
 
-	<s:form action="Search" namespace="/user" theme="simple">
-	    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'gadget':'가젯이름'}"/> 
-	    <s:textfield name="query"/> 
-	    <s:submit value="검색"/>
-	    
-	</s:form>
+			<s:form action="Search" namespace="/user" theme="simple">
+			    <s:select label="검색조건" name="searchfield" headerKey="1" list="#{'gadget':'가젯이름'}"/> 
+			    <s:textfield name="query"/> 
+			    <s:submit value="검색"/>
+			    
+			</s:form>
 	
 		      </td>
-	      </tr>
+	    </tr>
+	    <tr>
+	    	<td> -- 검색하고자 하는 가젯 이름의 일부를 검색어로 입력하시면 검색어를 포함한 가젯 이름을 가진 가젯들을 목록으로 보여 드립니다. --</td>
+	    </tr>	  
 
       </table>
       
