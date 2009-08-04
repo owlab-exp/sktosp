@@ -38,7 +38,7 @@
 		<td colspan="2">
 		<s:form action="RejectGadgetAction" id="RejectGadgetForm" theme="simple" method="post" target="GadgetList">
 			<input type="hidden" name="gadgetId" value="<%= request.getParameter("gadgetId") %>">
-			<s:textarea label="거부사유를 입력하세요" name="rejectreason" cols="30" rows="3" />
+			거절시 사유를 입력해 주세요.<br><s:textarea label="거부사유를 입력하세요" name="rejectreason" cols="30" rows="3" />
 		</s:form>
 		</td>
 	</tr>
