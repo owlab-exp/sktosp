@@ -46,7 +46,11 @@ public class LoginAction extends CommonBaseAction {
 				if (hashedPassword.equals(user.getPassword())) {
 					session.put(SKTOpenSocialSupportConstants.USER, user);
 					return Action.SUCCESS;
+				} else {
+					addFieldError("password", "패스워드 틀림");
 				}
+			} else {
+				addFieldError("userId", "존재하지 않는 사용자 ID");
 			}
 			hs.getTransaction().commit();
 			return Action.INPUT;
@@ -61,10 +65,10 @@ public class LoginAction extends CommonBaseAction {
 
 	public void validate() {
 		if (getPassword() == null || getPassword().length() == 0) {
-			addFieldError("password", "Password required");
+			addFieldError("password", "패스워드 없음");
 		}
 		if (getUserId() == null || getUserId().length() == 0) {
-			addFieldError("userId", "User ID required");
+			addFieldError("userId", "사용자 ID 없음");
 		}
 	}
 

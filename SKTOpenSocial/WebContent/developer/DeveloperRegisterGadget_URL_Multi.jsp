@@ -15,6 +15,10 @@
 <body leftmargin="0" topmargin="0"
 	style="background-color: rgb(255, 255, 255);" marginheight="0"
 	marginwidth="0">
+	<!--  for Help Balloon -->
+<script type="text/javascript" src="../js/wz_tooltip.js"></script>
+<script type="text/javascript" src="../js/tip_balloon.js"></script>
+<script type="text/javascript" src="../js/skt_tooltip.js"></script>
 <table border="1" cellpadding="0" cellspacing="0" height="567"
 	width="100%">
 	<tbody>
@@ -62,7 +66,7 @@
 									<td>등록 유형:</td>
 									<s:form action="RegisterGadgetPage" id="changeRegisterType" theme="simple">
 									<td colspan="4">
-										<s:radio name="registerType" list="registerTypeMap" value="%{registerType}" onclick="document.getElementById('changeRegisterType').submit()"/>
+										<s:radio name="registerType" list="registerTypeMap" value="%{registerType}" onclick="document.getElementById('changeRegisterType').submit()"/>  <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('등록할 가젯의 형식을 선택하십시오.<br> 다중 URL 등록은 여러개의 URL타입 가젯을 등록할 때 사용됩니다.<br> 다중 URL 등록은 행별로 모든 입력필드들에 값을 입력하여야 합니다.')" onmouseout="MyUnTip()">
 									</td>
 									</s:form>
 								</tr>
@@ -73,10 +77,10 @@
 								<s:hidden name="registerType" value="%{registerType}"/>
 								<tr style="background-color: rgb(245, 245, 245);">
 
-									<td>이름</td>
-									<td>가젯유형</td>
-									<td>소개</td>
-									<td>URL</td>
+									<td>이름 <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('사용자에게 보여질 가젯의 이름')" onmouseout="MyUnTip()"></td>
+									<td>가젯유형 <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('가젯의 유형')" onmouseout="MyUnTip()"></td>
+									<td>소개  <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('사용자에게 보여질 가젯글')" onmouseout="MyUnTip()"></td>
+									<td>URL <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('등록할 가젯 XML 파일의 URL')" onmouseout="MyUnTip()"></td>
 								</tr>
 								<tr style="background-color: rgb(300, 300, 300);">
 									<td><s:textfield name="gadgetName1" size="5"/></td>
@@ -102,7 +106,7 @@
 											value="gadgetCategory2"
 											multiple="false"
 											size="1"
-											>
+											> 
 										</s:select>
 									</td>
 									<td><s:textfield name="gadgetIntro2" size="20"/></td>
@@ -168,7 +172,7 @@
 					</tr>
 					<tr>
 						<td>
-						<div class="paging"><s:submit theme="simple" type="button" value="등록완료" onclick="document.getElementById('registerGadgetForm').submit()"/></div>
+						<div class="paging"><s:submit theme="simple" type="button" value="등록완료" onclick="document.getElementById('registerGadgetForm').submit()"/> <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('입력한 가젯을 모두 등록합니다.')" onmouseout="MyUnTip()"></div>
 						</td>
 					</tr>
 				</tbody>

@@ -69,7 +69,7 @@
 									<td>등록 유형:</td>
 									
 									<td>
-										<s:radio name="registerType" list="registerTypeMap" value="%{registerType}" onclick="document.getElementById('changeRegisterTypeForm').submit()" onmouseover="MyTip('등록할 가젯의 형식을 선택하십시오.<br> 다중 URL 등록은 여러개의 URL타입 가젯을 등록할 때 사용됩니다.')" onmouseout="MyUnTip()"/>
+										<s:radio name="registerType" list="registerTypeMap" value="%{registerType}" onclick="document.getElementById('changeRegisterTypeForm').submit()"/> <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('등록할 가젯의 형식을 선택하십시오.<br> 다중 URL 등록은 여러개의 URL타입 가젯을 등록할 때 사용됩니다.')" onmouseout="MyUnTip()">
 									</td>
 									
 								</tr>
@@ -89,7 +89,7 @@
 								<tr>
 									<td>*가젯 이름:</td>
 									<td>
-									<s:textfield name="gadgetName" onmouseover="MyTip('가젯의 이름을 입력해주십시오')" onmouseout="MyUnTip()"></s:textfield>
+									<s:textfield name="gadgetName" ></s:textfield> <img alt="" src="../images/info.gif" onmouseover="MyTipBox('가젯의 이름을 입력해주십시오')" onmouseout="MyUnTip()">
 									</td>
 								</tr>
 								<tr>
@@ -102,17 +102,15 @@
 											value="gadgetCategory"
 											multiple="true"
 											size="5"
-											onmouseover="MyTip('하나 이상의 유형을 선택하십시오')"
-											onmouseout="MyUnTip()"
+											
 											>
-										</s:select>
+										</s:select> <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('하나 이상의 유형을 선택하십시오')" onmouseout="MyUnTip()">
 									</td>
 								</tr>
 								<tr>
 									<td valign="top">*가젯 소개:</td>
 									<td valign="top">
-											<s:textarea rows="2" cols="20" name="gadgetIntro" onmouseover="MyTip('사용자들에게 보여질<br> 가젯 소개 글을 입력해주십시오')" onmouseout="MyUnTip()"
-											/>
+											<s:textarea rows="2" cols="20" name="gadgetIntro" /> <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('사용자들에게 보여질<br> 가젯 소개 글을 입력해주십시오')" onmouseout="MyUnTip()">
 									</td>
 								</tr>
 								
@@ -121,9 +119,9 @@
 								<tr>
 									<td valign="top">*가젯 소스:</td>
 									<td>
-										<s:textarea id="gadgetSrcTxt" cols="70" rows="10" name="gadgetSource" onmouseover="MyTip('가젯의 XML 텍스트를 입력해주십시오.')" onmouseout="MyUnTip()"
+										<s:textarea id="gadgetSrcTxt" cols="70" rows="10" name="gadgetSource" onmouseover="MyTipBox('가젯의 XML 텍스트를 입력해주십시오.')" onmouseout="MyUnTip()"
 											/><br>
-										<input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크" onmouseover="MyTip('가젯 XML 문법을 체크합니다.<br> 문법체크를 통과하여야만 아래의 미리보기 버튼이 활성화됩니다')" onmouseout="MyUnTip()"><br>
+										<input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크" onmouseover="MyTipBox('가젯 XML 문법을 체크합니다.<br> 문법체크를 통과하여야만 아래의 미리보기 버튼이 활성화됩니다')" onmouseout="MyUnTip()">  <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('가젯 XML을 통과하였다는 것이 가젯의 실행을을 보증하는 것은 아닙니다.<br> 가젯에 사용된 자바스크립트 프로그래밍의 문제로 가젯이 실행되지 않을 수 있습니다.')" onmouseout="MyUnTip()"><br><br>
 										<div id="validationResult"></div>
 									</td>
 								</tr>
@@ -132,9 +130,8 @@
 								<tr>
 									<td valign="top">*가젯 URL:</td>
 									<td>
-										<s:textfield id="gadgetUrlTxt" name="gadgetUrl" size="50" onmouseover="MyTip('가젯의 URL을 입력해주십시오.<br> 예)http://lovemygadget.com/hotmail/hotmail.xml')" onmouseout="MyUnTip()"
-											/> <input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크" onmouseover="MyTip('가젯 XML 문법을 체크합니다.<br> 문법체크를 통과하여야만 아래의 미리보기 버튼이 활성화됩니다')" onmouseout="MyUnTip()"
-											><br>
+										<s:textfield id="gadgetUrlTxt" name="gadgetUrl" size="50" onmouseover="MyTipBox('가젯의 URL을 입력해주십시오.<br> 예)http://lovemygadget.com/hotmail/hotmail.xml')" onmouseout="MyUnTip()"
+											/> <input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크" onmouseover="MyTipBox('가젯 XML 문법을 체크합니다.<br> 문법체크를 통과하여야만 아래의 미리보기 버튼이 활성화됩니다')" onmouseout="MyUnTip()"> <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('가젯 XML을 통과하였다는 것이 가젯의 실행을을 보증하는 것은 아닙니다.<br> 가젯에 사용된 자바스크립트 프로그래밍의 문제로 가젯이 실행되지 않을 수 있습니다.')" onmouseout="MyUnTip()"><br>
 										<div id="validationResult"></div><!-- 예: http://www.google.com/ig/modules/builtin_gmail.xml -->
 									</td>
 								</tr>
@@ -142,7 +139,7 @@
 								<tr>
 									<td>아이콘 파일:</td>
 									<td>
-									<s:file name="icon" label="파일 위치"/>
+									<s:file name="icon" label="파일 위치"/> <img alt="" src="../images/info.gif"  onmouseover="MyTipBox('가젯 리스트에 나타날 아이콘으로 업로드할 파일을 선택해 주십시오')" onmouseout="MyUnTip()">
 									</td>
 								</tr>
 								<tr>
@@ -169,6 +166,7 @@
 						<s:else>
 						<s:submit theme="simple" type="button" value="미리보기" onclick="document.getElementById('registerGadgetForm').submit()" disabled="true" id="previewButton"/>
 						</s:else>
+						<img alt="" src="../images/info.gif"  onmouseover="MyTipBox('미리보기는 등록 전 가젯의 실행여부를 확인하기 위한 것으로 필수절차입니다.<br> 가젯 XML의 체크를 통과하지 않으면 미리보기가 활성화되지 않습니다.')" onmouseout="MyUnTip()">
 						</div>
 						</td>
 					</tr>
