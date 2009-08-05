@@ -217,7 +217,7 @@ public class Activity implements java.io.Serializable {
 		return this.userId;
 	}
 
-	public void setUserId(String userId) {
+	private void setUserId(String userId) {
 		this.userId = userId;
 	}
 

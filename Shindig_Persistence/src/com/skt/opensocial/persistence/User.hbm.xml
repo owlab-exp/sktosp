@@ -20,6 +20,7 @@
         <property name="registeredDate" type="date">
             <column name="REGISTERED_DATE" length="10" not-null="true" />
         </property>
+        
         <many-to-one name="person" class="com.skt.opensocial.persistence.Person" cascade="all" column="ID" unique="true" insert="false" update="false" lazy="false"/>
         <many-to-one name="userVisibility" class="com.skt.opensocial.persistence.UserVisibility" cascade="all" column="ID" unique="true" insert="false" update="false" />
 		<set name="reviews" inverse="true"> 

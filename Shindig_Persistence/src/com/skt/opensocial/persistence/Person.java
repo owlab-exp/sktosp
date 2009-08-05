@@ -656,13 +656,7 @@ public class Person implements java.io.Serializable {
 		this.profilesongurlType = profilesongurlType;
 	}
 
-	public Boolean getProfilesongurlPrimary() {
-		return this.profilesongurlPrimary;
-	}
-
-	public void setProfilesongurlPrimary(Boolean profilesongurlPrimary) {
-		this.profilesongurlPrimary = profilesongurlPrimary;
-	}
+	
 
 	public String getProfilevideourlValue() {
 		return this.profilevideourlValue;
@@ -688,8 +682,18 @@ public class Person implements java.io.Serializable {
 		this.profilevideourlType = profilevideourlType;
 	}
 
+	
+
+	public Boolean getProfilesongurlPrimary() {
+		return profilesongurlPrimary;
+	}
+
+	public void setProfilesongurlPrimary(Boolean profilesongurlPrimary) {
+		this.profilesongurlPrimary = profilesongurlPrimary;
+	}
+
 	public Boolean getProfilevideourlPrimary() {
-		return this.profilevideourlPrimary;
+		return profilevideourlPrimary;
 	}
 
 	public void setProfilevideourlPrimary(Boolean profilevideourlPrimary) {

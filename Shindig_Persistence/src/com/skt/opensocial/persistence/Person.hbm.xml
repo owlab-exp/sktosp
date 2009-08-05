@@ -198,7 +198,7 @@
         <property name="profilesongurlType" type="string">
             <column name="PROFILESONGURL_TYPE" />
         </property>
-        <property name="profilesongurlPrimary" type="string">
+        <property name="profilesongurlPrimary" type="boolean">
             <column name="PROFILESONGURL_PRIMARY" />
         </property>
         <property name="profilevideourlValue" type="string">
@@ -210,7 +210,7 @@
         <property name="profilevideourlType" type="string">
             <column name="PROFILEVIDEOURL_TYPE" />
         </property>
-        <property name="profilevideourlPrimary" type="string">
+        <property name="profilevideourlPrimary" type="boolean">
             <column name="PROFILEVIDEOURL_PRIMARY" />
         </property>
         <property name="profilesongurl" type="string">

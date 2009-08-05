@@ -409,7 +409,7 @@ public class HActivityDBService implements ActivityService {
 				"Creating activity with stream params");
 
 			// create Activity
-			com.skt.opensocial.persistence.Activity activityDB = this.setActivityDBFromActivity(user, appId, activity);
+			com.skt.opensocial.persistence.Activity activityDB = this.setActivityDBFromActivity(person, appId, activity);
 			activityDB.setPerson(person);
 
 			// auto increment "id" is the activity id
@@ -469,7 +469,7 @@ public class HActivityDBService implements ActivityService {
 	}
 	
 	
-	private com.skt.opensocial.persistence.Activity setActivityDBFromActivity(String userId, String appId, Activity activity) {
+	private com.skt.opensocial.persistence.Activity setActivityDBFromActivity(Person user, String appId, Activity activity) {
 		com.skt.opensocial.persistence.Activity activityDB = new com.skt.opensocial.persistence.Activity();
 		
 
@@ -497,7 +497,7 @@ public class HActivityDBService implements ActivityService {
 		
 		activityDB.setUpdated( activity.getUpdated() );
 		activityDB.setUrl( activity.getUrl() );
-		activityDB.setUserId( userId );
+		activityDB.setPerson( user );
 		
 		return activityDB;
 		
