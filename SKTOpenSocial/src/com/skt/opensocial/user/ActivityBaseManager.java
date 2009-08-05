@@ -110,19 +110,31 @@ public class ActivityBaseManager extends ManageGadgetAction {
 			else if (activityEnum.equals(ActivityTypeEnum.modifyPersonalProfile))
 				activityNew.setTitle(userId + " modifies his personal information" );
 						
-			//System.out.println("add activity - 8" );
+			
 			activityNew.setPostedTime(Double.valueOf(0));
 			activityNew.setPriority(Double.valueOf(0));
+			//System.out.println("add activity - 8 activityNew.getId() : " + activityNew.getId() );
 			activityNew.setActivityId(String.valueOf(activityNew.getId()));
-			
+			//System.out.println("add activity - 8 activityNew.getActivityId() : " + activityNew.getActivityId() );
 			if (activityNew != null)
 				setActivity.add(activityNew);
 			person.setActivities(setActivity);
 			
 			//System.out.println("add activity - 9" );
 			
+			Integer id = (Integer) hs.save(activityNew);
+			
+			//System.out.println("add activity - 8 activityNew.getId() : " + activityNew.getId() + " : " + id );
+			activityNew.setActivityId(String.valueOf(activityNew.getId()));
+			//System.out.println("add activity - 8 activityNew.getActivityId() : " + activityNew.getActivityId() );
+			
 			hs.saveOrUpdate(activityNew);
+			
 			hs.saveOrUpdate(person);
+			
+			
+			
+			
 			//hs.saveOrUpdate(user);
 			tx.commit();
 			
