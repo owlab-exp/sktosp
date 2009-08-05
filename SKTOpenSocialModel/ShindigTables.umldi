@@ -578,6 +578,11 @@
             <element href="ShindigTables.uml#_T4l1AmBnEd6Q3-W4e6hhtA"/>
           </semanticModel>
         </contained>
+        <contained xsi:type="di:GraphNode" xmi:id="_P812AWG4Ed6ABNxwZt6HGw" position="0,0" size="-1,-1">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_P812AmG4Ed6ABNxwZt6HGw" presentation="default">
+            <element href="ShindigTables.uml#_P9R64GG4Ed6ABNxwZt6HGw"/>
+          </semanticModel>
+        </contained>
       </contained>
       <contained xsi:type="di:GraphNode" xmi:id="_H4SE1WBnEd6Q3-W4e6hhtA">
         <property xmi:id="_H4SE1mBnEd6Q3-W4e6hhtA" key="eStructuralFeatureID" value="47"/>
@@ -614,6 +619,11 @@
         <contained xsi:type="di:GraphNode" xmi:id="_cJA9oGBoEd6Q3-W4e6hhtA" position="0,0" size="-1,-1">
           <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_cJA9oWBoEd6Q3-W4e6hhtA" presentation="default">
             <element href="ShindigTables.uml#_cJA9omBoEd6Q3-W4e6hhtA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" xmi:id="_Qt3DQGG4Ed6ABNxwZt6HGw" position="0,0" size="-1,-1">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_Qt3DQWG4Ed6ABNxwZt6HGw" presentation="default">
+            <element href="ShindigTables.uml#_Qt3DQmG4Ed6ABNxwZt6HGw"/>
           </semanticModel>
         </contained>
       </contained>
@@ -891,7 +901,7 @@
         </semanticModel>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" xmi:id="__8vCMGB0Ed6Q3-W4e6hhtA" position="289,1034" size="234,-1">
+    <contained xsi:type="di:GraphNode" xmi:id="__8vCMGB0Ed6Q3-W4e6hhtA" position="242,1077" size="234,-1">
       <anchorage xmi:id="_gO4MgGB4Ed6Q3-W4e6hhtA" graphEdge="_gPB9gGB4Ed6Q3-W4e6hhtA"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="__8vCMWB0Ed6Q3-W4e6hhtA" presentation="default">
         <element href="ShindigTables.uml#__8vCOGB0Ed6Q3-W4e6hhtA"/>
@@ -1024,7 +1034,7 @@
         </semanticModel>
       </contained>
     </contained>
-    <contained xsi:type="di:GraphNode" xmi:id="_CAK5kGB1Ed6Q3-W4e6hhtA" position="332,859" size="163,-1">
+    <contained xsi:type="di:GraphNode" xmi:id="_CAK5kGB1Ed6Q3-W4e6hhtA" position="332,898" size="163,-1">
       <anchorage xmi:id="_Y4J2kGB4Ed6Q3-W4e6hhtA" graphEdge="_Y4J2kWB4Ed6Q3-W4e6hhtA"/>
       <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_CAK5kWB1Ed6Q3-W4e6hhtA" presentation="default">
         <element href="ShindigTables.uml#_CAK5mGB1Ed6Q3-W4e6hhtA"/>
@@ -1139,6 +1149,43 @@
     <contained xsi:type="di:GraphNode" xmi:id="_bSMK4GCKEd6Q3-W4e6hhtA" position="1429,296" size="231,52">
       <property xmi:id="_bSMK4WCKEd6Q3-W4e6hhtA" key="noteValue" value="Additional information in the format of Map&lt;String, String> templateParameters is seperately stored in this table."/>
       <semanticModel xsi:type="di:SimpleSemanticModelElement" xmi:id="_bSMK4mCKEd6Q3-W4e6hhtA" presentation="default" typeInfo="Note"/>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_c0VKkYHdEd6VqaiTBxe9hA" position="1159,1026" size="191,-1">
+      <property xmi:id="_jPJ48IHdEd6VqaiTBxe9hA" key="backgroundColor" value="255,128,255"/>
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_c0VKkoHdEd6VqaiTBxe9hA" presentation="default">
+        <element href="ShindigTables.uml#_c0e7kIHdEd6VqaiTBxe9hA"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_c0VKk4HdEd6VqaiTBxe9hA">
+        <property xmi:id="_c0VKlIHdEd6VqaiTBxe9hA" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_c0VKlYHdEd6VqaiTBxe9hA" presentation="default">
+          <element href="ShindigTables.uml#_c0e7kIHdEd6VqaiTBxe9hA"/>
+        </semanticModel>
+        <contained xsi:type="di:GraphNode" xmi:id="_k5svMIHdEd6VqaiTBxe9hA" position="0,0" size="-1,-1">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_k5svMYHdEd6VqaiTBxe9hA" presentation="default">
+            <element href="ShindigTables.uml#_k5svMoHdEd6VqaiTBxe9hA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" xmi:id="_maGyAIHdEd6VqaiTBxe9hA" position="0,0" size="-1,-1">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_maGyAYHdEd6VqaiTBxe9hA" presentation="default">
+            <element href="ShindigTables.uml#_maGyAoHdEd6VqaiTBxe9hA"/>
+          </semanticModel>
+        </contained>
+        <contained xsi:type="di:GraphNode" xmi:id="_nlzwIIHdEd6VqaiTBxe9hA" position="0,0" size="-1,-1">
+          <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_nlzwIYHdEd6VqaiTBxe9hA" presentation="default">
+            <element href="ShindigTables.uml#_nlzwIoHdEd6VqaiTBxe9hA"/>
+          </semanticModel>
+        </contained>
+      </contained>
+      <contained xsi:type="di:GraphNode" xmi:id="_c0VKloHdEd6VqaiTBxe9hA">
+        <property xmi:id="_c0VKl4HdEd6VqaiTBxe9hA" key="eStructuralFeatureID" value="47"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_c0VKmIHdEd6VqaiTBxe9hA" presentation="default">
+          <element href="ShindigTables.uml#_c0e7kIHdEd6VqaiTBxe9hA"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_pBJswIHdEd6VqaiTBxe9hA" position="1159,954" size="144,63">
+      <property xmi:id="_pBJswYHdEd6VqaiTBxe9hA" key="noteValue" value="Table, not related OpenSocial API but added as an example of Extended Social API"/>
+      <semanticModel xsi:type="di:SimpleSemanticModelElement" xmi:id="_pBJswoHdEd6VqaiTBxe9hA" presentation="default" typeInfo="Note"/>
     </contained>
   </diagrams>
 </diagrams:Diagrams>
