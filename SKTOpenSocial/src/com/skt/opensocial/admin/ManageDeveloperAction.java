@@ -113,11 +113,11 @@ public class ManageDeveloperAction extends DeveloperBaseAction implements Reques
 	private String profilesongurlValue;
 	private String profilesongurlLinkText;
 	private String profilesongurlType;
-	private String profilesongurlPrimary;
+	private Boolean profilesongurlPrimary;
 	private String profilevideourlValue;
 	private String profilevideourlLinkText;
 	private String profilevideourlType;
-	private String profilevideourlPrimary;
+	private Boolean profilevideourlPrimary;
 	private String profilesongurl;
 	private String profilevideourl;
 	private String profileurl;
@@ -535,10 +535,10 @@ public class ManageDeveloperAction extends DeveloperBaseAction implements Reques
 	public void setProfilesongurlType(String profilesongurlType) {
 		this.profilesongurlType = profilesongurlType;
 	}
-	public String getProfilesongurlPrimary() {
+	public Boolean getProfilesongurlPrimary() {
 		return profilesongurlPrimary;
 	}
-	public void setProfilesongurlPrimary(String profilesongurlPrimary) {
+	public void setProfilesongurlPrimary(Boolean profilesongurlPrimary) {
 		this.profilesongurlPrimary = profilesongurlPrimary;
 	}
 	public String getProfilevideourlValue() {
@@ -559,10 +559,10 @@ public class ManageDeveloperAction extends DeveloperBaseAction implements Reques
 	public void setProfilevideourlType(String profilevideourlType) {
 		this.profilevideourlType = profilevideourlType;
 	}
-	public String getProfilevideourlPrimary() {
+	public Boolean getProfilevideourlPrimary() {
 		return profilevideourlPrimary;
 	}
-	public void setProfilevideourlPrimary(String profilevideourlPrimary) {
+	public void setProfilevideourlPrimary(Boolean profilevideourlPrimary) {
 		this.profilevideourlPrimary = profilevideourlPrimary;
 	}
 	public String getProfilesongurl() {
