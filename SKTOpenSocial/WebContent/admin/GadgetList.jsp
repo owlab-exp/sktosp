@@ -187,7 +187,7 @@ window.name="GadgetList";
 						</s:if>
 						<s:elseif test="%{status.equals('pr')}">
 							<a href="#" onclick="javascript:adminpopup('popup_gadget_publish_response.jsp?gadgetId=<s:property value="id"/>','GadgetPublish');">
-							<input type="button" value="발행">
+							<input type="button" value="발행 허가/거부">
 							</a>
 						</s:elseif>
 						<s:elseif test="%{status.equals('pg')}">
