@@ -24,14 +24,11 @@ import org.apache.shindig.social.opensocial.spi.AppDataService;
 import org.apache.shindig.social.opensocial.spi.PersonService;
 import org.apache.shindig.social.sample.oauth.SampleOAuthDataStore;
 import org.apache.shindig.social.sample.oauth.SampleRealm;
-//import org.apache.shindig.social.sample.service.SampleContainerHandler;
+import org.apache.shindig.social.sample.service.SampleContainerHandler;
 import com.skt.opensocial.wrapper.persistence.spi.HActivityDBService;
 import com.skt.opensocial.wrapper.persistence.spi.HAppDataDBService;
 import com.skt.opensocial.wrapper.persistence.spi.HPersonDBService;
-import com.skt.opensocial.wrapper.persistence.service.SampleContainerHandler;
-import com.skt.opensocial.wrapper.persistence.service.SampleHandler;
 import com.skt.opensocial.wrapper.persistence.service.GroupHandler;
-
 import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
@@ -67,7 +64,6 @@ public class ShindigWrapperModule extends SocialApiGuiceModule {
     ImmutableSet.Builder<Object> handlers = ImmutableSet.builder();
     handlers.addAll(super.getHandlers());
     handlers.add(SampleContainerHandler.class);
-    handlers.add(SampleHandler.class);
     handlers.add(GroupHandler.class);
     return handlers.build();
   }
