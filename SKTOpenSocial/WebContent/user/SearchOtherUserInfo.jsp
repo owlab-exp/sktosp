@@ -45,7 +45,8 @@
             <div class="subject subject_char"> 
             <ul class="subject_sub">
             <li>홈</li>
-            <li><strong>사용자검색결과</strong></li> 
+            <li>사용자메뉴</li>
+            <li><strong>사용자정보보기</strong></li> 
             </ul>
             </div>
           </td>

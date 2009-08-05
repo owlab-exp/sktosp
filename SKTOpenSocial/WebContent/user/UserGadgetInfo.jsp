@@ -145,7 +145,7 @@
 					<tr>
 						<td><!-- list of gadgets -->
 						<table class="subtit_board" summary="List of Gadgets"
-							cellpadding="0" cellspacing="0" width="100%" height="600px">
+							cellpadding="0" cellspacing="0" width="100%" height="300px">
 							<colgroup>
 								<col width="10%">
 								<col width="90%">
@@ -202,7 +202,7 @@
 									<td class="line" colspan="2"></td>
 								</tr>
 								
-								<tr height="600px">
+								<tr >
 									<td valign="top">가젯 실행</td>
 									<s:if test="%{status.equals('pg')}">
 										<s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
