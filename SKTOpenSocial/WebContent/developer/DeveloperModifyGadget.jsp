@@ -109,7 +109,7 @@
 									<td valign="top">가젯 URL:</td>
 									<td>
 										<s:textfield id="gadgetUrlTxt" name="gadgetUrl" size="50"/> <input type="button" onclick="javascript:validateGadgetXML('<s:property value="%{urlForGadgetValidation}" />')" value="가젯 XML 체크"><br>
-										<div id="validationResult">예: http://www.google.com/ig/modules/builtin_gmail.xml</div>
+										<div id="validationResult"></div>
 									</td>
 								</tr>
 								</s:elseif>

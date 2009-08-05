@@ -94,8 +94,8 @@
   }
 
   .gadgets-gadget {
-    width: 100%;
-    height: 100%;
+    width: 98%;
+    height: 98%;
   }
 .gadgets-gadget-content {
 	height: 90%;
@@ -208,17 +208,22 @@
 								onclick="javascript:popup('%{publishRequestUrl}','PublishConfirm')">발행요청</s:a>/<s:a
 								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
 								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
+								<%-- Published or Publish requested--%>
+							<em class="p">
+							<s:url id="listGadgetUrl" action="ListGadgets"/>
+							<s:a href="%{listGadgetUrl}">목록으로 돌아가기</s:a></em>
 						</s:elseif> <s:elseif test="%{gadgetStatus.equals('pd')}">
 							<%-- Publish Denied--%>
 							<em class="p"><s:a href="#"
 								onclick="javascript:popup('%{viewDenyReasonUrl}','PublishDeny')">거절사유</s:a>/<s:a
 								href="%{modifyGadgetUrl}">수정</s:a>/<s:a href="#"
 								onclick="javascript:popup('%{removeGadgetUrl}','RemoveConfirm')">삭제</s:a></em>
-						</s:elseif>
-							<%-- Published or Publish requested--%>
+								<%-- Published or Publish requested--%>
 							<em class="p">
 							<s:url id="listGadgetUrl" action="ListGadgets"/>
 							<s:a href="%{listGadgetUrl}">목록으로 돌아가기</s:a></em>
+						</s:elseif>
+							
 						</div>
 						</td>
 					</tr>
