@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 25, 2009 4:34:44 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.skt.opensocial.persistence.PersonAdditionalInfo2" table="SHINDIG_PERSON_ADDITIONAL_INFO_2" >
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+<!--        <property name="userId" type="string">-->
+<!--            <column name="USER_ID" not-null="true" />-->
+<!--        </property>-->
+        <property name="attribute">
+            <column name="ATTRIBUTE">
+                <comment>There is a defined set of ATTRIBUTE, so you can only insert values in the set. The set is as follows: {emails, ims, phoneNumbers, and photos} (Case
+                Sensitive)</comment>
+            </column>
+            <type name="com.skt.opensocial.persistence.GenericEnumUserType" >
+        		<param name="enumClass">com.skt.opensocial.persistence.Info2AttributeEnum</param>
+        	</type>
+        </property>
+        <property name="type" type="string">
+            <column name="FIELD_TYPE" />
+        </property>
+        <property name="value" type="string">
+            <column name="FIELD_VALUE" length="1000" />
+        </property>
+        <property name="primary" type="java.lang.Boolean">
+            <column name="FIELD_PRIMARY" />
+        </property>
+        <many-to-one name="person" class="com.skt.opensocial.persistence.Person" column="USER_ID" not-null="true"/>
+    </class>
+</hibernate-mapping>
