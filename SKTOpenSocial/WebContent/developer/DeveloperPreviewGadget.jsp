@@ -86,17 +86,21 @@
     float: right;
   }
 
-
-  .gadgets-gadget-chrome {
-    width: 90%;
-    float: none;
-    margin: auto;
+.gadgets-gadget-chrome {
+    width: 100%;
+    height: 100%;
+    float: center;
+    margin: 0;
   }
 
   .gadgets-gadget {
     width: 100%;
+    height: 100%;
   }
-
+.gadgets-gadget-content {
+	height: 90%;
+  padding: 4px;
+}
 </style>
 <title>가젯 미리보기</title>
 </head>
@@ -136,7 +140,7 @@
 					<tr >
 						<td><!-- list of gadgets -->
 						<table class="subtit_board" summary="List of Gadgets"
-							cellpadding="0" cellspacing="0" width="100%" >
+							cellpadding="0" cellspacing="0" width="100%" height="100%">
 							<colgroup>
 								<col width="100%">
 							</colgroup>
@@ -145,8 +149,8 @@
 									<td>가젯 이름(ID): <s:property value="gadgetName" /> (<s:property
 										value="gadgetId" />)</td>
 								</tr>
-								<tr><s:if test="%{registerType.equals('url') || registerType.equals('src')}" >
-										<td valign="top" >
+								<tr height="400"><s:if test="%{registerType.equals('url') || registerType.equals('src')}" > <!--  for Gadget Size -->
+										<td valign="top" height="390"> <!--  for Gadget Size -->
 											<div id="gadget-chrome" class="gadgets-gadget-chrome"></div>
 										</td>
 									</s:if>
