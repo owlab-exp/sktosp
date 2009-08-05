@@ -119,7 +119,7 @@ public class PersonActivityTest {
 		ami1.setActivityId(actId_1); // required
 		ami1.setUserId(userId); // required
 		ami1.setMimeType("text/html");
-		ami1.setType(ItemTypeEnum.AUDIO);
+		ami1.setType(ItemTypeEnum.audio);
 		ami1.setThumbnailUrl("a thumb");
 		
 		session.saveOrUpdate(ami1);
@@ -129,7 +129,7 @@ public class PersonActivityTest {
 		ami2.setActivityId(actId_1); //required
 		ami2.setUserId(userId); //required
 		ami2.setMimeType("binary/jpeg");
-		ami2.setType(ItemTypeEnum.IMAGE);
+		ami2.setType(ItemTypeEnum.image);
 		ami2.setThumbnailUrl("second thumb");
 		
 		session.saveOrUpdate(ami2);
