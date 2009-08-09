@@ -61,18 +61,6 @@
     html += '</ul>';
     
     
-    
-    html += 'Friends of ' + owner.getDisplayName(); 
-    html += ':<br><ul>';
-    var viewerFriends = dataResponse.get('viewerFriends').getData();
-    html += viewerFriends.size();
-    viewerFriends.each(function(person) {
-      html += '<li>' + person.getDisplayName() + '</li>';
-    });
-    html += '</ul>';
-    
-    html += '<br><br>';
-    
     document.getElementById('message').innerHTML = html;
   };
 
