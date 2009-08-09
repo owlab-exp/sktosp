@@ -48,6 +48,11 @@ public class ShindigWrapperModule extends SocialApiGuiceModule {
     
     bind(String.class).annotatedWith(Names.named("shindig.canonical.json.db"))
         .toInstance("sampledata/canonicaldb.json");
+    
+    // the implementation of Opensocial services
+    // ActivityService for Activity
+    // AppDataService for Persistence
+    // PersonService for Person
     bind(ActivityService.class).to(HActivityDBService.class);
     bind(AppDataService.class).to(HAppDataDBService.class);
     bind(PersonService.class).to(HPersonDBService.class);
@@ -63,6 +68,8 @@ public class ShindigWrapperModule extends SocialApiGuiceModule {
   protected Set<Object> getHandlers() {
     ImmutableSet.Builder<Object> handlers = ImmutableSet.builder();
     handlers.addAll(super.getHandlers());
+    
+    // Add additional handlers here
     handlers.add(SampleContainerHandler.class);
     handlers.add(GroupHandler.class);
     return handlers.build();
