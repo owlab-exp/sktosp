@@ -1,19 +1,12 @@
 package com.skt.opensocial.admin;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
-import com.skt.opensocial.common.GadgetCategoryList;
 import com.skt.opensocial.developer.ManageGadgetAction;
 import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetCategory;
