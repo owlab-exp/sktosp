@@ -19,9 +19,11 @@ import com.skt.opensocial.persistence.Info2AttributeEnum;
 import com.skt.opensocial.persistence.PersonAdditionalInfo2;
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Seong Yong Lim based on Ernest Lee's
- *
+/**	사용자가 자신의 정보를 조회하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class MyProfilePageAction extends DeveloperBaseAction {
@@ -41,6 +43,9 @@ public class MyProfilePageAction extends DeveloperBaseAction {
 	
 	int requestedPage = 1;
 	
+	/**	로그인 정보로 부터 넘겨받는 사용자 아이디
+	 *  
+	 */
 	String userId;
 	String name;
 	Date registeredDate;

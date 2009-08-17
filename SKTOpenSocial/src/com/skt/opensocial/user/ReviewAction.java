@@ -17,9 +17,11 @@ import com.skt.opensocial.persistence.GadgetReview;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Seong Yong Lim based on Ernest Lee's
- *
+/**	사용자가 가젯의 리뷰를 조회하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class ReviewAction extends DeveloperBaseAction {
@@ -36,8 +38,15 @@ public class ReviewAction extends DeveloperBaseAction {
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
 	String userId;
+	/**	리뷰를 조회하려는 가젯 아이디 정보
+	 *  
+	 */	
 	Long gadgetId;
 	Gadget gadget;
+	
+	/**	출력되는 리뷰들 정보
+	 *  
+	 */	
 	Set<GadgetReview> gadgetReviews;
 		
 	int requestedPage = 1;
@@ -74,6 +83,9 @@ public class ReviewAction extends DeveloperBaseAction {
 		this.gadgetReviews = gadgetReviews;
 	}
 
+	/** execute 메소드 에서는 가젯의 아이디를 이용해 리뷰들 정보를 가져온다.
+	 * 
+	 */
 	public String execute() throws Exception{
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();

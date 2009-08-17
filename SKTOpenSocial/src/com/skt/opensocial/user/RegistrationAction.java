@@ -37,7 +37,7 @@ public class RegistrationAction extends ActivityBaseManager {
 	/** 입력된 사용자ID 가 이미 시스템에서 사용되고 있음을
 	 * 알리는 에러 표시자
 	 * Error indicator when the inserted userId is already used
-	*/
+	*/ 
 	public String userIdDuplicationError = "false";
 	
 	/**	입력된 사용자ID 가 존재하지 않음을 알리는 에러 표시자

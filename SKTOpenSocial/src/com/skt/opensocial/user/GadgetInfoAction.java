@@ -20,9 +20,11 @@ import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Seong yong Lim based on Ernest Lee's
- *
+/**	사용자가 가젯 정보를 조회하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class GadgetInfoAction extends ActivityBaseManager{
@@ -32,7 +34,10 @@ public class GadgetInfoAction extends ActivityBaseManager{
 	 */
 	private static final long serialVersionUID = 1L;
 	Map<String, Object> session;
-	
+		
+	/**	출력되는 가젯 정보
+	 *  
+	 */	
 	public Gadget gadget;
 	public String name;
 	public String introduction;
@@ -47,6 +52,9 @@ public class GadgetInfoAction extends ActivityBaseManager{
 	private String viewerId;
 	
 	private User user;
+	/**	로그인 세션에 저장된 해당 사용자 아이디
+	 *  
+	 */	
 	private String userId;
 	
 	public void setSession(Map<String, Object> map) {
@@ -156,7 +164,10 @@ public class GadgetInfoAction extends ActivityBaseManager{
 	public void setCategoryStringList(String categoryStringList) {
 		this.categoryStringList = categoryStringList;
 	}
-
+	
+	/** execute 메소드 에서는 사용자에게 가젯 정보를 출력한다.
+	 * 
+	 */
 	public String execute() throws Exception{
 		prepare();
 		

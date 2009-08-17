@@ -34,6 +34,12 @@ import com.skt.opensocial.persistence.User;
 import com.skt.opensocial.persistence.UserVisibility;
 import com.skt.opensocial.security.PasswordEncryptor;
 
+/**	사용자가 등록을 위해 자신의 정보를 입력하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
+ */
 public class RegistrationSubmitAction extends ActionSupport implements SessionAware {
 
 	
@@ -48,6 +54,9 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**	사용자가 입력하는 등록 정보
+	 *  
+	 */	
 	private User user;
 	private String userIdWant;
 	private String passwordWant;
@@ -1621,6 +1630,9 @@ public class RegistrationSubmitAction extends ActionSupport implements SessionAw
 		}
 	}
 	
+	/** execute 메소드 에서는 사용자로부터 입력받은 사용자 정보를 데이터베이스에 등록한다.
+	 * 
+	 */
 	public String execute() throws Exception{
 		hsession = HibernateUtil.getSessionFactory().getCurrentSession();
 		tran = null;

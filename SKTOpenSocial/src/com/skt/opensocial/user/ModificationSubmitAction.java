@@ -32,6 +32,12 @@ import com.skt.opensocial.persistence.UserVisibility;
 
 import com.skt.opensocial.security.PasswordEncryptor;
 
+/**	사용자가 자신의 정보를 수정하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
+ */
 public class ModificationSubmitAction extends ActivityBaseManager implements SessionAware {
 
 	
@@ -46,6 +52,9 @@ public class ModificationSubmitAction extends ActivityBaseManager implements Ses
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**	수정하려는 사용자 정보
+	 *  
+	 */	
 	private User user;
 	private String userId;
 	private String password;
@@ -1521,6 +1530,9 @@ public class ModificationSubmitAction extends ActivityBaseManager implements Ses
 		tran.commit();
 	}
 	
+	/** execute 메소드 에서는 사용자에게서 입력받은 사용자 정보을 이용해 데이터베이스를 수정한다.
+	 * 
+	 */
 	public String execute() throws Exception
 	{
 		Session hsession = HibernateUtil.getSessionFactory().getCurrentSession();

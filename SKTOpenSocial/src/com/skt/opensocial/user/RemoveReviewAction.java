@@ -19,9 +19,11 @@ import com.skt.opensocial.persistence.HibernateUtil;
 
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Seong Yong Lim based on Ernest Lee's
- *
+/**	사용자가 가젯의 리뷰를 삭제하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class RemoveReviewAction extends ActivityBaseManager {
@@ -47,6 +49,9 @@ public class RemoveReviewAction extends ActivityBaseManager {
 	String reviewerId;
 	User reviewer;
 	
+	/**	삭제하려는 리뷰 아이디 정보
+	 *  
+	 */	
 	Long reviewId;
 	
 	GadgetReview review;
@@ -125,6 +130,9 @@ public class RemoveReviewAction extends ActivityBaseManager {
 		this.reviewer = reviewer;
 	}
 
+	/** execute 메소드 에서는 해당되는 가젯의 리뷰를 삭제한다.
+	 * 
+	 */
 	public String execute() throws Exception {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		org.hibernate.Transaction tx = null;

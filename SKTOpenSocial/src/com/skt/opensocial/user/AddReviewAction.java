@@ -21,9 +21,11 @@ import com.skt.opensocial.persistence.HibernateUtil;
 
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Seong Yong Lim based on Ernest Lee's
- *
+/**	사용자가 가젯의 리뷰를 추가하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class AddReviewAction extends ActivityBaseManager {
@@ -39,6 +41,9 @@ public class AddReviewAction extends ActivityBaseManager {
 	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
+	/**	리뷰를 추가하려는 가젯 아이디 정보
+	 *  
+	 */	
 	Long gadgetId;
 	Gadget gadget;
 	Set<GadgetReview> gadgetReviews;
@@ -105,7 +110,9 @@ public class AddReviewAction extends ActivityBaseManager {
 	public void setReviewer(User reviewer) {
 		this.reviewer = reviewer;
 	}
-
+	/** execute 메소드 에서는 사용자로부터 입력받은 해당 가젯의 리뷰 정보를 데이터베이스에 등록한다.
+	 * 
+	 */
 	public String execute() throws Exception{
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();

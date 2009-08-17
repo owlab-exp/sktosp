@@ -24,9 +24,11 @@ import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Seong Yong Lim based on Ernest Lee's
- *
+/**	사용자가 가젯리스트를 조회하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 //public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class ListGadgetsAction extends DeveloperBaseAction {
@@ -134,6 +136,9 @@ public class ListGadgetsAction extends DeveloperBaseAction {
 		this.sortsc = sortsc;
 	}
 
+	/** execute 메소드 에서는 선호하는 가젯 리스트를 출력한다.
+	 * 
+	 */
 	public String execute() throws Exception{
 		//
 		

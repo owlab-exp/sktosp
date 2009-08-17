@@ -26,6 +26,12 @@ import com.skt.opensocial.persistence.PersonUrl;
 import com.skt.opensocial.persistence.SmokerEnum;
 import com.skt.opensocial.persistence.User;
 
+/**	사용자가 자신의 정보를 수정하기 위해 조회하는 액션 클래스
+ * @author 	Seong Yong Lim based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
+ */
 public class ModificationAction extends ActionSupport implements SessionAware {
 
 	
@@ -40,6 +46,9 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**	수정을 위해 출력되는 사용자 정보
+	 *  
+	 */	
 	private User user;
 	private String userId;
 	private String password;
@@ -186,6 +195,9 @@ public class ModificationAction extends ActionSupport implements SessionAware {
 	//private UserVisibility userVisibility;
 	//private Set<GadgetReview> reviews;
 	
+	/** execute 메소드 에서는 사용자정보를 가져와 출력한다.
+	 * 
+	 */
 	public String execute() {
 		//User user = new User();
 		user = (User)session.get(SKTOpenSocialSupportConstants.USER);
