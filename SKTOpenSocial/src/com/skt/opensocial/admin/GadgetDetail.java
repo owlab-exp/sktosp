@@ -12,6 +12,12 @@ import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.HibernateUtil;
 
+/**	관리자가 가젯 상세 정보를 확인하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
+ */
 //public class GadgetDetail {
 public class GadgetDetail extends ManageGadgetAction{
 	
@@ -20,6 +26,9 @@ public class GadgetDetail extends ManageGadgetAction{
 	private String categoryListStr;
 	private Integer favoriteUserSize;
 	
+	/** 가젯의 ID를 받아 가젯의 상세 정보를 가져옴
+	 * 
+	 */
 	public String execute() throws Exception{
 		
 		

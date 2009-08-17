@@ -17,14 +17,22 @@ import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.GadgetPublish;
 import com.skt.opensocial.persistence.HibernateUtil;
 
-/**
- * @author Sejoon Oh
- *
+/**	관리자가 가젯 리스트에 있는 해당 가젯를 발행취소하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 public class CancelGadgetAction extends ManageGadgetAction {
 	
+	/** jsp페이지 로부터 넘겨 받은 발행 취소 가젯의 취소 사유
+	 * 
+	 */
 	protected String rejectreason;
 
+	/** 가젯의 ID를 받아 가젯을 상태를 발행취소상태로 변경시킴
+	 * 
+	 */
 	public String execute() throws Exception{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;

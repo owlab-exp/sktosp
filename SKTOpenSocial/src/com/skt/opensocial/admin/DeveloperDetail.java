@@ -13,13 +13,27 @@ import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
-
+/**	관리자가 개발자의 상세 정보를 확인하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
+ */
 public class DeveloperDetail extends ManageDeveloperAction{
 	
+	/** jsp페이지 로부터 넘겨 받은 개발자 ID
+	 * 
+	 */
 	private String developerId;
 	private User developer;
+	/** 출력되는 개발자의 상세 정보
+	 * 
+	 */
 	public List displayList;
 	
+	/** 개발자의 ID를 받아 개발자의 상세 정보를 가져옴
+	 * 
+	 */
 	public String execute() throws Exception{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;

@@ -22,9 +22,11 @@ import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.Person;
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Sejoon Oh
- *
+/**	관리자가 개발자를 검색하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 public class SearchDeveloperAction extends AdministratorBaseAction {
 	private static Logger logger = Logger.getLogger(SearchDeveloperAction.class);
@@ -32,15 +34,33 @@ public class SearchDeveloperAction extends AdministratorBaseAction {
 	private static final long serialVersionUID = 1L;
 
 	Map<String, Object> session;
+	/** 출력하려는 개발자의 리스트
+	 * 
+	 */	
 	List<Gadget> developers;
 
+	/** jsp페이지 로부터 넘겨 받은 검색 필드
+	 * 
+	 */
 	String searchfield	= "";
+	/** 검색 쿼리
+	 * 
+	 */	
 	String query	= "";
+	/** 정렬을 원하는 필드
+	 * 
+	 */	
 	String sortfield	= "registeredDate";
+	/** 정렬 방향
+	 * 
+	 */	
 	String sortsc	= "desc";
 	
 	int listscale	= 10;
 	int pagescale	= 10;
+	/** 페이징에서 현재 페이지
+	 * 
+	 */		
 	int currentpage	= 1;
 	int totalcount	= 0;
 	
@@ -51,6 +71,9 @@ public class SearchDeveloperAction extends AdministratorBaseAction {
 	int prepage	= 0;
 	int postpage	= 0;
 
+	/** 현재 저장되어 있는 가젯을 검색하고 해당 리스트를 가져옴
+	 * 
+	 */
 	public String execute() throws Exception{
 		
 		if (searchfield.length() > 0 && query.length() == 0) {

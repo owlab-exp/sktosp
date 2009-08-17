@@ -17,14 +17,22 @@ import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.GadgetPublish;
 import com.skt.opensocial.persistence.HibernateUtil;
 
-/**
- * @author Sejoon Oh
- *
+/**	관리자가 가젯의 발행을 거부하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 public class RejectGadgetAction extends ManageGadgetAction {
 	
+	/** jsp페이지 로부터 넘겨 받은 가젯 발행거부 사유
+	 * 
+	 */
 	protected String rejectreason;
 
+	/** 가젯의 ID를 받아 해당가젯의 상태를 발행요청에서 발행거부로 변경시킴
+	 * 
+	 */
 	public String execute() throws Exception{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;

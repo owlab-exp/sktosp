@@ -19,15 +19,24 @@ import com.skt.opensocial.persistence.GadgetPublish;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
-/**
- * @author Sejoon Oh
- *
+/**	관리자가 개발자 리스트에 있는 해당 개발자를 삭제하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 public class CancelDeveloperAction extends DeveloperBaseAction {
 	
+
+	/** jsp페이지 로부터 넘겨 받은 삭제 대상 개발자의 ID
+	 * 
+	 */
 	private String developerId;
 	private User developer;
 
+	/** 개발자의 ID를 받아 개발자 flag를 false로 변경시킴
+	 * 
+	 */	
 	public String execute() throws Exception{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;

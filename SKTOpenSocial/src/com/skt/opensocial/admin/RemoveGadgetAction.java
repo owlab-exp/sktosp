@@ -15,8 +15,10 @@ import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetIcon;
 import com.skt.opensocial.persistence.HibernateUtil;
 
-/**
- * @author Ernest Lee
+/**	관리자가 가젯을 삭제하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
  * 
  */
 // public class ListGadgetsAction extends ActionSupport implements RequestAware
@@ -28,6 +30,9 @@ public class RemoveGadgetAction extends AdministratorBaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/** jsp페이지 로부터 넘겨 받은 삭제 대상 가젯의 ID
+	 * 
+	 */	
 	private Long gadgetId;
 	private String gadgetName;
 	
@@ -42,6 +47,10 @@ public class RemoveGadgetAction extends AdministratorBaseAction {
 		
 		return "remove_confirm_page";
 	}
+	
+	/** 가젯의 ID를 받아 해당가젯을 삭제함
+	 * 
+	 */
 	public String execute() throws Exception{
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;

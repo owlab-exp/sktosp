@@ -17,13 +17,17 @@ import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.GadgetCategory;
 import com.skt.opensocial.persistence.HibernateUtil;
 
-/**
- * @author Sejoon Oh
- *
+/**	관리자가 가젯의 발행을 허가하는 액션 클래스
+ * @author 	Sejoon Oh based on Ernest Lee's
+ * @version 
+ * @since	1.0
+ * 
  */
 public class PublishGadgetAction extends ManageGadgetAction {
 	
-
+	/** 가젯의 ID를 받아 해당가젯의 상태를 발행요청에서 발행상태로 변경시킴
+	 * 
+	 */
 	public String execute() throws Exception{
 		//prepare();
 	    //try {
