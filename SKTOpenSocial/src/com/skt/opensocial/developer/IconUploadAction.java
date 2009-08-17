@@ -24,6 +24,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 아이콘 파일을 업로드하여 데이터베이스에 저장하기 위한 액션 클래스이다.
  * @author Ernest Lee
  * 
  */
@@ -36,34 +37,71 @@ public class IconUploadAction extends ManageGadgetAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 아이콘 파일
+	 */
 	private File icon;
+	/**
+	 * 아이콘 파일의 컨텐트 유형
+	 */
 	private String iconContentType;
+	/**
+	 * 아이콘 파일의 이름
+	 */
 	private String iconFileName;
 
+	/**
+	 * 아이콘 파일을 가져온다
+	 * @return 아이콘 파일 오브젝트
+	 */
 	public File getIcon() {
 		return icon;
 	}
 
+	/**
+	 * 아이콘 파일을 셋팅한다
+	 * @param file 아이콘 파일
+	 */
 	public void setIcon(File file) {
 		this.icon = file;
 	}
 
+	/**
+	 * 아이콘 파일의 컨텐트 유형을 가져온다
+	 * @return 아이콘 파일의 컨텐트 유형
+	 */
 	public String getIconContentType() {
 		return iconContentType;
 	}
 
+	/**
+	 * 아이콘 파일의 컨텐트 유형을 셋팅한다
+	 * @param contentType 컨텐트 유형
+	 */
 	public void setIconContentType(String contentType) {
 		this.iconContentType = contentType;
 	}
 
+	/**
+	 * 아이콘 파일의 이름을 가져온다
+	 * @return 아이콘 파일 이름
+	 */
 	public String getIconFileName() {
 		return iconFileName;
 	}
 
+	/**
+	 * 아이콘 파일의 이름을 셋팅한다
+	 * @param iconFileName 아이콘 파일 이름
+	 */
 	public void setIconFileName(String iconFileName) {
 		this.iconFileName = iconFileName;
 	}
 
+	/**
+	 * 가젯을 저장하고 저장된 가젯을 위한 아이콘을 업로드하는 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 		if (getGadgetName() == null) {
 			logger.info("No gadget name");

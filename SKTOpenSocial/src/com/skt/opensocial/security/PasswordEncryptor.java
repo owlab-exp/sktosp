@@ -9,6 +9,11 @@ import org.apache.log4j.Logger;
 
 import sun.misc.BASE64Encoder;
 
+/**
+ * 사용자의 패스워드를 암호화하고 복호화하기 위한 클래스
+ * @author Ernest Lee
+ *
+ */
 public final class PasswordEncryptor {
 	static Logger logger = Logger.getLogger(PasswordEncryptor.class);
 	
@@ -18,6 +23,10 @@ public final class PasswordEncryptor {
 		
 	}
 
+	/**
+	 * PasswordEncryptor 오브젝트를 생성해주기 위한 싱글톤 메소드이다
+	 * @return PasswordEncryptor 오브젝트
+	 */
 	public static synchronized PasswordEncryptor getInstance() {
 		if(encryptor == null) {
 			encryptor = new PasswordEncryptor();
@@ -25,6 +34,11 @@ public final class PasswordEncryptor {
 		return encryptor;
 	}
 	
+	/**
+	 * 암호화(실은, 해싱)을 수행하는 메소드
+	 * @param plainString 평문 암호
+	 * @return 암호의 해쉬 문자열
+	 */
 	public synchronized String encrypt(String plainString){
 		MessageDigest md = null;
 		
@@ -51,6 +65,12 @@ public final class PasswordEncryptor {
 	    return hash;
 	}
 	
+	/**
+	 * 평문과 해쉬값을 전달하여 일치하는지를 확인한다
+	 * @param plain 평문
+	 * @param hash 해쉬 문자열
+	 * @return true 또는 false
+	 */
 	public static boolean isMatch(String plain, String hash){
 		PasswordEncryptor pe = getInstance();
 		boolean match = false;

@@ -21,6 +21,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 가젯 목록을 가져오기 위한 액션 클래스이다.
  * @author Ernest Lee
  * 
  */
@@ -39,19 +40,44 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 	private Map<String, Object> session;
 	// Collection<GadgetData> gadgetList;
 	// Set<Gadget> gadgets;
+	/**
+	 * 가젯 목록
+	 */
 	private List<Gadget> gadgetList;
 	
 
 	// properties for pagenation
+	/**
+	 * 한 페이지에 표시될 가젯 목록의 크기
+	 */
 	private int listSize = 8; // the size of gadget list
+	/**
+	 * 요쳥된 페이지
+	 */
 	private int requestedPage = 1;
+	/**
+	 * 전체 페이지 수
+	 */
 	private int maxPage = 1;
 	
+	/**
+	 * 페이지 목록에 표시될 첫 페이지
+	 */
 	private int startPage = 1;
+	/**
+	 * 페이지 목록에 표시될 페이지의 총 수
+	 */
 	private int pageListSizeMax = 10;
 
+	/**
+	 * 페이지 목록
+	 */
 	private List<Integer> pageList = new ArrayList<Integer>();
 	// end for pagenation
+	/**
+	 * 페지에 표시될 가젯의 목록을 만들기 위한 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	@SuppressWarnings("unchecked")
 	public String execute() throws Exception {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -125,83 +151,74 @@ public class ListGadgetsAction extends DeveloperBaseAction implements Pagenation
 		
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.apache.struts2.interceptor.RequestAware#setRequest(java.util.Map)
-	 */
-	/*
-	 * @Override public void setRequest(Map<String, Object> request) { // TODO
-	 * Auto-generated method stub //this.request = request;
-	 * 
-	 * }
-	 */
-
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
 	}
 
-	// public GadgetDataList getGadgetDataList() {
-	// return gadgetDataList;
-	// }
-	//
-	// public void setGadgetDataList(GadgetDataList gadgetDataList) {
-	// this.gadgetDataList = gadgetDataList;
-	// }
-	//
-	// public Map<String, GadgetData> getGadgetMap() {
-	// return gadgetMap;
-	// }
-	//
-	// public void setGadgetMap(Map<String, GadgetData> gadgetMap) {
-	// this.gadgetMap = gadgetMap;
-	// }
-	//
-	// public Collection<GadgetData> getGadgetList() {
-	// return gadgetList;
-	// }
-	//
-	// public void setGadgetList(Collection<GadgetData> gadgetList) {
-	// this.gadgetList = gadgetList;
-	// }
+	
 
+	/** 
+	 * 요청된 페이지 번호를 가져온다.
+	 * @see com.skt.opensocial.developer.Pagenation#getRequestedPage()
+	 */
 	public int getRequestedPage() {
 		return requestedPage;
 	}
 
+	/** 
+	 * 요청된 페이지 번호를 셋팅한다
+	 * @see com.skt.opensocial.developer.Pagenation#setRequestedPage(int)
+	 */
 	public void setRequestedPage(int requestedPage) {
 		this.requestedPage = requestedPage;
 	}
 
-	// public Set<Gadget> getGadgets() {
-	// return gadgets;
-	// }
-	//
-	// public void setGadgets(Set<Gadget> gadgets) {
-	// this.gadgets = gadgets;
-	// }
+	
 
+	/**
+	 * 가젯 목록을 가져온다.
+	 * @return 가젯 목록
+	 */
 	public List<Gadget> getGadgetList() {
 		return gadgetList;
 	}
 
+	/**
+	 * 가젯 목록을 셋팅한다
+	 * @param gadgetList 가젯 목록
+	 */
 	public void setGadgetList(List<Gadget> gadgetList) {
 		this.gadgetList = gadgetList;
 	}
 
+	/**
+	 * 가젯 목록을 페이지로 표시하는 경우 전체 페이지 수를 가져온다
+	 * @see com.skt.opensocial.developer.Pagenation#getMaxPage()
+	 */
 	public int getMaxPage() {
 		return maxPage;
 	}
 
+	/**
+	 * 가젯 목록의 전체 페이지를 셋팅한다
+	 * @see com.skt.opensocial.developer.Pagenation#setMaxPage(int)
+	 */
 	public void setMaxPage(int maxPage) {
 		this.maxPage = maxPage;
 	}
 
+	/**
+	 * 페이지들을 가져온다. 예) 1,2,3,4,5,...
+	 * @see com.skt.opensocial.developer.Pagenation#getPageList()
+	 */
 	public List<Integer> getPageList() {
 		return pageList;
 	}
 
+	/**
+	 * 페이지들을 셋팅한다. 예) 1,2,3,4,5, ...
+	 * @see com.skt.opensocial.developer.Pagenation#setPageList(java.util.List)
+	 */
 	public void setPageList(List<Integer> pageList) {
 		this.pageList = pageList;
 	}

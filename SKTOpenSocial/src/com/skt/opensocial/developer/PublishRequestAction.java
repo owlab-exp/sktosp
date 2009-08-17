@@ -17,6 +17,7 @@ import com.skt.opensocial.persistence.GadgetPublish;
 import com.skt.opensocial.persistence.HibernateUtil;
 
 /**
+ * 가젯 발행요청을 처리하는 액션 클래스
  * @author Ernest Lee
  * 
  */
@@ -25,19 +26,30 @@ import com.skt.opensocial.persistence.HibernateUtil;
 public class PublishRequestAction extends DeveloperBaseAction {
 	private Logger logger = Logger.getLogger(PublishRequestAction.class);
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 가젯 ID
+	 */
 	private Long gadgetId;
+	/**
+	 * 가젯 이름
+	 */
 	private String gadgetName;
 
 	private Map<String, Object> session;
 
+	/**
+	 * 발행확인을 위한 웹 페이지를 리턴한다.
+	 * @return 발행확인을 위한 웹 페이지
+	 */
 	public String publishConfirm(){
 		
 		return "publish_confirm_page";
 	}
+	/** 
+	 * 특정 가젯 ID에 대해 가젯 상태를 발행요청으로 바꾼다.
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
@@ -66,18 +78,34 @@ public class PublishRequestAction extends DeveloperBaseAction {
 		}
 	}
 
+	/**
+	 * 가젯 ID를 가져온다
+	 * @return 가젯 ID
+	 */
 	public Long getGadgetId() {
 		return gadgetId;
 	}
 
+	/**
+	 * 가젯 ID를 셋팅한다
+	 * @param gadgetId 가젯 ID
+	 */
 	public void setGadgetId(Long gadgetId) {
 		this.gadgetId = gadgetId;
 	}
 
+	/**
+	 * 가젯 이름을 가져온다
+	 * @return 가젯 이름
+	 */
 	public String getGadgetName() {
 		return gadgetName;
 	}
 
+	/**
+	 * 가젯 이름을 셋팅한다
+	 * @param gadgetName 가젯 이름
+	 */
 	public void setGadgetName(String gadgetName) {
 		this.gadgetName = gadgetName;
 	}

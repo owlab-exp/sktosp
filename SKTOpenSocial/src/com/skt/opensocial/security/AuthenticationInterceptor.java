@@ -8,6 +8,11 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.persistence.User;
 
+/**
+ * 액션이 호출될 때에 호출자가 로긴했는지 여부를 판별하기 위한 인터셉터이다
+ * @author Ernest Lee
+ *
+ */
 public class AuthenticationInterceptor implements Interceptor {
 
 	/**
@@ -27,6 +32,11 @@ public class AuthenticationInterceptor implements Interceptor {
 
 	}
 
+	/**
+	 * 사용자의 세션으로부터, 사용자 ID 오브젝트가 있는지를 확인함으로써, 로긴 여부를 판단한다.
+	 * 로긴이 안되어 있는 경우는, 사용자의 요청을 로긴 화면으로 Redirection하도록 한다.
+	 * @see com.opensymphony.xwork2.interceptor.Interceptor#intercept(com.opensymphony.xwork2.ActionInvocation)
+	 */
 	@Override
 	public String intercept(ActionInvocation actionInvocation) throws Exception {
 		// TODO Auto-generated method stub

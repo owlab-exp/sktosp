@@ -23,6 +23,7 @@ import com.skt.opensocial.persistence.GadgetIcon;
 import com.skt.opensocial.persistence.HibernateUtil;
 
 /**
+ * 가젯을 수정할 때 사용되는 액션 클래스
  * @author Ernest Lee
  * 
  */
@@ -35,6 +36,11 @@ public class ModifyGadgetAction extends ManageGadgetAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/** 
+	 * 가젯을 수정한 후, 미리보기 페이지로 전환하기 위한 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 		prepare();
 
@@ -106,6 +112,11 @@ public class ModifyGadgetAction extends ManageGadgetAction {
 
 	}
 
+	/**
+	 * 가젯 수정을 위한 페이지에 출력될 내용을 생성한다.
+	 * @return 가젯 수정 페이지
+	 * @throws Exception
+	 */
 	public String getModifyGadgetPage() throws Exception {
 		prepare();
 
@@ -156,30 +167,63 @@ public class ModifyGadgetAction extends ManageGadgetAction {
 	}
 
 	// for icon upload
+	/**
+	 * 아이콘 파일
+	 */
 	private File icon;
+	/**
+	 * 아이콘 파일 컨텐트 유형
+	 */
 	private String iconContentType;
+	/**
+	 * 아이콘 파일 이름
+	 */
 	private String iconFileName;
 
+	/**
+	 * 아이콘 파일 객체를 가져온다.
+	 * @return 아이콘 파일
+	 */
 	public File getIcon() {
 		return icon;
 	}
 
+	/**
+	 * 아이콘 파일을 셋팅한다.
+	 * @param file 아이콘 파일
+	 */
 	public void setIcon(File file) {
 		this.icon = file;
 	}
 
+	/**
+	 * 아이콘 파일의 컨텐트 유형을 가져온다.
+	 * @return 아이콘 파일의 컨텐트 유형
+	 */
 	public String getIconContentType() {
 		return iconContentType;
 	}
 
+	/**
+	 *  아이콘 파일의 컨텐트 유형을 셋팅한다.
+	 * @param contentType 아이콘 파일의 컨텐트 유형
+	 */
 	public void setIconContentType(String contentType) {
 		this.iconContentType = contentType;
 	}
 
+	/**
+	 * 아이콘 파일의 이름을 가져온다.
+	 * @return 아이콘 파일의 이름
+	 */
 	public String getIconFileName() {
 		return iconFileName;
 	}
 
+	/**
+	 * 아이콘 파일의 이름을 셋팅한다.
+	 * @param iconFileName 아이콘 파일의 이름
+	 */
 	public void setIconFileName(String iconFileName) {
 		this.iconFileName = iconFileName;
 	}

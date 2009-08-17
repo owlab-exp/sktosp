@@ -17,6 +17,7 @@ import com.skt.opensocial.persistence.Gadget;
 import com.skt.opensocial.persistence.HibernateUtil;
 
 /**
+ * 가젯 미리보기를 위한 액션 클래스이다.
  * @author Ernest Lee
  * 
  */
@@ -25,9 +26,16 @@ import com.skt.opensocial.persistence.HibernateUtil;
 public class PreviewGadgetAction extends ManageGadgetAction {
 	private Logger logger = Logger.getLogger(PreviewGadgetAction.class);
 
+	/**
+	 * 개발자 ID 프로퍼티
+	 */
 	private String developerId;
 	
 
+	/** 
+	 * 특정 가젯 ID에 해당하는 가젯 미리보기 페이지에 출력될 정보를 만들어주는 액션 메소드.
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 
 		logger.info("called");
@@ -115,10 +123,18 @@ public class PreviewGadgetAction extends ManageGadgetAction {
 
 	}
 
+	/**
+	 * 개발자 ID를 가져온다
+	 * @return 개발자 ID
+	 */
 	public String getDeveloperId() {
 		return developerId;
 	}
 
+	/**
+	 * 개발자 ID를 셋팅한다
+	 * @param developerId 개발자 ID
+	 */
 	public void setDeveloperId(String developerId) {
 		this.developerId = developerId;
 	}

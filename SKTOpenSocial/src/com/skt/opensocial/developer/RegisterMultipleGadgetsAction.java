@@ -36,6 +36,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 다중 URL을 이용한 가젯 등록을 처리하는 액션 클래스
  * @author Ernest Lee
  * 
  */
@@ -49,35 +50,102 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 기본 아이콘 파일 이름
+	 */
 	private String defaultIconFile = null;
 	
+	/**
+	 * 첫번째 가젯 이름
+	 */
 	private String gadgetName1;
+	/**
+	 * 첫번째 가젯 카테고리
+	 */
 	private String gadgetCategory1;
+	/**
+	 * 첫번째 가젯 소개
+	 */
 	private String gadgetIntro1;
+	/**
+	 * 첫번째 가젯 URL
+	 */
 	private String gadgetUrl1;
 
+	/**
+	 * 두번째 가젯 이름
+	 */
 	private String gadgetName2;
+	/**
+	 * 두번째 가젯 카테고리
+	 */
 	private String gadgetCategory2;
+	/**
+	 * 두번째 가젯 소개
+	 */
 	private String gadgetIntro2;
+	/**
+	 * 두번째 가젯 URL
+	 */
 	private String gadgetUrl2;
 
+	/**
+	 * 세번째 가젯 이름
+	 */
 	private String gadgetName3;
+	/**
+	 * 세번째 가젯 카테고리
+	 */
 	private String gadgetCategory3;
+	/**
+	 * 세번째 가젯 소개
+	 */
 	private String gadgetIntro3;
+	/**
+	 * 세번째 가젯 URL
+	 */
 	private String gadgetUrl3;
 
+	/**
+	 * 네번째 가젯 이름
+	 */
 	private String gadgetName4;
+	/**
+	 * 네번째 가젯 카테고리
+	 */
 	private String gadgetCategory4;
+	/**
+	 * 네번째 가젯 소개
+	 */
 	private String gadgetIntro4;
+	/**
+	 * 네번째 가젯 URL
+	 */
 	private String gadgetUrl4;
 
+	/**
+	 * 다섯번째 가젯 이름
+	 */
 	private String gadgetName5;
+	/**
+	 * 다섯번째 가젯 카테고리
+	 */
 	private String gadgetCategory5;
+	/**
+	 * 다섯번째 가젯 소개
+	 */
 	private String gadgetIntro5;
+	/**
+	 * 다섯번째 가젯 URL
+	 */
 	private String gadgetUrl5;
 
 	private StringBuffer messageBuff = new StringBuffer();
 
+	/**
+	 * 최대 다섯개의 가젯을 등록하기 위한 다중 가젯 등록 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 		prepare();
 
@@ -173,12 +241,26 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 
 	}
 
+	
+	/**
+	 * 가젯의 이름이 주어졌는지를 확인하기 위한 메소드
+	 * @param name 가젯 이름
+	 * @return true 또는 false
+	 */
 	private boolean validateName(String name) {
 		if (name != null && name.length() > 0)
 			return true;
 		return false;
 	}
 
+	/**
+	 * 가젯 입력 행의 모든 필드가 채워졌는지를 확인하기 위한 메소드
+	 * @param name 가젯 이름
+	 * @param category 가젯 카테고리
+	 * @param intro 가젯 소개
+	 * @param url 가젯 URL
+	 * @return true 또는 false
+	 */
 	private boolean validateRow(String name, String category, String intro,
 			String url) {
 		if (name != null && name.trim().length() > 0)
@@ -190,6 +272,11 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 		return false;
 	}
 
+	/**
+	 * 가젯 XML 의 문법을 체크하기 위한 메소드
+	 * @param url 가젯 XML URL
+	 * @return true 또는 false
+	 */
 	private boolean validateGadgetXMLUrl(String url){
 		String gadgetUrl = null;
 		StringBuffer resultBuffer = new StringBuffer(); 
@@ -258,6 +345,15 @@ public class RegisterMultipleGadgetsAction extends ManageGadgetAction {
 		this.messageBuff.append(resultBuffer.toString() + ": ");
 		return isValid;
 	}
+	/**
+	 * 하나의 가젯을 등록하기 위한 메소드
+	 * @param name 가젯 이름
+	 * @param categoryId 가젯 ID
+	 * @param intro 가젯 소개
+	 * @param url 가젯 URL
+	 * @param hs HTTP Session (개발자의 ID를 가져오기 위한 것)
+	 * @throws Exception
+	 */
 	private void registerGadget(String name, String categoryId, String intro,
 			String url, Session hs) throws Exception {
 		Gadget gadget = new Gadget();

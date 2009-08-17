@@ -13,6 +13,11 @@ import com.skt.opensocial.common.SKTOpenSocialSupportConstants;
 import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
+/**
+ * 로긴처리를 위한 액션 클래스
+ * @author Ernest Lee
+ *
+ */
 public class LoginAction extends CommonBaseAction {
 
 	/**
@@ -27,6 +32,10 @@ public class LoginAction extends CommonBaseAction {
 	//
 	// }
 
+	/**
+	 * 사용자의 로긴 정보 (ID와 패스워드)를 확인하는 액션 메소드이다
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception {
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
@@ -63,6 +72,10 @@ public class LoginAction extends CommonBaseAction {
 
 	}
 
+	/**
+	 * 사용자 ID와 패스워드가 입력되어 있는지를 확인하기 위한 메소드이다
+	 * @see com.opensymphony.xwork2.ActionSupport#validate()
+	 */
 	public void validate() {
 		if (getPassword() == null || getPassword().length() == 0) {
 			addFieldError("password", "패스워드 없음");
@@ -72,13 +85,24 @@ public class LoginAction extends CommonBaseAction {
 		}
 	}
 
+	/**
+	 * 패스워드
+	 */
 	private String password;
 	private Map<String, Object> session;
 
+	/**
+	 * 패스워드를 가져온다.
+	 * @return 패스워드
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * 패스워드를 셋팅한다
+	 * @param password 패스워드
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
