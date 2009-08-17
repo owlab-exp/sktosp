@@ -20,6 +20,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 가젯의 상세정보를 조회하기 위한 액션 클래스
  * @author Seong yong Lim based on Ernest Lee's
  *
  */
@@ -31,28 +32,69 @@ public class SearchGadgetInfoAction extends ActivityBaseManager{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 가젯 오브젝트
+	 */
 	public Gadget gadget;
+	/**
+	 * 가젯 이름
+	 */
 	public String name;
+	/**
+	 * 가젯 소개
+	 */
 	public String introduction;
+	/**
+	 * 가젯 카테코리 목록
+	 */
 	public String categoryStringList;
+	/**
+	 * 가젯 등록 유형
+	 */
 	public String registerType;
 	public String gadgetSource;
 	public String gadgetIconUrl;
 
+	/**
+	 * 가젯 개발자 ID
+	 */
 	private String developerId;
+	/**
+	 * 이 가젯이 포함된 선호가젯 목록을 소유한 사용자 ID
+	 */
 	private String ownerId;
+	/**
+	 * 이 가젯을 (특정 사용자의 선호가젯 목록으로부터) 조회한 사용자 ID
+	 */
 	private String viewerId;
 	
+	/**
+	 * 사용자 오브젝트
+	 */
 	private User user;
+	/**
+	 * 사용자 ID
+	 */
 	private String userId;
 	private String status;
 	
+	/**
+	 * 조회하는 사용자의 선호가젯에 포함되어있는지 여부
+	 */
 	private String flagFavorite = "false";
 	
+	/**
+	 * 조회하는 사용자의 선호가젯에 포함되어있는지 여부를 가져온다
+	 * @return
+	 */
 	public String getFlagFavorite() {
 		return flagFavorite;
 	}
 
+	/**
+	 * 조회하는 사용자의 선호가젯에 포함되어있는지 여부를 셋팅한다
+	 * @param flagFavorite
+	 */
 	public void setFlagFavorite(String flagFavorite) {
 		this.flagFavorite = flagFavorite;
 	}
@@ -65,96 +107,180 @@ public class SearchGadgetInfoAction extends ActivityBaseManager{
 		this.status = status;
 	}
 
+	/**
+	 * 개발자 ID를 가져온다
+	 * @return
+	 */
 	public String getDeveloperId() {
 		return developerId;
 	}
 
+	/**
+	 * 개발자 ID를 셋팅한다
+	 * @param developerId
+	 */
 	public void setDeveloperId(String developerId) {
 		this.developerId = developerId;
 	}
 
+	/**
+	 * 선호가젯 목록의 소유자 ID를 가져온다
+	 * @return
+	 */
 	public String getOwnerId() {
 		return ownerId;
 	}
 
+	/**
+	 * 선호가젯 목록의 소유자 ID를 셋팅한다
+	 * @param ownerId
+	 */
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
 
+	/**
+	 * 조회하는 사용자 ID를 가져온다
+	 * @return
+	 */
 	public String getViewerId() {
 		return viewerId;
 	}
 
+	/**
+	 * 조회하는 사용자의 ID를 셋팅한다
+	 * @param viewerId
+	 */
 	public void setViewerId(String viewerId) {
 		this.viewerId = viewerId;
 	}
 
+	/**
+	 * 사용자 오브젝트를 가져온다
+	 * @return
+	 */
 	public User getUser() {
 		return user;
 	}
 
+	/**
+	 * 사용자 오브젝트를 셋팅한다
+	 * @param user
+	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.common.CommonBaseAction#getUserId()
+	 */
 	public String getUserId() {
 		return userId;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.common.CommonBaseAction#setUserId(java.lang.String)
+	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
+	/**
+	 * 가젯 오브젝트를 가져온다
+	 * @return
+	 */
 	public Gadget getGadget() {
 		return gadget;
 	}
 
+	/**
+	 * 가젯 오브젝트를 셋팅한다
+	 * @param gadget
+	 */
 	public void setGadget(Gadget gadget) {
 		this.gadget = gadget;
 	}
 
+	/**
+	 * 가젯 이름을 가져온다
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * 가젯 이름을 셋팅한다
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * 가젯 소개를 가져온다
+	 * @return
+	 */
 	public String getIntroduction() {
 		return introduction;
 	}
 
+	/**
+	 * 가젯 소개를 셋팅한다
+	 * @param introduction
+	 */
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#getRegisterType()
+	 */
 	public String getRegisterType() {
 		return registerType;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#setRegisterType(java.lang.String)
+	 */
 	public void setRegisterType(String registerType) {
 		this.registerType = registerType;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#getGadgetSource()
+	 */
 	public String getGadgetSource() {
 		return gadgetSource;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#setGadgetSource(java.lang.String)
+	 */
 	public void setGadgetSource(String gadgetSource) {
 		this.gadgetSource = gadgetSource;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#getGadgetIconUrl()
+	 */
 	public String getGadgetIconUrl() {
 		return gadgetIconUrl;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#setGadgetIconUrl(java.lang.String)
+	 */
 	public void setGadgetIconUrl(String gadgetIconUrl) {
 		this.gadgetIconUrl = gadgetIconUrl;
 	}
 	
 	
 
+	/**
+	 * 가젯의 상세정보를 조회하기 위한 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 		prepare();
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -263,10 +389,18 @@ public class SearchGadgetInfoAction extends ActivityBaseManager{
 		}
 	}
 	
+	/**
+	 * 가젯 카테고리 목록을 가져온다
+	 * @return
+	 */
 	public String getCategoryStringList() {
 		return categoryStringList;
 	}
 
+	/**
+	 * 가젯 카테고리 목록을 셋팅한다
+	 * @param categoryStringList
+	 */
 	public void setCategoryList(String categoryStringList) {
 		this.categoryStringList = categoryStringList;
 	}

@@ -17,6 +17,7 @@ import com.skt.opensocial.persistence.Person;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 선호 가젯 모음에 특정 가젯을 추가하기 위한 액션 클래스
  * @author Seong Yong Lim based on Ernest Lee's
  *
  */
@@ -32,30 +33,60 @@ public class SetFavoriteGadgetAction extends ActivityBaseManager {
 	
 	//GadgetDataList gadgetDataList;
 	//Map<String, GadgetData> gadgetMap;
+	/**
+	 * 세션에 포함된 데이터 오브젝트들의 맵
+	 */
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
+	/**
+	 * 가젯 목록
+	 */
 	Set<Gadget> gadgets;
+	/**
+	 * 가젯 ID
+	 */
 	Long gadgetId;
+	/**
+	 * 특정 가젯
+	 */
 	Gadget gadget;
 	
+	/**
+	 * 가젯 오브젝트를 가져온다
+	 * @return
+	 */
 	public Gadget getGadget() {
 		return gadget;
 	}
 
+	/**
+	 * 가젯 오브젝트를 셋팅한다
+	 * @param gadget
+	 */
 	public void setGadget(Gadget gadget) {
 		this.gadget = gadget;
 	}
 
 	int requestedPage = 1;
 	
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#getGadgetId()
+	 */
 	public Long getGadgetId() {
 		return gadgetId;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#setGadgetId(java.lang.Long)
+	 */
 	public void setGadgetId(Long gadgetId) {
 		this.gadgetId = gadgetId;
 	}
 
+	/**
+	 * 주어진 가젯을 사용자의 선호가젯 목록에 추가하는 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -127,10 +158,18 @@ public class SetFavoriteGadgetAction extends ActivityBaseManager {
 		this.requestedPage = requestedPage;
 	}
 
+	/**
+	 * 가젯 목록을 가져온다
+	 * @return
+	 */
 	public Set<Gadget> getGadgets() {
 		return gadgets;
 	}
 
+	/**
+	 * 가젯 목록을 셋팅한다
+	 * @param gadgets
+	 */
 	public void setGadgets(Set<Gadget> gadgets) {
 		this.gadgets = gadgets;
 	}

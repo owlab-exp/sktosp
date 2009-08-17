@@ -19,10 +19,9 @@ import com.skt.opensocial.persistence.Person;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 사용자가 자신의 선호가젯 모음에서 특정 가젯을 삭제하는 경우에 사용되는 액션 클래스
  * @author Seong Yong Lim based on Ernest Lee's
- *
  */
-//public class ListGadgetsAction extends ActionSupport implements RequestAware {
 public class UserRemoveGadgetAction extends ActivityBaseManager {
 	private static Logger logger = Logger.getLogger(UserRemoveGadgetAction.class);
 	
@@ -31,24 +30,44 @@ public class UserRemoveGadgetAction extends ActivityBaseManager {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-	//GadgetDataList gadgetDataList;
-	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
-	//Collection<GadgetData> gadgetList;
+
+	/**
+	 * 가젯 셋
+	 */
 	Set<Gadget> gadgets;
+	/**
+	 * 가젯
+	 */
 	Gadget gadget = null;
 	
+	/**
+	 * 요청된 페이지
+	 */
 	int requestedPage = 1;
+	/**
+	 * 가젯 ID
+	 */
 	private Long gadgetId;
 	
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#getGadgetId()
+	 */
 	public Long getGadgetId() {
 		return gadgetId;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.developer.ManageGadgetAction#setGadgetId(java.lang.Long)
+	 */
 	public void setGadgetId(Long gadgetId) {
 		this.gadgetId = gadgetId;
 	}
+	/**
+	 * 가젯 삭제 요청을 받아 가제 삭제 확인 페이지를 웹 브라우저에 전달한다
+	 * @return 가젯 삭제 확인 페이지
+	 * @throws Exception
+	 */
 	public String requestConfirm() throws Exception{
 		//
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -66,27 +85,6 @@ public class UserRemoveGadgetAction extends ActivityBaseManager {
 							
 			Gadget gadget = (Gadget)hs.load(Gadget.class,gadgetId);
 			gadget.getName();
-//			this.gadgets = user.getFavoriteGadgets();
-//			logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-//			
-//			user.removeFavoriteGadget(gadget);
-//			
-//			this.gadgets = user.getFavoriteGadgets();
-//			logger.log(Level.INFO, "Number of gadgets = " + gadgets.size());
-//			
-//			if (gadgets.size() == 0)
-//			{
-//				Person person = (Person) hs.load(Person.class, userId);
-//				person.setHasapp(false);
-//				hs.saveOrUpdate(person);
-//			}
-//			hs.saveOrUpdate(user);
-			
-			//this.gadgets = user.getFavoriteGadgets();
-			//if (gadgets != null && !gadgets.isEmpty())
-			//	System.out.println("Added size of gadgets = " + gadgets.size());
-			
-			//session.put(SKTOpenSocialSupportConstants.USER, user);
 			tx.commit();
 			
 			super.addActivity(ActivityTypeEnum.removeFavoriteGadget, userId, "", gadgetId);
@@ -98,6 +96,10 @@ public class UserRemoveGadgetAction extends ActivityBaseManager {
 			throw e;
 		}
 	}
+	/**
+	 * 사용자의 선호 가젯 모음에서 요청된 가젯을 삭제하는 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 		//
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -131,11 +133,6 @@ public class UserRemoveGadgetAction extends ActivityBaseManager {
 			}
 			hs.saveOrUpdate(user);
 			
-			//this.gadgets = user.getFavoriteGadgets();
-			//if (gadgets != null && !gadgets.isEmpty())
-			//	System.out.println("Added size of gadgets = " + gadgets.size());
-			
-			//session.put(SKTOpenSocialSupportConstants.USER, user);
 			tx.commit();
 			
 			super.addActivity(ActivityTypeEnum.removeFavoriteGadget, userId, "", gadgetId);
@@ -148,22 +145,41 @@ public class UserRemoveGadgetAction extends ActivityBaseManager {
 		}
 	}
 		
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.user.ActivityBaseManager#setSession(java.util.Map)
+	 */
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
 	}
 
+	/**
+	 * 요청된 페이지 숫자를 가져온다
+	 * @return 요청된 페이지
+	 */
 	public int getRequestedPage() {
 		return requestedPage;
 	}
 
+	/**
+	 * 요청된 페이지 숫자를 셋팅한다
+	 * @param requestedPage 요청된 페이지
+	 */
 	public void setRequestedPage(int requestedPage) {
 		this.requestedPage = requestedPage;
 	}
 
+	/**
+	 * 가젯 목록을 가져온다
+	 * @return 가젯 목록 셋
+	 */
 	public Set<Gadget> getGadgets() {
 		return gadgets;
 	}
 
+	/**
+	 * 가젯 목록을 셋팅한다
+	 * @param gadgets 가젯 목록
+	 */
 	public void setGadgets(Set<Gadget> gadgets) {
 		this.gadgets = gadgets;
 	}

@@ -26,6 +26,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 특정 사용자의 상세정보를 보기 위한 액션 클래스
  * @author Seong yong Lim based on Ernest Lee's
  *
  */
@@ -39,22 +40,52 @@ public class SearchOtherUserInfoAction extends ActivityBaseManager{
 
 	Map<String, Object> session;
 	
+	/**
+	 * 조회하고자 하는 사용자 ID
+	 */
 	String userId;
+	/**
+	 * 조회되는 사용자 ID
+	 */
 	String otherUserId;
+	/**
+	 * 조회되는 사용자의 선호가젯 목록
+	 */
 	Set<Gadget> otherUserGadgets;
 	
+	/**
+	 * 사용자 이름
+	 */
 	String name;
+	/**
+	 * 사용자 등록일
+	 */
 	Date registeredDate;
+	/**
+	 * 나이
+	 */
 	int age;
 	
+	/**
+	 * 조회되는 사용자 오브젝트
+	 */
 	User otherUser;
 	
+	/**
+	 * 전화번호
+	 */
 	String phoneNumber;
 	
 	String personalInfoOpen;
 	String favoriteGadgetListOpen;
+	/**
+	 * 친구 여부
+	 */
 	String flagFriend = "false";
 	String flagOtherFriend = "false";
+	/**
+	 * 조회되는 사용자가 조회하는 사용자인지 여부
+	 */
 	String flagMyself = "false";
 
 	
@@ -66,18 +97,34 @@ public class SearchOtherUserInfoAction extends ActivityBaseManager{
 		this.flagOtherFriend = flagOtherFriend;
 	}
 
+	/**
+	 * 전화번호를 가져온다
+	 * @return
+	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
+	/**
+	 * 전화번호를 셋팅한다
+	 * @param phoneNumber
+	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
+	/**
+	 * 조회하는 사용자가 조회되는 사용자와 일치하는지를 알아본다
+	 * @return
+	 */
 	public String getFlagMyself() {
 		return flagMyself;
 	}
 
+	/**
+	 * 조회하는 사용자가 조회되는 사용자인지를 셋팅한다
+	 * @param flagMyself
+	 */
 	public void setFlagMyself(String flagMyself) {
 		this.flagMyself = flagMyself;
 	}
@@ -98,74 +145,143 @@ public class SearchOtherUserInfoAction extends ActivityBaseManager{
 		this.favoriteGadgetListOpen = favoriteGadgetListOpen;
 	}
 
+	/**
+	 * 친구인지를 알아본다
+	 * @return
+	 */
 	public String getFlagFriend() {
 		return flagFriend;
 	}
 
+	/**
+	 * 친구인지를 셋팅한다
+	 * @param flagFriend
+	 */
 	public void setFlagFriend(String flagFriend) {
 		this.flagFriend = flagFriend;
 	}
 
+	/**
+	 * 조회되는 사용자의 선호 가젯 목록을 가져온다
+	 * @return
+	 */
 	public Set<Gadget> getOtherUserGadgets() {
 		return otherUserGadgets;
 	}
 
+	/**
+	 * 조회되는 사용자의 선호 가젯 목록을 셋팅한다
+	 * @param otherUserGadgets
+	 */
 	public void setOtherUserGadgets(Set<Gadget> otherUserGadgets) {
 		this.otherUserGadgets = otherUserGadgets;
 	}
 
+	/**
+	 * 조회되는 사용자 오브젝트를 가져온다
+	 * @return
+	 */
 	public User getOtherUser() {
 		return otherUser;
 	}
 
+	/**
+	 * 조회되는 사용자 오브젝트를 셋팅한다
+	 * @param otherUser
+	 */
 	public void setOtherUser(User otherUser) {
 		this.otherUser = otherUser;
 	}
 
+	/**
+	 * 조회되는 사용자 ID를 가져온다
+	 * @return
+	 */
 	public String getOtherUserId() {
 		return otherUserId;
 	}
 
+	/**
+	 * 조회되는 사용자 ID를 셋팅한다
+	 * @param otherUserId
+	 */
 	public void setOtherUserId(String otherUserId) {
 		this.otherUserId = otherUserId;
 	}
 
+	/**
+	 * 사용자 이름을 가져온다
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * 사용자 이름을 셋팅한다
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.common.CommonBaseAction#getUserId()
+	 */
 	public String getUserId() {
 		return userId;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.common.CommonBaseAction#setUserId(java.lang.String)
+	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
+	/**
+	 * 사용자 등록일을 가져온다
+	 * @return
+	 */
 	public Date getRegisteredDate() {
 		return registeredDate;
 	}
 
+	/**
+	 * 사용자 등록일을 셋팅한다
+	 * @param registeredDate
+	 */
 	public void setRegisteredDate(Date registeredDate) {
 		this.registeredDate = registeredDate;
 	}
 
+	/**
+	 * 나이를 가져온다
+	 * @return
+	 */
 	public int getAge() {
 		return age;
 	}
 
+	/**
+	 * 나이를 셋팅한다
+	 * @param age
+	 */
 	public void setAge(int age) {
 		this.age = age;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.skt.opensocial.user.ActivityBaseManager#setSession(java.util.Map)
+	 */
 	public void setSession(Map<String, Object> map) {
 		this.session = map;
 	}
 	
+	/**
+	 * 사용자의 상세정보를 조회하기 위한 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception {
 	
 		//

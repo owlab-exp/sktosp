@@ -13,6 +13,7 @@ import com.skt.opensocial.persistence.HibernateUtil;
 import com.skt.opensocial.persistence.User;
 
 /**
+ * 특정 사용자를 친구로 등록하기 위한 액션 클래스
  * @author Seong Yong Lim based on Ernest Lee's
  *
  */
@@ -30,37 +31,75 @@ public class SetFriendAction extends ActivityBaseManager {
 	//Map<String, GadgetData> gadgetMap;
 	Map<String, Object> session;
 	//Collection<GadgetData> gadgetList;
+	/**
+	 * 친구의 사용자 ID
+	 */
 	String friendId;
+	/**
+	 * 사용자 오브젝트
+	 */
 	User user;
+	/**
+	 * 친구의 사용자 오브젝트
+	 */
 	User friend;	
 	int requestedPage = 1;
 		
+	/**
+	 * 친구의 사용자 ID를 가져온다
+	 * @return
+	 */
 	public String getFriendId() {
 		return friendId;
 	}
 
+	/**
+	 * 친구의 사용자 오브젝트를 셋팅한다
+	 * @param friendId
+	 */
 	public void setFriendId(String friendId) {
 		this.friendId = friendId;
 	}
 	
 	
 
+	/**
+	 * 사용자 오브젝트를 가져온다
+	 * @return
+	 */
 	public User getUser() {
 		return user;
 	}
 
+	/**
+	 * 사용자 오브젝트를 셋팅한다
+	 * @param user
+	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+	/**
+	 * 친구의 사용자 오브젝트를 가져온다
+	 * @return
+	 */
 	public User getFriend() {
 		return friend;
 	}
 
+	
+	/**
+	 * 친구의 사용자 오브젝트를 셋팅한다
+	 * @param friend
+	 */
 	public void setFriend(User friend) {
 		this.friend = friend;
 	}
 
+	/**
+	 * 특정 사용자를 자신의 친구 목록에 추가하는 액션 메소드
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() throws Exception{
 		
 		Session hs = HibernateUtil.getSessionFactory().getCurrentSession();
