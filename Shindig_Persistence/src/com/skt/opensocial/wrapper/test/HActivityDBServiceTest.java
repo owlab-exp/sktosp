@@ -2,7 +2,8 @@
 
 package com.skt.opensocial.wrapper.test;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.assertTrue;
 
 import org.apache.shindig.protocol.RestfulCollection;
 import org.apache.shindig.protocol.model.SortOrder;
@@ -23,7 +24,6 @@ import java.util.Set;
 import java.util.concurrent.Future;
 
 import org.junit.Test;
-
 
 /**
  * 
@@ -53,8 +53,7 @@ public class HActivityDBServiceTest {
 		    activityIds.add("1");
 		    
 	    Future<RestfulCollection<Activity>> result = this.activityDBService.getActivities(new UserId(UserId.Type.userId, "john.doe"), new GroupId(GroupId.Type.friends, "@friends"), null, null, collectionOptions, null, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
-//		    Activity activity = result.get();
-//		    SpiTestUtil.assertActivityEquals(activity, testActivity);    
+	    
 	  }
 	
 	  @Test
@@ -66,8 +65,7 @@ public class HActivityDBServiceTest {
 		    collectionOptions.setMax(20);
 		    
 	    Future<RestfulCollection<Activity>> result = this.activityDBService.getActivities(SpiTestUtil.buildUserIds("john.doe"), new GroupId(GroupId.Type.self, "@self"), null, ACTIVITY_ALL_FIELDS, collectionOptions, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
-//	    Activity activity = result.get();
-//	    SpiTestUtil.assertActivityEquals(activity, testActivity);    
+
 	  }
 	 
 

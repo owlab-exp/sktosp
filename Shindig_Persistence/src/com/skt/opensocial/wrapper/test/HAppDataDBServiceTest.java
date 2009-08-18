@@ -47,8 +47,6 @@ public class HAppDataDBServiceTest {
 		 appDataDBService.getPersonData(SpiTestUtil.buildUserIds("nash2"), null, null, 
 				 fields, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
 	
-//		    Activity activity = result.get();
-//		    SpiTestUtil.assertActivityEquals(activity, testActivity);    
 	  }
 	  
 	  @Test
@@ -60,12 +58,6 @@ public class HAppDataDBServiceTest {
 		 appDataDBService.updatePersonData(new UserId(UserId.Type.userId, "john.doe"), new GroupId(GroupId.Type.friends, "@friends"), null, 
 				 null, values, SpiTestUtil.DEFAULT_TEST_SECURITY_TOKEN);
 	
-//		    Activity activity = result.get();
-//		    SpiTestUtil.assertActivityEquals(activity, testActivity);    
 	  }
-	
-	  
-	  
-	
-	
+		
 }
