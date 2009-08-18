@@ -12,11 +12,8 @@ import com.skt.opensocial.common.CommonBaseAction;
  */
 public class DeveloperBaseAction extends CommonBaseAction {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private Map<String, Object> session;
+	protected Map<String, Object> session;
 	/* (non-Javadoc)
 	 * @see com.skt.opensocial.common.CommonBaseAction#setSession(java.util.Map)
 	 */

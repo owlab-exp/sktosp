@@ -20,15 +20,16 @@ public class CommonBaseAction extends ActionSupport implements SessionAware {
 	/**
 	 * 사용자 ID
 	 */
-	private String userId;
+	protected String userId;
+	protected Map<String, Object> session;
 
 	/* (non-Javadoc)
 	 * @see org.apache.struts2.interceptor.SessionAware#setSession(java.util.Map)
 	 */
 	@Override
-	public void setSession(Map<String, Object> arg0) {
+	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
-
+		this.session = session;
 	}
 
 	/**
