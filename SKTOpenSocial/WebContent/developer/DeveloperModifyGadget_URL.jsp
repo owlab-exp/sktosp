@@ -80,7 +80,7 @@
 										<option value="food_and_drinks">음식</option>
 										<option value="games_and_fun">게임&재미</option>
 										<option value="lifestyle">생활</option>
-										<option value="movies_and_tv">영화& TV</option>
+										<option value="movies_and_tv">영화&TV</option>
 										<option value="music">음악</option>
 										<option value="news">뉴스</option>
 										<option value="politics">정치</option>
