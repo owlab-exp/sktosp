@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="xhtml" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.multipart.saveDir" value="/temp" />
+
+	<package name="default" namespace="/" extends="struts-default">
+		<result-types>
+			<result-type name="customJSON" class="com.skt.opensocial.common.JSONResult"></result-type>
+		</result-types>
+		<!-- Section for Authentication Check -->
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+				class="com.skt.opensocial.security.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="secureStack" />
+		<default-action-ref name="UserLogin" />
+
+		<!-- Section for definition of a redirection to force user to login-->
+
+		<global-results>
+			<result name="login" type="redirect">
+				/security/UserLogin.action
+			</result>
+			<result name="error">
+				/Error.jsp
+       		</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception" />
+		</global-exception-mappings>
+		<!--		<action name="*">-->
+		<!--			<interceptor-ref name="defaultStack"/>-->
+		<!--			<result>/main.jsp</result>-->
+		<!--		</action>-->
+
+	</package>
+
+
+	<include file="sample/hello.xml" /><!--  this is a sample -->
+	<include file="security.xml" />
+	<include file="user.xml" />
+	<include file="developer.xml" />
+	<include file="admin.xml" />
+	<include file="shindig.xml" />
+
+</struts>

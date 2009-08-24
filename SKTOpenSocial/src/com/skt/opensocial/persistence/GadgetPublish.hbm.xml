@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 25, 2009 4:34:44 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.skt.opensocial.persistence.GadgetPublish" table="SKT_GADGET_PUBLISH" >
+        <id name="gadgetId" type="java.lang.Long">
+            <column name="GADGET_ID" />
+<!--            <generator class="assigned" />-->
+			<generator class="foreign">
+				<param name="property">gadget</param>
+			</generator>
+        </id>
+        <property name="requestedDate" type="date">
+            <column name="REQUESTED_DATE" length="10"/>
+        </property>
+        <property name="isApproved" type="boolean">
+            <column name="IS_APPROVED" />
+        </property>
+        <property name="rejectReason" type="text">
+            <column name="REJECT_REASON" />
+        </property>
+        <one-to-one name="gadget" class="com.skt.opensocial.persistence.Gadget" property-ref="gadgetPublish"/>
+    </class>
+</hibernate-mapping>

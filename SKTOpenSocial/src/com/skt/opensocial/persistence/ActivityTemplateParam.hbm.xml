@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 25, 2009 4:34:44 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.skt.opensocial.persistence.ActivityTemplateParam" table="SHINDIG_ACTIVITY_TEMPLATE_PARAMS">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="paramKey" type="string">
+            <column name="PARAM_KEY" length="1000" />
+        </property>
+        <property name="paramValue" type="text">
+            <column name="PARAM_VALUE"/>
+        </property>
+        <property name="activityId" type="string">
+            <column name="ACTIVITY_ID" not-null="true" />
+        </property>
+        <property name="userId" type="string">
+            <column name="USER_ID" not-null="true" />
+        </property>
+<!--        <many-to-one name="activity" class="com.skt.opensocial.persistence.Activity" not-null="true" >-->
+<!--        	-->
+<!--        	<column name="ACTIVITY_ID"/>-->
+<!--        	<column name="USER_ID"/>-->
+<!--        	-->
+<!--        	<formula>-->
+<!--        	(from Activity act where act.person.id = userId and act.activityId = activityId)-->
+<!--        	</formula>-->
+<!--        </many-to-one>-->
+       </class>
+</hibernate-mapping>

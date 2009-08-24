@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 25, 2009 4:34:44 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.skt.opensocial.persistence.Person" table="SHINDIG_PERSON">
+        <id name="id" type="string">
+            <column name="ID" />
+<!--            <generator class="assigned" />-->
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+        </id>
+        <property name="updated" type="date">
+            <column name="UPDATED" length="10" />
+        </property>
+        <property name="aboutme" type="string">
+            <column name="ABOUTME" length="1000" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="AGE" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="BIRTHDAY" length="10" />
+        </property>
+        <property name="bodytypeBuild" type="string">
+            <column name="BODYTYPE_BUILD" />
+        </property>
+        <property name="bodytypeEyecolor" type="string">
+            <column name="BODYTYPE_EYECOLOR" />
+        </property>
+        <property name="bodytypeHaircolor" type="string">
+            <column name="BODYTYPE_HAIRCOLOR" />
+        </property>
+        <property name="bodytypeHeight" type="java.lang.Double">
+            <column name="BODYTYPE_HEIGHT" precision="22" scale="0" />
+        </property>
+        <property name="bodytypeWeight" type="java.lang.Double">
+            <column name="BODYTYPE_WEIGHT" precision="22" scale="0" />
+        </property>
+        <property name="children" type="string">
+            <column name="CHILDREN" />
+        </property>
+        <property name="currentlocationCountry" type="string">
+            <column name="CURRENTLOCATION_COUNTRY" />
+        </property>
+        <property name="currentlocationLatitude" type="java.lang.Double">
+            <column name="CURRENTLOCATION_LATITUDE" precision="22" scale="0" />
+        </property>
+        <property name="currentlocationLongitude" type="java.lang.Double">
+            <column name="CURRENTLOCATION_LONGITUDE" precision="22" scale="0" />
+        </property>
+        <property name="currentlocationLocality" type="string">
+            <column name="CURRENTLOCATION_LOCALITY" />
+        </property>
+        <property name="currentlocationPostalcode" type="string">
+            <column name="CURRENTLOCATION_POSTALCODE" />
+        </property>
+        <property name="currentlocationRegion" type="string">
+            <column name="CURRENTLOCATION_REGION" />
+        </property>
+        <property name="currentlocationStreetaddress" type="string">
+            <column name="CURRENTLOCATION_STREETADDRESS" />
+        </property>
+        <property name="currentlocationType" type="string">
+            <column name="CURRENTLOCATION_TYPE" />
+        </property>
+        <property name="currentlocationFormatted" type="string">
+            <column name="CURRENTLOCATION_FORMATTED" />
+        </property>
+        <property name="currentlocationPrimary" type="java.lang.Boolean">
+            <column name="CURRENTLOCATION_PRIMARY" />
+        </property>
+        <property name="displayname" type="string">
+            <column name="DISPLAYNAME" />
+        </property>
+        <!--
+        <property name="drinker" type="string">
+            <column name="DRINKER">
+                <comment>ENUM value in OpenSoical API. {HEAVILY, NO, OCCASIONALLY, QUIT, QUITTING, REGULARLY, SOCIALLY, YES} (Case Sensitive)</comment>
+            </column>
+        </property>
+        -->
+        <property name="drinker" column="DRINKER">
+        	<type name="com.skt.opensocial.persistence.GenericEnumUserType" >
+        		<param name="enumClass">com.skt.opensocial.persistence.DrinkerEnum</param>
+        	</type>
+        </property>
+        <property name="ethnicity" type="string">
+            <column name="ETHNICITY" />
+        </property>
+        <property name="fashion" type="string">
+            <column name="FASHION" />
+        </property>
+        <!--<property name="gender" type="string">
+            <column name="GENDER">
+                <comment>ENUM value in OpenSoical API. {female, male} (Case Sensitive)</comment>
+            </column>
+        </property>
+        -->
+        <property name="gender" column="GENDER">
+        	<type name="com.skt.opensocial.persistence.GenericEnumUserType" >
+        		<param name="enumClass">com.skt.opensocial.persistence.GenderEnum</param>
+        	</type>
+        </property>
+        <property name="happiestwhen" type="string">
+            <column name="HAPPIESTWHEN" length="1000" />
+        </property>
+        <property name="hasapp" type="java.lang.Boolean">
+            <column name="HASAPP" />
+        </property>
+        <property name="humor" type="string">
+            <column name="HUMOR" length="1000" />
+        </property>
+        <property name="jobinterests" type="string">
+            <column name="JOBINTERESTS" length="1000" />
+        </property>
+        <property name="livingarrangement" type="string">
+            <column name="LIVINGARRANGEMENT" length="1000" />
+        </property>
+        <property name="nameAdditionalname" type="string">
+            <column name="NAME_ADDITIONALNAME" />
+        </property>
+        <property name="nameFamilyname" type="string">
+            <column name="NAME_FAMILYNAME" />
+        </property>
+        <property name="nameGivenname" type="string">
+            <column name="NAME_GIVENNAME" />
+        </property>
+        <property name="nameHonorificprefix" type="string">
+            <column name="NAME_HONORIFICPREFIX" />
+        </property>
+        <property name="nameHonorificsuffix" type="string">
+            <column name="NAME_HONORIFICSUFFIX" />
+        </property>
+        <property name="nameFormatted" type="string">
+            <column name="NAME_FORMATTED" />
+        </property>
+        <!--<property name="networkpresence" type="string">
+            <column name="NETWORKPRESENCE">
+                <comment>ENUM value in OpenSoical API. {ONLINE, OFFLINE, AWAY, CHAT, DND, XA} (Case Sensitive)</comment>
+            </column>
+        </property>
+        --><property name="networkpresence" column="NETWORKPRESENCE">
+        	<type name="com.skt.opensocial.persistence.GenericEnumUserType" >
+        		<param name="enumClass">com.skt.opensocial.persistence.NetworkpresenceEnum</param>
+        	</type>
+        </property>
+        <property name="nickname" type="string">
+            <column name="NICKNAME" length="1000" />
+        </property>
+        <property name="pets" type="string">
+            <column name="PETS" length="1000" />
+        </property>
+        <property name="politicalviews" type="string">
+            <column name="POLITICALVIEWS" length="1000" />
+        </property>
+        <property name="preferredusername" type="string">
+            <column name="PREFERREDUSERNAME" />
+        </property>
+        <property name="relationshipstatus" type="string">
+            <column name="RELATIONSHIPSTATUS" />
+        </property>
+        <property name="religion" type="string">
+            <column name="RELIGION" />
+        </property>
+        <property name="romance" type="string">
+            <column name="ROMANCE" length="500" />
+        </property>
+        <property name="scaredof" type="string">
+            <column name="SCAREDOF" length="500" />
+        </property>
+        <property name="sexualorientation" type="string">
+            <column name="SEXUALORIENTATION" length="500" />
+        </property>
+        <!--<property name="smoker" type="string">
+            <column name="SMOKER">
+                <comment>ENUM value in OpenSoical API. {HEAVILY, NO, OCCASIONALLY, QUIT, QUITTING, REGULARLY, SOCIALLY, YES} (Case Sensitive)</comment>
+            </column>
+        </property>
+        --><property name="smoker" column="SMOKER">
+        	<type name="com.skt.opensocial.persistence.GenericEnumUserType" >
+        		<param name="enumClass">com.skt.opensocial.persistence.SmokerEnum</param>
+        	</type>
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" />
+        </property>
+        <property name="utcoffset" type="java.lang.Double">
+            <column name="UTCOFFSET" precision="22" scale="0" />
+        </property>
+        <property name="profilesongurlValue" type="string">
+            <column name="PROFILESONGURL_VALUE" length="1000" />
+        </property>
+        <property name="profilesongurlLinkText" type="string">
+            <column name="PROFILESONGURL_LINK_TEXT" />
+        </property>
+        <property name="profilesongurlType" type="string">
+            <column name="PROFILESONGURL_TYPE" />
+        </property>
+        <property name="profilesongurlPrimary" type="boolean">
+            <column name="PROFILESONGURL_PRIMARY" />
+        </property>
+        <property name="profilevideourlValue" type="string">
+            <column name="PROFILEVIDEOURL_VALUE" length="1000" />
+        </property>
+        <property name="profilevideourlLinkText" type="string">
+            <column name="PROFILEVIDEOURL_LINK_TEXT" />
+        </property>
+        <property name="profilevideourlType" type="string">
+            <column name="PROFILEVIDEOURL_TYPE" />
+        </property>
+        <property name="profilevideourlPrimary" type="boolean">
+            <column name="PROFILEVIDEOURL_PRIMARY" />
+        </property>
+        <property name="profilesongurl" type="string">
+            <column name="PROFILESONGURL" />
+        </property>
+        <property name="profilevideourl" type="string">
+            <column name="PROFILEVIDEOURL" />
+        </property>
+        <property name="profileurl" type="string">
+            <column name="PROFILEURL" />
+        </property>
+        <property name="thumbnailurl" type="string">
+            <column name="THUMBNAILURL" />
+        </property>
+        
+        <one-to-one name="user" class="com.skt.opensocial.persistence.User" property-ref="person"/>
+        
+        <set name="additionalInfo1s" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.PersonAdditionalInfo1"/>
+		</set>
+		<set name="additionalInfo2s" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.PersonAdditionalInfo2"/>
+		</set>
+		<set name="accounts" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.PersonAccount"/>
+		</set>
+		<set name="addresses" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.Address"/>
+		</set>
+		<set name="organizations" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.PersonOrganization"/>
+		</set>
+		<set name="activities" inverse="true" cascade="all">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.Activity"/>
+		</set>
+		<set name="appData" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.PersonAppData"/>
+		</set>
+		<set name="urls" inverse="true">
+			<key column="USER_ID"/>
+			<one-to-many class="com.skt.opensocial.persistence.PersonUrl"/>
+		</set>
+    </class>
+</hibernate-mapping>
